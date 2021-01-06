@@ -285,6 +285,7 @@ in
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
+                       "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                      };
         mime.enable = true ;
         mimeApps.enable = true ;
