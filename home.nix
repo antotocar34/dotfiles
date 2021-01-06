@@ -3,16 +3,36 @@
 with import <nixpkgs> {};
 with builtins;
 with lib;
+
 let
 # Personal Info
 user = "carneca" ;
 home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 email = "antoinecarnec@gmail.com" ;
-# Paths
-dotconfig = toPath "./extraConfigs/.config" ;
-# try this one if the other one does not work.
-# config = ./extraConfigs/.config ;
+
+# caskaydia = pkgs.fetchzip {
+#     name = "firamono-nerdfont-2.1.0";
+
+#     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip";
+
+#     postFetch = ''
+#       mkdir -p $out/share/fonts/firamono-nerdfont
+#       unzip -j $downloadedFile -d $out/share/fonts/firamono-nerdfont
+#     '';
+
+#     sha256 = "1gwh6m3p48wav0ckn7qzr43h1yn82627b7glkhn5dkffz0cphypa";
+
+#     meta = with pkgs.lib; {
+#       description = ''
+#         Nerd Fonts is a project that attempts to patch as many developer targeted
+#         and/or used fonts as possible. The patch is to specifically add a high
+#         number of additional glyphs from popular 'iconic fonts' such as Font
+#         Awesome, Devicons, Octicons, and others.
+#       '';
+      # homepage = https://github.com/ryanoasis/nerd-fonts;
+      # license = licenses.mit;
+      # platforms = platforms.all;
 
 # vim-black = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
 #         pname = "black";
@@ -48,9 +68,11 @@ in
 
     fonts.fontconfig.enable = true ;
 
-	home.packages = with pkgs;  [
-
-            # command line tools
+    home.packages = with pkgs; let
+      CCMono = nerdfonts.override { fonts = ["CascadiaCode"
+                                             "UbuntuMono"] ; } ;
+      in
+            [ # command line tools
             ripgrep
 			fd
             ag
@@ -122,6 +144,7 @@ in
 
             tdrop
 
+            CCMono
 
             ## BIG INSTALLS
             # nerdfonts
