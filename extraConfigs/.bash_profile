@@ -12,4 +12,4 @@ export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
 # export PATH="/opt/Stata/stata14/:$PATH"
 export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 
-cp -Lr ~/.nix-profile/share/applications/*.desktop ~/.local/share/applications
+cp -Lr ~/.nix-profile/share/applications/*.desktop ~/.local/share/applications 2> /dev/null
