@@ -1,0 +1,1 @@
+/home/carneca/Documents/Scripts/startup.sh
