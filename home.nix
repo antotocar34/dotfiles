@@ -81,6 +81,7 @@ in
 			exa
 			psmisc # pstree and the like
             unzip
+            rclone
 
 			anki
 
