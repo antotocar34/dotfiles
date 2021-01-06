@@ -11,6 +11,36 @@ home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 email = "antoinecarnec@gmail.com" ;
 
+
+inotify = 
+  python37Packages.buildPythonApplication rec {
+    pname = "inotify" ;
+    version = "0.2.10"; 
+
+    src = python37Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "01raq3v0vpycjqzgr0462zn37vb3p1gp1syl2qpbd0l46cx64jlp";
+    };
+
+    # buildInputs = with python3Packagse
+    propagatedBuildInputs = with python37Packages ; [ nose ] ;
+  };
+inkscape-figures = 
+  python37Packages.buildPythonApplication rec {
+    pname = "inkscape-figures" ;
+    version = "1.0.7"; 
+
+    src = python37Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "04fb4ihxwjzag6l31iq119llnrkva6zbgkxyrgkhw0ircbw4chn1";
+    };
+
+    doCheck = false ;
+
+    propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
+  } ;
+
+
 # vim-black = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
 #         pname = "black";
 #         version = "f07832e";
@@ -68,6 +98,7 @@ in
 			python38Packages.virtualenv
 			python38Packages.pip
             # nix shell looks like too much work
+            inkscape-figures
 			pipenv
             black
 
