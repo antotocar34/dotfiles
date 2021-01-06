@@ -156,7 +156,7 @@ command! reload :write | restart
 " program.
 
 " Pdf
-filextype *.pdf hide_on_open zathura %c %i &, apvlv %c, xpdf %c
+filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
