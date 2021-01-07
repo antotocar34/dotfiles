@@ -159,6 +159,7 @@ in
             # bashCompletion
 
             # Misc
+            nix-index
             nix-bash-completions
             glibcLocales
             powerline-fonts
