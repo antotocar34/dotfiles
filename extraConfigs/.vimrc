@@ -121,6 +121,7 @@ set autochdir
 " Highlight and jump to search result as it is happening
 set incsearch
 " Case insensitive if search is all lowercase
+set ignorecase
 set smartcase
 " Coc TextEdit might fail if this is unset
 set hidden
@@ -219,8 +220,8 @@ nnoremap <leader>a :Files<CR>
 au TermOpen * setlocal nonumber norelativenumber 
 au TermOpen * startinsert
 " Change back!
-nnoremap <leader>t :vsplit \| term <CR>
-nnoremap <leader>y :split \| term <CR>
+nnoremap <leader>t :vsplit \| terminal <CR>
+nnoremap <leader>y :split \| terminal <CR>
 nnoremap + :term <CR>
 
 " Make terminal quitting easier
