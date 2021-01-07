@@ -37,24 +37,33 @@ noborder=true
 noborderrule=3
 types=1
 
+
 [4]
-Description=Tinder settings
-fsplevel=4
-fsplevelrule=2
-maximizehoriz=true
-maximizehorizrule=3
-maximizevert=true
-maximizevertrule=3
-minimizerule=4
-skippagerrule=1
-skiptaskbarrule=1
-title=(640×800) - Chromium
-typerule=1
-windowrole=browser
-windowrolematch=2
-wmclass=chromium (/home/carneca/documents/python/webscraping/tinder_scrape/selenium) chromium
-wmclasscomplete=true
-wmclassmatch=2
+Description=tdrop
+above=true
+aboverule=1
+acceptfocus=true
+acceptfocusrule=2
+fpplevelrule=6
+fsplevelrule=6
+types=1
+
+[Directories]
+dir_pixmap[$d]
+
+[General]
+BrowserApplication[$d]
+ColorScheme[$d]
+Name[$d]
+count=4
+fixed[$d]
+font[$d]
+menuFont[$d]
+shadeSortColumn[$d]
+smallestReadableFont[$d]
+toolBarFont[$d]
+
+
 
 [Directories]
 dir_pixmap[$d]

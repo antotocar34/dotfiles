@@ -13,18 +13,18 @@ email = "antoinecarnec@gmail.com" ;
 
 
 inotify = 
-  python37Packages.buildPythonApplication rec {
-    pname = "inotify" ;
-    version = "0.2.10"; 
+ python37Packages.buildPythonApplication rec {
+   pname = "inotify" ;
+   version = "0.2.10"; 
 
-    src = python37Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "01raq3v0vpycjqzgr0462zn37vb3p1gp1syl2qpbd0l46cx64jlp";
-    };
+   src = python37Packages.fetchPypi {
+     inherit pname version;
+     sha256 = "01raq3v0vpycjqzgr0462zn37vb3p1gp1syl2qpbd0l46cx64jlp";
+   };
 
-    # buildInputs = with python3Packagse
-    propagatedBuildInputs = with python37Packages ; [ nose ] ;
-  };
+   # buildInputs = with python3Packagse
+   propagatedBuildInputs = with python37Packages ; [ nose ] ;
+ };
 inkscape-figures = 
   python37Packages.buildPythonApplication rec {
     pname = "inkscape-figures" ;
@@ -40,13 +40,6 @@ inkscape-figures =
     propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
   } ;
 
-
-# vim-black = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
-#         pname = "black";
-#         version = "f07832e";
-#         src = ./black ;
-#         meta.homepage = "https://github.com/psf/black";
-#      }; 
 in
 {
 	programs.home-manager.enable = true;
@@ -172,7 +165,6 @@ in
 			];
 
 
-
     programs.neovim = {
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
@@ -186,14 +178,12 @@ in
          nord-vim
          fzf-vim
          nerdtree
-         # vim-dirvish
          haskell-vim
          coc-nvim
          vim-airline
          vim-airline-themes
          colorizer
-         # TODO make black derivation
-         # vim-black
+         telescope-nvim
        ];
 
          extraConfig = builtins.readFile extraConfigs/.vimrc ;
@@ -291,6 +281,9 @@ in
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
+                       ".vimiumrc".source = ./extraConfigs/.vimiumrc ;
+
+
                      };
         mime.enable = true ;
         mimeApps.enable = true ;

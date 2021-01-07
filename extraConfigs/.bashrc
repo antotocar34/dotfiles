@@ -72,7 +72,7 @@ if [ ! -f Pipfile.lock ]; then
     pipenv update
 fi
 
-pipenv run ./inkscape-figures watch
+pipenv run inkscape-figures watch
 pipenv run python inkscape-shortcut-manager/main.py
 }
 

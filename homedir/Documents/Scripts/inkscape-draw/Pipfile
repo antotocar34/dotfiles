@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-inkscape-figures = "*"
 xlib = "*"
 
 [dev-packages]
