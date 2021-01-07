@@ -7,7 +7,7 @@ map l nextTab
 ####
 
 w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
-bo: https://1libeu/s/?q=%s
+bo: https://1lib.eu/s/?q=%s
 sc: https://booksc.xyz/s/?q=%s
 s: https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%s&btnG=
 y: https://www.youtube.com/results?search_query=%s Youtube
