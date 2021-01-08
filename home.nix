@@ -318,7 +318,7 @@ in
     # "Documents/Scripts/inkscape-draw".source  = ./homedir/Documents/Scripts/inkscape-draw ;
     ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
     ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
-    ".ssh/x1.pub".source = ./homedir/.ssh/x1.pub ;
+    ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
     ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
     ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
     ".xmodmap".source  = ./homedir/.xmodmap ;
