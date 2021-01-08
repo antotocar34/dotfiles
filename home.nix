@@ -222,7 +222,8 @@ in
 			{
 				"acer" = {
 					user = "carnec" ;
-					host = "192.168.1.8" ; 
+                    hostname = "192.168.1.8" ;
+					host = "acer" ; 
 				} ;
 			};
 		} ;
