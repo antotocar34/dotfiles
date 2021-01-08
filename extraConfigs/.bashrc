@@ -9,7 +9,7 @@
 
 source ${HOME}/.nix-profile/share/fzf/key-bindings.bash
 source ${HOME}/.nix-profile/share/fzf/completion.bash
-export LOCALE_ARCHIVE="/home/carneca/.nix-profile/lib/locale/locale-archive"
+export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
 
 # If not running interactively, don't do anything
 case $- in
