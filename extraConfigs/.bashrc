@@ -106,6 +106,7 @@ alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
 alias conf="cd ~/.config/nixpkgs/extraConfigs"
 
+alias rlog="ssh -i ${HOME}/.ssh/${HOSTNAME}"
 alias z='zathura'
 alias jnote="cd ${PYTHON_DIR}/notebooks && pipenv run jupyter notebook 2> /dev/null"
 alias coll="cd ${HOME}/Documents/College/4/Michaelmas"
