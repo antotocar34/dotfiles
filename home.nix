@@ -152,7 +152,6 @@ in
             ## BIG INSTALLS
             # nerdfonts
             texlive.combined.scheme-full
-            minecraft
 
             ## Have to be installed manually due to things not working
             # rofi
