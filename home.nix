@@ -331,6 +331,8 @@ in
     ".xmodmap".source  = ./homedir/.xmodmap ;
     ".dir_colors".source  = ./homedir/.dir_colors ;
     ".notes".source  = ./homedir/.notes ;
+    "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
+    "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
     "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
     "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
     "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
