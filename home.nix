@@ -226,11 +226,11 @@ in
 					host = "acer" ; 
                     certificateFile = "~/.ssh/acer.pub";
 				} ;
-				"x1" = {
+				"x1carbon" = {
 					user = "carneca" ;
                     hostname = "192.168.1.19" ;
-					host = "x1" ; 
-                    certificateFile = "~/.ssh/x1.pub" ;
+					host = "x1carbon" ; 
+                    certificateFile = "~/.ssh/x1carbon.pub" ;
 				} ;
 				"bigboy" = {
 					user = "carneca" ;
