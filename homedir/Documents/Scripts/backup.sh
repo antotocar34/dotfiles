@@ -1,3 +1,5 @@
 #! /bin/bash
 
-rsync -avzhe ssh /home/carneca/.test/tester/Documents carneca@192.168.1.18:/home/carneca/.test/tester/
+include_list="--include ${HOME}/Documents --include ${HOME}/Music --include ${HOME}/Pictures --include ${HOME}/Videos" 
+
+rsync -v -avzhe ssh /home/carneca/ --include-from=include.txt acer:/home/carnec/SystemBackups
