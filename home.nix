@@ -221,6 +221,13 @@ in
 			enable = true ;
 			matchBlocks =
 			{
+				"github" = {
+					user = "git" ;
+					port = 22 ;
+                    hostname = "github.com" ;
+					host = "github.com" ; 
+                    identityFile = "~/.ssh/github";
+				} ;
 				"acer" = {
 					user = "carnec" ;
                     hostname = "192.168.1.17" ;
