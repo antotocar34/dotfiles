@@ -9,6 +9,7 @@ let
 user = "carneca" ;
 home = "/home/${user}" ;
 name = "Antoine Carnec" ;
+hostname = getEnv "HOST" ;
 email = "antoinecarnec@gmail.com" ;
 
 
@@ -224,19 +225,19 @@ in
 					user = "carnec" ;
                     hostname = "192.168.1.17" ;
 					host = "acer" ; 
-                    certificateFile = "~/.ssh/acer.pub";
+                    identityFile = "~/.ssh/${hostname}";
 				} ;
 				"x1carbon" = {
 					user = "carneca" ;
                     hostname = "192.168.1.19" ;
 					host = "x1carbon" ; 
-                    certificateFile = "~/.ssh/x1carbon.pub" ;
+                    identityFile = "~/.ssh/${hostname}" ;
 				} ;
 				"bigboy" = {
 					user = "carneca" ;
                     hostname = "192.168.1.18" ;
 					host = "bigboy" ; 
-                    certificateFile = "~/.ssh/bigboy.pub";
+                    identityFile = "~/.ssh/${hostname}";
 				} ;
 			};
 		} ;

@@ -1,6 +1,8 @@
 # this line does not crash home manager
 source ${HOME}/.nix-profile/etc/profile.d/nix.sh
 
+export HOST=$HOSTNAME
+
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
