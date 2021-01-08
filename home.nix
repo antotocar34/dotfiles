@@ -222,8 +222,21 @@ in
 			{
 				"acer" = {
 					user = "carnec" ;
-                    hostname = "192.168.1.8" ;
+                    hostname = "192.168.1.17" ;
 					host = "acer" ; 
+                    certificateFile = "~/.ssh/acer.pub";
+				} ;
+				"x1" = {
+					user = "carneca" ;
+                    hostname = "192.168.1.19" ;
+					host = "x1" ; 
+                    certificateFile = "~/.ssh/x1.pub" ;
+				} ;
+				"bigboy" = {
+					user = "carneca" ;
+                    hostname = "192.168.1.18" ;
+					host = "bigboy" ; 
+                    certificateFile = "~/.ssh/bigboy.pub";
 				} ;
 			};
 		} ;
@@ -303,6 +316,11 @@ in
     home.file = {
     # "Documents/Scripts/inkscape-draw".recursive  = true ;
     # "Documents/Scripts/inkscape-draw".source  = ./homedir/Documents/Scripts/inkscape-draw ;
+    ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
+    ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
+    ".ssh/x1.pub".source = ./homedir/.ssh/x1.pub ;
+    ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
+    ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
     ".xmodmap".source  = ./homedir/.xmodmap ;
     ".dir_colors".source  = ./homedir/.dir_colors ;
     ".notes".source  = ./homedir/.notes ;
