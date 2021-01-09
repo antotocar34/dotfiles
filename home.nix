@@ -83,6 +83,7 @@ in
 			psmisc # pstree and the like
             unzip
             rclone
+            unison
 
 			anki
 
@@ -156,6 +157,7 @@ in
             ## Have to be installed manually due to things not working
             # rofi
             # kitty
+            # minecraft-launcher
             # bashCompletion
 
             # Misc
@@ -184,7 +186,6 @@ in
          vim-airline
          vim-airline-themes
          colorizer
-         telescope-nvim
        ];
 
          extraConfig = builtins.readFile extraConfigs/.vimrc ;
