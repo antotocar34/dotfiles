@@ -6,7 +6,7 @@ with lib;
 
 let
 # Personal Info
-user = "carneca" ;
+user = getEnv "USER" ;
 home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 hostname = getEnv "HOST" ;
