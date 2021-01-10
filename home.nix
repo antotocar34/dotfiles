@@ -65,6 +65,7 @@ in
 			ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
 			'' ;
         QT_XCB_GL_INTEGRATION= "none";
+        LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
 	} ;
 
     fonts.fontconfig.enable = true ;
@@ -276,10 +277,12 @@ in
 
 	# services.sxhkd = 
 	# {
-	# 	enable = false ;
-	# 	# extraPath = "/home/${user}/Documents/Scripts" ;
-	# 	# extraConfig = builtins.readFile ./extraConfigs/sxhkdrc ;
+	# 	enable = true ;
+	# 	extraPath = "/home/${user}/Documents/Scripts:/bin:/usr/bin:${home}/Documents/Scripts" ;
 	# };
+
+	# services.flameshot.enable = true ;
+
 
 	xdg = {
         enable = true ;

@@ -3,6 +3,8 @@ source ${HOME}/.nix-profile/etc/profile.d/nix.sh
 
 export HOST=$HOSTNAME
 
+export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
+
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
