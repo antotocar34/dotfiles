@@ -76,6 +76,7 @@ in
             [ # command line tools
             ripgrep
 			fd
+            nmap
             ag
             tree
 			youtube-dl
@@ -84,8 +85,6 @@ in
             unzip
             rclone
             unison
-
-			anki
 
             # python stuff
 			python38
@@ -130,6 +129,7 @@ in
             xbanish
 
 			discord
+            anki-bin
 
             # should be a service but is not working
             sxhkd
@@ -152,6 +152,7 @@ in
 
             ## BIG INSTALLS
             # nerdfonts
+            tectonic
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
