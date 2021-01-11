@@ -81,7 +81,6 @@ in
             ag
             tree
 			youtube-dl
-			exa
 			psmisc # pstree and the like
             unzip
             rclone
@@ -266,7 +265,7 @@ in
 			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
 			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
 			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
-				"icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
+				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
 				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
 				] ;
 		};
@@ -323,8 +322,6 @@ in
            } ;
 	};
     home.file = {
-    # "Documents/Scripts/inkscape-draw".recursive  = true ;
-    # "Documents/Scripts/inkscape-draw".source  = ./homedir/Documents/Scripts/inkscape-draw ;
     ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
     ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
     ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
