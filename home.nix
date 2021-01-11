@@ -113,7 +113,6 @@ in
 
             # for inkscape-figures
 			xclip # also useful
-            rxvt-unicode
 
 			zathura
 
@@ -152,7 +151,6 @@ in
             NFonts
 
             ## BIG INSTALLS
-            # nerdfonts
             tectonic
             texlive.combined.scheme-full
 
