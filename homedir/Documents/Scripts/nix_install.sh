@@ -14,12 +14,11 @@ nix-shell '<home-manager>' -A install
 
 . ${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh
 
-printf "\n\n\n"
-echo "Please run home-manager switch after importing the git repository"
 printf "\n"
-echo "Please also run the following."
-
 echo """
+Please run the following commands:
 . ${HOME}/.nix-profile/etc/profile.d/nix.sh
 . ${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh
 """
+printf "\n\n\n"
+echo "Please run home-manager switch after importing the git repository"
