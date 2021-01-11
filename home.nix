@@ -92,7 +92,6 @@ in
 			python38Packages.ipython
 			python38Packages.virtualenv
 			python38Packages.pip
-            # nix shell looks like too much work
             inkscape-figures
 			pipenv
             black
