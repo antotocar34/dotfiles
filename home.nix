@@ -321,20 +321,21 @@ in
             "audio/mpeg" = "vlc.desktop" ;
            } ;
 	};
+
     home.file = {
-    ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
-    ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
-    ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
-    ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
-    ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
-    ".xmodmap".source  = ./homedir/.xmodmap ;
-    ".dir_colors".source  = ./homedir/.dir_colors ;
-    ".notes".source  = ./homedir/.notes ;
-    "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
-    "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
-    "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
-    "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
-    "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
-    ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
+      ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
+      ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
+      ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
+      ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
+      ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
+      ".xmodmap".source  = ./homedir/.xmodmap ;
+      ".dir_colors".source  = ./homedir/.dir_colors ;
+      ".notes".source  = ./homedir/.notes ;
+      "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
+      "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
+      "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
+      "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
+      "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
+      ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
     } ;
 }
