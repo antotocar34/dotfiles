@@ -227,7 +227,7 @@ in
                     identityFile = "~/.ssh/github";
 				} ;
 				"acer" = {
-					user = "carnec" ;
+					user = "carneca" ;
                     hostname = "192.168.1.17" ;
 					host = "acer" ; 
                     identityFile = "~/.ssh/${hostname}";
