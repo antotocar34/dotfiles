@@ -32,7 +32,7 @@ ctrl + numbersign
     tdrop --number=420 -ma -w -4 kitty -d ~ env TDROP="purple" bash
 
 ctrl + b
-    chromium
+    chromium --new-window https://www.google.com
 
 shift + ctrl + g
     tdrop --number=google -ma chromium --new-window https://www.google.com
