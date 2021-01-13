@@ -111,6 +111,7 @@ in
 
             # for inkscape-figures
 			xclip # also useful
+            colorpicker
 
 			zathura
 
@@ -120,7 +121,6 @@ in
 
 
             # useful programs
-			flameshot
 			fzf
 			feh 
 			vlc
@@ -130,7 +130,7 @@ in
             anki-bin
 
             # should be a service but is not working
-            sxhkd
+            # sxhkd
 
             cmus
             vifm
@@ -141,7 +141,8 @@ in
 
             inkscape
             gimp
-            krita
+            # Gpg building fails :(
+            # krita
             transmission-qt
 
             tdrop
@@ -155,6 +156,7 @@ in
             ## Have to be installed manually due to things not working
             # rofi
             # kitty
+            # flameshot
             # minecraft-launcher
             # bashCompletion
 
@@ -271,14 +273,13 @@ in
 		};
 	};
 
-	# services.sxhkd = 
+    # services.sxhkd = 
 	# {
-	# 	enable = true ;
-	# 	extraPath = "/home/${user}/Documents/Scripts:/bin:/usr/bin:${home}/Documents/Scripts" ;
+		# enable = true ;
+		# extraPath = "/home/${user}/Documents/Scripts:/bin:/usr/bin:${home}/Documents/Scripts" ;
 	# };
 
-	# services.flameshot.enable = true ;
-
+	# services.flameshot.enable = false ;
 
 	xdg = {
         enable = true ;
@@ -286,6 +287,9 @@ in
         configHome = "/home/carneca/.config" ;
         dataHome   = "/home/carneca/.local/share" ;
         configFile = {
+                       # Startup script
+                       "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
+
                        "kitty/kitty.conf".source = ./extraConfigs/.config/kitty/kitty.conf ;
                        "kitty/nord.conf".source = ./extraConfigs/.config/kitty/nord.conf ;
                        "kitty/ink.conf".source = ./extraConfigs/.config/kitty/ink.conf ;
@@ -296,7 +300,6 @@ in
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
                        "sxhkd/sxhkdrc".source = ./extraConfigs/.config/sxhkd/sxhkdrc ;
-                       "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
@@ -312,6 +315,8 @@ in
         mimeApps.enable = true ;
         mimeApps.defaultApplications =
           { 
+            "x-scheme-handler/http" = "chromium-browser.desktop" ;
+            "x-scheme-handler/https" = "chromium-browser.desktop" ;
             "application/html" = "chromium-browser.desktop" ;
             "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
             "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
@@ -319,6 +324,11 @@ in
             "audio/opus" = "vlc.desktop" ;
             "audio/aac" = "vlc.desktop" ;
             "audio/mpeg" = "vlc.desktop" ;
+           } ;
+           mimeApps.associations.added = { 
+            "x-scheme-handler/http" = "chromium-browser.desktop" ;
+            "x-scheme-handler/https" = "chromium-browser.desktop" ;
+            "application/html" = "chromium-browser.desktop" ;
            } ;
 	};
 
@@ -333,7 +343,7 @@ in
       ".notes".source  = ./homedir/.notes ;
       "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
-      "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
+      # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
       "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
       "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
       ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
