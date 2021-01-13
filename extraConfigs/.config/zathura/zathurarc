@@ -17,5 +17,5 @@ set highlight-color "#D78787"
 set highlight-transparency 0.4
 set page-padding 0
 
-set index-active-bg #3B4281
-set index-bg #BF616A
+set index-active-bg "#BF616A"
+set index-bg "#2E3440" 

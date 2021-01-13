@@ -161,7 +161,7 @@ set ttimeoutlen=100
 set timeoutlen=3000
 set nohlsearch
 " Disable guicuros in neovim
-set guicursor=
+" set guicursor=
 " Set more instructive terminal titles for rofi
 set title
 """
