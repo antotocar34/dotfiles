@@ -136,6 +136,10 @@ snippet fj "Equation reference" wA
 (\ref{$1})$0
 endsnippet
 
+snippet ci "Equation reference" w
+\citep{$0}$1
+endsnippet
+
 snippet fig "Figure environment" b
 \begin{figure}[htpb]
 	\centering
@@ -509,17 +513,17 @@ snippet ge "greater than or equal to" iA
 endsnippet
 
 context "math()"
-snippet st "subject to" i
+snippet st "subject to" iw
 \text{\quad s.t. \quad}
 endsnippet
 
 context "math()"
-snippet qq "subject to" i
+snippet qq "subject to" iw
 \quad
 endsnippet
 
 context "math()"
-snippet qqq "subject to" iA
+snippet qqq "subject to" iAw
 \qquad
 endsnippet
 

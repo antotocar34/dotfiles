@@ -2,7 +2,7 @@ alt + w
     /home/carneca/Documents/Scripts/find_tex.sh
 
 alt + f
-    kitty -e vifm .
+    kitty --name vifm -e vifm .
 
 alt + r  
     /home/carneca/Documents/Scripts/find_pdf.sh
@@ -20,16 +20,16 @@ alt + n
    bitwarden 
 
 alt + m
-   tdrop -n=1 -ma -w -4 -y "$PANEL_HEIGHT" kitty -e cmus
+   tdrop -n=1 -ma -w -4 -y "$PANEL_HEIGHT" kitty --name cmus-term -e cmus
 
 ctrl + Return
-    kitty -d ~ env TDROP= bash
+    kitty --name term0 -d ~ env TDROP= bash
 
 F12
-    tdrop --number=421 -ma -w -4 -y "50%" kitty -d ~ env TDROP="red" bash
+    tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash
 
 ctrl + numbersign 
-    tdrop --number=420 -ma -w -4 kitty -d ~ env TDROP="purple" bash
+    tdrop --number=420 -ma -w -4 kitty --name term2 -d ~ env TDROP="purple" bash
 
 ctrl + b
     chromium --new-window https://www.google.com
@@ -37,16 +37,13 @@ ctrl + b
 shift + ctrl + g
     tdrop --number=google -ma chromium --new-window https://www.google.com
 
-shift + ctrl + n
-    tdrop --number=misc -ma chromium
-
 shift + ctrl + m
     tdrop --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
 
-alt + b
+alt + shift + b
     tdrop --number=books -ma chromium --new-window https://1lib.eu/
 
-alt + slash
+alt + shift + slash
     tdrop --number=articles -ma chromium --new-window https://booksc.xyz/
 
 alt + s
@@ -63,4 +60,3 @@ alt + shift + r
 
 alt + shift + p
     bw generate -p --words 5 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'
-

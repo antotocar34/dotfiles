@@ -13,6 +13,13 @@ hostname = getEnv "HOST" ;
 email = "antoinecarnec@gmail.com" ;
 
 
+nf-fonts = [
+  "CascadiaCode" 
+  "UbuntuMono"
+  "Iosevka"
+  "JetBrainsMono"
+            ] ;
+
 inotify = 
  python37Packages.buildPythonApplication rec {
    pname = "inotify" ;
@@ -71,8 +78,7 @@ in
     fonts.fontconfig.enable = true ;
 
     home.packages = with pkgs; let
-      NFonts = nerdfonts.override { fonts = ["CascadiaCode"
-                                             "UbuntuMono"] ; } ;
+      NFonts = nerdfonts.override { fonts = nf-fonts ; } ;
       in
             [ # command line tools
             ripgrep
@@ -101,7 +107,7 @@ in
 			nodejs # Needed by coc-nvim
 
             # Haskell stuff
-			ghc
+			# ghc
 			haskellPackages.haskell-language-server
             cabal-install
 
@@ -130,7 +136,7 @@ in
             anki-bin
 
             # should be a service but is not working
-            # sxhkd
+            sxhkd
 
             cmus
             vifm
@@ -154,6 +160,7 @@ in
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
+            # krita
             # rofi
             # kitty
             # flameshot
@@ -341,6 +348,7 @@ in
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".notes".source  = ./homedir/.notes ;
+      "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
       # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
