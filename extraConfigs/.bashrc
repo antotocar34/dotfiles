@@ -63,6 +63,7 @@ export SCRIPT_DIR="${HOME}/Documents/Scripts"
 alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && pipenv run python bfetch.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
+alias musicdl="youtube-dl -x --add-metadata"
 
 function draw {
 draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw

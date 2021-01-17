@@ -184,11 +184,10 @@ vnoremap <C-p> "+p
 nnoremap Y "+y
 vnoremap Y "+y
 " reload vimrc
-nnoremap ¬ :source ~/.vimrc<CR>
+nnoremap ¬ :source ~/.config/nvim/init.vim<CR>
 " center the page
 imap <C-e>  <C-o>zz
 " fzf searc
-map <leader>f :BLines <CR>
 command! -bang HFiles call fzf#vim#files('~/', <bang>0)
 
 " This is a spell check from gilles castel blog
@@ -220,23 +219,18 @@ nnoremap <leader>a :Files<CR>
 au TermOpen * setlocal nonumber norelativenumber 
 au TermOpen * startinsert
 " Change back!
-nnoremap <leader>t :vsplit \| terminal <CR>
-nnoremap <leader>y :split \| terminal <CR>
+nnoremap <leader>] :vs\|term<CR>
+nnoremap <leader>[ :sp\|term<CR>
 nnoremap + :term <CR>
 
-" Make terminal quitting easier
-" Does not work with NEOVIM
-" tnoremap <C-d> <C-\><C-n>:q!<CR>
+tnoremap <C-w>h <C-\><C-N><C-w>h
+tnoremap <C-w>j <C-\><C-N><C-w>j
+tnoremap <C-w>k <C-\><C-N><C-w>k
+tnoremap <C-w>l <C-\><C-N><C-w>l
 
-" make C-[ escape in terminal mode
-tnoremap <C-i> <C-\><C-n>
-
-" neovim
-" quit from terminal on control d
-tunmap <tab>
+" tunmap <tab>
+tnoremap <C-k>[ <C-\><C-n><CR>
 tnoremap <C-d> <C-\><C-n>:bd! <CR>
-
-tnoremap <C-w> <C-\><C-n> <C-w>
 
 " Auto instert into the terminal
 let g:previous_window = -1
@@ -324,12 +318,12 @@ augroup END
 """
 " set noautoindent
 " autocmd FileType haskell nnoremap + :term ghci %<CR>
-autocmd FileType haskell nnoremap <leader>y :vsplit \| term ghci %<CR>
-autocmd FileType haskell nnoremap <leader>t :split \| resize 15 \| term ghci %<CR>
+autocmd FileType haskell nnoremap <leader>r :vsplit \| term ghci %<CR>
+autocmd FileType haskell nnoremap <leader>y :split \| resize 15 \| term ghci %<CR>
 autocmd FileType haskell set formatprg=stylish-haskell
 autocmd FileType haskell set tabstop=2
 autocmd FileType haskell set shiftwidth=2
-autocmd FileType haskell nnoremap <buffer> <F9> :exec '!clear;ghci' shellescape(@%, 1)<cr>
+autocmd FileType haskell nnoremap <buffer> <F9> :term ghci %<cr>
 """
 " STATA Specific Stuff
 """
