@@ -105,9 +105,10 @@ in
             pdf2svg # needed for inkscape-figures
 
 			nodejs # Needed by coc-nvim
+            neovim-remote
 
             # Haskell stuff
-			# ghc
+			ghc
 			haskellPackages.haskell-language-server
             cabal-install
 
@@ -155,8 +156,8 @@ in
 
             NFonts
 
-            ## BIG INSTALLS
             tectonic
+            ## BIG INSTALLS
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
