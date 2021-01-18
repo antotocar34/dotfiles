@@ -40,6 +40,7 @@ let g:vimtex_view_forward_search_on_start=0
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_view_automatic = 0
 let g:vimtex_indent_enabled=0
+let g:vimtex_compiler_method='latexmk'
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
     \   '-pdf',
@@ -50,6 +51,14 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
+"    \ 'build_dir' : '',
+" let g:vimtex_compiler_tectonic = {
+"     \ 'options' : [
+"     \   '--keep-logs',
+"     \   '--keep-intermediates',
+"     \   '--synctex'
+"     \ ],
+"     \}
 
 " Plug 'SirVer/Ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -290,7 +299,8 @@ autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
 autocmd FileType python setlocal completeopt-=preview
 
 "NEOVIM
-autocmd FileType python nnoremap <leader>t :vsplit \| term ipython -i % <CR>
+autocmd FileType python nnoremap <leader>r :vsplit \| term ipython -i %<CR>
+autocmd FileType python nnoremap <leader>y :split \| resize 15 \| term ipython -i %<CR>
 "VIM
 " autocmd FileType python nnoremap + :vert term ipython -i %<CR>
 """
