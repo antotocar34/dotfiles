@@ -149,13 +149,14 @@ in
             inkscape
             gimp
             # Gpg building fails :(
-            # krita
+            krita
             transmission-qt
 
             tdrop
 
             NFonts
 
+            pandoc
             tectonic
             ## BIG INSTALLS
             texlive.combined.scheme-full
@@ -341,6 +342,7 @@ in
 	};
 
     home.file = {
+      # ".vim/coc-settings.json".source = ./extraConfigs/.vim/coc-settings.json ;
       ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
       ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
       ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;

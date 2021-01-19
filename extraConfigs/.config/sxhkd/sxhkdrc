@@ -4,6 +4,8 @@ alt + w
 alt + f
     kitty --name vifm -e vifm .
 
+shift + alt +t kitty --name tmux tmux a
+
 alt + r  
     /home/carneca/Documents/Scripts/find_pdf.sh
 

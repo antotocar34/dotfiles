@@ -98,9 +98,9 @@ let g:black_linelength = 81
 let g:black_skip_string_normalization = 1
 
 " Plug 'neoclide/coc.nvim'
-let g:coc_config_home="~/.vim/" " Change when transferring over to nix?
+let g:coc_config_home="~/.config/nvim/"
 autocmd FileType tex let g:coc_start_at_startup = 0
-autocmd FileType python let b:coc_root_patterns = ['Pipfile']
+autocmd FileType python let b:coc_root_patterns = ['Pipfile','.git']
 " autocmd FileType haskell let b:coc_root_patterns =
 "                 \ [????]
 
@@ -209,7 +209,6 @@ map <leader>o :set invspell<CR>
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
 nnoremap - :NERDTree <CR>
-" TODO command to automatically backup latex documents.
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 
@@ -351,7 +350,6 @@ autocmd FileType sh nnoremap <buffer> <F9> :exec '!clear;./%' shellescape(@%, 1)
 let output = system("which node")
 if v:shell_error == 0
     " coc here
-    " set cmdheight=2
     set updatetime=300
 
     " Use K to show documentation in preview window.
@@ -368,13 +366,13 @@ if v:shell_error == 0
     endfunction
 
     " nnoremap <silent> gd <Plug>(coc-definition)
-    nnoremap <silent> gy <Plug>(coc-type-definition)
-    nnoremap <silent> gi <Plug>(coc-implementation)
-    nnoremap <silent> gr <Plug>(coc-references)
-    nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-    nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
-    xnoremap <leader>r <Plug>(coc-codeaction-selected)
-    nnoremap <leader>r <Plug>(coc-codeaction-selected)
+    " nnoremap <silent> gy <Plug>(coc-type-definition)
+    " nnoremap <silent> gi <Plug>(coc-implementation)
+    " nnoremap <silent> gr <Plug>(coc-references)
+    " nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+    " nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+    " xnoremap <leader>r <Plug>(coc-codeaction-selected)
+    " nnoremap <leader>r <Plug>(coc-codeaction-selected)
 
     let g:coc_on = 1
     function Toggle_coc()
