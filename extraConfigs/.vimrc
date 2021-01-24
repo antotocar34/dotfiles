@@ -208,7 +208,7 @@ map <leader>o :set invspell<CR>
 " No idea
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
-nnoremap - :NERDTree <CR>
+nnoremap - <cmd>CHADopen<cr>
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 
@@ -220,7 +220,7 @@ nnoremap <leader>q :bd<CR>
 
 " FZF remaps
 nnoremap <leader>e :HFiles<CR>
-nnoremap <leader>a :Files<CR>
+nnoremap <leader>a :GFiles<CR>
 
 
 " Make terminal behave normally
@@ -291,7 +291,21 @@ highlight ColorColumn ctermbg=magenta
 " PYTHON Specific Stuff
 """
 " Shortcut for running file
-autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;python' shellescape(@%, 1)<cr>
+autocmd FileType python nnoremap <buffer> <F9> <cmd>term python % <cr>
+
+" function Run_Python()
+"     " Dumb solution change ASAP
+"     if !empty(glob("./Pipfile"))
+"         term 'pipenv run python %' <CR>
+"     elseif !empty(glob("../Pipfile"))
+"         term 'pipenv run python %' <CR>
+"     elseif !empty(glob("../../Pipfile"))
+"         term 'pipenv run python %' <CR>
+"     else
+"         term 'python %' <CR>
+"     endif
+" endfunction
+    
 " Set max column
 autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
 "Needed for jedi?

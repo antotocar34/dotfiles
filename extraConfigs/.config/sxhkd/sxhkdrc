@@ -44,7 +44,7 @@ shift + ctrl + m
     tdrop --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
 
 alt + shift + b
-    tdrop --number=books -ma chromium --new-window https://1lib.eu/
+    tdrop --number=books -ma chromium --new-window https://book4you.org
 
 alt + shift + slash
     tdrop --number=articles -ma chromium --new-window https://booksc.xyz/

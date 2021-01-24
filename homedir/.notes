@@ -1,3 +1,5 @@
 This is my notes folder. (Mostly for commands I forget and stuff I want to remember later on).
 
 Make a rofi command that show all open and configured tdrop instances and asks you if you want to access any.
+
+Update changed SSH remote host ssh-keygen -R <remote-IP>
