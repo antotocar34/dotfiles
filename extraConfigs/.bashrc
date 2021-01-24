@@ -60,7 +60,7 @@ export YOUTUBE_DEV_KEY='AIzaSyBl7qzvYb4ojkwFNXBNeFQQC-Dor_Ich8E'
 export EDITOR=$(which vim)
 export PYTHON_DIR="${HOME}/Documents/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
-alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && pipenv run python bfetch.py"
+alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && pipenv run python src/main.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
 alias musicdl="youtube-dl -x --add-metadata"
@@ -80,7 +80,9 @@ pipenv run python inkscape-shortcut-manager/main.py
 alias draw="draw"
 
 function dir_find {
-    dir=$($FZF_CTRL_T_COMMAND -td $HOME | fzf)
+    exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
+    cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
+    dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
     else
@@ -89,7 +91,9 @@ function dir_find {
 }
 
 function file_find {
-    FILE=$($FZF_CTRL_T_COMMAND -tf $HOME | fzf)
+    exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
+    cmd="""fd -I --hidden --follow $exclusions -td . $HOME"""
+    FILE=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
     else
