@@ -81,7 +81,7 @@ alias draw="draw"
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
+    cmd="""fd -I --hidden --follow $exclusions -td . $HOME"""
     dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
@@ -92,7 +92,7 @@ function dir_find {
 
 function file_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -td . $HOME"""
+    cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
     FILE=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
@@ -177,16 +177,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# To enable GHC - Glashow Haskell Compiler
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
-# Disable Ctrl + S
-
 bind "set editing-mode vi"
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
 bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
-
-bind -x '"\C-j":"exit"'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
