@@ -48,6 +48,12 @@ inkscape-figures =
     propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
   } ;
 
+nixGL = (import (pkgs.fetchFromGitHub {
+                owner = "guibou";
+                repo = "nixGL";
+                rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
+                sha256 = "02y38zmdplk7a9ihsxvnrzhhv7324mmf5g8hmxqizaid5k5ydpr3"; })
+            { }).nixGLDefault;
 in
 {
 	programs.home-manager.enable = true;
@@ -93,9 +99,9 @@ in
             unison
 
             # python stuff
-			python38
+			# python38
 			python38Packages.ipython
-			python38Packages.virtualenv
+			# python38Packages.virtualenv
 			python38Packages.pip
             inkscape-figures
 			pipenv
@@ -149,7 +155,6 @@ in
             inkscape
             gimp
             # Gpg building fails :(
-            krita
             transmission-qt
 
             tdrop
@@ -162,14 +167,15 @@ in
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
-            # krita
+            krita
             # rofi
             # kitty
             # flameshot
-            # minecraft-launcher
+            minecraft # works with nixGL
             # bashCompletion
 
             # Misc
+            nixGL
             nix-index
             nix-bash-completions
             glibcLocales
