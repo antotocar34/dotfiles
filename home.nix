@@ -20,6 +20,17 @@ nf-fonts = [
   "JetBrainsMono"
             ] ;
 
+chadtree = vimUtils.buildVimPluginFrom2Nix {
+  pname = "chadtree";
+  version = "0.0";
+  src = fetchFromGitHub {
+    owner = "ms-jpq";
+    repo = "chadtree";
+    rev = "64e54cc9f39dc2084555522bec017cc35ccb8d9d";
+    sha256 = "04fm2m2iiclbcijdmqa20a72af2vizx6bid8q348bsw2ppdh3r1a";
+  };
+};
+
 inotify = 
  python37Packages.buildPythonApplication rec {
    pname = "inotify" ;
@@ -54,6 +65,9 @@ nixGL = (import (pkgs.fetchFromGitHub {
                 rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
                 sha256 = "02y38zmdplk7a9ihsxvnrzhhv7324mmf5g8hmxqizaid5k5ydpr3"; })
             { }).nixGLDefault;
+
+
+
 in
 {
 	programs.home-manager.enable = true;
@@ -63,14 +77,6 @@ in
 	home.username = "${user}";
 	home.homeDirectory = "${home}";
 
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
 	home.stateVersion = "21.03";
 
 	home.sessionVariables = {
@@ -104,7 +110,7 @@ in
 			# python38Packages.virtualenv
 			python38Packages.pip
             inkscape-figures
-			pipenv
+            poetry
             black
 
 
@@ -193,9 +199,9 @@ in
          vim-commentary
          vim-nix
          vim-fugitive
+         nerdtree
          nord-vim
          fzf-vim
-         nerdtree
          haskell-vim
          coc-nvim
          vim-airline
