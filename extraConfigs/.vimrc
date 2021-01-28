@@ -24,8 +24,14 @@ let home = $HOME
 ""
 "PLUGINS
 ""
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 " call plug#begin('~/.vim/plugged')
-
+" Plug 'tidalcycles/vim-tidal'
+" call plug#end()
 
 
 " Plug 'lervag/vimtex'
@@ -113,7 +119,6 @@ let g:airline_powerline_fonts = 1
 
 " Plug 'vim-airline/vim-airline-themes'
 
-" call plug#end()
 
 """"
 "" SETTINGS
@@ -208,7 +213,7 @@ map <leader>o :set invspell<CR>
 " No idea
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
-nnoremap - <cmd>CHADopen<cr>
+nnoremap - <cmd>NERDTree<cr>
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 
@@ -310,6 +315,7 @@ autocmd FileType python nnoremap <buffer> <F9> <cmd>term python % <cr>
 autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
 "Needed for jedi?
 autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python nnoremap <F8> <cmd>term black -l 80 %<CR>
 
 "NEOVIM
 autocmd FileType python nnoremap <leader>r :vsplit \| term ipython -i %<CR>
