@@ -109,7 +109,7 @@ alias lat="cd ~/Documents/Latex"
 alias pyf="cd ~/Documents/Python"
 alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
-alias conf="cd ~/.config/nixpkgs/extraConfigs"
+alias conf="cd ~/.config/nixpkgs"
 
 if [ $TERM = "xterm-kitty" ] ; then
     alias ssh="kitty +kitten ssh"
