@@ -324,14 +324,14 @@ in
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
-                       "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
+                       # CHANGE THIS FOR FIRST RCLONE INSTALL
+                       # "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        ".vimiumrc".source = ./extraConfigs/.vimiumrc ;
-
-
                      };
+
         mime.enable = true ;
         mimeApps.enable = true ;
         mimeApps.defaultApplications =
