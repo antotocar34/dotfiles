@@ -241,6 +241,10 @@ tnoremap <C-w>j <C-\><C-N><C-w>j
 tnoremap <C-w>k <C-\><C-N><C-w>k
 tnoremap <C-w>l <C-\><C-N><C-w>l
 
+tnoremap <leader>l <C-\><C-n>:bn<CR>
+tnoremap <leader>h <C-\><C-n>:bp<CR>
+tnoremap <leader>q <C-\><C-n>:bd<CR>
+
 " tunmap <tab>
 tnoremap <C-k>[ <C-\><C-n><CR>
 tnoremap <C-d> <C-\><C-n>:bd! <CR>

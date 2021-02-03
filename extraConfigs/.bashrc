@@ -60,7 +60,7 @@ export YOUTUBE_DEV_KEY='AIzaSyBl7qzvYb4ojkwFNXBNeFQQC-Dor_Ich8E'
 export EDITOR=$(which vim)
 export PYTHON_DIR="${HOME}/Documents/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
-alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && pipenv run python src/main.py"
+alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
 alias musicdl="youtube-dl -x --add-metadata"
@@ -69,15 +69,15 @@ function draw {
 draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw
 cd $draw_dir 
 
-if [ ! -f Pipfile.lock ]; then
-    pipenv update
+if [ ! -f poetry.lock ]; then
+    poetry update
 fi
 
-pipenv run inkscape-figures watch
-pipenv run python inkscape-shortcut-manager/main.py
+poetry run inkscape-figures watch
+poetry run python inkscape-shortcut-manager/main.py
 }
 
-alias draw="draw"
+# alias draw="draw"
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
