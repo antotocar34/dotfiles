@@ -108,7 +108,7 @@ in
 			# python38
 			python38Packages.ipython
 			# python38Packages.virtualenv
-			python38Packages.pip
+            # python38Packages.pip
             inkscape-figures
             poetry
             black
@@ -156,6 +156,7 @@ in
 
 
             gnome3.gnome-disk-utility
+            gnome3.pomodoro
             etcher
 
             inkscape
