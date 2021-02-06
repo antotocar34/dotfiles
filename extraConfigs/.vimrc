@@ -106,7 +106,7 @@ let g:black_skip_string_normalization = 1
 " Plug 'neoclide/coc.nvim'
 let g:coc_config_home="~/.config/nvim/"
 autocmd FileType tex let g:coc_start_at_startup = 0
-autocmd FileType python let b:coc_root_patterns = ['Pipfile','.git']
+autocmd FileType python let b:coc_root_patterns = ['poetry.lock','.git']
 " autocmd FileType haskell let b:coc_root_patterns =
 "                 \ [????]
 
@@ -241,9 +241,9 @@ tnoremap <C-w>j <C-\><C-N><C-w>j
 tnoremap <C-w>k <C-\><C-N><C-w>k
 tnoremap <C-w>l <C-\><C-N><C-w>l
 
-tnoremap <leader>l <C-\><C-n>:bn<CR>
-tnoremap <leader>h <C-\><C-n>:bp<CR>
-tnoremap <leader>q <C-\><C-n>:bd<CR>
+" tnoremap <leader>l <C-\><C-n>:bn<CR>
+" tnoremap <leader>h <C-\><C-n>:bp<CR>
+" tnoremap <leader>q <C-\><C-n>:bd<CR>
 
 " tunmap <tab>
 tnoremap <C-k>[ <C-\><C-n><CR>
@@ -389,7 +389,7 @@ if v:shell_error == 0
       endif
     endfunction
 
-    " nnoremap <silent> gd <Plug>(coc-definition)
+    nnoremap <silent> <leader>g <Plug>(coc-definition)
     " nnoremap <silent> gy <Plug>(coc-type-definition)
     " nnoremap <silent> gi <Plug>(coc-implementation)
     " nnoremap <silent> gr <Plug>(coc-references)
