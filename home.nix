@@ -205,6 +205,7 @@ in
          fzf-vim
          haskell-vim
          coc-nvim
+         # coc-python
          vim-airline
          vim-airline-themes
          colorizer
