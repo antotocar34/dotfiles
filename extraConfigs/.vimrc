@@ -106,7 +106,7 @@ let g:black_skip_string_normalization = 1
 " Plug 'neoclide/coc.nvim'
 let g:coc_config_home="~/.config/nvim/"
 autocmd FileType tex let g:coc_start_at_startup = 0
-autocmd FileType python let b:coc_root_patterns = ['poetry.lock','.git']
+autocmd FileType python let b:coc_root_patterns = ['.env']
 " autocmd FileType haskell let b:coc_root_patterns =
 "                 \ [????]
 
@@ -300,7 +300,7 @@ highlight ColorColumn ctermbg=magenta
 " PYTHON Specific Stuff
 """
 " Shortcut for running file
-autocmd FileType python nnoremap <buffer> <F9> <cmd>term python % <cr>
+autocmd FileType python nnoremap <buffer> <F9> <cmd>term poetry run python % <cr>
 
 " function Run_Python()
 "     " Dumb solution change ASAP
