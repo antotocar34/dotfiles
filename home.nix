@@ -44,6 +44,8 @@ inotify =
    # buildInputs = with python3Packagse
    propagatedBuildInputs = with python37Packages ; [ nose ] ;
  };
+
+
 inkscape-figures = 
   python37Packages.buildPythonApplication rec {
     pname = "inkscape-figures" ;
@@ -57,6 +59,54 @@ inkscape-figures =
     doCheck = false ;
 
     propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
+  } ;
+
+
+ytmusicapi = 
+  python37Packages.buildPythonApplication rec {
+    pname = "ytmusicapi" ;
+    version = "0.14.2"; 
+
+    src = python37Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "0g3ay8amsrmkaqgiix9prylrnm86s1ii1gvzbf6jzpyrjq7xa2bf";
+    };
+
+    doCheck = false ;
+
+    propagatedBuildInputs = with python37Packages ; [ requests ] ;
+  } ;
+
+pytube =
+  python37Packages.buildPythonApplication rec {
+    pname = "pytube" ;
+    version = "10.4.1"; 
+
+    src = python37Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "0i734xdkn21ak3fw03kgjaggq3ib09igb2y214l9yfp096q9d973";
+    };
+
+    doCheck = false ;
+
+    # propagatedBuildInputs = with python37Packages ; [ requests ] ;
+  } ;
+spotdl = 
+  python37Packages.buildPythonApplication rec {
+    pname = "spotdl" ;
+    version = "3.3.2"; 
+
+    src = python37Packages.fetchPypi {
+      inherit pname version;
+      sha256 = "1vm21k4swc1527vvap53l0wqigz6q91ilw64kar4n9qgn065r2pd";
+    };
+
+    doCheck = false ;
+
+    propagatedBuildInputs = [ ytmusicapi 
+                              python37Packages.mutagen 
+                              python36Packages.typing-extensions 
+                              pytube ] ;
   } ;
 
 nixGL = (import (pkgs.fetchFromGitHub {
@@ -152,7 +202,7 @@ in
             sxhkd
 
             cmus
-            vifm
+            # vifm
 
 
             gnome3.gnome-disk-utility
@@ -160,6 +210,7 @@ in
             etcher
 
             inkscape
+            # spotdl
             gimp
             # Gpg building fails :(
             transmission-qt

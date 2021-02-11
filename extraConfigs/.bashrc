@@ -9,7 +9,7 @@
 
 source ${HOME}/.nix-profile/share/fzf/key-bindings.bash
 source ${HOME}/.nix-profile/share/fzf/completion.bash
-export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
+# export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
 
 # If not running interactively, don't do anything
 case $- in
@@ -61,10 +61,10 @@ export EDITOR=$(which vim)
 export PYTHON_DIR="${HOME}/Documents/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
 alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
-alias prun="poetry run python"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
 alias musicdl="youtube-dl -x --add-metadata"
+alias prun = "poetry run python"
 
 function draw {
 draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw
@@ -182,6 +182,7 @@ bind "set editing-mode vi"
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
 bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
+bind -x '"\C-l": clear'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
