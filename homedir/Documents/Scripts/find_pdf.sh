@@ -1,7 +1,7 @@
 #!/bin/bash
 # Calls rofi on find and doesn't return anything if cancelled
 
-FILE=$(fd -epdf . ~/Documents/ ~/Downloads/ ~/Documents/Latex  | rofi -dmenu -i)
+FILE=$(fd -I -epdf . ~/Documents/ ~/Downloads/ ~/Documents/Latex  | rofi -dmenu -i)
 
 if [[ ${?} -eq 0 ]]
 then
