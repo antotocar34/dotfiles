@@ -209,6 +209,7 @@ in
             gnome3.pomodoro
             etcher
 
+            calibre
             inkscape
             # spotdl
             gimp

@@ -24,14 +24,18 @@ let home = $HOME
 ""
 "PLUGINS
 ""
-" if empty(glob('~/.vim/autoload/plug.vim'))
-"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
-" call plug#begin('~/.vim/plugged')
-" Plug 'tidalcycles/vim-tidal'
-" call plug#end()
+if empty(glob('~/.local/share/nivm/site/autoload/plug.vim'))
+  silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.config/nvim/plugged')
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'psf/black'
+call plug#end()
 
 
 " Plug 'lervag/vimtex'
@@ -267,6 +271,7 @@ au BufEnter * call SmartInsert()
 """
 " COLOURSCHEME
 """
+set termguicolors
 augroup my-colors
     autocmd!
     autocmd ColorScheme * hi Conceal ctermbg=NONE
@@ -389,7 +394,7 @@ if v:shell_error == 0
       endif
     endfunction
 
-    nnoremap <silent> <leader>g <Plug>(coc-definition)
+    nnoremap <leader>g <Plug>(coc-definition)
     " nnoremap <silent> gy <Plug>(coc-type-definition)
     " nnoremap <silent> gi <Plug>(coc-implementation)
     " nnoremap <silent> gr <Plug>(coc-references)
