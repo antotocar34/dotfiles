@@ -149,7 +149,7 @@ alias hs="home-manager switch"
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
 alias notes="vim ${CONF_FILES}/../homedir/.notes"
 alias bib='vim ~/Documents/Latex/bibmaster.bib'
-alias vimrc="vim ${CONF_FILES}/.vimrc"
+alias vimrc="vim ${CONF_FILES}/.config/nvim/init.vim"
 alias bashrc="vim ${CONF_FILES}/.bashrc"
 alias sxhkdrc="vim ${CONF_FILES}/.config/sxhkd/sxhkdrc"
 alias snipp="vim ${CONF_FILES}/.vim/my-snippets/tex.snippets"
@@ -233,3 +233,7 @@ export PATH="${HOME}/Documents/Scripts:$PATH"
 export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
 # export PATH="/opt/Stata/stata14/:$PATH"
 export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
+
+
+# For direnv
+eval "$(direnv hook bash)"

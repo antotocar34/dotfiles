@@ -263,7 +263,8 @@ in
          colorizer
        ];
 
-         extraConfig = builtins.readFile extraConfigs/.vimrc ;
+         # extraConfig = builtins.readFile extraConfigs/.vimrc ;
+         extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
          vimAlias = true ; 
          viAlias = true ; 
          vimdiffAlias = true ;
@@ -377,6 +378,11 @@ in
                        "sxhkd/sxhkdrc".source = ./extraConfigs/.config/sxhkd/sxhkdrc ;
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
+                       # "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim ;
+                        
+
+
+
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
                        # CHANGE THIS FOR FIRST RCLONE INSTALL
                        # "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
@@ -417,6 +423,7 @@ in
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".notes".source  = ./homedir/.notes ;
+      ".direnvrc".source = ./extraConfigs/.config/.direnvrc ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
