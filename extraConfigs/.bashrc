@@ -64,7 +64,13 @@ alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/mai
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
 alias musicdl="youtube-dl -x --add-metadata"
-alias prun = "poetry run python"
+alias prun="poetry run python"
+
+function weekly_dl {
+cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run weekly_dl
+cd - 2> /dev/null
+}
+export -f weekly_dl
 
 function draw {
 draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw
