@@ -1,4 +1,5 @@
-set termguicolors
+" set termguicolors
+
 augroup my-colors
     autocmd!
     autocmd ColorScheme * hi Conceal ctermbg=NONE

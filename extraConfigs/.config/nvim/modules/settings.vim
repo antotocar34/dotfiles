@@ -34,6 +34,7 @@ autocmd fileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set splitbelow splitright
 set linebreak
 
+" maybe comment it back in later?
 " This broke fzf, so I've commented it out.
 " augroup remember_folds
 "     autocmd!

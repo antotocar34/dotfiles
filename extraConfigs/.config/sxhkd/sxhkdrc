@@ -1,5 +1,8 @@
 alt + w
-    /home/carneca/Documents/Scripts/find_tex.sh
+    ${HOME}/Documents/Scripts/find_tex.sh
+
+alt + r  
+    ${HOME}/Documents/Scripts/find_pdf.sh
 
 alt + f
     kitty --name vifm -e vifm .
@@ -7,8 +10,6 @@ alt + f
 shift + alt + t 
     kitty --name tmux tmux a
 
-alt + r  
-    /home/carneca/Documents/Scripts/find_pdf.sh
 
 alt + c 
     rofi -show run

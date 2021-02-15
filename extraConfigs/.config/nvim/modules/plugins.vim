@@ -1,15 +1,15 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+"   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 
-call plug#begin('~/.config/nvim/plugged')
+" call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
-call plug#end()
+" call plug#end()
 
 
 " Plug 'lervag/vimtex'
