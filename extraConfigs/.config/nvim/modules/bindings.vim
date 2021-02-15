@@ -1,6 +1,7 @@
-"save
+" save
 map <C-s>  <Esc>:update <CR>
-"quit
+
+" quite
 nnoremap <C-q> :q!<CR>
 
 nnoremap  <C-j> :tabprevious<CR>
@@ -18,8 +19,7 @@ vnoremap Y "+y
 nnoremap ¬ :source ~/.config/nvim/init.vim<CR>
 " center the page
 imap <C-e>  <C-o>zz
-" fzf searc
-command! -bang HFiles call fzf#vim#files('~/', <bang>0)
+" fzf search home directory
 
 " This is a spell check from gilles castel blog
 " https://castel.dev/post/lecture-notes-1/
@@ -41,8 +41,11 @@ nnoremap <leader>h :bp<CR>
 nnoremap <leader>q :bd<CR>
 
 " FZF remaps
-nnoremap <leader>e :HFiles<CR>
-nnoremap <leader>a :GFiles<CR>
+command! -bang HFiles call fzf#vim#files('~/', <bang>0)
+
+nnoremap <leader>a :Files<CR>
+nnoremap <leader>s :GFiles<CR>
+nnoremap <leader>d :HFiles<CR>
 
 
 " Make terminal behave normally
@@ -66,7 +69,7 @@ tnoremap <C-w>l <C-\><C-N><C-w>l
 tnoremap <C-k>[ <C-\><C-n><CR>
 tnoremap <C-d> <C-\><C-n>:bd! <CR>
 
-" Auto instert into the terminal
+" Auto insert into the terminal
 let g:previous_window = -1
 function SmartInsert()
   if &buftype == 'terminal'

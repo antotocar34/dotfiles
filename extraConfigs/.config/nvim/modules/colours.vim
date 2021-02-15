@@ -1,9 +1,11 @@
-" set termguicolors
-
 augroup my-colors
     autocmd!
     autocmd ColorScheme * hi Conceal ctermbg=NONE
     autocmd ColorScheme * hi SpellBad ctermbg=NONE
+    " For sneak highlight
+    autocmd ColorScheme * hi Sneak ctermfg=0 ctermbg=4 cterm=NONE
+    autocmd ColorScheme * hi Search ctermfg=0 ctermbg=4 cterm=NONE
+    autocmd ColorScheme * hi IncSearch ctermfg=0 ctermbg=4 cterm=NONE
 augroup END
 
 augroup nord-overrides
@@ -20,3 +22,5 @@ augroup END
 colorscheme nord
 
 highlight ColorColumn ctermbg=magenta
+
+" set termguicolors

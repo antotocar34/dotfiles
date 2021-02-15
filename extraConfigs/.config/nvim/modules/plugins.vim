@@ -1,15 +1,12 @@
-" if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-"   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
-"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
 
-" call plug#begin('~/.config/nvim/plugged')
+" Where to put anything that doesn't install correctly with nix
+call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
+" Doesn't work properly, unforsh
 " Plug 'psf/black'
-" call plug#end()
+call plug#end()
 
 
 " Plug 'lervag/vimtex'
@@ -51,6 +48,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/my-snippets']
 
 " Plug 'tpope/vim-surround'
+
+" Plug 'justinmk/vim-sneak'
 
 " Plug 'tpope/vim-unimpaired'
 

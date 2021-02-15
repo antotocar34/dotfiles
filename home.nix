@@ -258,6 +258,7 @@ in
          haskell-vim
          coc-nvim
          # coc-python
+         vim-sneak
          vim-airline
          vim-airline-themes
          colorizer
