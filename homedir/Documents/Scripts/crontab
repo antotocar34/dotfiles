@@ -1,0 +1,2 @@
+0 11 * * * bash /home/carneca/Documents/Scripts/backup.sh 2> .test/backup_log
+0 16 * * 2 bash /home/carneca/Documents/Scripts/weekly_backup.sh 2> .test/backup_log

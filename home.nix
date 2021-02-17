@@ -20,17 +20,6 @@ nf-fonts = [
   "JetBrainsMono"
             ] ;
 
-chadtree = vimUtils.buildVimPluginFrom2Nix {
-  pname = "chadtree";
-  version = "0.0";
-  src = fetchFromGitHub {
-    owner = "ms-jpq";
-    repo = "chadtree";
-    rev = "64e54cc9f39dc2084555522bec017cc35ccb8d9d";
-    sha256 = "04fm2m2iiclbcijdmqa20a72af2vizx6bid8q348bsw2ppdh3r1a";
-  };
-};
-
 inotify = 
  python37Packages.buildPythonApplication rec {
    pname = "inotify" ;
@@ -59,54 +48,6 @@ inkscape-figures =
     doCheck = false ;
 
     propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
-  } ;
-
-
-ytmusicapi = 
-  python37Packages.buildPythonApplication rec {
-    pname = "ytmusicapi" ;
-    version = "0.14.2"; 
-
-    src = python37Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "0g3ay8amsrmkaqgiix9prylrnm86s1ii1gvzbf6jzpyrjq7xa2bf";
-    };
-
-    doCheck = false ;
-
-    propagatedBuildInputs = with python37Packages ; [ requests ] ;
-  } ;
-
-pytube =
-  python37Packages.buildPythonApplication rec {
-    pname = "pytube" ;
-    version = "10.4.1"; 
-
-    src = python37Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "0i734xdkn21ak3fw03kgjaggq3ib09igb2y214l9yfp096q9d973";
-    };
-
-    doCheck = false ;
-
-    # propagatedBuildInputs = with python37Packages ; [ requests ] ;
-  } ;
-spotdl = 
-  python37Packages.buildPythonApplication rec {
-    pname = "spotdl" ;
-    version = "3.3.2"; 
-
-    src = python37Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "1vm21k4swc1527vvap53l0wqigz6q91ilw64kar4n9qgn065r2pd";
-    };
-
-    doCheck = false ;
-
-    propagatedBuildInputs = [ ytmusicapi 
-                              python37Packages.mutagen 
-                              python36Packages.typing-extensions 
-                              pytube ] ;
   } ;
 
 nixGL = (import (pkgs.fetchFromGitHub {
@@ -348,15 +289,13 @@ in
 				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
 				] ;
 		};
+
+        bat = {
+          enable = true ;
+          config = { theme = "Nord" ; } ;
+          } ;
 	};
 
-    # services.sxhkd = 
-	# {
-		# enable = true ;
-		# extraPath = "/home/${user}/Documents/Scripts:/bin:/usr/bin:${home}/Documents/Scripts" ;
-	# };
-
-	# services.flameshot.enable = false ;
 
 	xdg = {
         enable = true ;
@@ -379,7 +318,7 @@ in
                        "sxhkd/sxhkdrc".source = ./extraConfigs/.config/sxhkd/sxhkdrc ;
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
-                       # "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim ;
+                       "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc ;
                         
 
 
@@ -424,9 +363,9 @@ in
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".notes".source  = ./homedir/.notes ;
-      ".direnvrc".source = ./extraConfigs/.config/.direnvrc ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
+      "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
       # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
       "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;

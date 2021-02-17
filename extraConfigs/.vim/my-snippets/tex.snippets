@@ -264,7 +264,7 @@ snippet == "equals" wA
 endsnippet
 
 context "math()"
-snippet lr "( )" wA
+snippet lr "( )" iA
 (${1:${VISUAL}})$0
 endsnippet
 context "math()"
@@ -422,6 +422,15 @@ snippet d "dot"	i
 \dot{$1}$0
 endsnippet
 
+context "math()" 
+snippet dd "dot"	i
+\ddot{$1}$0
+endsnippet
+
+context "math()" 
+snippet ddd "dot"	i
+\dddot{$1}$0
+endsnippet
 context "math()"
 snippet ooo "infinity" wA
 \infty
@@ -867,7 +876,7 @@ snippet ve "varepsilon" wA
 endsnippet
 
 context "math()"
-snippet dd  "delta" wA
+snippet de  "delta" wA
 \delta
 endsnippet
 

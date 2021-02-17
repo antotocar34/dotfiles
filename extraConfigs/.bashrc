@@ -45,20 +45,11 @@ export FZF_CTRL_T_COMMAND="fd -I --hidden --follow -E '*.git' -E '*.stack*' -E '
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""'
 
 # VARIABLE DECLARATIONS
-export BFETCH="${HOME}/Documents/Python/automation/bfetch"
+export BFETCH="${HOME}/Documents/Programming/Python/automation/bfetch"
 export TERMINAL="kitty"
 
-# hide_on_open() { tdrop -a auto_hide; "$@" && tdrop -a auto_show }
-
-#SPOTIFY DOWNLOADER
-export SPOTIPY_CLIENT_ID='2ddda6a007494defad3ec0d140123e8e'
-export SPOTIPY_CLIENT_SECRET='faf826ce11234872930b6f138dcc5cc1'
-export SPOTIPY_REDIRECT_URI='https://www.slickremix.com/docs/get-api-key-for-youtube/'
-export YOUTUBE_DEV_KEY='AIzaSyBl7qzvYb4ojkwFNXBNeFQQC-Dor_Ich8E'
-
 # PYTHON SCRIPTS
-export EDITOR=$(which vim)
-export PYTHON_DIR="${HOME}/Documents/Python"
+export PYTHON_DIR="${HOME}/Documents/Programming/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
 alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
@@ -113,7 +104,6 @@ alias fk=dir_find
 alias fw=file_find
 # alias fw='vim $(tree -fi $HOME | fzf) 2> /dev/null'
 alias lat="cd ~/Documents/Latex"
-alias pyf="cd ~/Documents/Python"
 alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
 alias conf="cd ~/.config/nixpkgs"
@@ -123,7 +113,7 @@ if [ $TERM = "xterm-kitty" ] ; then
 fi
 
 alias z='zathura'
-alias jnote="cd ${PYTHON_DIR}/notebooks && pipenv run jupyter notebook 2> /dev/null"
+alias jnote="cd ${PYTHON_DIR}/notebooks && jupyter notebook --browser=chromium 2> /dev/null"
 alias coll="cd ${HOME}/Documents/College/4/Michaelmas"
  
 # launch and disown program
@@ -153,8 +143,6 @@ alias vimrc="vim ${CONF_FILES}/.config/nvim/init.vim"
 alias bashrc="vim ${CONF_FILES}/.bashrc"
 alias sxhkdrc="vim ${CONF_FILES}/.config/sxhkd/sxhkdrc"
 alias snipp="vim ${CONF_FILES}/.vim/my-snippets/tex.snippets"
-
-alias config="$(which git) --git-dir=${XDG_CONFIG_HOME}/nixpkgs/.git --work-tree=${XDG_CONFIG_HOME}/nixpkgs"
 
 # Unbind ^Q
 stty -ixon
@@ -186,6 +174,8 @@ fi
 
 bind "set editing-mode vi"
 bind "set show-mode-in-prompt on"
+# bind "set vi-cmd-mode-string '\1\e[2 q\2'"
+# bind "set vi-ins-mode-string '\1\e[6 q\2'"
 bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
 bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
 bind -x '"\C-l": clear'
@@ -200,22 +190,31 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-
 if [ -z $TDROP ] ; then
 
-        export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
+        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
 
 
 else
     bind -x '"\C-j":"tdrop current"'
     if [ $TDROP = "red" ] ; then
-        export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;31mλ \e[m'
+        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;31mλ \e[m'
 
     else
-        export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;36mλ \e[m'
+        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;36mλ \e[m'
 
     fi
 fi
+
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "(active) "
+    # echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+export -f show_virtual_env
+PS1='$(show_virtual_env)'$PS1
+# PS1="${CUSTOM_PS1}${PS1}"
 
 unset color_prompt force_color_prompt
 
