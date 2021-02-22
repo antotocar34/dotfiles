@@ -33,22 +33,22 @@ F12
     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash
 
 ctrl + numbersign 
-    tdrop --number=420 -ma -w -4 kitty --name term2 -d ~ env TDROP="purple" bash
+    tdrop -w "100%" -h "100%" --number=420 -ma -w -4 kitty --name term2 -d ~ env TDROP="purple" bash
 
 ctrl + b
     chromium --new-window https://www.google.com
 
 shift + ctrl + g
-    tdrop --number=google -ma chromium --new-window https://www.google.com
+    tdrop -w "100%" -h "100%" --number=google -ma chromium --new-window https://www.google.com
 
 shift + ctrl + m
-    tdrop --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
+    tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
 
 alt + shift + b
-    tdrop --number=books -ma chromium --new-window https://book4you.org
+    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://book4you.org
 
 alt + shift + slash
-    tdrop --number=articles -ma chromium --new-window https://booksc.xyz/
+    tdrop -w "100%" -h "100%" --number=articles -ma chromium --new-window https://booksc.xyz/
 
 alt + s
     anki
