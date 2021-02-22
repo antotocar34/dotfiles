@@ -4,12 +4,13 @@ else
 
 let mapleader = " "
 let home = $HOME
+let nvim_folder = "/home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/"
 
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/plugins.vim
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/settings.vim
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/bindings.vim
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/colours.vim
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/file_specific.vim
-source /home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/lsp.vim
+execute "source " . nvim_folder . "plugins.vim"
+execute "source " . nvim_folder . "settings.vim"
+execute "source " . nvim_folder . "bindings.vim"
+execute "source " . nvim_folder . "colours.vim"
+execute "source " . nvim_folder . "file_specific.vim"
+execute "source " . nvim_folder . "lsp.vim"
 
 endif
