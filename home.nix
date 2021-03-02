@@ -93,7 +93,6 @@ in
 			psmisc # pstree and the like
             unzip
             rclone
-            unison
 
             # python stuff
 			# python38
@@ -104,11 +103,12 @@ in
             poetry
             black
 
+            direnv
 
             pdf2svg # needed for inkscape-figures
 
 			nodejs # Needed by coc-nvim
-            neovim-remote
+            neovim-remote # Needed for SyncTex
 
             # Haskell stuff
 			ghc
@@ -134,7 +134,7 @@ in
 			fzf
 			feh 
 			vlc
-            xbanish
+            xbanish # Hides cursor on key press
 
 			discord
             anki-bin
@@ -148,21 +148,17 @@ in
 
             gnome3.gnome-disk-utility
             gnome3.pomodoro
-            etcher
+            etcher # Formatting USBs
 
-            calibre
+            calibre # Ebook goodness
             inkscape
-            # spotdl
             gimp
-            # Gpg building fails :(
-            transmission-qt
+            transmission-qt # Torrenting
 
             tdrop
 
             NFonts
 
-            pandoc
-            tectonic
             ## BIG INSTALLS
             texlive.combined.scheme-full
 
@@ -198,14 +194,12 @@ in
          fzf-vim
          haskell-vim
          coc-nvim
-         # coc-python
          vim-sneak
          vim-airline
          vim-airline-themes
          colorizer
        ];
 
-         # extraConfig = builtins.readFile extraConfigs/.vimrc ;
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
          vimAlias = true ; 
          viAlias = true ; 
