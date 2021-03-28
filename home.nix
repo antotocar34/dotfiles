@@ -356,6 +356,7 @@ in
       ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
       ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
       ".xmodmap".source  = ./homedir/.xmodmap ;
+      ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".notes".source  = ./homedir/.notes ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;

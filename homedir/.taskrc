@@ -1,0 +1,17 @@
+# [Created by task 2.5.3 3/27/2021 15:34:47]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+dateformat=D-M-Y
+dateformat.edit=D-M-Y H:N:S
+dateformat.holiday=DMY
+dateformat.info=D-M-Y H:N:S
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+include /nix/store/pdd5ckmxbdyj8r5gihn9q30h9l1k0qyb-taskwarrior-2.5.3/share/doc/task/rc/dark-16.theme
+
