@@ -422,6 +422,7 @@ snippet d "dot"	i
 \dot{$1}$0
 endsnippet
 
+priority 200
 context "math()" 
 snippet dd "dot"	i
 \ddot{$1}$0
@@ -793,7 +794,17 @@ snippet <~ "Inverse Preference Relation" iA
 \precsim
 endsnippet
 
-
+snippet game "2x2 matrix" i
+\begin{table}
+    \setlength{\extrarowheight}{2pt}
+    \begin{tabular}{*{4}{c|}}
+      \multicolumn{2}{c}{} & \multicolumn{2}{c}{Player $Y$}\\\cline{3-4}
+      \multicolumn{1}{c}{} &  & $A$  & $B$ \\\cline{2-4}
+      \multirow{2}*{Player $X$}  & $A$ & $(x,y)$ & $(x,y)$ \\\cline{2-4}
+      & $B$ & $(x,y)$ & $(x,y)$ \\\cline{2-4}
+    \end{tabular}
+  \end{table}
+endsnippet
 ###
 # GREEK LETTERS
 ###
@@ -984,6 +995,7 @@ snippet temp "Basic template" bA
 }
 % \pdfsuppresswarningpagegroup=1
 
+\newtheorem{lemma}{Lemma}[section]
 \newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]

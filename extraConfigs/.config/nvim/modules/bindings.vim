@@ -23,7 +23,7 @@ imap <C-e>  <C-o>zz
 
 " This is a spell check from gilles castel blog
 " https://castel.dev/post/lecture-notes-1/
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u
 " Toggle spell checking
 map <leader>o :set invspell<CR>
 

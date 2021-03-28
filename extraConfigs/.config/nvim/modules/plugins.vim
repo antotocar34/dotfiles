@@ -3,6 +3,7 @@
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
+Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Doesn't work properly, unforsh
 " Plug 'psf/black'
@@ -13,7 +14,7 @@ call plug#end()
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=2
+" set conceallevel=2
 " let g:tex_conceal='abdmg'
 let g:vimtex_include_search_enabled=0
 let g:vimtex_complete_close_braces=1

@@ -10,7 +10,6 @@ alt + f
 shift + alt + t 
     kitty --name tmux tmux a
 
-
 alt + c 
     rofi -show run
 
@@ -48,7 +47,7 @@ alt + shift + b
     tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://book4you.org
 
 alt + shift + slash
-    tdrop -w "100%" -h "100%" --number=articles -ma chromium --new-window https://booksc.xyz/
+    tdrop -w "100%" -h "100%" --number=articles -ma chromium --new-window https://booksc.org/
 
 alt + s
     anki
@@ -64,3 +63,6 @@ alt + shift + r
 
 alt + shift + p
     bw generate -p --words 5 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'
+
+alt + shift + { Left, Down, Up, Right }
+        ${HOME}/.config/nixpkgs/homedir/Documents/Scripts/desktop_switch.sh { left , down, up, right }

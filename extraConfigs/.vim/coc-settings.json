@@ -1,5 +1,14 @@
 {
   "languageserver": {
+      "lean": {
+                "command": "lean-language-server",
+                "args": ["--stdio"],
+                "filetypes": ["lean"],
+                "settings": {
+                }
+            }
+        },
+  "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": [

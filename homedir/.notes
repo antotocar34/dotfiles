@@ -3,3 +3,7 @@ This is my notes folder. (Mostly for commands I forget and stuff I want to remem
 Make a rofi command that show all open and configured tdrop instances and asks you if you want to access any.
 
 Update changed SSH remote host ssh-keygen -R <remote-IP>
+
+rar a <comic_name>.cbr *.jpg
+
+kcc-c2e --format=MOBI -mu --profile=KPW
