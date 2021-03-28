@@ -111,9 +111,9 @@ in
             neovim-remote # Needed for SyncTex
 
             # Haskell stuff
-			ghc
-			haskellPackages.haskell-language-server
-            cabal-install
+			# ghc
+			# haskellPackages.haskell-language-server
+            # cabal-install
 
             # password management
 			bitwarden
@@ -131,6 +131,7 @@ in
 
 
             # useful programs
+            taskwarrior
 			fzf
 			feh 
 			vlc
@@ -150,7 +151,7 @@ in
             gnome3.pomodoro
             etcher # Formatting USBs
 
-            calibre # Ebook goodness
+            # calibre # Ebook goodness
             inkscape
             gimp
             transmission-qt # Torrenting
@@ -163,11 +164,11 @@ in
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
-            krita
+            # krita
             # rofi
             # kitty
             # flameshot
-            minecraft # works with nixGL
+            # minecraft # works with nixGL
             # bashCompletion
 
             # Misc
@@ -188,7 +189,7 @@ in
          ultisnips
          vim-commentary
          vim-nix
-         vim-fugitive
+         # vim-fugitive
          nerdtree
          nord-vim
          fzf-vim
