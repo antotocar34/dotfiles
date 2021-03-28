@@ -359,7 +359,7 @@ in
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".notes".source  = ./homedir/.notes ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
-      "Documents/Scripts/backup.sh".source  = ./homedir/Documents/Scripts/backup.sh ;
+      "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
       # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
