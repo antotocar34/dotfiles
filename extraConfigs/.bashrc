@@ -58,7 +58,8 @@ alias musicdl="youtube-dl -x --add-metadata"
 alias prun="poetry run python"
 
 function weekly_dl {
-cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run weekly_dl
+cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
+
 cd - 2> /dev/null
 }
 export -f weekly_dl
