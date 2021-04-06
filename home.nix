@@ -132,6 +132,7 @@ in
 
             # useful programs
             taskwarrior
+            timewarrior
 			fzf
 			feh 
 			vlc
@@ -152,6 +153,8 @@ in
             etcher # Formatting USBs
 
             # calibre # Ebook goodness
+            kcc
+            mcomix3-unstable
             inkscape
             gimp
             transmission-qt # Torrenting
