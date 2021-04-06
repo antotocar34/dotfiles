@@ -30,5 +30,6 @@ while [ $? -ne 0 ] ; do
 done
 }
 
-document_backup
 task_backup
+
+document_backup
