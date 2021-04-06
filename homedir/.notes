@@ -6,4 +6,15 @@ Update changed SSH remote host ssh-keygen -R <remote-IP>
 
 rar a <comic_name>.cbr *.jpg
 
-kcc-c2e --format=MOBI -mu --profile=KPW
+kcc-c2e --format=MOBI -mu --profile=KPW --SPLITTER=2
+
+
+
+MAKE A WEBSITE
+
+That tracks and shows how you spend your time.
+
+That aggregates all ulysses information and analysis.
+    -- Rejoyce
+    -- 
+

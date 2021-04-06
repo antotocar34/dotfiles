@@ -168,7 +168,7 @@ in
             # rofi
             # kitty
             # flameshot
-            # minecraft # works with nixGL
+            minecraft # works with nixGL
             # bashCompletion
 
             # Misc
@@ -280,6 +280,7 @@ in
 			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
 			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
 			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
+                # "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
 				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
 				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
 				] ;
