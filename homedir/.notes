@@ -1,20 +1,29 @@
-This is my notes folder. (Mostly for commands I forget and stuff I want to remember later on).
+This is my notes file. (Mostly for commands I forget and stuff I want to remember later on).
 
 Make a rofi command that show all open and configured tdrop instances and asks you if you want to access any.
 
-Update changed SSH remote host ssh-keygen -R <remote-IP>
+UPDATE CHANGED ssh REMOTE HOST -> ssh-keygen -R <remote-IP>
 
-rar a <comic_name>.cbr *.jpg
+HOW TO MAKE CBR FILE -> rar a <comic_name>.cbr *.jpg
 
-kcc-c2e --format=MOBI -mu --profile=KPW --SPLITTER=2
+EBOOK CONVERSION -> kcc-c2e --format=MOBI -mu --profile=KPW --SPLITTER=2
+
+HOW TO UNZIP TAR.GZ FILE -> tar -xf file.tar.gz
 
 
+
+IDEAS
+-----
 
 MAKE A WEBSITE
 
-That tracks and shows how you spend your time.
+1. That tracks and shows how you spend your time.
 
-That aggregates all ulysses information and analysis.
+2. That aggregates all ulysses information and analysis.
     -- Rejoyce
-    -- 
+    -- Joyce Project
+    -- Gifford
+    -- Allussions in Joyce
+    -- Has multiple editions
+    -- Supports user comments
 
