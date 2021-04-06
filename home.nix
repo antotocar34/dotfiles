@@ -154,6 +154,7 @@ in
 
             # calibre # Ebook goodness
             kcc
+
             mcomix3
             inkscape
             gimp
