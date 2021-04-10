@@ -164,8 +164,15 @@ fileviewer *.pdf pdftotext -nopgbrk %c -
 filextype *.ps,*.eps,*.ps.gz
         \ {View in zathura}
         \ zathura %f,
-        \ {View in gv}
+        \ {View in zathura}
         \ gv %c %i &,
+
+" Comic Book
+filextype *.cbr *.cbz
+        \ {View in zathura}
+        \ zathura %f,
+        \ {View in apvlv}
+        \ apvlv %f,
 
 " Djvu
 filextype *.djvu

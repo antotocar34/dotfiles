@@ -7,9 +7,9 @@ rclone_documents () {
 ${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/Documents tdrive:/backup/Documents/
 }
 
-rclone_documents 2> /home/carneca/.log/rclone_backup
+rclone_documents 2>> /home/carneca/.log/rclone_backup
 while [ $? -ne 0 ] ; do
-    rclone_documents 2> /home/carneca/.log/rclone_backup
+    rclone_documents 2>> /home/carneca/.log/rclone_backup
     sleep 3
 done
 }

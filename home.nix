@@ -99,7 +99,7 @@ in
 			python38Packages.ipython
 			# python38Packages.virtualenv
             # python38Packages.pip
-            inkscape-figures
+            # inkscape-figures
             poetry
             black
 
@@ -155,8 +155,7 @@ in
             # calibre # Ebook goodness
             kcc
 
-            mcomix3
-            inkscape
+            # inkscape
             gimp
             transmission-qt # Torrenting
 

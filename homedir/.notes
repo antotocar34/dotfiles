@@ -6,11 +6,11 @@ UPDATE CHANGED ssh REMOTE HOST -> ssh-keygen -R <remote-IP>
 
 HOW TO MAKE CBR FILE -> rar a <comic_name>.cbr *.jpg
 
-EBOOK CONVERSION -> kcc-c2e --format=MOBI -mu --profile=KPW --SPLITTER=2
+EBOOK CONVERSION -> kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2
 
 HOW TO UNZIP TAR.GZ FILE -> tar -xf file.tar.gz
 
-
+DU COMMAND FOR HIDDEN FILES -> du -hs .[^.]*
 
 IDEAS
 -----
