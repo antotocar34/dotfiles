@@ -3,7 +3,7 @@
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
-Plug 'leanprover/lean.vim', { 'for': 'lean' }
+" Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Doesn't work properly, unforsh
 " Plug 'psf/black'
