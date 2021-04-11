@@ -161,32 +161,30 @@ filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
-filextype *.ps,*.eps,*.ps.gz
+filextype *.ps,*.eps,*.ps.gz, *.cbz, *.cbr
         \ {View in zathura}
         \ zathura %f,
         \ {View in zathura}
-        \ gv %c %i &,
+        \ zathura %c %i &,
 
 " Comic Book
 filextype *.cbr *.cbz
         \ {View in zathura}
         \ zathura %f,
         \ {View in apvlv}
-        \ apvlv %f,
+        \ zathura %c %i &,
 
 " Djvu
 filextype *.djvu
         \ {View in zathura}
         \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        "\ {Play using ffplay}
-       "\ ffplay -nodisp %c,
+       "\ ffplay -nodisp %c &,
        \ {Play using MPlayer}
-       \ vlc  %f,
+       \ vlc  %f &,
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
@@ -196,8 +194,6 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.as[fx]
         \ {View using vlc}
         \ vlc %f,
-        \ {View using Dragon}
-        \ dragon %f:p,
         \ {View using mplayer}
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -225,11 +221,11 @@ fileviewer *.[1-8] man ./%c | col -b
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ feh %f,
+        \ feh %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in feh}
-        \ feh,
+        \ feh &,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
          \ convert -identify %f -verbose /dev/null
 
@@ -245,12 +241,12 @@ filextype *.vym
 "Vector Graphics
 filextype  *.svg
     \ {Open with inkscape}
-    \ inkscape %f,
+    \ inkscape %f &,
 
 "Stata 
 filextype  *.dta
     \ {Open with stata}
-    \ xstata-mp %f,
+    \ xstata-mp %f &,
 
 "Python 
 filextype  *.py
