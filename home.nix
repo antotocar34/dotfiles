@@ -95,10 +95,10 @@ in
             rclone
 
             # python stuff
-			# python38
+			python38
 			python38Packages.ipython
-			# python38Packages.virtualenv
-            # python38Packages.pip
+			# python37Packages.virtualenv
+            python38Packages.pip
             # inkscape-figures
             poetry
             black
@@ -153,7 +153,7 @@ in
             etcher # Formatting USBs
 
             # calibre # Ebook goodness
-            kcc
+            kcc # Ebook conversion
 
             # inkscape
             gimp
@@ -171,7 +171,7 @@ in
             # rofi
             # kitty
             # flameshot
-            minecraft # works with nixGL
+            # minecraft # works with nixGL
             # bashCompletion
 
             # Misc
