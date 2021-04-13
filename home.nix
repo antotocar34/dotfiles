@@ -87,6 +87,7 @@ in
             ripgrep
 			fd
             nmap
+            rdfind # duplicate finder and remover
             ag
             tree
 			youtube-dl
@@ -152,7 +153,7 @@ in
             gnome3.pomodoro
             etcher # Formatting USBs
 
-            # calibre # Ebook goodness
+            calibre # Ebook goodness
             kcc # Ebook conversion
 
             # inkscape
