@@ -1,13 +1,13 @@
 
 " Where to put anything that doesn't install correctly with nix
-call plug#begin('~/.config/nvim/plugged')
+" call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Doesn't work properly, unforsh
 " Plug 'psf/black'
-call plug#end()
+" call plug#end()
 
 
 " Plug 'lervag/vimtex'

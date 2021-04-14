@@ -10,6 +10,9 @@ nix-channel --update
 
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
+mkdir -p ~/.test/trash
+mv ~/.bashrc ~/.bash_profile ~/.config/kwinrulesrc ~/.config/kwinrc ~/.dir_colors ~/.test/trash
+
 nix-shell '<home-manager>' -A install
 
 printf "Generating github ssh key.\n"
