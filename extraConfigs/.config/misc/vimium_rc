@@ -1,0 +1,7 @@
+# Insert your preferred key mappings here.
+unmap u
+map e scrollPageUp
+unmap h
+map h previousTab
+unmap l
+map l nextTab
