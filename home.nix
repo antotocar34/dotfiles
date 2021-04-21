@@ -100,7 +100,7 @@ in
 			python38Packages.ipython
 			# python37Packages.virtualenv
             python38Packages.pip
-            # inkscape-figures
+            inkscape-figures
             poetry
             black
 
@@ -140,7 +140,7 @@ in
             xbanish # Hides cursor on key press
 
 			discord
-            anki-bin
+            # anki-bin
 
             # should be a service but is not working
             sxhkd
@@ -156,8 +156,9 @@ in
             calibre # Ebook goodness
             kcc # Ebook conversion
 
-            # inkscape
+            inkscape
             gimp
+            deluge
             transmission-qt # Torrenting
 
             tdrop
@@ -203,6 +204,7 @@ in
          vim-airline
          vim-airline-themes
          colorizer
+         vimwiki
        ];
 
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
@@ -325,7 +327,7 @@ in
 
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
                        # CHANGE THIS FOR FIRST RCLONE INSTALL
-                       # "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
+                       "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
@@ -363,7 +365,6 @@ in
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
-      ".notes".source  = ./homedir/.notes ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;

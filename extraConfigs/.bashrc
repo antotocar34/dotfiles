@@ -135,11 +135,13 @@ alias xc="xclip -selection clipboard"
 alias stata="launch xstata-mp"
 alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
-alias hs="home-manager switch"
+alias hs="home-manager -b old_version switch"
 
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
-alias notes="vim ${CONF_FILES}/../homedir/.notes"
+WIKI_LOC="${HOME}/Documents/Storage/vimwiki"
+alias notes="vim ${WIKI_LOC}/index.wiki"
+alias diary="vim ${WIKI_LOC}/diary/diary.wiki"
 alias bib='vim ~/Documents/Latex/bibmaster.bib'
 alias vimrc="vim ${CONF_FILES}/.config/nvim/init.vim"
 alias bashrc="vim ${CONF_FILES}/.bashrc"

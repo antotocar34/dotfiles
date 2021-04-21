@@ -1,0 +1,9 @@
+sudo pacman --noconfirm -Rs yakuake okular konversation kate kcalc spectacle manjaro-hello
+
+Change Caps lock to control.
+
+Import control scheme into shortcuts
+
+Go to Settings -> Workspace -> Window Management -> Window rules -> regex .* and no titlebar with Force option.
+
+rm .bashrc .bash_profile .config/kwinrulesrc .config/kwinrc .dir_colors
