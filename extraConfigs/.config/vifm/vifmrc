@@ -103,8 +103,9 @@ mark B ~/Documents/Books
 mark h ~/
 mark d ~/Downloads
 mark D ~/Documents
-mark l ~/Latex
+mark l ~/Documents/Latex
 mark c ~/.config/nixpkgs/
+mark C ~/Documents/College/
 
 " ------------------------------------------------------------------------------
 
