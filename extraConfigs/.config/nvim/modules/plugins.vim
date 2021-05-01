@@ -99,7 +99,7 @@ let g:airline_powerline_fonts = 1
 
 
 " Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/Documents/Storage/vimwiki',
-                      \ 'path_html': '~/vimwiki_html'}]
+let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
+                      \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 
