@@ -44,7 +44,7 @@ shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
 
 alt + shift + b
-    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://book4you.org
+    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://2lib.org/
 
 alt + shift + slash
     tdrop -w "100%" -h "100%" --number=articles -ma chromium --new-window https://booksc.org/

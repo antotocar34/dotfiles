@@ -159,7 +159,6 @@ in
             inkscape
             gimp
             deluge
-            transmission-qt # Torrenting
 
             tdrop
 
@@ -205,6 +204,7 @@ in
          vim-airline-themes
          colorizer
          vimwiki
+         goyo
        ];
 
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
@@ -286,7 +286,7 @@ in
 			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
 			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
 			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
-                # "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
+                "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
 				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
 				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
 				] ;
@@ -321,12 +321,7 @@ in
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
                        "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc ;
-                        
-
-
-
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
-                       # CHANGE THIS FOR FIRST RCLONE INSTALL
                        "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
@@ -365,6 +360,7 @@ in
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
+      ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;

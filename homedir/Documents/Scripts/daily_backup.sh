@@ -1,7 +1,5 @@
 #! /bin/bash
 
-
-
 document_backup () {
 rclone_documents () {
 ${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/Documents tdrive:/backup/Documents/
@@ -15,12 +13,9 @@ done
 }
 
 task_backup () {
-FILE="task-backup-$(date +'%d-%m-%Y').tar.gz"
-cd ~/.task
-tar -czf $FILE *
-
 rclone_tasks () {
-${HOME}/.nix-profile/bin/rclone -v copy $FILE tdrive:/backup/tasks/
+${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.task/ tdrive:/backup/data/taskwarrior/
+${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.timewarrior/ tdrive:/backup/data/timewarrior/
 }
 
 rclone_tasks
