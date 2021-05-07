@@ -93,8 +93,10 @@ in
 			youtube-dl
 			psmisc # pstree and the like
             unzip
+            unrar
             rclone
 
+            filezilla
             # python stuff
 			python38
 			python38Packages.ipython
@@ -125,6 +127,7 @@ in
             colorpicker
 
 			zathura
+            mcomix3
 
 			xdotool
             xorg.xrandr
@@ -226,6 +229,16 @@ in
 		} ;
 		userName = "${name}" ;
 		userEmail = "${email}" ;
+        # includes = [
+        #   {   
+        #     path = "~/carneca/.config/nixpkgs/extraConfigs/.config/git/website"
+        #     # contents = {
+        #     #   userName = "antoinecarnec" ;
+        #     #   userEmail = "antoinecarnec2@gmail.com" ;
+        #     #              } ;
+        #       condition = "gitdir:~/Documents/Website/antoinecarnec.github.io" ;
+        #   }
+        # ] ; 
 	} ;
 
 	programs =  {
@@ -240,6 +253,13 @@ in
 			enable = true ;
 			matchBlocks =
 			{
+				"website" = {
+					user = "git" ;
+					port = 22 ;
+                    hostname = "github.com" ;
+					host = "github.com-antoinecarnec" ; 
+                    identityFile = "~/.ssh/website";
+				} ;
 				"github" = {
 					user = "git" ;
 					port = 22 ;
