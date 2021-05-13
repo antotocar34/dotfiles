@@ -15,7 +15,7 @@ done
 task_backup () {
 rclone_tasks () {
 ${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.task/ tdrive:/backup/data/taskwarrior/
-${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.timewarrior/ tdrive:/backup/data/timewarrior/
+${HOME}/.nix-profile/bin/rclone -v copy -P ${HOME}/.timewarrior/ tdrive:/backup/data/timewarrior/
 }
 
 rclone_tasks

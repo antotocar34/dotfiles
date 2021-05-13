@@ -57,6 +57,7 @@ alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pd
 alias musicdl="youtube-dl -x --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
+alias excel="chromium --new-window --app=https://www.office.com/template/excel"
 
 function weekly_dl {
 cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
@@ -86,7 +87,7 @@ function dir_find {
     if [[ $? -eq 130 ]]; then
         true
     else
-        cd $dir
+        cd "${dir}"
     fi
 }
 
@@ -97,7 +98,7 @@ function file_find {
     if [[ $? -eq 130 ]]; then
         true
     else
-        vim $FILE
+        vim "${FILE}"
     fi
 }
 
@@ -140,7 +141,7 @@ alias hs="home-manager -b old_version switch"
 
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
-WIKI_LOC="${HOME}/Documents/Storage/vimwiki"
+WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 alias notes="vim ${WIKI_LOC}/index.wiki"
 alias diary="vim ${WIKI_LOC}/diary/diary.wiki"
 alias bib='vim ~/Documents/Latex/bibmaster.bib'
