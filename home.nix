@@ -170,7 +170,7 @@ in
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
-            # krita
+            krita
             # rofi
             # kitty
             # flameshot

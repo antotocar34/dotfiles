@@ -9,5 +9,13 @@ Change Caps lock to control.
 Import control scheme into shortcuts
 
 Go to Settings -> Workspace -> Window Management -> Window rules -> regex .* and no titlebar with Force option.
+      Settings -> TODO turn off animations
 
-Before running the nix install script. Run rm .bashrc .bash_profile .config/kwinrulesrc .config/kwinrc .dir_colors
+Change theme to Breeze.
+
+Change desktop background.
+
+
+
+Before running the nix install script. Run 
+rm .bashrc .bash_profile .config/kwinrulesrc .config/kwinrc .dir_colors
