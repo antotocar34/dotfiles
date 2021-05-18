@@ -1,7 +1,7 @@
 KDE INSTALL INSTRUCTIONS
 ------------------------
 
-sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi gcc-libs 
+sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi vifm gcc-libs 
 sudo pacman --noconfirm -Rs yakuake okular konversation kate kcalc spectacle manjaro-hello
 
 Change Caps lock to control.
@@ -9,12 +9,13 @@ Change Caps lock to control.
 Import control scheme into shortcuts
 
 Go to Settings -> Workspace -> Window Management -> Window rules -> regex .* and no titlebar with Force option.
-      Settings -> TODO turn off animations
+      Settings -> Workspace -> Workspace Behavior -> General Behavior -> Animation Speed = Instant
 
 Change theme to Breeze.
 
 Change desktop background.
 
+Delete Desktop folder and change desktop settings so that there is no desktop folder.
 
 
 Before running the nix install script. Run 
