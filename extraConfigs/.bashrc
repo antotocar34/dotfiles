@@ -58,6 +58,7 @@ alias musicdl="youtube-dl -x --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"
+alias maths="xournalpp ~/Documents/Notes/maths/template.xopt"
 
 function weekly_dl {
 cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
