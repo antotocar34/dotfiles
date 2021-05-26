@@ -206,7 +206,6 @@ in
          vim-airline-themes
          colorizer
          vimwiki
-         goyo
        ];
 
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
@@ -345,7 +344,6 @@ in
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
-                       ".vimiumrc".source = ./extraConfigs/.vimiumrc ;
                      };
 
         mime.enable = true ;
@@ -380,6 +378,8 @@ in
       ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
+      ".xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
+      ".xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
