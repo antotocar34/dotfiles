@@ -1,0 +1,14 @@
+#
+# /home/carneca/Documents/Latex -> Documents/Latex
+#
+truncatePath () {
+readlink -f $1 | sed 's#.*\(Documents\)#\1#g'
+    }
+
+dpath=$(truncatePath $1)
+
+rclone_command () {
+    tdrive copy -vP ./${1}/ tdrive:/backup/${1}/
+    }
+
+rclone_command $dpath

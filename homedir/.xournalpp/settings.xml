@@ -31,7 +31,7 @@
   <property name="fullscreenHideElements" value="mainMenubar,sidebarContents"/>
   <!--Which gui elements are hidden if you are in Presentation mode, separated by a colon (,)-->
   <property name="presentationHideElements" value="mainMenubar,sidebarContents"/>
-  <property name="showBigCursor" value="false"/>
+  <property name="showBigCursor" value="true"/>
   <property name="highlightPosition" value="false"/>
   <property name="darkTheme" value="false"/>
   <property name="disableScrollbarFadeout" value="false"/>

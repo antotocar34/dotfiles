@@ -103,14 +103,14 @@ in
 			# python37Packages.virtualenv
             python38Packages.pip
             inkscape-figures
-            poetry
+            # poetry # Install manually
             black
 
             direnv
 
             pdf2svg # needed for inkscape-figures
 
-			nodejs # Needed by coc-nvim
+			# nodejs # Needed by coc-nvim
             neovim-remote # Needed for SyncTex
 
             # Haskell stuff
@@ -150,6 +150,9 @@ in
 
             cmus
             # vifm
+
+            # whatsapp-for-linux
+            signal-desktop
 
             gnome3.gnome-disk-utility
             gnome3.pomodoro
@@ -384,6 +387,8 @@ in
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
+      "Documents/Scripts/rupdate".source  = ./homedir/Documents/Scripts/rupdate ;
+      "Documents/Scripts/rdl".source  = ./homedir/Documents/Scripts/rdl ;
       # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
       "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
       "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
