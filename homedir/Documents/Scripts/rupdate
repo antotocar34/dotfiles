@@ -1,14 +1,15 @@
+input_full=$(readlink -f $1)
 #
 # /home/carneca/Documents/Latex -> Documents/Latex
 #
 truncatePath () {
-readlink -f $1 | sed 's#.*\(Documents\)#\1#g'
+echo $input_full | sed 's#.*\(Documents\)#\1#g'
     }
 
 dpath=$(truncatePath $1)
 
 rclone_command () {
-    rclone copy -vP ./${1}/ tdrive:/backup/${1}/
+    rclone copy -vP ${input_full}/ tdrive:/backup/${1}/
     }
 
 rclone_command $dpath
