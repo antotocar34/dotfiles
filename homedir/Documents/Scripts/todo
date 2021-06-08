@@ -1,7 +1,7 @@
 KDE INSTALL INSTRUCTIONS
 ------------------------
 
-sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi flameshot vifm gcc-libs 
+sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi vifm gcc-libs poetry flameshot
 sudo pacman --noconfirm -Rs yakuake okular konversation kate kcalc spectacle manjaro-hello
 
 Change Caps lock to control.

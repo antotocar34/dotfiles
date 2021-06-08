@@ -243,3 +243,5 @@ export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 
 # For direnv
 eval "$(direnv hook bash)"
+
+export TEXINPUTS=/home/carneca/.local/texmf
