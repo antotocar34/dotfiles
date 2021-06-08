@@ -8,7 +8,7 @@ readlink -f $1 | sed 's#.*\(Documents\)#\1#g'
 dpath=$(truncatePath $1)
 
 rclone_command () {
-    tdrive copy -vP tdrive:/backup/${1}/ ./${1}/
+    rclone copy -vP tdrive:/backup/${1}/ ./${1}/
     }
 
 rclone_command $dpath
