@@ -51,6 +51,7 @@ export TERMINAL="kitty"
 # PYTHON SCRIPTS
 export PYTHON_DIR="${HOME}/Documents/Programming/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
+export MATHS_DIR="${HOME}/Documents/Notes/maths"
 alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
@@ -58,7 +59,13 @@ alias musicdl="youtube-dl -x --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"
-alias maths="xournalpp ~/Documents/Notes/maths/template.xopt"
+alias mnew="xournalpp ${MATHS_DIR}/template.xopt"
+
+
+function mwrite () {
+    xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)
+}
+
 
 function weekly_dl {
 cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
