@@ -1,4 +1,3 @@
-input_full=$(readlink -f $1)
 #
 # /home/carneca/Documents/Latex -> Documents/Latex
 #
