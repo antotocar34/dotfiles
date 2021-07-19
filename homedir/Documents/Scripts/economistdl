@@ -1,0 +1,4 @@
+RECIPE_FILE=${HOME}/Documents/Storage/accessible/economist.recipe
+cd $(mktemp -d)
+ebook-convert $RECIPE_FILE ./economist.mobi
+calibredb --with-library=${HOME}/Documents/Books/Calibre/Magazines add ./economist.mobi
