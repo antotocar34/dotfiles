@@ -173,13 +173,15 @@ in
             texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
-            krita
             # rofi
             # kitty
             # flameshot
             # minecraft # works with nixGL
             # bashCompletion
 
+            krita
+            xournalpp
+            spotify
             # Misc
             nixGL
             nix-index
@@ -347,6 +349,7 @@ in
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
+                       "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
                      };
 
         mime.enable = true ;
