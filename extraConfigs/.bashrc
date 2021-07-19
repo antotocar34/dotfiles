@@ -63,7 +63,7 @@ alias mnew="xournalpp ${MATHS_DIR}/template.xopt"
 
 
 function mwrite () {
-    xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)
+    launch "xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)"
 }
 
 
