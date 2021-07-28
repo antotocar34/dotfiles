@@ -188,6 +188,8 @@ in
             nix-bash-completions
             glibcLocales
             powerline-fonts
+
+            transcribe
 			];
 
 
