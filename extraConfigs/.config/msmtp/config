@@ -1,0 +1,17 @@
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+tls_starttls   off
+logfile        ~/.msmtp.log
+
+# Gmail
+account        gmail
+host           smtp.gmail.com
+port           465
+from           antoinecarnec2@gmail.com
+user           antoinecarnec2
+password       sumac-stoneware0-blush-Slashed-undercoat-9kalmia-Mac-fist-2mixed-Hays7
+
+account default : gmail

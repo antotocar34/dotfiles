@@ -170,7 +170,7 @@ in
             NFonts
 
             ## BIG INSTALLS
-            texlive.combined.scheme-full
+            # texlive.combined.scheme-full
 
             ## Have to be installed manually due to things not working
             # rofi
@@ -304,7 +304,7 @@ in
 		} ;
 
 		chromium = {
-			enable = true ;
+			enable = false ;
 			extensions = 
 				[
 				"blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
@@ -352,6 +352,10 @@ in
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
+                       "msmpt/config".source = ./extraConfigs/.config/msmtp/config;
+                       "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
+                       "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
+                       
                      };
 
         mime.enable = true ;
@@ -386,8 +390,6 @@ in
       ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
-      ".xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
-      ".xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
