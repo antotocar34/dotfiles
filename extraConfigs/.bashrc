@@ -125,7 +125,7 @@ fi
 
 alias z='zathura'
 alias jnote="cd ${PYTHON_DIR}/notebooks && jupyter notebook --browser=chromium 2> /dev/null"
-alias coll="cd ${HOME}/Documents/College/4/Michaelmas"
+alias coll="cd ${HOME}/Documents/College/masters/semester1/"
  
 # launch and disown program
 function launch {
@@ -145,7 +145,7 @@ alias xc="xclip -selection clipboard"
 alias stata="launch xstata-mp"
 alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
-alias hs="home-manager -b old_version switch"
+alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch"
 
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
