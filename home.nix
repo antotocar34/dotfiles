@@ -395,11 +395,12 @@ in
       "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
       "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
       "Documents/Scripts/rupdate".source  = ./homedir/Documents/Scripts/rupdate ;
-      "Documents/Scripts/economistdl".source  = ./homedir/Documents/Scripts/economistdl ;
+      "Documents/Scripts/newsdl".source  = ./homedir/Documents/Scripts/newsdl ;
       "Documents/Scripts/rdl".source  = ./homedir/Documents/Scripts/rdl ;
       # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
       "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
       "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
       ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
+      ".muttrc".source = ./homedir/.muttrc ;
     } ;
 }
