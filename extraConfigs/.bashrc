@@ -59,13 +59,14 @@ alias musicdl="youtube-dl -x --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"
-alias mnew="xournalpp ${MATHS_DIR}/template.xopt"
 
+function mnew () {
+launch xournalpp ${MATHS_DIR}/template.xopt
+}
 
 function mwrite () {
     launch "xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)"
 }
-
 
 function weekly_dl {
 cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
@@ -247,8 +248,5 @@ export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
 # export PATH="/opt/Stata/stata14/:$PATH"
 export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 
-
 # For direnv
 eval "$(direnv hook bash)"
-
-export TEXINPUTS=/home/carneca/.local/texmf
