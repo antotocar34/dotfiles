@@ -102,7 +102,7 @@ in
 			python38Packages.ipython
 			# python37Packages.virtualenv
             python38Packages.pip
-            inkscape-figures
+            # inkscape-figures
             # poetry # Install manually
             black
 
@@ -332,7 +332,6 @@ in
         configFile = {
                        # Startup script
                        "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
-
                        "kitty/kitty.conf".source = ./extraConfigs/.config/kitty/kitty.conf ;
                        "kitty/nord.conf".source = ./extraConfigs/.config/kitty/nord.conf ;
                        "kitty/ink.conf".source = ./extraConfigs/.config/kitty/ink.conf ;

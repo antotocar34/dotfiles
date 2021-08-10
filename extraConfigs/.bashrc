@@ -61,7 +61,7 @@ alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"
 
 function mnew () {
-launch xournalpp ${MATHS_DIR}/template.xopt
+    launch "xournalpp ${MATHS_DIR}/template.xopt"
 }
 
 function mwrite () {
