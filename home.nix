@@ -272,12 +272,6 @@ in
 					host = "github.com" ; 
                     identityFile = "~/.ssh/github";
 				} ;
-				"acer" = {
-					user = "carneca" ;
-                    hostname = "192.168.1.17" ;
-					host = "acer" ; 
-                    identityFile = "~/.ssh/${hostname}";
-				} ;
 				"x1carbon" = {
 					user = "carneca" ;
                     hostname = "192.168.1.19" ;
@@ -383,7 +377,6 @@ in
       ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
       ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
       ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
-      ".ssh/acer.pub".source = ./homedir/.ssh/acer.pub ;
       ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".taskrc".source  = ./homedir/.taskrc ;
