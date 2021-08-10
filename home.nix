@@ -284,6 +284,12 @@ in
 					host = "bigboy" ; 
                     identityFile = "~/.ssh/${hostname}";
 				} ;
+				"rbigboy" = {
+					user = "carneca" ;
+                    hostname = "glenahome.duckdns.org" ;
+					host = "rbigboy" ; 
+                    identityFile = "~/.ssh/${hostname}";
+				} ;
 			};
 		} ;
 
@@ -384,8 +390,6 @@ in
       ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
-      "Documents/Scripts/weekly_backup.sh".source  = ./homedir/Documents/Scripts/weekly_backup.sh ;
-      "Documents/Scripts/include.txt".source  = ./homedir/Documents/Scripts/include.txt ;
       "Documents/Scripts/rupdate".source  = ./homedir/Documents/Scripts/rupdate ;
       "Documents/Scripts/newsdl".source  = ./homedir/Documents/Scripts/newsdl ;
       "Documents/Scripts/rdl".source  = ./homedir/Documents/Scripts/rdl ;
