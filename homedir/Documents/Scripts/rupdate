@@ -3,7 +3,7 @@ rclone_command () {
     echo $1 | sed 's#.*\(Documents\)#\1#g'
         }
 
-    ${HOME}/.nixprofile/bin/rclone $2 -vP ${1}/ tdrive:/backup/$(truncatePath $1)/
+    ${HOME}/.nix-profile/bin/rclone $2 -vP ${1}/ tdrive:/backup/$(truncatePath $1)/
     }
 
 if [[ $1 = "-s" ]]; then
