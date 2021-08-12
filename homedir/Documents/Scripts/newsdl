@@ -24,7 +24,7 @@ calibredb --with-library=${MAGAZINE_LIBRARY} add ./document.mobi
 echo "Sending mail"
 echo | mutt -s "" -a ./document.mobi -- ${KINDLE_EMAIL}
 if [ $? -eq 0 ] 
-then echo "Printing Succesful!"
+then echo "Emailling Succesful!"
 fi
 }
 
