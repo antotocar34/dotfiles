@@ -140,6 +140,7 @@ alias f="vifm ."
 alias c="clear"
 alias pydebug="python -m pdb"
 alias sdn="shutdown now"
+alias icat='kitty +icat'
 # alias texclean="rm -f *.synctex.gz *.aux *.log *.fls *.fdb_latexmk *.dvi *.bbl *.blg"
 alias texclean="fd -uu -esynctex.gz -eaux -elog -efls -efdb_latexmk -edvi -ebbl -eblg --search-path ${HOME}/Documents/Latex -x rm"
 alias xc="xclip -selection clipboard"
