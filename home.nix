@@ -351,7 +351,8 @@ in
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
-                       "msmpt/config".source = ./extraConfigs/.config/msmtp/config;
+                       "msmpt/config".source = ./extraConfigs/.config/msmtp/config ;
+                       "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
                        
