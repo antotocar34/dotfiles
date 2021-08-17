@@ -44,6 +44,11 @@ set ttimeoutlen=100
 set timeoutlen=3000
 set nohlsearch
 
+augroup highlight_yank
+ autocmd!
+ au TextYankPost * silent! lua vim.highlight.on_yank{timeout=200}
+augroup END
+
 set title " Set's a more descriptive title.
 
 set noshowmode " Disables INSERT at the bottom of the screen
