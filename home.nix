@@ -206,7 +206,6 @@ in
          nord-vim
          fzf-vim
          haskell-vim
-         coc-nvim
          vim-sneak
          vim-airline
          vim-airline-themes
