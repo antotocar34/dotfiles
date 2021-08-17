@@ -6,6 +6,7 @@ endif
 " Where to put anything that doesn't install correctly with nix
 call plug#begin('~/.config/nvim/plugged')
 Plug 'jalvesaq/Nvim-R'
+Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
