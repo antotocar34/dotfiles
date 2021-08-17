@@ -202,7 +202,6 @@ in
          ultisnips
          vim-commentary
          vim-nix
-         # vim-fugitive
          nerdtree
          nord-vim
          fzf-vim
