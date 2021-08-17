@@ -1,13 +1,16 @@
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
 " Where to put anything that doesn't install correctly with nix
-" call plug#begin('~/.config/nvim/plugged')
-" Plug 'nvim-lua/popup.nvim'
+call plug#begin('~/.config/nvim/plugged')
+Plug 'jalvesaq/Nvim-R'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
-" Doesn't work properly, unforsh
 " Plug 'psf/black'
-" call plug#end()
+call plug#end()
 
 
 " Plug 'lervag/vimtex'
