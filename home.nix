@@ -206,8 +206,6 @@ in
          fzf-vim
          haskell-vim
          vim-sneak
-         vim-airline
-         vim-airline-themes
          colorizer
          vimwiki
        ];

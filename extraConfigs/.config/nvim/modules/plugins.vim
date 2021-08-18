@@ -10,6 +10,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
@@ -99,16 +101,6 @@ autocmd FileType python let b:coc_root_patterns = ['.env']
 " autocmd FileType haskell let b:coc_root_patterns =
 "                 \ [????]
 
-" Plug 'vim-airline/vim-airline' 
-" Works well with CaskaydiaCove Nerf Font Mono
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_highlighting_cache = 1
-let g:airline_powerline_fonts = 1
-
-
-" Plug 'vim-airline/vim-airline-themes'
-
-
 " Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
                       \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
@@ -118,3 +110,14 @@ autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem
 
 " Plug 'lewis6991/gitsigns.nvim'
 lua require('gitsigns').setup()
+
+" Plug 'hoob3rt/lualine.nvim'require('lualine').setup()
+lua << EOF
+require('lualine').setup {
+  options = {
+    -- ... your lualine config
+    theme = 'nord'
+    -- ... your lualine config
+  }
+}
+EOF
