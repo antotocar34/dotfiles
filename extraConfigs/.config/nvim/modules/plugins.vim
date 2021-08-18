@@ -12,14 +12,12 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'nvim-telescope/telescope.nvim'
-" Plug 'psf/black'
 Plug 'shaunsingh/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': 'tex'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'vimwiki/vimwiki'
 Plug 'henriquehbr/nvim-startup.lua'
-" Plug 'leanprover/lean.vim', { 'for': 'lean' }
 call plug#end()
 
 
@@ -94,19 +92,11 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:black_linelength = 81
 let g:black_skip_string_normalization = 1
 
-" Plug 'neoclide/coc.nvim'
-let g:coc_config_home="~/.config/nvim/"
-autocmd FileType tex let g:coc_start_at_startup = 0
-autocmd FileType python let b:coc_root_patterns = ['.env']
-" autocmd FileType haskell let b:coc_root_patterns =
-"                 \ [????]
-
 " Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
                       \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 
-
 
 " Plug 'lewis6991/gitsigns.nvim'
 lua require('gitsigns').setup()
@@ -115,9 +105,7 @@ lua require('gitsigns').setup()
 lua << EOF
 require('lualine').setup {
   options = {
-    -- ... your lualine config
     theme = 'nord'
-    -- ... your lualine config
   }
 }
 EOF
