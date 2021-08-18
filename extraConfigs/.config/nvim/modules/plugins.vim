@@ -9,6 +9,7 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'lewis6991/gitsigns.nvim'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
@@ -113,3 +114,7 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
                       \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 
+
+
+" Plug 'lewis6991/gitsigns.nvim'
+lua require('gitsigns').setup()
