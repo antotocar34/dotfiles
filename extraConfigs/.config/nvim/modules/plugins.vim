@@ -12,6 +12,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
+Plug 'shaunsingh/nord.nvim'
 call plug#end()
 
 
@@ -68,7 +69,11 @@ let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
 
-" Plug 'arcticicestudio/nord-vim'
+" Plug 'shaunsingh/nord.nvim'
+lua << EOF
+require('nord').set()
+EOF
+
 
 " Plug 'preservim/nerdtree'
 let g:NERDTreeQuitOnOpen = 1
