@@ -3,19 +3,21 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Where to put anything that doesn't install correctly with nix
 call plug#begin('~/.config/nvim/plugged')
-Plug 'jalvesaq/Nvim-R'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
 Plug 'shaunsingh/nord.nvim'
+Plug 'SirVer/Ultisnips', { 'for': 'tex'}
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
+Plug 'vimwiki/vimwiki'
+" Plug 'leanprover/lean.vim', { 'for': 'lean' }
 call plug#end()
 
 
@@ -65,17 +67,13 @@ let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/
 
 " Plug 'tpope/vim-commentary'
 
-" Plug 'tpope/vim-fugitive'
-
 " Plug 'LnL7/vim-nix'
 
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
 
 " Plug 'shaunsingh/nord.nvim'
-lua << EOF
-require('nord').set()
-EOF
+lua require('nord').set()
 
 
 " Plug 'preservim/nerdtree'
