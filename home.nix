@@ -183,7 +183,7 @@ in
             xournalpp
             spotify
             # Misc
-            nixGL
+            # nixGL
             nix-index
             nix-bash-completions
             glibcLocales
