@@ -203,7 +203,6 @@ in
          vim-commentary
          vim-nix
          nerdtree
-         nord-vim
          fzf-vim
          haskell-vim
          vim-sneak
