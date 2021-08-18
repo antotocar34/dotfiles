@@ -149,6 +149,8 @@ alias stata="launch xstata-mp"
 alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
 alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch"
+alias vim='nvim --startuptime /tmp/nvim-startuptime'
+alias nvim='nvim --startuptime /tmp/nvim-startuptime'
 
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"

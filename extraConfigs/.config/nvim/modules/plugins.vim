@@ -1,6 +1,7 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  lua print("Please run :PlugInstall")
 endif
 
 " Where to put anything that doesn't install correctly with nix
@@ -10,6 +11,8 @@ Plug 'jalvesaq/Nvim-R'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'psf/black'
+Plug 'henriquehbr/nvim-startup.lua'
+" Plug 'leanprover/lean.vim', { 'for': 'lean' }
 call plug#end()
 
 
@@ -106,3 +109,5 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
                       \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 
+
+lua require 'nvim-startup'.setup()
