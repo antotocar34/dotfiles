@@ -197,9 +197,7 @@ in
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
        [
-         vimtex
          vim-surround
-         ultisnips
          vim-commentary
          vim-nix
          nerdtree
@@ -207,7 +205,6 @@ in
          haskell-vim
          vim-sneak
          colorizer
-         vimwiki
        ];
 
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
