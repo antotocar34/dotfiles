@@ -1,6 +1,7 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  lua print("Please run :PlugInstall")
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -17,6 +18,7 @@ Plug 'SirVer/Ultisnips', { 'for': 'tex'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'vimwiki/vimwiki'
+Plug 'henriquehbr/nvim-startup.lua'
 " Plug 'leanprover/lean.vim', { 'for': 'lean' }
 call plug#end()
 
@@ -119,3 +121,6 @@ require('lualine').setup {
   }
 }
 EOF
+
+" Plug 'henriquehbr/nvim-startup.lua'
+lua require 'nvim-startup'.setup()
