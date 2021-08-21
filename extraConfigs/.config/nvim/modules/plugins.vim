@@ -6,12 +6,12 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': 'tex'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -73,7 +73,11 @@ let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/
 let g:fzf_buffers_jump = 0
 
 " Plug 'shaunsingh/nord.nvim'
-lua require('nord').set()
+lua << EOF
+vim.g.nord_contrast = true
+vim.g.nord_borders = true
+require('nord').set()
+EOF
 
 
 " Plug 'preservim/nerdtree'
