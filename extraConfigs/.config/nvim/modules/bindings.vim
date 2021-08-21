@@ -34,7 +34,6 @@ nnoremap - <cmd>NERDTree<cr>
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 
-
 " Buffer remaps
 nnoremap <leader>l :bn<CR>
 nnoremap <leader>h :bp<CR>
