@@ -196,14 +196,11 @@ in
     programs.neovim = {
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
-       [
-         fzf-vim
-       ];
-
-         extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
-         vimAlias = true ; 
-         viAlias = true ; 
-         vimdiffAlias = true ;
+       [ ];
+       extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
+       vimAlias = true ; 
+       viAlias = true ; 
+       vimdiffAlias = true ;
        } ;
 
 
