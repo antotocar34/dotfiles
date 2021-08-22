@@ -26,6 +26,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 
 Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 
@@ -136,9 +138,6 @@ require('gitsigns').setup {
     interval = 1000,
     follow_files = true
   },
-  current_line_blame = false,
-  current_line_blame_delay = 1000,
-  current_line_blame_position = 'eol',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -199,3 +198,6 @@ EOF
 
 " Plug 'kyazdani42/nvim-tree.lua'
 let g:nvim_tree_quit_on_open = 1
+
+" Plug 'norcalli/nvim-colorizer.lua'
+lua require'colorizer'.setup()
