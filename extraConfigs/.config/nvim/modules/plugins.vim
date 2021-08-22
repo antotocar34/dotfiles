@@ -10,7 +10,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': 'tex'}
