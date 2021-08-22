@@ -18,6 +18,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'vimwiki/vimwiki'
 Plug 'henriquehbr/nvim-startup.lua'
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 
@@ -160,3 +161,6 @@ EOF
 
 " Plug 'henriquehbr/nvim-startup.lua'
 lua require 'nvim-startup'.setup()
+
+" Plug 'kyazdani42/nvim-tree.lua'
+let g:nvim_tree_quit_on_open = 1
