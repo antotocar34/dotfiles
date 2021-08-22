@@ -197,7 +197,6 @@ in
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
        [
-         colorizer
          fzf-vim
        ];
 
