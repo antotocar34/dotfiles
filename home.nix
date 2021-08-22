@@ -197,14 +197,8 @@ in
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
        [
-         vim-surround
-         vim-commentary
-         vim-nix
-         nerdtree
-         fzf-vim
-         haskell-vim
-         vim-sneak
          colorizer
+         fzf-vim
        ];
 
          extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
