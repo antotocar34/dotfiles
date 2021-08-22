@@ -14,10 +14,16 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': 'tex'}
-Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vimtex', { 'for': ['tex', 'python'] }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
+Plug 'LnL7/vim-nix', { 'for': 'nix' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'vimwiki/vimwiki'
 Plug 'henriquehbr/nvim-startup.lua'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
@@ -59,16 +65,6 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/my-snippets']
-
-" Plug 'tpope/vim-surround'
-
-" Plug 'justinmk/vim-sneak'
-
-" Plug 'tpope/vim-unimpaired'
-
-" Plug 'tpope/vim-commentary'
-
-" Plug 'LnL7/vim-nix'
 
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
