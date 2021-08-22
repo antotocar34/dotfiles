@@ -53,3 +53,4 @@ set title " Set's a more descriptive title.
 
 set noshowmode " Disables INSERT at the bottom of the screen
 
+set completeopt=menuone,noselect " For nvim-compe
