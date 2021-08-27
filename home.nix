@@ -135,6 +135,7 @@ in
 
 
             # useful programs
+            ledger
             taskwarrior
             timewarrior
 			fzf
@@ -143,7 +144,7 @@ in
             xbanish # Hides cursor on key press
 
 			discord
-            # anki-bin
+            anki-bin
 
             # should be a service but is not working
             sxhkd

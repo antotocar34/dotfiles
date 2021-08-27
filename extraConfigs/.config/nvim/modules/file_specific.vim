@@ -72,3 +72,10 @@ augroup  shellgroup
     autocmd FileType sh nnoremap <buffer> <F9> :exec '!clear;./%' shellescape(@%, 1)<cr>
 augroup END
 
+"""
+" LEDGER
+"""
+augroup ledgergroup
+    au!
+    autocmd FileType ledger autocmd! ledgergroup InsertLeave * LedgerAlignBuffer
+augroup END

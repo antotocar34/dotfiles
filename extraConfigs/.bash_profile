@@ -16,4 +16,6 @@ export PATH="${HOME}/.elan/bin:$PATH"
 
 export EDITOR=$(which vim)
 
+export LEDGER_FILE=/home/carneca/Documents/Finances/journal.ledger
+
 cp -Lr ~/.nix-profile/share/applications/*.desktop ~/.local/share/applications 2> /dev/null
