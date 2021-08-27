@@ -92,7 +92,7 @@ poetry run python inkscape-shortcut-manager/main.py
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -td . $HOME"""
+    cmd="""fd -I --follow $exclusions -td . $HOME"""
     dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
