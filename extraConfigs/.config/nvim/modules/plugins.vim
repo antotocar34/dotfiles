@@ -12,7 +12,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'shaunsingh/nord.nvim'
+Plug 'antotocar34/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': ['tex', 'ledger'] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
@@ -24,21 +24,21 @@ Plug 'henriquehbr/nvim-startup.lua'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-
 Plug 'kyazdani42/nvim-tree.lua'
-
 Plug 'norcalli/nvim-colorizer.lua'
-
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 call plug#end()
 
+"
+" PLUGIN OPTIONS
+"
 
 " Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-" set conceallevel=2
-" let g:tex_conceal='abdmg'
+set conceallevel=2
+let g:tex_conceal='abdmg'
 let g:vimtex_include_search_enabled=0
 let g:vimtex_complete_close_braces=1
 let g:vimtex_view_forward_search_on_start=0
