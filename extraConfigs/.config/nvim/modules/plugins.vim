@@ -4,24 +4,41 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   lua print("Please run :PlugInstall")
 endif
 
-" Where to put anything that doesn't install correctly with nix
 call plug#begin('~/.config/nvim/plugged')
-Plug 'jalvesaq/Nvim-R'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'leanprover/lean.vim', { 'for': 'lean' }
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'psf/black'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'antotocar34/nord.nvim'
+Plug 'SirVer/Ultisnips', { 'for': ['tex', 'ledger'] }
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
+Plug 'LnL7/vim-nix', { 'for': 'nix' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'hrsh7th/nvim-compe'
+Plug 'vimwiki/vimwiki'
 Plug 'henriquehbr/nvim-startup.lua'
-" Plug 'leanprover/lean.vim', { 'for': 'lean' }
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 call plug#end()
 
+"
+" PLUGIN OPTIONS
+"
 
 " Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-" set conceallevel=2
-" let g:tex_conceal='abdmg'
+set conceallevel=2
+let g:tex_conceal='abdmg'
 let g:vimtex_include_search_enabled=0
 let g:vimtex_complete_close_braces=1
 let g:vimtex_view_forward_search_on_start=0
@@ -54,22 +71,16 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/my-snippets']
 
-" Plug 'tpope/vim-surround'
-
-" Plug 'justinmk/vim-sneak'
-
-" Plug 'tpope/vim-unimpaired'
-
-" Plug 'tpope/vim-commentary'
-
-" Plug 'tpope/vim-fugitive'
-
-" Plug 'LnL7/vim-nix'
-
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
 
-" Plug 'arcticicestudio/nord-vim'
+" Plug 'shaunsingh/nord.nvim'
+lua << EOF
+vim.g.nord_contrast = true
+vim.g.nord_borders = true
+require('nord').set()
+EOF
+
 
 " Plug 'preservim/nerdtree'
 let g:NERDTreeQuitOnOpen = 1
@@ -87,27 +98,107 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:black_linelength = 81
 let g:black_skip_string_normalization = 1
 
-" Plug 'neoclide/coc.nvim'
-let g:coc_config_home="~/.config/nvim/"
-autocmd FileType tex let g:coc_start_at_startup = 0
-autocmd FileType python let b:coc_root_patterns = ['.env']
-" autocmd FileType haskell let b:coc_root_patterns =
-"                 \ [????]
-
-" Plug 'vim-airline/vim-airline' 
-" Works well with CaskaydiaCove Nerf Font Mono
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_highlighting_cache = 1
-let g:airline_powerline_fonts = 1
-
-
-" Plug 'vim-airline/vim-airline-themes'
-
-
 " Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
                       \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 
 
+" Plug 'lewis6991/gitsigns.nvim'
+lua << EOF
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  numhl = false,
+  linehl = false,
+  keymaps = {
+    -- Default keymap options
+    noremap = true,
+
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+    ['n <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['v <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <leader>gu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+    ['n <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+    ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+
+    -- Text objects
+    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+  },
+  watch_index = {
+    interval = 1000,
+    follow_files = true
+  },
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  word_diff = false,
+  use_internal_diff = true,  -- If luajit is present
+}
+EOF
+
+" Plug 'hoob3rt/lualine.nvim'require('lualine').setup()
+lua << EOF
+require('lualine').setup {
+  options = {
+    theme = 'nord'
+  }
+}
+EOF
+
+" Plug 'henriquehbr/nvim-startup.lua'
 lua require 'nvim-startup'.setup()
+
+" Plug 'hrsh7th/nvim-compe'
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = {
+    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+    luasnip = true;
+  };
+}
+EOF
+
+" Plug 'kyazdani42/nvim-tree.lua'
+let g:nvim_tree_quit_on_open = 1
+
+" Plug 'norcalli/nvim-colorizer.lua'
+lua require'colorizer'.setup()

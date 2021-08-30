@@ -19,7 +19,6 @@ vnoremap Y "+y
 nnoremap ¬ :source ~/.config/nvim/init.vim<CR>
 " center the page
 imap <C-e>  <C-o>zz
-" fzf search home directory
 
 " This is a spell check from gilles castel blog
 " https://castel.dev/post/lecture-notes-1/
@@ -30,10 +29,9 @@ map <leader>o :set invspell<CR>
 " No idea
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
-nnoremap - <cmd>NERDTree<cr>
+nnoremap <leader>f <cmd>NvimTreeToggle<cr>
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
-
 
 " Buffer remaps
 nnoremap <leader>l :bn<CR>
@@ -43,10 +41,11 @@ nnoremap <leader>q :bd<CR>
 " FZF remaps
 command! -bang HFiles call fzf#vim#files('~/', <bang>0)
 
-nnoremap <leader>a :Files<CR>
-nnoremap <leader>s :GFiles<CR>
-nnoremap <leader>d :HFiles<CR>
-
+nnoremap <leader>a <cmd>Telescope find_files<cr>
+nnoremap <leader>jf <cmd>Telescope find_files<cr>
+nnoremap <leader>jg <cmd>Telescope git_files<cr>
+nnoremap <leader>js <cmd>Telescope live_grep<cr>
+nnoremap <leader>jb <cmd>Telescope buffers<cr>
 
 " Make terminal behave normally
 au TermOpen * setlocal nonumber norelativenumber 

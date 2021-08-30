@@ -135,6 +135,7 @@ in
 
 
             # useful programs
+            ledger
             taskwarrior
             timewarrior
 			fzf
@@ -143,7 +144,7 @@ in
             xbanish # Hides cursor on key press
 
 			discord
-            # anki-bin
+            anki-bin
 
             # should be a service but is not working
             sxhkd
@@ -196,28 +197,11 @@ in
     programs.neovim = {
        enable = true ;
        plugins = with pkgs.vimPlugins ; 
-       [
-         vimtex
-         vim-surround
-         ultisnips
-         vim-commentary
-         vim-nix
-         nerdtree
-         nord-vim
-         fzf-vim
-         haskell-vim
-         coc-nvim
-         vim-sneak
-         vim-airline
-         vim-airline-themes
-         colorizer
-         vimwiki
-       ];
-
-         extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
-         vimAlias = true ; 
-         viAlias = true ; 
-         vimdiffAlias = true ;
+       [ ];
+       extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
+       vimAlias = true ; 
+       viAlias = true ; 
+       vimdiffAlias = true ;
        } ;
 
 

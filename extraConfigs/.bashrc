@@ -7,8 +7,9 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
-source ${HOME}/.nix-profile/share/fzf/key-bindings.bash
-source ${HOME}/.nix-profile/share/fzf/completion.bash
+. ${HOME}/.nix-profile/share/fzf/key-bindings.bash
+. ${HOME}/.nix-profile/share/fzf/completion.bash
+
 # export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
 
 # If not running interactively, don't do anything
@@ -91,7 +92,7 @@ poetry run python inkscape-shortcut-manager/main.py
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -td . $HOME"""
+    cmd="""fd -I --follow $exclusions -td . $HOME"""
     dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
@@ -155,6 +156,7 @@ alias nvim='nvim --startuptime /tmp/nvim-startuptime'
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
+FINANCE_DIR="${HOME}/Documents/Finances"
 alias notes="vim ${WIKI_LOC}/index.wiki"
 alias diary="vim ${WIKI_LOC}/diary/diary.wiki"
 alias bib='vim ~/Documents/Latex/bibmaster.bib'
@@ -162,6 +164,11 @@ alias vimrc="vim ${CONF_FILES}/.config/nvim/init.vim"
 alias bashrc="vim ${CONF_FILES}/.bashrc"
 alias sxhkdrc="vim ${CONF_FILES}/.config/sxhkd/sxhkdrc"
 alias snipp="vim ${CONF_FILES}/.vim/my-snippets/tex.snippets"
+alias flog="vim ${FINANCE_DIR}/journal.ledger"
+alias fupdate="git add ${FINANCE_DIR}/journal.ledger && git commit -m 'Logged today's transactions'"
+
+# SOURCING
+. ${FINANCE_DIR}/.bash_shortcuts
 
 # Unbind ^Q
 stty -ixon
@@ -254,3 +261,4 @@ export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 
 # For direnv
 eval "$(direnv hook bash)"
+
