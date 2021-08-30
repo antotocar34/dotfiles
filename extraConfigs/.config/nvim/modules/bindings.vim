@@ -29,7 +29,7 @@ map <leader>o :set invspell<CR>
 " No idea
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
-nnoremap <leader>f <cmd>NvimTreeToggle<cr>
+nnoremap - :NvimTreeToggle<cr>
 nnoremap <leader>i :Git 
 nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 

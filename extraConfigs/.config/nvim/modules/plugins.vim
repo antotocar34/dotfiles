@@ -7,12 +7,14 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
+
 Plug 'lewis6991/gitsigns.nvim'
+
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'antotocar34/nord.nvim'
+Plug 'antotocar34/nord.nvim' " Colour scheme
 Plug 'SirVer/Ultisnips', { 'for': ['tex', 'ledger'] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
@@ -199,6 +201,16 @@ EOF
 
 " Plug 'kyazdani42/nvim-tree.lua'
 let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_auto_open = 1
+let g:nvim_tree_hide_dotfiles = 1
+
+lua <<EOF
+    local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+    vim.g.nvim_tree_bindings = {
+    { key = "_",        cb = tree_cb("dir_up") },
+    { key = "-",        cb = tree_cb("close") },
+    }
+EOF
 
 " Plug 'norcalli/nvim-colorizer.lua'
 lua require'colorizer'.setup()
