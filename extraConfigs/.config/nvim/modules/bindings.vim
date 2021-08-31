@@ -7,7 +7,7 @@ nnoremap <C-q> :q!<CR>
 nnoremap  <C-j> :tabprevious<CR>
 nnoremap  <C-k> :tabnext<CR>
 " nnoremap  <C-t>q :tabclose<CR>
-command R !clear&&./%
+
 " What does this do?
 command TW :%s/ \+$//
 
@@ -30,16 +30,11 @@ map <leader>o :set invspell<CR>
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
 nnoremap - :NvimTreeToggle<cr>
-nnoremap <leader>i :Git 
-nnoremap <leader>b :Git add % <bar> :Git commit -m "backup"<CR>
 
 " Buffer remaps
 nnoremap <leader>l :bn<CR>
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>q :bd<CR>
-
-" FZF remaps
-command! -bang HFiles call fzf#vim#files('~/', <bang>0)
 
 nnoremap <leader>a <cmd>Telescope find_files<cr>
 nnoremap <leader>jf <cmd>Telescope find_files<cr>
@@ -48,7 +43,7 @@ nnoremap <leader>js <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
 
 " Make terminal behave normally
-au TermOpen * setlocal nonumber norelativenumber 
+au TermOpen * setlocal nonumber norelativenumber
 au TermOpen * startinsert
 " Change back!
 nnoremap <leader>] :vs\|term<CR>

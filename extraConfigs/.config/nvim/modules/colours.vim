@@ -1,5 +1,8 @@
 set termguicolors
 
+" Make 
+au TermOpen * hi! NormalFloat guibg='#2E3440'
+
 function! SynStack ()
     for i1 in synstack(line("."), col("."))
         let i2 = synIDtrans(i1)

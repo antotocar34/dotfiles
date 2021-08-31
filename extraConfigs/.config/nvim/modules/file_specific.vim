@@ -1,18 +1,20 @@
 """
 " PYTHON
 """
-" Shortcut for running file
-autocmd FileType python nnoremap <buffer> <F9> <cmd>term poetry run python % <cr>
+augroup pythongroup
+    au!
+    " Shortcut for running file
+    autocmd FileType python nnoremap <buffer> <F9> <cmd>term poetry run python % <cr>
 
-" Set max column
-autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
+    " Set max column
+    autocmd FileType python call matchadd('ColorColumn', '\%81v', 100)
 
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python nnoremap <F8> <cmd>term black -l 79 %<CR>
+    autocmd FileType python setlocal completeopt-=preview
+    autocmd FileType python nnoremap <F8> <cmd>term black -l 79 %<CR>
 
-autocmd FileType python nnoremap <leader>r :vsplit \| term ipython -i %<CR>
-autocmd FileType python nnoremap <leader>y :split \| resize 15 \| term ipython -i %<CR>
-
+    autocmd FileType python nnoremap <leader>r :vsplit \| term ipython -i %<CR>
+    autocmd FileType python nnoremap <leader>y :split \| resize 15 \| term ipython -i %<CR>
+augroup END
 
 
 """

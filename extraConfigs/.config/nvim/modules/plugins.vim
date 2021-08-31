@@ -58,20 +58,12 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
-"    \ 'build_dir' : '',
-" let g:vimtex_compiler_tectonic = {
-"     \ 'options' : [
-"     \   '--keep-logs',
-"     \   '--keep-intermediates',
-"     \   '--synctex'
-"     \ ],
-"     \}
 
 " Plug 'SirVer/Ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.vim/my-snippets']
+let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.config/nvim/my-snippets']
 
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
@@ -79,7 +71,7 @@ let g:fzf_buffers_jump = 0
 " Plug 'shaunsingh/nord.nvim'
 lua << EOF
 vim.g.nord_contrast = true
-vim.g.nord_borders = true
+vim.g.nord_borders = false
 require('nord').set()
 EOF
 
@@ -204,7 +196,7 @@ let g:nvim_tree_quit_on_open = 1
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_hide_dotfiles = 1
 
-lua <<EOF
+lua << EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
     { key = "_",        cb = tree_cb("dir_up") },
