@@ -14,7 +14,7 @@ export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
 export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 export PATH="${HOME}/.elan/bin:$PATH"
 
-export EDITOR=$(which vim)
+export EDITOR=$(which nvim)
 
 export LEDGER_FILE=/home/carneca/Documents/Finances/journal.ledger
 

@@ -25,10 +25,9 @@ Before running the nix install script. Run
 rm .bashrc .bash_profile .config/kwinrulesrc .config/kwinrc .dir_colors
 
 
-
-
-sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi vifm gcc-libs poetry flameshot xf86-input-wacom kcm-wacomtablet jupyter-notebook whatsapp-for-linux
+sudo pacman --noconfirm -Syu base-devel binutils yay bash-completion kitty rofi vifm gcc-libs poetry flameshot xf86-input-wacom kcm-wacomtablet jupyter-notebook whatsapp-for-linux noto-fonts-emoji
 sudo pacman --noconfirm -Rs yakuake okular konversation kate kcalc spectacle manjaro-hello
+yay -Syu neovim-nightly
 
 ${HOME}/.nix-profile/bin/rclone -v copy tdrive:/backup/data/taskwarrior/ ${HOME}/.task/
 ${HOME}/.nix-profile/bin/rclone -v copy tdrive:/backup/data/timewarrior/ ${HOME}/.timewarrior/

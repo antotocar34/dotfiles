@@ -7,7 +7,7 @@
 
 " ------------------------------------------------------------------------------
 
-set vicmd=vim
+set vicmd=nvim
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
@@ -252,7 +252,7 @@ filextype  *.dta
 "Python 
 filextype  *.py
     \ {Open with stata}
-    \ vim %f,
+    \ nvim %f,
 
 "Stata 
 filextype  *.do
@@ -380,7 +380,7 @@ fileviewer *.jpg,*.png feh %c
 " uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
 " for unknown file types.
 " For *nix:
-filetype *.do vim
+filetype *.do nvim
 " For OS X:
 " filetype * open
 " For Windows:

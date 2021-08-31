@@ -194,15 +194,15 @@ in
 			];
 
 
-    programs.neovim = {
-       enable = true ;
-       plugins = with pkgs.vimPlugins ; 
-       [ ];
-       extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
-       vimAlias = true ; 
-       viAlias = true ; 
-       vimdiffAlias = true ;
-       } ;
+    # programs.neovim = {
+    #    enable = true ;
+    #    plugins = with pkgs.vimPlugins ; 
+    #    [ ];
+    #    extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
+    #    vimAlias = true ; 
+    #    viAlias = true ; 
+    #    vimdiffAlias = true ;
+    #    } ;
 
 
 	programs.git = {
@@ -320,13 +320,13 @@ in
                        "kitty/ink.conf".source = ./extraConfigs/.config/kitty/ink.conf ;
                        "rofi/config.rasi".source = ./extraConfigs/.config/rofi/config.rasi ;
                        "rofi/nord.rasi".source = ./extraConfigs/.config/rofi/nord.rasi ;
-                       "nvim/coc-settings.json".source = extraConfigs/.vim/coc-settings.json ;
                        "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc ;
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
                        "sxhkd/sxhkdrc".source = ./extraConfigs/.config/sxhkd/sxhkdrc ;
                        "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini ;
                        "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim ;
+                       "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim ;
                        "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc ;
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
                        "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
