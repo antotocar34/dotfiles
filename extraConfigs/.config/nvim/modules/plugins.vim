@@ -7,8 +7,11 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -206,3 +209,32 @@ EOF
 
 " Plug 'norcalli/nvim-colorizer.lua'
 lua require'colorizer'.setup()
+
+" Plug 'nvim-treesitter/nvim-treesitter'
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "python" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+" Plug 'ray-x/lsp_signature.nvim'
+lua << EOF
+    require "lsp_signature".setup({
+        floating_window = true,
+        hint_prefix = "",
+        hint_enable = false, -- Whether to show virtual text
+        handler_opts = {
+            border = "none"
+            }
+        })
+EOF
