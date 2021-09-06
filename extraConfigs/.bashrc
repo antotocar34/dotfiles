@@ -53,6 +53,7 @@ export TERMINAL="kitty"
 export PYTHON_DIR="${HOME}/Documents/Programming/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
 export MATHS_DIR="${HOME}/Documents/Notes/maths"
+export COLLEGE_DIR="${HOME}/Documents/College/masters"
 alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
 alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
 alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
@@ -67,6 +68,10 @@ function mnew () {
 
 function mwrite () {
     launch "xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)"
+}
+
+function cwrite () {
+    launch "xournalpp $(fd -exopp --full-path ${COLLEGE_DIR} | fzf)"
 }
 
 function weekly_dl {
