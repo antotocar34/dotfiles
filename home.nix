@@ -338,7 +338,7 @@ in
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
-                       
+                       "bash_shortcuts/temporary_aliases.bash".source = ./extraConfigs/.config/bash_shortcuts/temporary_aliases.bash ; 
                      };
 
         mime.enable = true ;

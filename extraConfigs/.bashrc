@@ -54,9 +54,6 @@ export PYTHON_DIR="${HOME}/Documents/Programming/Python"
 export SCRIPT_DIR="${HOME}/Documents/Scripts"
 export MATHS_DIR="${HOME}/Documents/Notes/maths"
 export COLLEGE_DIR="${HOME}/Documents/College/masters"
-alias bfetch="cd ${PYTHON_DIR}/automation/bfetch && poetry run python bfetch/main.py"
-alias fsort="python ${PYTHON_DIR}/automation/file_sort/file_sorter.py"
-alias dsort="cd ${HOME}/Downloads && python ${PYTHON_DIR}/automation/pdf_sort/pdf_sort.py"
 alias musicdl="youtube-dl -x --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
@@ -132,7 +129,6 @@ fi
 
 alias z='zathura'
 alias jnote="cd ${PYTHON_DIR}/notebooks && jupyter notebook --browser=chromium 2> /dev/null"
-alias coll="cd ${HOME}/Documents/College/masters/semester1/"
  
 # launch and disown program
 function launch {
@@ -268,3 +264,7 @@ export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 # For direnv
 eval "$(direnv hook bash)"
 
+# Source temporary aliases
+. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/temporary_aliases.bash
+# Source temporary paths
+. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/PATH.bash
