@@ -46,6 +46,11 @@
 // Style
 //----------------------
 
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
 #window {
     background-color: @background;
 }
