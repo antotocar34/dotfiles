@@ -152,21 +152,21 @@ alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
 alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch"
 alias he="nvim ~/.config/nixpkgs/home.nix"
-alias vim='nvim --startuptime /tmp/nvim-startuptime'
-alias nvim='nvim --startuptime /tmp/nvim-startuptime'
+alias vim="nvim --startuptime /tmp/nvim-startuptime"
+alias nvim="nvim --startuptime /tmp/nvim-startuptime"
 
 # FILE SHORTCUTS
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 FINANCE_DIR="${HOME}/Documents/Finances"
-alias notes="vim ${WIKI_LOC}/index.wiki"
-alias diary="vim ${WIKI_LOC}/diary/diary.wiki"
-alias bib='vim ~/Documents/Latex/bibmaster.bib'
-alias vimrc="vim ${CONF_FILES}/.config/nvim/init.vim"
-alias bashrc="vim ${CONF_FILES}/.bashrc"
-alias sxhkdrc="vim ${CONF_FILES}/.config/sxhkd/sxhkdrc"
-alias snipp="vim ${CONF_FILES}/.vim/my-snippets/tex.snippets"
-alias flog="vim ${FINANCE_DIR}/journal.ledger"
+alias notes="${EDITOR} ${WIKI_LOC}/index.wiki"
+alias diary="${EDITOR} ${WIKI_LOC}/diary/diary.wiki"
+alias bib="${EDITOR} ~/Documents/Latex/bibmaster.bib"
+alias vimrc="${EDITOR} ${CONF_FILES}/.config/nvim/init.vim"
+alias bashrc="${EDITOR} ${CONF_FILES}/.bashrc"
+alias sxhkdrc="${EDITOR} ${CONF_FILES}/.config/sxhkd/sxhkdrc"
+alias snipp="${EDITOR} ${CONF_FILES}/.config/nvim/my-snippets/"
+alias flog="${EDITOR} ${FINANCE_DIR}/journal.ledger"
 alias fupdate="git add ${FINANCE_DIR}/journal.ledger && git commit -m 'Logged today's transactions'"
 
 # SOURCING
