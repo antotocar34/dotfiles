@@ -114,6 +114,10 @@ function file_find {
     fi
 }
 
+function books {
+    bean-report $LEDGER_FILE ledger | cat - ${FINANCE_DIR}/budget.ledger | ledger -f /dev/stdin ${@:-bal not equity}
+}
+
 # CD SHORTCUTS
 alias fk=dir_find
 alias fw=file_find
@@ -166,7 +170,7 @@ alias vimrc="${EDITOR} ${CONF_FILES}/.config/nvim/init.vim"
 alias bashrc="${EDITOR} ${CONF_FILES}/.bashrc"
 alias sxhkdrc="${EDITOR} ${CONF_FILES}/.config/sxhkd/sxhkdrc"
 alias snipp="${EDITOR} ${CONF_FILES}/.config/nvim/my-snippets/"
-alias flog="${EDITOR} ${FINANCE_DIR}/journal.ledger"
+alias flog="${EDITOR} $LEDGER_FILE"
 alias fupdate="git add ${FINANCE_DIR}/journal.ledger && git commit -m 'Logged today's transactions'"
 
 # SOURCING
@@ -219,10 +223,7 @@ parse_git_branch() {
 }
 
 if [ -z $TDROP ] ; then
-
         export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
-
-
 else
     bind -x '"\C-j":"tdrop current"'
     if [ $TDROP = "red" ] ; then
@@ -230,7 +231,6 @@ else
 
     else
         export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;36mλ \e[m'
-
     fi
 fi
 

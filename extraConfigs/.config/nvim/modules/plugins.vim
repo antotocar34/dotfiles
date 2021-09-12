@@ -18,7 +18,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'antotocar34/nord.nvim' " Colour scheme
-Plug 'SirVer/Ultisnips', { 'for': ['tex', 'ledger'] }
+Plug 'SirVer/Ultisnips', { 'for': ['tex', 'beancount'] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
@@ -32,6 +32,7 @@ Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
+Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 call plug#end()
 
 "
@@ -232,3 +233,6 @@ lua << EOF
             }
         })
 EOF
+
+" Plug 'nathangrigg/vim-beancount'
+let g:beancount_separator_col=80

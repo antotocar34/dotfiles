@@ -133,9 +133,12 @@ in
             xorg.xrandr
             xorg.xwininfo
 
+            # Plain text accounting
+            ledger
+            beancount
+            fava
 
             # useful programs
-            ledger
             taskwarrior
             timewarrior
 			fzf

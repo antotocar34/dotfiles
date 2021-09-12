@@ -1,0 +1,11 @@
+snippet ent "Account Entry" Ab
+`env LC_ALL=en_IE.utf8 date --date="today" "+%Y-%m-%d"` * "${1:Payee}" "${2:Note}"
+    ${2:Expenses}:${3:SubAccount}         ${4:AMOUNT} EUR
+    ${5:Assets}:${6:CurrentAccIE}
+endsnippet
+
+snippet groc "Groceries Entry" Ab
+`env LC_ALL=en_IE.utf8 date --date="today" "+%Y-%m-%d"` * "${1:Mercadona}"
+    Expenses:Groceries         ${1:AMOUNT} EUR
+    Assets:CurrentAccIE
+endsnippet

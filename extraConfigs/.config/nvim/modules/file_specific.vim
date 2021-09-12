@@ -77,7 +77,7 @@ augroup END
 """
 " LEDGER
 """
-augroup ledgergroup
+augroup beancountgroup
     au!
-    autocmd FileType ledger autocmd! ledgergroup InsertLeave * LedgerAlignBuffer
+    autocmd FileType beancount autocmd! beancountgroup InsertLeave * %AlignCommodity
 augroup END
