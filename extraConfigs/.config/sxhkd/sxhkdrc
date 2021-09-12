@@ -10,9 +10,6 @@ alt + f
 shift + alt + t 
     kitty --name tmux tmux a
 
-alt + c 
-    rofi -show run
-
 alt + Return 
     rofi -show drun -show-icons
 
@@ -31,9 +28,6 @@ ctrl + Return
 F12
     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash
 
-ctrl + numbersign 
-    tdrop -w "100%" -h "100%" --number=420 -ma -w -4 kitty --name term2 -d ~ env TDROP="purple" bash
-
 ctrl + b
     chromium --new-window https://www.google.com
 
@@ -44,10 +38,7 @@ shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
 
 alt + shift + b
-    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://2lib.org/
-
-alt + shift + slash
-    tdrop -w "100%" -h "100%" --number=articles -ma chromium --new-window https://booksc.org/
+    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://z-lib.org/ 
 
 alt + s
     anki
@@ -63,6 +54,3 @@ alt + shift + r
 
 alt + shift + p
     bw generate -p --words 5 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'
-
-alt + shift + { Left, Down, Up, Right }
-        ${HOME}/.config/nixpkgs/homedir/Documents/Scripts/desktop_switch.sh { left , down, up, right }

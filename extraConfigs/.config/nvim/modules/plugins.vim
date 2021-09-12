@@ -20,7 +20,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'antotocar34/nord.nvim' " Colour scheme
 Plug 'SirVer/Ultisnips', { 'for': ['tex', 'beancount'] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
+" Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'hrsh7th/nvim-compe'
@@ -146,7 +146,7 @@ require('gitsigns').setup {
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_internal_diff = true,  -- If luajit is present
+  -- diff_opts.internal = true,  -- If luajit is present
 }
 EOF
 
