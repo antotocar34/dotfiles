@@ -33,6 +33,9 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
+Plug 'jpalardy/vim-slime'
+Plug 'meain/vim-printer'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 "
@@ -233,6 +236,17 @@ lua << EOF
             }
         })
 EOF
+
+" Plug 'jpalardy/vim-slime'
+let g:slime_target = "neovim"
+let g:slime_python_ipython = 1
+vnoremap . :SlimeSend<CR>
+
+" Plug 'voldikss/vim-floaterm'
+tnoremap ¬ <cmd>FloatermToggle<CR>
+nnoremap ¬ <cmd>FloatermToggle<CR>
+
+let g:floaterm_title = ""
 
 " Plug 'nathangrigg/vim-beancount'
 let g:beancount_separator_col=80

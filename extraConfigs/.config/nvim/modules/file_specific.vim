@@ -12,8 +12,8 @@ augroup pythongroup
     autocmd FileType python setlocal completeopt-=preview
     autocmd FileType python nnoremap <F8> <cmd>term black -l 79 %<CR>
 
-    autocmd FileType python nnoremap <leader>r :vsplit \| term ipython -i %<CR>
-    autocmd FileType python nnoremap <leader>y :split \| resize 15 \| term ipython -i %<CR>
+    autocmd FileType python nnoremap <leader>. <cmd>FloatermNew --wintype=vsplit --width=90<CR> ipython -i %<CR>
+    autocmd FileType python nnoremap <leader>, :<cmd>FloatermNew --wintype=split --height=15 ipython -i %<CR>
 augroup END
 
 

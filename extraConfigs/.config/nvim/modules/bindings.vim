@@ -1,5 +1,5 @@
 " save
-map <C-s>  <Esc>:update <CR>
+map <C-s> <Esc>:update <CR>
 
 " quite
 nnoremap <C-q> :q!<CR>
@@ -16,7 +16,7 @@ vnoremap <C-p> "+p
 nnoremap Y "+y
 vnoremap Y "+y
 " reload vimrc
-nnoremap ¬ :source ~/.config/nvim/init.vim<CR>
+nnoremap <F7> :source ~/.config/nvim/init.vim<CR>
 " center the page
 imap <C-e>  <C-o>zz
 
@@ -24,12 +24,12 @@ imap <C-e>  <C-o>zz
 " https://castel.dev/post/lecture-notes-1/
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Toggle spell checking
-map <leader>o :set invspell<CR>
+map <leader>o <cmd>set invspell<CR>
 
 " No idea
 command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '\')
 
-nnoremap - :NvimTreeToggle<cr>
+nnoremap - <cmd>NvimTreeToggle<cr>
 
 " Buffer remaps
 nnoremap <leader>l :bn<CR>
@@ -46,22 +46,21 @@ nnoremap <leader>jb <cmd>Telescope buffers<cr>
 au TermOpen * setlocal nonumber norelativenumber
 au TermOpen * startinsert
 " Change back!
-nnoremap <leader>] :vs\|term<CR>
-nnoremap <leader>[ :sp\|term<CR>
-nnoremap + :term <CR>
+nnoremap <leader>] <cmd>FloatermNew --wintype=vsplit --width=90<CR>
+nnoremap <leader>[ <cmd>FloatermNew --wintype=split --height=15<CR>
+
+" TODO Add some logic
+nnoremap + <cmd>FloatermNew --wintype=float --width=140 --height=40<CR>
+tnoremap <C-q> <C-\><C-N><cmd>FloatermKill<CR>
 
 tnoremap <C-w>h <C-\><C-N><C-w>h
 tnoremap <C-w>j <C-\><C-N><C-w>j
 tnoremap <C-w>k <C-\><C-N><C-w>k
 tnoremap <C-w>l <C-\><C-N><C-w>l
 
-" tnoremap <leader>l <C-\><C-n>:bn<CR>
-" tnoremap <leader>h <C-\><C-n>:bp<CR>
-" tnoremap <leader>q <C-\><C-n>:bd<CR>
-
 " tunmap <tab>
 tnoremap <C-k>[ <C-\><C-n><CR>
-tnoremap <C-d> <C-\><C-n>:bd! <CR>
+tnoremap <C-d> <C-\><C-n><cmd>bd!<CR>
 
 " Auto insert into the terminal
 let g:previous_window = -1
