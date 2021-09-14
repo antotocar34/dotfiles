@@ -573,6 +573,10 @@ set classify+=' ::*.clj,,*.cljc::'
 set classify+=' ::*.pl,,*.pm,,*.t::'
 set classify+=' ::*.pdf::'
 set classify+=' ::*.xls,,*.xlsx,,*.odp::'
+set classify+=' ::*.m4a,,*.mp3,,*.opus::'
+set classify+=' ::*.mp4,,*.mkv::'
+set classify+=' ::*.iso::'
+set classify+=' ::*.nix::'
 
 highlight clear
 
