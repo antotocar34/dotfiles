@@ -342,6 +342,7 @@ in
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
                        "bash_shortcuts/temporary_aliases.bash".source = ./extraConfigs/.config/bash_shortcuts/temporary_aliases.bash ; 
+                       "cmus/nord.theme".source = ./extraConfigs/.config/cmus/nord.theme ;
                      };
 
         mime.enable = true ;
