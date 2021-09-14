@@ -115,6 +115,7 @@ function file_find {
 }
 
 function books {
+  # output beancount file as ledger   # append budget to the end of stdout # Call ledger on this as a file
     bean-report $LEDGER_FILE ledger | cat - ${FINANCE_DIR}/budget.ledger | ledger -f /dev/stdin ${@:-bal not equity}
 }
 
