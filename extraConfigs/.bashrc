@@ -18,11 +18,8 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-# append to the history file, don't overwrite it
-shopt -s histappend
+HISTCONTROL=ignoreboth # don't put duplicate lines or lines starting with space in the history.
+shopt -s histappend # append to the history file, don't overwrite it
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=-1
 HISTFILESIZE=-1
@@ -40,137 +37,17 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-
-# REMOVE THIS AFTER RESTART
 export FZF_CTRL_T_COMMAND="fd -I --hidden --follow -E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*' . $HOME"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""'
 
 # VARIABLE DECLARATIONS
-export BFETCH="${HOME}/Documents/Programming/Python/automation/bfetch"
 export TERMINAL="kitty"
-
-# PYTHON SCRIPTS
-export PYTHON_DIR="${HOME}/Documents/Programming/Python"
-export SCRIPT_DIR="${HOME}/Documents/Scripts"
-export MATHS_DIR="${HOME}/Documents/Notes/maths"
-export COLLEGE_DIR="${HOME}/Documents/College/masters"
-alias musicdl="youtube-dl -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
-alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
-alias prun="poetry run python"
-alias excel="chromium --new-window --app=https://www.office.com/template/excel"
-
-function mnew () {
-    launch "xournalpp ${MATHS_DIR}/template.xopt" .
-}
-
-function mwrite () {
-    launch "xournalpp $(fd -exopp --full-path ${MATHS_DIR} | fzf)"
-}
-
-function cwrite () {
-    launch "xournalpp $(fd -exopp --full-path ${COLLEGE_DIR} | fzf)"
-}
-
-function weekly_dl {
-cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
-
-cd - 2> /dev/null
-}
-export -f weekly_dl
-
-function draw {
-draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw
-cd $draw_dir 
-
-if [ ! -f poetry.lock ]; then
-    poetry update
-fi
-
-poetry run inkscape-figures watch
-poetry run python inkscape-shortcut-manager/main.py
-}
-
-# alias draw="draw"
-
-function dir_find {
-    exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --follow $exclusions -td . $HOME"""
-    dir=$($cmd | fzf)
-    if [[ $? -eq 130 ]]; then
-        true
-    else
-        cd "${dir}"
-    fi
-}
-
-function file_find {
-    exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
-    FILE=$($cmd | fzf)
-    if [[ $? -eq 130 ]]; then
-        true
-    else
-        vim "${FILE}"
-    fi
-}
-
-# CD SHORTCUTS
-alias fk=dir_find
-alias fw=file_find
-# alias fw='vim $(tree -fi $HOME | fzf) 2> /dev/null'
-alias lat="cd ~/Documents/Latex"
-alias d="cd ~/Documents/"
-alias dl="cd ~/Downloads/"
-alias conf="cd ~/.config/nixpkgs"
 
 if [ $TERM = "xterm-kitty" ] ; then
     alias ssh="kitty +kitten ssh"
 fi
 
-alias z='zathura'
-alias jnote="cd ${PYTHON_DIR}/notebooks && jupyter notebook --browser=chromium 2> /dev/null"
- 
-# launch and disown program
-function launch {
-    nohup $1 >/dev/null 2>/dev/null & disown; exit
-}
-
-# PROGRAM SHORTCUTS
-alias mv="mv -iv"
-alias :q="exit"
-alias f="vifm ."
-alias c="clear"
-alias pydebug="python -m pdb"
-alias sdn="shutdown now"
-alias icat='kitty +icat'
-# alias texclean="rm -f *.synctex.gz *.aux *.log *.fls *.fdb_latexmk *.dvi *.bbl *.blg"
-alias texclean="fd -uu -esynctex.gz -eaux -elog -efls -efdb_latexmk -edvi -ebbl -eblg --search-path ${HOME}/Documents/Latex -x rm"
-alias xc="xclip -selection clipboard"
-alias tmr="transmission-remote"
-alias stata="launch xstata-mp"
-alias sxhkdreset="killall sxhkd && launch sxhkd"
-alias drun="docker run -it --rm "
-alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch"
-alias he="nvim ~/.config/nixpkgs/home.nix"
-alias vim="nvim --startuptime /tmp/nvim-startuptime"
-alias nvim="nvim --startuptime /tmp/nvim-startuptime"
-
-# FILE SHORTCUTS
-CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
-WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
-FINANCE_DIR="${HOME}/Documents/Finances"
-alias notes="${EDITOR} ${WIKI_LOC}/index.wiki"
-alias diary="${EDITOR} ${WIKI_LOC}/diary/diary.wiki"
-alias bib="${EDITOR} ~/Documents/Latex/bibmaster.bib"
-alias vimrc="${EDITOR} ${CONF_FILES}/.config/nvim/init.vim"
-alias bashrc="${EDITOR} ${CONF_FILES}/.bashrc"
-alias sxhkdrc="${EDITOR} ${CONF_FILES}/.config/sxhkd/sxhkdrc"
-alias snipp="${EDITOR} ${CONF_FILES}/.config/nvim/my-snippets/"
-alias flog="${EDITOR} $LEDGER_FILE"
-alias fupdate="git add ${FINANCE_DIR}/journal.ledger && git commit -m 'Logged today's transactions'"
-
-# SOURCING
-. ${FINANCE_DIR}/.bash_shortcuts
+. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/aliases.bash
 
 # Unbind ^Q
 stty -ixon
@@ -200,10 +77,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Shell VI settings
 bind "set editing-mode vi"
 bind "set show-mode-in-prompt on"
-# bind "set vi-cmd-mode-string '\1\e[2 q\2'"
-# bind "set vi-ins-mode-string '\1\e[6 q\2'"
 bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
 bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
 bind -x '"\C-l": clear'
@@ -238,29 +114,19 @@ show_virtual_env() {
 }
 export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
-# PS1="${CUSTOM_PS1}${PS1}"
 
 unset color_prompt force_color_prompt
 
-source ${HOME}/.nix-profile/etc/profile.d/nix.sh
-
-export HOST=$HOSTNAME
-
-export XDG_DATA_DIRS="/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
-export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
-export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
-
 # PATH VARIABLE DECLARATIONS
-export PATH="${HOME}/.local/bin:$PATH"
-export PATH="${HOME}/Documents/Scripts:$PATH"
-export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
-# export PATH="/opt/Stata/stata14/:$PATH"
-export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
+. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/PATH.bash
+
+# Source  aliases
+. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/temporary_aliases.bash
+
+# Directory specific sources
+## Sourcing ledger shortcuts
+FINANCE_DIR="${HOME}/Documents/Finances"
+. ${FINANCE_DIR}/.bash_shortcuts
 
 # For direnv
 eval "$(direnv hook bash)"
-
-# Source temporary aliases
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/temporary_aliases.bash
-# Source temporary paths
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/PATH.bash

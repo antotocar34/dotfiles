@@ -1,1 +1,6 @@
+export PATH="${HOME}/.local/bin:$PATH"
+export PATH="${HOME}/Documents/Scripts:$PATH"
+export PATH="${HOME}/Documents/Scripts/inkscape-draw:$PATH"
+# export PATH="/opt/Stata/stata14/:$PATH"
+export PATH="${HOME}/.cabal/bin/stylish-haskell:$PATH"
 export PATH="${HOME}/.cargo/bin:${PATH}"

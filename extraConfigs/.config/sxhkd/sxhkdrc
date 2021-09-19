@@ -1,8 +1,8 @@
 alt + w
-    ${HOME}/Documents/Scripts/find_tex.sh
+    find_tex || notify-send "oops"
 
 alt + r  
-    ${HOME}/Documents/Scripts/find_pdf.sh
+    find_pdf || notify-send "oops"
 
 alt + f
     kitty --name vifm -e vifm .
