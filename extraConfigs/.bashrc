@@ -60,7 +60,7 @@ alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"
 
 function mnew () {
-    launch "xournalpp ${MATHS_DIR}/template.xopt"
+    launch "xournalpp ${MATHS_DIR}/template.xopt" .
 }
 
 function mwrite () {
@@ -112,11 +112,6 @@ function file_find {
     else
         vim "${FILE}"
     fi
-}
-
-function books {
-  # output beancount file as ledger   # append budget to the end of stdout # Call ledger on this as a file
-    bean-report $LEDGER_FILE ledger | cat - ${FINANCE_DIR}/budget.ledger | ledger -f /dev/stdin ${@:-bal not equity}
 }
 
 # CD SHORTCUTS

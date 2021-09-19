@@ -5,7 +5,7 @@ FILE=$(fd -uu -etex . ~/Documents/Latex | rofi -dmenu -i)
 
 if [[ ${?} -eq 0 ]]
 then
-    $TERMINAL -e vim "${FILE}"
+    $TERMINAL -e nvim "${FILE}"
     exit 0
 else
     exit 1
