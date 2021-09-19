@@ -197,18 +197,6 @@ in
             transcribe
 			];
 
-
-    # programs.neovim = {
-    #    enable = true ;
-    #    plugins = with pkgs.vimPlugins ; 
-    #    [ ];
-    #    extraConfig = builtins.readFile extraConfigs/.config/nvim/init.vim ;
-    #    vimAlias = true ; 
-    #    viAlias = true ; 
-    #    vimdiffAlias = true ;
-    #    } ;
-
-
 	programs.git = {
 		enable = true;
 
@@ -319,11 +307,10 @@ in
         configFile = {
                        # Startup script
                        "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
-                       "kitty/kitty.conf".source = ./extraConfigs/.config/kitty/kitty.conf ;
-                       "kitty/nord.conf".source = ./extraConfigs/.config/kitty/nord.conf ;
-                       "kitty/ink.conf".source = ./extraConfigs/.config/kitty/ink.conf ;
-                       "rofi/config.rasi".source = ./extraConfigs/.config/rofi/config.rasi ;
-                       "rofi/nord.rasi".source = ./extraConfigs/.config/rofi/nord.rasi ;
+                       "kitty".source = ./extraConfigs/.config/kitty ;
+                       "kitty".recursive = true ;
+                       "rofi".source = ./extraConfigs/.config/rofi ;
+                       "rofi".recursive = true ;
                        "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc ;
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
@@ -342,9 +329,10 @@ in
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
-                       "bash_shortcuts/temporary_aliases.bash".source = ./extraConfigs/.config/bash_shortcuts/temporary_aliases.bash ; 
-                       "cmus/nord.theme".source = ./extraConfigs/.config/cmus/nord.theme ;
-                       "cmus/autosave".source = ./extraConfigs/.config/cmus/autosave ;
+                       "bash_shortcuts".source = ./extraConfigs/.config/bash_shortcuts ; 
+                       "bash_shortcuts".recursive = true ; 
+                       "cmus".source = ./extraConfigs/.config/cmus ;
+                       "cmus".recursive = true ;
                      };
 
         mime.enable = true ;
@@ -369,23 +357,18 @@ in
 	};
 
     home.file = {
-      # ".vim/coc-settings.json".source = ./extraConfigs/.vim/coc-settings.json ;
-      ".ssh/sshd_config".source = ./homedir/.ssh/sshd_config ;
-      ".ssh/bigboy.pub".source = ./homedir/.ssh/bigboy.pub ;
-      ".ssh/x1carbon.pub".source = ./homedir/.ssh/x1carbon.pub ;
-      ".ssh/authorized_keys".source = ./homedir/.ssh/authorized_keys ;
+      # Directories
+      ".ssh".source = ./homedir/.ssh ;
+      ".ssh".recursive = true ;
+      "Documents/Scripts".source  = ./homedir/Documents/Scripts ;
+      "Documents/Scripts".recursive  = true ;
+
+      # Files
       ".xmodmap".source  = ./homedir/.xmodmap ;
       ".taskrc".source  = ./homedir/.taskrc ;
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
-      "Documents/Scripts/daily_backup.sh".source  = ./homedir/Documents/Scripts/daily_backup.sh ;
-      "Documents/Scripts/rupdate".source  = ./homedir/Documents/Scripts/rupdate ;
-      "Documents/Scripts/newsdl".source  = ./homedir/Documents/Scripts/newsdl ;
-      "Documents/Scripts/rdl".source  = ./homedir/Documents/Scripts/rdl ;
-      # "Documents/Scripts/startup.sh".source  = ./homedir/Documents/Scripts/startup.sh ;
-      "Documents/Scripts/find_pdf.sh".source = ./homedir/Documents/Scripts/find_pdf.sh ;
-      "Documents/Scripts/find_tex.sh".source = ./homedir/Documents/Scripts/find_tex.sh ;
       ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
       ".muttrc".source = ./homedir/.muttrc ;
     } ;
