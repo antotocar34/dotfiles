@@ -183,10 +183,10 @@ in
             # flameshot
             # minecraft # works with nixGL
             # bashCompletion
+            # spotify
 
             krita
             xournalpp
-            spotify
             # Misc
             # nixGL
             nix-index
@@ -344,6 +344,7 @@ in
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
                        "bash_shortcuts/temporary_aliases.bash".source = ./extraConfigs/.config/bash_shortcuts/temporary_aliases.bash ; 
                        "cmus/nord.theme".source = ./extraConfigs/.config/cmus/nord.theme ;
+                       "cmus/autosave".source = ./extraConfigs/.config/cmus/autosave ;
                      };
 
         mime.enable = true ;
