@@ -53,6 +53,8 @@ element-text, element-icon {
 
 #window {
     background-color: @background;
+    height: 800;
+    width: 1300;
 }
 
 #mainbox {
