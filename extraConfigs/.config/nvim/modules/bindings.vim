@@ -45,6 +45,7 @@ nnoremap <leader>jb <cmd>Telescope buffers<cr>
 " Make terminal behave normally
 au TermOpen * setlocal nonumber norelativenumber
 au TermOpen * startinsert
+au TermEnter * echo "jobid: ". &channel
 " Change back!
 nnoremap <leader>] <cmd>FloatermNew --wintype=vsplit --width=90<CR>
 nnoremap <leader>[ <cmd>FloatermNew --wintype=split --height=15<CR>
@@ -60,7 +61,8 @@ tnoremap <C-w>l <C-\><C-N><C-w>l
 
 " tunmap <tab>
 tnoremap <C-k>[ <C-\><C-n><CR>
-tnoremap <C-d> <C-\><C-n><cmd>bd!<CR>
+" tnoremap <C-d> <C-\><C-n><cmd>bd!<CR>
+tnoremap <C-d> <cmd>FloatermToggle<CR>
 
 " Auto insert into the terminal
 let g:previous_window = -1

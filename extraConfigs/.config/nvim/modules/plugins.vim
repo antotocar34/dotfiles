@@ -245,6 +245,10 @@ vnoremap . :SlimeSend<CR>
 " Plug 'voldikss/vim-floaterm'
 tnoremap ¬ <cmd>FloatermToggle<CR>
 nnoremap ¬ <cmd>FloatermToggle<CR>
+tnoremap <F3> <cmd>FloatermHide<CR><cmd>FloatermPrev<CR>
+nnoremap <F3> <cmd>FloatermHide<CR><cmd>FloatermPrev<CR>
+tnoremap <F4> <cmd>FloatermHide<CR><cmd>FloatermNext<CR>
+nnoremap <F4> <cmd>FloatermHide<CR><cmd>FloatermNext<CR>
 
 let g:floaterm_title = ""
 
