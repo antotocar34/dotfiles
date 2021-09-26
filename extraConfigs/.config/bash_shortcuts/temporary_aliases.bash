@@ -19,6 +19,3 @@ function mstop () {
 function qplay () {
     cmus-remote -C "save -q -" | sonos Comedor group_vol 20 : Comedor play_m3u /dev/stdin pis
 }
-function testicles () {
-    echo "testicles"
-}

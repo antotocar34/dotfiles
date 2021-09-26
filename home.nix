@@ -86,6 +86,9 @@ in
             [ # command line tools
             ripgrep
 			fd
+            du-dust
+            duf
+
             nmap
             rdfind # duplicate finder and remover
             ag
@@ -219,6 +222,12 @@ in
         #       condition = "gitdir:~/Documents/Website/antoinecarnec.github.io" ;
         #   }
         # ] ; 
+
+        delta.enable = false ;
+        delta.options = {
+          syntax-theme = "Nord" ;
+          side-by-side = "true" ;
+        } ;
 	} ;
 
 	programs =  {
