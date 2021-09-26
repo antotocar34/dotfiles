@@ -1,8 +1,7 @@
- set aaa_mode=album
+set aaa_mode=album
 set altformat_current= %F 
 set altformat_playlist= %f%= %d 
 set altformat_title=%f
-set altformat_trackwin= %f%= %d 
 set auto_expand_albums_follow=true
 set auto_expand_albums_search=true
 set auto_expand_albums_selcur=true
@@ -78,8 +77,8 @@ set input.vorbis.priority=50
 set input.wav.priority=50
 set input.wavpack.priority=50
 set lib_add_filter=
-set lib_sort=albumartist date album discnumber tracknumber title filename play_count
-set mixer.alsa.channel=
+set altformat_trackwin= %f
+set lib_sort=artist album discnumber title
 set mixer.alsa.device=
 set mixer.pulse.restore_volume=1
 set mouse=false
@@ -139,7 +138,7 @@ bind common D run rm {}
 bind common E win-add-Q
 bind common F push filter 
 bind common G win-bottom
-bind common I echo {}
+bind common I run mv {} /home/carneca/Music/individuals/
 bind common L push live-filter 
 bind common M toggle play_library
 bind common N search-prev
@@ -202,8 +201,6 @@ bind common y win-add-p
 bind common z player-prev
 bind common { vol -1% -0
 bind common } vol -0 -1%
-clear
-add /home/carneca/Music/individuals
 fset 90s=date>=1990&date<2000
 fset classical=genre="Classical"
 fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
