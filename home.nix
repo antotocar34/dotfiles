@@ -88,6 +88,8 @@ in
 			fd
             du-dust
             duf
+            tldr
+            translate-shell
 
             nmap
             rdfind # duplicate finder and remover
@@ -223,10 +225,15 @@ in
         #   }
         # ] ; 
 
-        delta.enable = false ;
+        delta.enable = true ;
         delta.options = {
           syntax-theme = "Nord" ;
-          side-by-side = "true" ;
+          side-by-side = "false" ;
+          paging = "auto" ;
+          line-numbers = "true" ;
+          hunk-header-style = "omit" ;
+          line-numbers-zero-style = "#4C566A" ;
+          # plus-emph-style = "syntax '#A3BE8C'" ;
         } ;
 	} ;
 
