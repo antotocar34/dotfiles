@@ -83,9 +83,6 @@ require('nord').set()
 EOF
 
 
-" Plug 'preservim/nerdtree'
-let g:NERDTreeQuitOnOpen = 1
-
 " Plug 'neovimhaskell/haskell-vim'
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -200,11 +197,17 @@ require'compe'.setup {
 EOF
 
 " Plug 'kyazdani42/nvim-tree.lua'
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_auto_open = 1
-let g:nvim_tree_hide_dotfiles = 1
-
 lua << EOF
+require'nvim-tree'.setup {
+    quit_on_open = true,
+    auto_open = true,
+    hide_dotfiles = true,
+    -- bindings= {
+    -- { key = "_",        cb = tree_cb("dir_up") },
+    -- { key = "-",        cb = tree_cb("close") },
+    --     },
+    }
+
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
     { key = "_",        cb = tree_cb("dir_up") },

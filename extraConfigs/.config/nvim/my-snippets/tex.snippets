@@ -65,6 +65,10 @@ def create_matrix(snip):
         snip.expand_anon(final_str)
 endglobal
 
+pre_expand "create_matrix(snip)"
+snippet "(small|[bBpvV])?mat(rix)?(\d+)x(\d+)" "Generate (small|[bBpvV])?matrix of *rows* by *columns*" Ar
+endsnippet
+
 global !p
 def fix_indent(snip):
     vim.eval('feedkeys("\<c-f>")')
@@ -561,9 +565,6 @@ snippet ..d "ddots" iA
 \ddots
 endsnippet
 
-pre_expand "create_matrix(snip)"
-snippet "(small|[bBpvV])?mat(rix)?(\d+)x(\d+)" "Generate (small|[bBpvV])?matrix of *rows* by *columns*" Ar
-endsnippet
 ###
 # TEX STUFF
 ###

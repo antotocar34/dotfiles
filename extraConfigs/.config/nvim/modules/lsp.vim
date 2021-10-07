@@ -46,9 +46,9 @@ end
 -- end
 
 -- Disable focusing hoverable windows
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, { focusable = false }
-)
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+--   vim.lsp.handlers.hover, { focusable = false }
+-- )
 
 
 local function setup_servers()
@@ -72,5 +72,5 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-require'lspconfig'.r_language_server.setup{} -- R language server
+-- require'lspconfig'.r_language_server.setup{} -- R language server
 EOF

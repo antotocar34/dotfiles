@@ -38,7 +38,7 @@ augroup END
 " autocmd FileType tex set textwidth=95
 augroup vimtex_config
     au!
-    au User VimtexEventQuit call vimtex#compiler#clean(0)
+    au User VimtexEventQuit VimtexClean
 augroup END
 
 
