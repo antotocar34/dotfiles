@@ -1,5 +1,5 @@
 alias lifecoach="launch 'chromium --app=https://www.twitch.tv/lifecoach1981/videos'"
-COLL="${HOME}/Documents/College/masters/semester1/brushups"
+COLL="${HOME}/Documents/College/masters/semester1/"
 alias coll="cd $COLL"
 alias poetry_setup="echo 'autoload' >> .envrc && direnv allow"
 alias pstart="poetry init -n > /dev/null && echo 'autoload' >> .envrc && direnv allow"

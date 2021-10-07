@@ -90,7 +90,7 @@ function file_find {
 }
 # launch and disown program
 function launch {
-    nohup $1 >/dev/null 2>/dev/null & disown; exit
+    nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
 set +a
