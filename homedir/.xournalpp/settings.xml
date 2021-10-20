@@ -108,9 +108,7 @@
       <attribute name="tool" type="string" value="eraser"/>
     </data>
     <data name="stylus2">
-      <attribute name="eraserMode" type="string" value="deleteStroke"/>
-      <attribute name="size" type="string" value="thick"/>
-      <attribute name="tool" type="string" value="eraser"/>
+      <attribute name="tool" type="string" value="selectRegion"/>
     </data>
     <data name="touch">
       <attribute name="device" type="string" value="SINO WEALTH Hexgears keyboard&#13;黑峡谷科技游戏键盘&#13;http://www.Hexgears.com Consumer Control"/>

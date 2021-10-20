@@ -198,21 +198,18 @@ EOF
 
 " Plug 'kyazdani42/nvim-tree.lua'
 lua << EOF
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+nvim_tree_bindings = {
+    { key = "_",        cb = tree_cb("dir_up") },
+    { key = "-",        cb = tree_cb("close") },
+    }
 require'nvim-tree'.setup {
     quit_on_open = true,
     auto_open = true,
     hide_dotfiles = true,
-    -- bindings= {
-    -- { key = "_",        cb = tree_cb("dir_up") },
-    -- { key = "-",        cb = tree_cb("close") },
-    --     },
+    mappings = {custom_only = false, list = nvim_tree_bindings}
     }
 
-    local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-    vim.g.nvim_tree_bindings = {
-    { key = "_",        cb = tree_cb("dir_up") },
-    { key = "-",        cb = tree_cb("close") },
-    }
 EOF
 
 " Plug 'norcalli/nvim-colorizer.lua'
