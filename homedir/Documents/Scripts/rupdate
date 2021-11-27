@@ -3,7 +3,8 @@ rclone_command () {
     echo $1 | sed 's#.*\(Documents\)#\1#g'
         }
 
-    ${HOME}/.nix-profile/bin/rclone $2 -v ${1}/ tdrive:/backup/$(truncatePath $1)/
+    exclude_file=/home/carneca/.config/nixpkgs/extraConfigs/.config/rclone/exclude_list.txt
+    ${HOME}/.nix-profile/bin/rclone $2 -v ${1}/ tdrive:/backup/$(truncatePath $1)/ --filter-from  $exclude_file
     }
 
 if [[ $1 = "-s" ]]; then

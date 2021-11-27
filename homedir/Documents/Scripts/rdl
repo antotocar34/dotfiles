@@ -6,8 +6,9 @@ rclone_command () {
     echo $1 | sed 's#.*\(Documents\)#\1#g'
         }
 
-    ${HOME}/.nix-profile/bin/rclone $2 -vP tdrive:/backup/$(truncatePath $1)/ ${1}/
-    }
+exclude_file=/home/carneca/.config/nixpkgs/extraConfigs/.config/rclone/exclude_list.txt
+    ${HOME}/.nix-profile/bin/rclone $2 -vP tdrive:/backup/$(truncatePath $1)/ ${1}/ --filter-from $exclude_list
+    } 
 
 if [[ $1 = "-s" ]]; then
     input_full=$(readlink -f $2)
