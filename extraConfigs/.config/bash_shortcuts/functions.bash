@@ -88,9 +88,14 @@ function file_find {
         vim "${FILE}"
     fi
 }
+
 # launch and disown program
 function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
 set +a
+
+## RCLONE FUNCTIONS
+
+. ${HOME}/Documents/Scripts/rfuncs.bash

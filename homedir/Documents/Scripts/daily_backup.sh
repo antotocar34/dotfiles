@@ -1,7 +1,9 @@
 #! /bin/bash
 
+. ${HOME}/.config/nixpkgs/homedir/Documents/Scripts/rfuncs.bash
+
 document_backup () {
-    ${HOME}/Documents/Scripts/rupdate ${HOME}/Documents/
+    rupdate ${HOME}/Documents/
 }
 
 task_backup () {

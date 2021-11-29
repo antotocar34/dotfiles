@@ -1,3 +1,5 @@
+. ${HOME}/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/functions.bash
+
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 alias musicdl="youtube-dl -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
