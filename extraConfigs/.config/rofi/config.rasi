@@ -1,9 +1,11 @@
 configuration {
-theme: "nord";
 width: 70;
+modi: "window,run,ssh,drun";
+}
+@theme "nord"
+
 /* location: 0; */
 /* font: "Ioseveka  Medium 18"; */
-modi: "window,run,ssh,drun";
 /* columns: 2; */
 /*	width: 50;*/
 /*	lines: 15;*/
@@ -152,4 +154,3 @@ modi: "window,run,ssh,drun";
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
-}

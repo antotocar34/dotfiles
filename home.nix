@@ -174,6 +174,7 @@ in
             inkscape
             gimp
             deluge
+            pirate-get
 
             tdrop
 

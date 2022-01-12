@@ -37,7 +37,6 @@ function xournalwrite () {
     if [[ $? -ne 1 ]]
     then launch "xournalpp $chosen_file"
     fi
-
 }
 
 function mwrite () {
@@ -78,6 +77,17 @@ function dir_find {
     fi
 }
 
+function local_dir_find {
+    exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
+    cmd="""fd -I --follow $exclusions -td . ."""
+    dir=$($cmd | fzf)
+    if [[ $? -eq 130 ]]; then
+        true
+    else
+        cd "${dir}"
+    fi
+}
+
 function file_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
     cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
@@ -99,3 +109,19 @@ set +a
 ## RCLONE FUNCTIONS
 
 . ${HOME}/Documents/Scripts/rfuncs.bash
+
+datascience() {
+    poetry init -n --python ">3.9, <3.11" --dependency pandas \
+                                           --dependency numpy \
+                                           --dependency matplotlib \
+                                           --dependency sklearn \
+                                           --dev-dependency ipython \
+                                           --dev-dependency ipykernel  \
+                                           --dev-dependency jupyter  \
+                                           --dev-dependency jupytext  \
+                                           --dev-dependency nbconvert  \
+                                           --author "Antoine Carnec"
+    poetry install
+    echo autoload >> .envrc 
+    direnv allow
+}

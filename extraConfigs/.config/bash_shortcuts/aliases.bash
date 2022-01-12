@@ -10,6 +10,7 @@ alias excel="chromium --new-window --app=https://www.office.com/template/excel"
 # CD SHORTCUTS
 alias fk=dir_find
 alias fw=file_find
+alias fj=local_dir_find
 # alias fw='vim $(tree -fi $HOME | fzf) 2> /dev/null'
 alias lat="cd ~/Documents/Latex"
 alias d="cd ~/Documents/"
@@ -35,6 +36,7 @@ alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_versi
 alias he="nvim ~/.config/nixpkgs/home.nix"
 alias vim="nvim --startuptime /tmp/nvim-startuptime"
 alias nvim="nvim --startuptime /tmp/nvim-startuptime"
+alias z=zathura
 
 # FILE SHORTCUTS
 alias notes="${EDITOR} ${WIKI_LOC}/index.wiki"

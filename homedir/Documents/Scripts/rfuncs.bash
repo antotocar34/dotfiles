@@ -59,3 +59,7 @@ rtotaldel() {
     drive_path=$(get_drive_root ${1:-.})
     echo "This will delete from both remote and local" && rclone delete -i $drive_path && rm -ri $local_path
 }
+
+pdl() {
+    pirate-get -C "transmission-remote -a %s -w '/home/carneca/Downloads'" "${1}"
+}

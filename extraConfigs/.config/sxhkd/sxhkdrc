@@ -41,7 +41,7 @@ alt + shift + b
     tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://z-lib.org/ 
 
 alt + s
-    anki
+    zathura "$(ls -t Downloads/*.pdf | head -n1)"
 
 alt + e
     rofi -show window
@@ -54,3 +54,5 @@ alt + shift + r
 
 alt + shift + p
     bw generate -p --words 5 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'
+
+

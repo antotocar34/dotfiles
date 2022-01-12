@@ -11,7 +11,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'lewis6991/gitsigns.nvim'
 
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -36,6 +36,7 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 Plug 'jpalardy/vim-slime'
 Plug 'meain/vim-printer'
 Plug 'voldikss/vim-floaterm'
+Plug 'goerz/jupytext.vim'
 call plug#end()
 
 "
@@ -46,8 +47,8 @@ call plug#end()
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=2
-let g:tex_conceal='abdmg'
+set conceallevel=0
+" let g:tex_conceal='abdmg'
 let g:vimtex_include_search_enabled=0
 let g:vimtex_complete_close_braces=1
 let g:vimtex_view_forward_search_on_start=0
@@ -226,16 +227,16 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Plug 'ray-x/lsp_signature.nvim'
-lua << EOF
-    require "lsp_signature".setup({
-        floating_window = true,
-        hint_prefix = "",
-        hint_enable = false, -- Whether to show virtual text
-        handler_opts = {
-            border = "none"
-            }
-        })
-EOF
+" lua << EOF
+"     require "lsp_signature".setup({
+"         floating_window = true,
+"         hint_prefix = "",
+"         hint_enable = false, -- Whether to show virtual text
+"         handler_opts = {
+"             border = "none"
+"             }
+"         })
+" EOF
 
 " Plug 'jpalardy/vim-slime'
 let g:slime_target = "neovim"
