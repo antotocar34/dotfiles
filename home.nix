@@ -96,33 +96,20 @@ in
             rdfind # duplicate finder and remover
             ag
             tree
-			youtube-dl
+			yt-dlp
 			psmisc # pstree and the like
             unzip
             unrar
             rclone
 
             filezilla
-            # python stuff
-			python38
-			python38Packages.ipython
-			# python37Packages.virtualenv
-            python38Packages.pip
-            # inkscape-figures
-            # poetry # Install manually
             black
 
             direnv
 
             pdf2svg # needed for inkscape-figures
 
-			# nodejs # Needed by coc-nvim
             neovim-remote # Needed for SyncTex
-
-            # Haskell stuff
-			# ghc
-			# haskellPackages.haskell-language-server
-            # cabal-install
 
             # password management
 			bitwarden
@@ -182,22 +169,15 @@ in
             NFonts
 
             ## BIG INSTALLS
-            # texlive.combined.scheme-full
+            texlive.combined.scheme-full
 
-            ## Have to be installed manually due to things not working
-            # rofi
-            # kitty
-            # flameshot
-            # minecraft # works with nixGL
-            # bashCompletion
-            # spotify
+            # krita
 
-            krita
             xournalpp
             # Misc
             # nixGL
             nix-index
-            nix-bash-completions
+            # nix-bash-completions
             glibcLocales
             powerline-fonts
 
@@ -343,7 +323,7 @@ in
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
-                       "msmpt/config".source = ./extraConfigs/.config/msmtp/config ;
+                       "msmtp/config".source = ./extraConfigs/.config/msmtp/config ;
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;

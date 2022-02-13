@@ -2,7 +2,7 @@
 
 CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
-alias musicdl="youtube-dl -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
+alias musicdl="yt-dlp -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
 alias excel="chromium --new-window --app=https://www.office.com/template/excel"

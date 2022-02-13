@@ -18,7 +18,7 @@ find_pdf () {
 }
 
 find_tex () {
-FILE=$(fd -uu -etex . ~/Documents/Latex | rofi -dmenu -i -p "tex")
+FILE=$(fd -uu -etex . ~/Documents | rofi -dmenu -i -p "tex")
 
 if [[ ${?} -eq 0 ]]
 then
