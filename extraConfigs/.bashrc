@@ -131,7 +131,4 @@ FINANCE_DIR="${HOME}/Documents/Finances"
 # For direnv
 eval "$(direnv hook bash)"
 
-echo "You should be finding a NIE appointment! Type nie"
-alias nie="tmux new 'cd /home/carneca/Documents/Programming/Python/automation/nie-scraper && poetry run python /home/carneca/Documents/Programming/Python/automation/nie-scraper/find_nie.py; sleep 500000'"
-
-. $HOME/.elan/env
+R_LIBS_USER="${HOME}/.config/R/Rprofile"

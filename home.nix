@@ -76,6 +76,7 @@ in
 			'' ;
         QT_XCB_GL_INTEGRATION= "none";
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
+        R_PROFILE_USER="${home}/.config/R/.Rprofile";
 	} ;
 
     fonts.fontconfig.enable = true ;
@@ -350,6 +351,7 @@ in
                        "bash_shortcuts".recursive = true ; 
                        "cmus".source = ./extraConfigs/.config/cmus ;
                        "cmus".recursive = true ;
+                       "R/.Rprofile".source = ./extraConfigs/.config/R/Rprofile;
                      };
 
         mime.enable = true ;
@@ -388,5 +390,6 @@ in
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
       ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf ;
       ".muttrc".source = ./homedir/.muttrc ;
+      ".Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     } ;
 }
