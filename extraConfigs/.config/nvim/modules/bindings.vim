@@ -62,7 +62,7 @@ tnoremap <C-w>l <C-\><C-N><C-w>l
 " tunmap <tab>
 tnoremap <C-k>[ <C-\><C-n><CR>
 " tnoremap <C-d> <C-\><C-n><cmd>bd!<CR>
-tnoremap <C-d> <cmd>FloatermToggle<CR>
+" tnoremap <C-d> <cmd>FloatermToggle<CR>
 
 " Auto insert into the terminal
 let g:previous_window = -1

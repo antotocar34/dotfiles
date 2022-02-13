@@ -25,18 +25,19 @@ Plug 'LnL7/vim-nix', { 'for': 'nix' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'hrsh7th/nvim-compe'
 Plug 'vimwiki/vimwiki'
-Plug 'henriquehbr/nvim-startup.lua'
+" Plug 'henriquehbr/nvim-startup.lua'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'ledger/vim-ledger', { 'for': 'ledger' }
-Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
+Plug 'ledger/vim-ledger', { 'for': 'ledger' } 
+Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' } 
 Plug 'jpalardy/vim-slime'
 Plug 'meain/vim-printer'
 Plug 'voldikss/vim-floaterm'
 Plug 'goerz/jupytext.vim'
+Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 call plug#end()
 
 "
@@ -72,6 +73,7 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.config/nvim/my-snippets']
+" let g:python3_host_prog = home . '/.config/nixpkgs/.useful/.venv/bin/python3'
 
 " Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 0
@@ -158,7 +160,7 @@ require('lualine').setup {
 EOF
 
 " Plug 'henriquehbr/nvim-startup.lua'
-lua require 'nvim-startup'.setup()
+" lua require 'nvim-startup'.setup()
 
 " Plug 'hrsh7th/nvim-compe'
 lua << EOF
@@ -241,7 +243,8 @@ EOF
 " Plug 'jpalardy/vim-slime'
 let g:slime_target = "neovim"
 let g:slime_python_ipython = 1
-vnoremap . :SlimeSend<CR>
+vnoremap R :SlimeSend<CR>
+nnoremap R :SlimeSend<CR>j
 
 " Plug 'voldikss/vim-floaterm'
 tnoremap ¬ <cmd>FloatermToggle<CR>

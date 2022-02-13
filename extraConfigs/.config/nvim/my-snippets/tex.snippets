@@ -106,6 +106,7 @@ snippet it "Individual item" b
 \item $0
 endsnippet
 
+
 snippet quote "quote" bA
 \begin{quote}
 $0
@@ -283,6 +284,10 @@ snippet (( "left( right)" wA
 \left( ${1:${VISUAL}} \right)$0
 endsnippet
 
+context "math()"
+snippet {{ "left( right)" wA
+\left\{ ${1:${VISUAL}} \right\}$0
+endsnippet
 
 context "math()"
 snippet [[ "left[ right]" wA
@@ -307,6 +312,11 @@ endsnippet
 context "math()"
 snippet cal "mathcal" wA
 \mathcal{$1}$0
+endsnippet
+
+context "math()"
+snippet exp "exponential" w
+\exp\left\{$1\right\} $0
 endsnippet
 
 context "math()"
@@ -467,8 +477,13 @@ snippet lim "limit" wA
 endsnippet
 
 context "math()"
+snippet ind "indicator" wA
+\mathbbm{1}($1)$0 
+endsnippet
+
+context "math()"
 snippet ev "expected value" wA
-E\left[$1\right]$0
+\mathbb{E}\left[$1\right]$0
 endsnippet
 
 context "math()"
@@ -615,7 +630,7 @@ endsnippet
 # LOGIC AND SET THEORY
 ###
 context "math()"
-snippet ex "exists" iA
+snippet exi "exists" iA
 \exists
 endsnippet
 
@@ -719,6 +734,11 @@ snippet ne "neq" iA
 endsnippet
 
 context "math()"
+snippet nr "norm" iA
+\Vert$1\Vert$0
+endsnippet
+
+context "math()"
 snippet sm "setminus" iA
 \setminus 
 endsnippet
@@ -757,13 +777,8 @@ snippet pow "powerset" wA
 endsnippet
 
 context "math()"
-snippet nr "norm" wA
-\|$1\|$0
-endsnippet
-
-context "math()"
 snippet abs "modulus" wA
-|$1|$0
+\abs*{$1}$0
 endsnippet
 
 context "math()"
@@ -825,9 +840,10 @@ snippet vf "varphi" wA
 endsnippet	
 
 context "math()"
-snippet mu  "mu" wA
+snippet mu "mu" wA
 \mu
-endsnippet	
+endsnippet
+
 context "math()"
 snippet th "theta" wA
 \theta
@@ -995,6 +1011,7 @@ snippet temp "Basic template" bA
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{bm}
+\usepackage{bbm}
 \usepackage{mathtools}
 \usepackage{microtype}
 \usepackage{enumerate}
