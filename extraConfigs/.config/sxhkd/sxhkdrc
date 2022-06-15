@@ -14,7 +14,7 @@ alt + Return
     rofi -show drun -show-icons
 
 alt + v 
-   kitty -e  nvim tmp
+   kitty -e  nvim
 
 alt + n
    bitwarden 

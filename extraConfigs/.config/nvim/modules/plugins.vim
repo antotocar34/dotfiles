@@ -12,7 +12,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim'
 
 " Plug 'ray-x/lsp_signature.nvim'
-
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
@@ -38,6 +37,7 @@ Plug 'meain/vim-printer'
 Plug 'voldikss/vim-floaterm'
 Plug 'goerz/jupytext.vim'
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
+Plug 'daeyun/vim-matlab'
 call plug#end()
 
 "
@@ -207,10 +207,19 @@ nvim_tree_bindings = {
     { key = "-",        cb = tree_cb("close") },
     }
 require'nvim-tree'.setup {
-    quit_on_open = true,
-    auto_open = true,
+    actions = {
+        open_file = {
+            quit_on_open = true
+        },
+    },
+    auto_close = true,
+    auto_open = false,
     hide_dotfiles = true,
-    mappings = {custom_only = false, list = nvim_tree_bindings}
+    hijack_unnamed_buffer_when_opening = false,
+    mappings = {
+        custom_only = false, 
+        list = nvim_tree_bindings
+        }
     }
 
 EOF

@@ -18,7 +18,7 @@ def latex_document(latex):
         \usepackage[utf8]{inputenc}
         \usepackage[T1]{fontenc}
         \usepackage{textcomp}
-        \usepackage{amsmath, amssymb}
+        \usepackage{amsmath, amssymb, bm, bbm}
         \newcommand{\R}{\mathbb R}
 
         \begin{document}

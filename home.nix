@@ -93,8 +93,8 @@ in
             translate-shell
 
             nmap
-            rdfind # duplicate finder and remover
-            ag
+            # rdfind # duplicate finder and remover
+            silver-searcher
             tree
 			yt-dlp
 			psmisc # pstree and the like
