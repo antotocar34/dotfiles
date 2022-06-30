@@ -10,8 +10,9 @@ logfile        ~/.msmtp.log
 account        gmail
 host           smtp.gmail.com
 port           465
-from           antoinecarnec2@gmail.com
-user           antoinecarnec2
-password       sumac-stoneware0-blush-Slashed-undercoat-9kalmia-Mac-fist-2mixed-Hays7
+# port           587
+from           limillerbeepboop@gmail.com
+user           limillerbeepboop
+password       ***REMOVED***  
 
 account default : gmail
