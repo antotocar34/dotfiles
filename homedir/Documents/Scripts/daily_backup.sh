@@ -3,7 +3,7 @@
 . ${HOME}/.config/nixpkgs/homedir/Documents/Scripts/rfuncs.bash
 
 document_backup () {
-    rupdate ${HOME}/Documents/
+    rupdate ${HOME}/Documents/ --exclude /home/carneca/Documents/Books/Calibre/BD/metadata.db
 }
 
 task_backup () {

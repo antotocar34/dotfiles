@@ -77,6 +77,7 @@ in
         QT_XCB_GL_INTEGRATION= "none";
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
+        NIXPKGS_ALLOW_INSECURE=1;
 	} ;
 
     fonts.fontconfig.enable = true ;
@@ -323,7 +324,7 @@ in
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
-                       "msmtp/config".source = ./extraConfigs/.config/msmtp/config ;
+                       "msmtp/config".source = config.lib.file.mkOutOfStoreSymlink ./extraConfigs/.config/msmtp/config ;
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;

@@ -63,3 +63,9 @@ rtotaldel() {
 pdl() {
     pirate-get -C "transmission-remote -a %s -w '/home/carneca/Downloads'" "${1}"
 }
+
+bdupdate() {
+    LOCAL_BD_LIB="${HOME}/Documents/Books/Calibre/BD" 
+    REMOTE_BD_LIB="tdrive:/backup/Documents/Books/Calibre/BD"
+    ${HOME}/.nix-profile/bin/rclone copy -v $LOCAL_BD_LIB $REMOTE_BD_LIB --filter-from $FILTER_FROM
+}

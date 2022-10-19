@@ -4,6 +4,7 @@
 KINDLE_EMAIL=antoinecarnec2_Hk8t1g@kindle.com
 MAGAZINE_LIBRARY=${HOME}/Documents/Books/Calibre/Magazines
 RECIPE_LOCATION=${HOME}/Documents/Storage/accessible/calibre/recipes
+EXTENSION=epub
 
 if [ $# -eq 0 ] # If there is no argument, default to economist.recipe
     then
@@ -19,10 +20,10 @@ fi
 
 download_news () {
 cd $(mktemp -d)
-ebook-convert $recipe_file ./document.mobi
+ebook-convert $recipe_file ./document.${EXTENSION}
 calibredb --with-library=${MAGAZINE_LIBRARY} add ./document.mobi
 echo "Sending mail"
-echo | mutt -s "" -a ./document.mobi -- ${KINDLE_EMAIL}
+echo | mutt -s "" -a ./document.${EXTENSION} -- ${KINDLE_EMAIL}
 if [ $? -eq 0 ] 
 then echo "Emailling Succesful!"
 fi
