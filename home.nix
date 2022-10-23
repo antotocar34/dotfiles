@@ -1,15 +1,15 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, options, ... }:
 
-with import <nixpkgs> {};
+# with import <nixpkgs> {};
 with builtins;
 with lib;
 
 let
 # Personal Info
-user = getEnv "USER" ;
+user = "carneca" ;
 home = "/home/${user}" ;
 name = "Antoine Carnec" ;
-hostname = getEnv "HOST" ;
+hostname = "x1carbon" ;
 email = "antoinecarnec@gmail.com" ;
 
 
@@ -17,47 +17,15 @@ nf-fonts = [
   "CascadiaCode" 
   "UbuntuMono"
   "Iosevka"
-  "JetBrainsMono"
+  # "JetBrainsMono"
             ] ;
 
-inotify = 
- python37Packages.buildPythonApplication rec {
-   pname = "inotify" ;
-   version = "0.2.10"; 
-
-   src = python37Packages.fetchPypi {
-     inherit pname version;
-     sha256 = "01raq3v0vpycjqzgr0462zn37vb3p1gp1syl2qpbd0l46cx64jlp";
-   };
-
-   # buildInputs = with python3Packagse
-   propagatedBuildInputs = with python37Packages ; [ nose ] ;
- };
-
-
-inkscape-figures = 
-  python37Packages.buildPythonApplication rec {
-    pname = "inkscape-figures" ;
-    version = "1.0.7"; 
-
-    src = python37Packages.fetchPypi {
-      inherit pname version;
-      sha256 = "04fb4ihxwjzag6l31iq119llnrkva6zbgkxyrgkhw0ircbw4chn1";
-    };
-
-    doCheck = false ;
-
-    propagatedBuildInputs = with python37Packages ; [ inotify click pyperclip appdirs daemonize ] ;
-  } ;
-
-nixGL = (import (pkgs.fetchFromGitHub {
-                owner = "guibou";
-                repo = "nixGL";
-                rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
-                sha256 = "02y38zmdplk7a9ihsxvnrzhhv7324mmf5g8hmxqizaid5k5ydpr3"; })
-            { }).nixGLDefault;
-
-
+# nixGL = (import (pkgs.fetchFromGitHub {
+#                 owner = "guibou";
+#                 repo = "nixGL";
+#                 rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
+#                 sha256 = "02y38zmdplk7a9ihsxvnrzhhv7324mmf5g8hmxqizaid5k5ydpr3"; })
+#             { }).nixGLDefault;
 
 in
 {
@@ -74,10 +42,11 @@ in
 		FZF_DEFAULT_COMMAND=''
 			ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
 			'' ;
-        QT_XCB_GL_INTEGRATION= "none";
+        # QT_XCB_GL_INTEGRATION= "none"; # This causes all sorts of OpenGL issues
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
         NIXPKGS_ALLOW_INSECURE=1;
+        NIXPKGS_ALLOW_UNFREE=1;
 	} ;
 
     fonts.fontconfig.enable = true ;
@@ -97,6 +66,7 @@ in
             # rdfind # duplicate finder and remover
             silver-searcher
             tree
+            cloc # counts lines of code
 			yt-dlp
 			psmisc # pstree and the like
             unzip
@@ -142,13 +112,14 @@ in
             xbanish # Hides cursor on key press
 
 			discord
-            anki-bin
+            # anki-bin
 
             # should be a service but is not working
             sxhkd
 
             cmus
-            # vifm
+            vifm
+            flameshot
 
             # whatsapp-for-linux
             signal-desktop
@@ -170,9 +141,9 @@ in
             NFonts
 
             ## BIG INSTALLS
-            texlive.combined.scheme-full
+            # texlive.combined.scheme-full
 
-            # krita
+            krita
 
             xournalpp
             # Misc
@@ -310,6 +281,7 @@ in
                        "kitty".recursive = true ;
                        "rofi".source = ./extraConfigs/.config/rofi ;
                        "rofi".recursive = true ;
+                       # "kxkbrc".source = ./extraConfigs/.config/kxkbrc ;
                        "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc ;
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
