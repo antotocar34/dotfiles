@@ -126,7 +126,7 @@ unset color_prompt force_color_prompt
 # Directory specific sources
 ## Sourcing ledger shortcuts
 FINANCE_DIR="${HOME}/Documents/Finances"
-. ${FINANCE_DIR}/.bash_shortcuts
+# . ${FINANCE_DIR}/.bash_shortcuts
 
 # For direnv
 eval "$(direnv hook bash)"

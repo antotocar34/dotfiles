@@ -198,7 +198,30 @@ in
 			initExtra   = builtins.readFile ./extraConfigs/.bashrc ; 
 		};  
 
+        bat = {
+          enable = true ;
+          config = { theme = "Nord" ; } ;
+          } ;
 
+		chromium = {
+			enable = false ;
+			extensions = 
+				[
+				"blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
+			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
+                "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
+				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
+				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
+				] ;
+		};
+
+
+        direnv = {
+            enable = true ;
+            nix-direnv.enable = true ;
+        };
 		ssh = {
 			enable = true ;
 			matchBlocks =
@@ -247,27 +270,10 @@ in
 			shortcut = "k" ;
 			extraConfig = builtins.readFile ./extraConfigs/.tmux.conf ;
 		} ;
-
-		chromium = {
-			enable = false ;
-			extensions = 
-				[
-				"blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
-			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
-                "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
-				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
-				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
-				] ;
-		};
-
-        bat = {
-          enable = true ;
-          config = { theme = "Nord" ; } ;
-          } ;
 	};
 
+    # Apply plasma settings
+    programs.plasma = import ./extraConfigs/plasma_settings.nix ;
 
 	xdg = {
         enable = true ;
