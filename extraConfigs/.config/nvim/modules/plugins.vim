@@ -206,22 +206,17 @@ nvim_tree_bindings = {
     { key = "_",        cb = tree_cb("dir_up") },
     { key = "-",        cb = tree_cb("close") },
     }
-require'nvim-tree'.setup {
-    actions = {
-        open_file = {
-            quit_on_open = true
-        },
-    },
-    auto_close = true,
-    auto_open = false,
-    hide_dotfiles = true,
+require'nvim-tree'.setup({  
+    actions = { open_file = {quit_on_open = true} },
+    filters = { dotfiles = true },
     hijack_unnamed_buffer_when_opening = false,
-    mappings = {
-        custom_only = false, 
-        list = nvim_tree_bindings
-        }
+    view = {
+        mappings = {
+            custom_only = false, 
+            list = nvim_tree_bindings
+            }
     }
-
+    })
 EOF
 
 " Plug 'norcalli/nvim-colorizer.lua'
