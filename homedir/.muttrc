@@ -1,4 +1,4 @@
-set sendmail='/usr/bin/msmtp'
+set sendmail='~/.nix-profile/bin/msmtp'
 set use_from=yes
 set realname='Antoine Carnec'
 set from=antoinecarnec2@gmail.com

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, options, ... }:
+{ lib, pkgs, options, config, nixgl, ... }:
 
 # with import <nixpkgs> {};
 with builtins;
@@ -17,21 +17,30 @@ nf-fonts = [
   "CascadiaCode" 
   "UbuntuMono"
   "Iosevka"
-  # "JetBrainsMono"
+  "JetBrainsMono"
             ] ;
 
-# nixGL = (import (pkgs.fetchFromGitHub {
-#                 owner = "guibou";
-#                 repo = "nixGL";
-#                 rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
-#                 sha256 = "02y38zmdplk7a9ihsxvnrzhhv7324mmf5g8hmxqizaid5k5ydpr3"; })
-#             { }).nixGLDefault;
+
+# Functions to wrap with nixGL
+getBinaryName = pkg: lib.attrsets.attrByPath ["meta" "mainProgram"] pkg.pname pkg ;
+
+wrapWithNixGL = pkg:
+let
+  wrapped = pkgs.writeShellScriptBin pkg.pname ''
+    exec ${nixgl.defaultPackage.x86_64-linux.nixGLIntel}/bin/nixGLIntel ${pkg}/bin/${getBinaryName pkg}
+  '';
+in
+pkgs.symlinkJoin {
+  name = pkg.name;
+  paths = [
+    wrapped
+    pkg
+  ];
+} ;
 
 in
 {
 	programs.home-manager.enable = true;
-    # TODO change path to home-manager
-	# programs.home-manager.path = "${home}/.config/home-manager";
 
 	home.username = "${user}";
 	home.homeDirectory = "${home}";
@@ -42,7 +51,6 @@ in
 		FZF_DEFAULT_COMMAND=''
 			ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
 			'' ;
-        # QT_XCB_GL_INTEGRATION= "none"; # This causes all sorts of OpenGL issues
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
         NIXPKGS_ALLOW_INSECURE=1;
@@ -50,6 +58,9 @@ in
 	} ;
 
     fonts.fontconfig.enable = true ;
+
+    # Kind of a whack solution
+    # home.shellAliases = lib.attrsets.genAttrs nixGLAliased (s: "nixGLIntel " + s) ;
 
     home.packages = with pkgs; let
       NFonts = nerdfonts.override { fonts = nf-fonts ; } ;
@@ -71,7 +82,7 @@ in
 			psmisc # pstree and the like
             unzip
             unrar
-            rclone
+            rclone # google drive cli interface
 
             filezilla
             black
@@ -80,6 +91,7 @@ in
 
             pdf2svg # needed for inkscape-figures
 
+            # neovim # Text editor
             neovim-remote # Needed for SyncTex
 
             # password management
@@ -90,8 +102,8 @@ in
 			xclip # also useful
             colorpicker
 
-			zathura
-            mcomix3
+			zathura # pdf reader
+            mcomix3 # comic reader
 
 			xdotool
             xorg.xrandr
@@ -111,6 +123,8 @@ in
 			vlc
             xbanish # Hides cursor on key press
 
+            rofi
+
 			discord
             # anki-bin
 
@@ -128,8 +142,9 @@ in
             gnome3.pomodoro
             etcher # Formatting USBs
 
-            calibre # Ebook goodness
             kcc # Ebook conversion
+
+            spotify
 
             inkscape
             gimp
@@ -141,20 +156,28 @@ in
             NFonts
 
             ## BIG INSTALLS
-            # texlive.combined.scheme-full
+            texlive.combined.scheme-full
 
             krita
 
             xournalpp
+
             # Misc
-            # nixGL
             nix-index
             # nix-bash-completions
             glibcLocales
             powerline-fonts
 
             transcribe
-			];
+
+            mutt
+
+            # nixgl
+            # (import nixgl { inherit pkgs; }).nixGLIntel
+            nixgl.defaultPackage.x86_64-linux.nixGLIntel
+          ] ++ 
+          # For those applications that need to be wrapped with nixGL
+          builtins.map wrapWithNixGL [ calibre kitty ];
 
 	programs.git = {
 		enable = true;
@@ -287,7 +310,6 @@ in
                        "kitty".recursive = true ;
                        "rofi".source = ./extraConfigs/.config/rofi ;
                        "rofi".recursive = true ;
-                       # "kxkbrc".source = ./extraConfigs/.config/kxkbrc ;
                        "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc ;
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
@@ -302,7 +324,7 @@ in
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
-                       "msmtp/config".source = config.lib.file.mkOutOfStoreSymlink ./extraConfigs/.config/msmtp/config ;
+                       # "msmtp/config".source = config.lib.file.mkOutOfStoreSymlink ./extraConfigs/.config/msmtp/config ; # TODO make this work
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
@@ -343,7 +365,7 @@ in
 
       # Files
       ".xmodmap".source  = ./homedir/.xmodmap ;
-      ".taskrc".source  = ./homedir/.taskrc ;
+      ".taskrc".source  = ./homedir/.taskrc ; # taskwarrior configuration
       ".dir_colors".source  = ./homedir/.dir_colors ;
       ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
       "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg ;
@@ -351,4 +373,7 @@ in
       ".muttrc".source = ./homedir/.muttrc ;
       ".Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     } ;
+
+    # disable notifications about home-manager news
+    news.display = "silent";
 }

@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # This captures my plasma settings
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
@@ -21,15 +22,19 @@
     let
       system = "x86_64-linux";
       user = "carneca";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
+      };
     in {
       homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs ;
 
-          modules = [ ./home.nix 
-                      self.inputs.plasma-manager.homeManagerModules.plasma-manager
+          modules = [ 
+            ./home.nix 
+            self.inputs.plasma-manager.homeManagerModules.plasma-manager
           ] ;
-
+          extraSpecialArgs = { inherit nixgl ;} ; # Pass in any flakes to home.nix
       };
     };
 }
