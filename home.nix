@@ -171,6 +171,7 @@ in
             transcribe
 
             mutt
+            pwgen # password generator
 
             # nixgl
             # (import nixgl { inherit pkgs; }).nixGLIntel
