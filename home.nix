@@ -122,7 +122,6 @@ in
             rofi
 
 			discord
-            # anki-bin
 
             # should be a service but is not working
             sxhkd
@@ -310,12 +309,10 @@ in
                        "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim ;
                        "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc ;
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
-                       # "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
                        "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc ;
-                       # "msmtp/config".source = config.lib.file.mkOutOfStoreSymlink ./extraConfigs/.config/msmtp/config ; # TODO make this work
                        "transmission-daemon/settings.json".source = ./extraConfigs/.config/transmission-daemon/settings.json ;
                        "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml ;
                        "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini ;
@@ -365,6 +362,7 @@ in
       ".Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     } ;
 
+    # Secrets
     homeage = {
       identityPaths = [ "${home}/.ssh/antoine" ];
       installationType = "activation";
@@ -376,11 +374,9 @@ in
 
       file."msmtp_config" = {
         source = ./extraConfigs/.config/msmtp/config.age ;
-        # symlinks = [ "${home}/.config/msmtp/config" ];
         copies = [ "${home}/.config/msmtp/config" ];
       } ;
     } ;
-
 
     # disable notifications about home-manager news
     news.display = "silent";

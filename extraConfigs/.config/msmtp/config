@@ -1,0 +1,18 @@
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+tls_starttls   off
+logfile        ~/.msmtp.log
+
+# Gmail
+account        gmail
+host           smtp.gmail.com
+port           465
+# port           587
+from           limillerbeepboop@gmail.com
+user           limillerbeepboop
+password       ***REMOVED***  
+
+account default : gmail
