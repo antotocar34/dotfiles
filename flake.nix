@@ -9,6 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Managing secrets
+    homeage = {
+      url = "github:jordanisaacs/homeage";
+      # Optional
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # This captures my plasma settings
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +25,7 @@
   };
 
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, nixgl }:
+  outputs = { self, nixpkgs, home-manager, homeage, plasma-manager, nixgl }:
     let
       system = "x86_64-linux";
       user = "carneca";
@@ -33,6 +40,7 @@
           modules = [ 
             ./home.nix 
             self.inputs.plasma-manager.homeManagerModules.plasma-manager
+            homeage.homeManagerModules.homeage
           ] ;
           extraSpecialArgs = { inherit nixgl ;} ; # Pass in any flakes to home.nix
       };

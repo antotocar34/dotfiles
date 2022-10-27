@@ -165,6 +165,8 @@ in
 
             transcribe
 
+            jq
+            age
             mutt
             pwgen # password generator
 
@@ -308,7 +310,7 @@ in
                        "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim ;
                        "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc ;
                        "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py ;
-                       "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
+                       # "rclone/rclone.conf".source = ./extraConfigs/.config/rclone/rclone.conf ;
                        "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf ;
                        "kwinrc".source = ./extraConfigs/.config/kwinrc ;
                        "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc ;
@@ -336,14 +338,14 @@ in
             "image/svg+xml" = "org.inkscape.Inkscape.desktop" ;
             "audio/opus" = "vlc.desktop" ;
             "audio/aac" = "vlc.desktop" ;
-            "audio/mpeg" = "vlc.desktop" ;
+            "audio/mpegsymlinks" = "vlc.desktop" ;
            } ;
            mimeApps.associations.added = { 
             "x-scheme-handler/http" = "chromium-browser.desktop" ;
             "x-scheme-handler/https" = "chromium-browser.desktop" ;
             "application/html" = "chromium-browser.desktop" ;
            } ;
-	};
+      };
 
     home.file = {
       # Directories
@@ -362,6 +364,23 @@ in
       ".muttrc".source = ./homedir/.muttrc ;
       ".Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     } ;
+
+    homeage = {
+      identityPaths = [ "${home}/.ssh/antoine" ];
+      installationType = "activation";
+
+      file."rclone_config" = {
+        source = ./extraConfigs/.config/rclone/rclone.conf.age ;
+        symlinks = [ "${home}/.config/rclone/rclone.conf" ];
+      } ;
+
+      file."msmtp_config" = {
+        source = ./extraConfigs/.config/msmtp/config.age ;
+        # symlinks = [ "${home}/.config/msmtp/config" ];
+        copies = [ "${home}/.config/msmtp/config" ];
+      } ;
+    } ;
+
 
     # disable notifications about home-manager news
     news.display = "silent";
