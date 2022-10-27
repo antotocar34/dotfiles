@@ -11,7 +11,7 @@ home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 hostname = "x1carbon" ;
 email = "antoinecarnec@gmail.com" ;
-
+system = "x86_64-linux" ;
 
 nf-fonts = [
   "CascadiaCode" 
@@ -20,23 +20,22 @@ nf-fonts = [
   "JetBrainsMono"
             ] ;
 
-
 # Functions to wrap with nixGL
 getBinaryName = pkg: lib.attrsets.attrByPath ["meta" "mainProgram"] pkg.pname pkg ;
 
 wrapWithNixGL = pkg:
-let
-  wrapped = pkgs.writeShellScriptBin pkg.pname ''
-    exec ${nixgl.defaultPackage.x86_64-linux.nixGLIntel}/bin/nixGLIntel ${pkg}/bin/${getBinaryName pkg}
-  '';
-in
-pkgs.symlinkJoin {
-  name = pkg.name;
-  paths = [
-    wrapped
-    pkg
-  ];
-} ;
+  let
+    wrapped = pkgs.writeShellScriptBin pkg.pname ''
+      exec ${nixgl.defaultPackage.${system}.nixGLIntel}/bin/nixGLIntel ${pkg}/bin/${getBinaryName pkg}
+    '';
+  in
+  pkgs.symlinkJoin {
+    name = pkg.name;
+    paths = [
+      wrapped
+      pkg
+    ];
+  } ;
 
 in
 {
@@ -58,9 +57,6 @@ in
 	} ;
 
     fonts.fontconfig.enable = true ;
-
-    # Kind of a whack solution
-    # home.shellAliases = lib.attrsets.genAttrs nixGLAliased (s: "nixGLIntel " + s) ;
 
     home.packages = with pkgs; let
       NFonts = nerdfonts.override { fonts = nf-fonts ; } ;
@@ -164,7 +160,6 @@ in
 
             # Misc
             nix-index
-            # nix-bash-completions
             glibcLocales
             powerline-fonts
 
@@ -175,10 +170,13 @@ in
 
             # nixgl
             # (import nixgl { inherit pkgs; }).nixGLIntel
-            nixgl.defaultPackage.x86_64-linux.nixGLIntel
+            nixgl.defaultPackage.${system}.nixGLIntel
           ] ++ 
           # For those applications that need to be wrapped with nixGL
-          builtins.map wrapWithNixGL [ calibre kitty ];
+          builtins.map wrapWithNixGL [ 
+            calibre 
+            # kitty
+          ];
 
 	programs.git = {
 		enable = true;
@@ -270,18 +268,6 @@ in
 					host = "x1carbon" ; 
                     identityFile = "~/.ssh/${hostname}" ;
 				} ;
-				"bigboy" = {
-					user = "carneca" ;
-                    hostname = "192.168.1.18" ;
-					host = "bigboy" ; 
-                    identityFile = "~/.ssh/${hostname}";
-				} ;
-				"rbigboy" = {
-					user = "carneca" ;
-                    hostname = "glenahome.duckdns.org" ;
-					host = "rbigboy" ; 
-                    identityFile = "~/.ssh/${hostname}";
-				} ;
 			};
 		} ;
 
@@ -307,6 +293,8 @@ in
         configFile = {
                        # Startup script
                        "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
+                       "calibre".source = ./extraConfigs/.config/calibre ;
+                       "calibre".recursive = true ;
                        "kitty".source = ./extraConfigs/.config/kitty ;
                        "kitty".recursive = true ;
                        "rofi".source = ./extraConfigs/.config/rofi ;
