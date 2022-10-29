@@ -360,6 +360,9 @@ in
       } ;
     } ;
 
+    # systemd automatic starting of services *I think*
+    systemd.user.startServices = "sd-switch";
+
     # disable notifications about home-manager news
     news.display = "silent";
 }

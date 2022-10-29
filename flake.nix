@@ -36,6 +36,14 @@
 
       myLib = import ./lib { inherit pkgs; };
 
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
     in {
       homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs ;
@@ -47,6 +55,10 @@
           ] ;
           extraSpecialArgs = { inherit nixgl myLib ;} ; # Pass in any flakes to home.nix
       };
+
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
+      });
 
     };
 }
