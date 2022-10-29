@@ -1,8 +1,9 @@
-{ lib, pkgs, options, config, nixgl, ... }:
+{ lib, pkgs, options, config, nixgl, myLib, ... }:
 
 # with import <nixpkgs> {};
-with builtins;
-with lib;
+with builtins ;
+with lib ;
+with myLib ;
 
 let
 # Personal Info
@@ -19,23 +20,6 @@ nf-fonts = [
   "Iosevka"
   "JetBrainsMono"
             ] ;
-
-# Functions to wrap with nixGL
-getBinaryName = pkg: lib.attrsets.attrByPath ["meta" "mainProgram"] pkg.pname pkg ;
-
-wrapWithNixGL = pkg:
-  let
-    wrapped = pkgs.writeShellScriptBin pkg.pname ''
-      exec ${nixgl.defaultPackage.${system}.nixGLIntel}/bin/nixGLIntel ${pkg}/bin/${getBinaryName pkg}
-    '';
-  in
-  pkgs.symlinkJoin {
-    name = pkg.name;
-    paths = [
-      wrapped
-      pkg
-    ];
-  } ;
 
 in
 {
@@ -131,7 +115,7 @@ in
             flameshot
 
             # whatsapp-for-linux
-            signal-desktop
+            # signal-desktop
 
             gnome3.gnome-disk-utility
             gnome3.pomodoro
@@ -170,13 +154,12 @@ in
             pwgen # password generator
 
             # nixgl
-            # (import nixgl { inherit pkgs; }).nixGLIntel
             nixgl.defaultPackage.${system}.nixGLIntel
           ] ++ 
           # For those applications that need to be wrapped with nixGL
-          builtins.map wrapWithNixGL [ 
+          builtins.map (wrapWithNixGL nixgl.defaultPackage.${system}.nixGLIntel) [ 
             calibre 
-            # kitty
+            kitty
           ];
 
 	programs.git = {

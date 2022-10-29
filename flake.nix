@@ -33,6 +33,9 @@
         system = "x86_64-linux";
         overlays = [ nixgl.overlay ];
       };
+
+      myLib = import ./lib { inherit pkgs; };
+
     in {
       homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs ;
@@ -42,7 +45,8 @@
             self.inputs.plasma-manager.homeManagerModules.plasma-manager
             homeage.homeManagerModules.homeage
           ] ;
-          extraSpecialArgs = { inherit nixgl ;} ; # Pass in any flakes to home.nix
+          extraSpecialArgs = { inherit nixgl myLib ;} ; # Pass in any flakes to home.nix
       };
+
     };
 }
