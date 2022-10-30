@@ -38,7 +38,7 @@ shift + ctrl + g
     tdrop -w "100%" -h "100%" --number=google -ma chromium --new-window https://www.google.com
 
 shift + ctrl + m
-    tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com/t/100009009790305/
+    tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com
 
 alt + shift + b
     tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://z-lib.org/ 
@@ -56,4 +56,4 @@ alt + shift + r
     pkill -usr1 -x sxhkd ; notify-send --expire-time=2000 'sxhkd' 'Reloaded config'
 
 alt + shift + p
-    pwgen -ycs 12 1 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'
+    rbw generate 14 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'

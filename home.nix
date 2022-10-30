@@ -212,7 +212,7 @@ in
           } ;
 
 		chromium = {
-			enable = false ;
+			enable = true ;
 			extensions = 
 				[
 				"blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
@@ -360,6 +360,14 @@ in
         source = ./extraConfigs/.config/msmtp/config.age ;
         copies = [ "${home}/.config/msmtp/config" ];
       } ;
+    } ;
+
+    # SERVICES
+    services = {
+      sxhkd = {
+        enable = false ;
+        extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
+      };
     } ;
 
     # systemd automatic starting of services *I think*
