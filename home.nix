@@ -77,6 +77,8 @@ in
             # password management
 			bitwarden
 			bitwarden-cli
+            rbw
+            rofi-rbw
 
             # for inkscape-figures
 			xclip # also useful
