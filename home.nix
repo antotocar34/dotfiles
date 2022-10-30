@@ -16,9 +16,9 @@ system = "x86_64-linux" ;
 
 nf-fonts = [
   "CascadiaCode" 
-  "UbuntuMono"
-  "Iosevka"
-  "JetBrainsMono"
+  # "UbuntuMono"
+  # "Iosevka"
+  # "JetBrainsMono"
             ] ;
 
 in
@@ -43,124 +43,135 @@ in
     fonts.fontconfig.enable = true ;
 
     home.packages = with pkgs; let
-      NFonts = nerdfonts.override { fonts = nf-fonts ; } ;
+      my-nerdfonts = nerdfonts.override { fonts = nf-fonts ; } ;
       in
-            [ # command line tools
-            ripgrep
-			fd
-            du-dust
-            duf
+      [
+            # command line utilities
+            ripgrep # fast text search
+			fd # fast file finder
+			fzf # stdout processor
+            du-dust # better du
+            duf # better df
             tldr
-            translate-shell
-
-            nmap
-            # rdfind # duplicate finder and remover
-            silver-searcher
-            tree
+            rdfind # duplicate finder and remover
+            tree #
             cloc # counts lines of code
-			yt-dlp
+			yt-dlp # youtube-dl but better
 			psmisc # pstree and the like
             unzip
             # unrar
             rclone # google drive cli interface
-
-            filezilla
-            black
-
-            direnv
-
-            pdf2svg # needed for inkscape-figures
-
-            # neovim # Text editor
-            neovim-remote # Needed for SyncTex
-
-            # password management
-			bitwarden
-			bitwarden-cli
-            rbw
-            rofi-rbw
-
-            # for inkscape-figures
-			xclip # also useful
-            colorpicker
-
-			zathura # pdf reader
-            mcomix3 # comic reader
+            direnv # Set environments in a specific directory
+            tdrop # Toggle terminal
+            jq # format json to stdout
+            pirate-get # cli interface to piratebay
+			xclip # clipbaord cli
 
             # Some window manager utilities
 			xdotool
             xorg.xrandr
             xorg.xwininfo
+            xbanish # Hides cursor on key press
 
-            # Plain text accounting
+            pdf2svg # needed for inkscape-figures
+
+            # text editor
+            # neovim
+            neovim-remote # Needed for SyncTex
+
+            # password and secret management
+			bitwarden
+			bitwarden-cli
+            rbw # rust bitwarden client
+            rofi-rbw
+            age # encryption tool
+            pwgen # password generator
+
+            mutt # emailer
+
+            # for inkscape-figures
+            colorpicker
+
+			zathura # pdf reader
+            mcomix3 # comic reader
+
+
+            # plain text accounting
             ledger
             beancount
             fava
 
-            # useful programs
-            gh
+            # productivity
             taskwarrior
             timewarrior
-			fzf
-			feh 
-			vlc
-            xbanish # Hides cursor on key press
 
-            rofi
+            # useful programs
+			feh # image viewer
+			vlc # media player
+            cmus # Music player
+            vifm # terminal file manager
 
-			discord
 
             # should be a service but is not working
             sxhkd
+            rofi
 
-            cmus # Music player
-            vifm
             flameshot
 
-            # whatsapp-for-linux
-            # signal-desktop
 
+            ## bigger installs
             gnome3.gnome-disk-utility
             gnome3.pomodoro
             etcher # Formatting USBs
 
-            kcc # Ebook conversion
+            # whatsapp-for-linux
+            # signal-desktop
+
+			discord
+            kcc # manga to ebook conversion
+
 
             spotify
-
             inkscape
             gimp
             deluge
-            pirate-get
 
-            tdrop
+            my-nerdfonts # fonts
 
-            NFonts
+            (texlive.combine {
+                inherit (texlive)
+                  # Main suite
+                  scheme-medium
+                  # Extra packages
+                  wrapfig
+                  was
+                  svg
+                  bbm
+                  collection-fontsextra
+                  trimspaces
+                  catchfile
+                  transparent
+                  titlesec
+                  import
+                  preprint
+                  ;
+             })
 
-            ## BIG INSTALLS
-            texlive.combined.scheme-full
+            filezilla # FTP client
+            krita # Drawing Application
+            transcribe # 
 
-            krita
-
-            xournalpp
+            xournalpp # note taking
 
             # Misc
             nix-index
             glibcLocales
             powerline-fonts
 
-            transcribe
-
-            jq
-            age
-            mutt
-            pwgen # password generator
-
-            # nixgl
-            nixgl.defaultPackage.${system}.nixGLIntel
+            nixGL
           ] ++ 
           # For those applications that need to be wrapped with nixGL
-          builtins.map (wrapWithNixGL nixgl.defaultPackage.${system}.nixGLIntel) [ 
+          builtins.map (wrapWithNixGL nixGL) [ 
             calibre 
             kitty
           ];
@@ -199,6 +210,13 @@ in
           # plus-emph-style = "syntax '#A3BE8C'" ;
         } ;
 	} ;
+
+    programs.gh = {
+          enable = true ;
+          settings = {
+            git_protocol = "ssh" ;
+          };
+    };
 
 	programs =  {
  		bash = {
