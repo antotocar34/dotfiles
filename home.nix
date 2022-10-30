@@ -61,7 +61,7 @@ in
 			yt-dlp
 			psmisc # pstree and the like
             unzip
-            unrar
+            # unrar
             rclone # google drive cli interface
 
             filezilla
@@ -87,6 +87,7 @@ in
 			zathura # pdf reader
             mcomix3 # comic reader
 
+            # Some window manager utilities
 			xdotool
             xorg.xrandr
             xorg.xwininfo
@@ -112,7 +113,7 @@ in
             # should be a service but is not working
             sxhkd
 
-            cmus
+            cmus # Music player
             vifm
             flameshot
 
