@@ -30,7 +30,7 @@
       system = "x86_64-linux";
       user = "carneca";
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
         overlays = [ 
           nixgl.overlay 
           (self: super: {nixGL = nixgl.defaultPackage.${system}.nixGLIntel ;})

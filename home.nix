@@ -1,4 +1,4 @@
-{ lib, pkgs, options, config, nixgl, myLib, ... }:
+{ lib, pkgs, config, myLib, ... }:
 
 # with import <nixpkgs> {};
 with builtins ;
@@ -36,7 +36,6 @@ in
 			'' ;
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
-        NIXPKGS_ALLOW_INSECURE=1;
         NIXPKGS_ALLOW_UNFREE=1;
 	} ;
 
@@ -65,7 +64,7 @@ in
             tdrop # Toggle terminal
             jq # format json to stdout
             pirate-get # cli interface to piratebay
-			xclip # clipbaord cli
+			xclip # clipboard cli
 
             # Some window manager utilities
 			xdotool
@@ -88,6 +87,7 @@ in
             pwgen # password generator
 
             mutt # emailer
+            msmtp # 
 
             # for inkscape-figures
             colorpicker
@@ -122,7 +122,6 @@ in
             ## bigger installs
             gnome3.gnome-disk-utility
             gnome3.pomodoro
-            etcher # Formatting USBs
 
             # whatsapp-for-linux
             # signal-desktop
@@ -157,7 +156,7 @@ in
                   ;
              })
 
-            filezilla # FTP client
+            # filezilla # FTP client
             krita # Drawing Application
             transcribe # 
 
@@ -377,6 +376,7 @@ in
 
       file."msmtp_config" = {
         source = ./extraConfigs/.config/msmtp/config.age ;
+        # Don't make a symlink since then the file doesn't have the right permissions
         copies = [ "${home}/.config/msmtp/config" ];
       } ;
     } ;

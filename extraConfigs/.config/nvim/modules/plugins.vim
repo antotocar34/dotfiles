@@ -16,7 +16,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'antotocar34/nord.nvim' " Colour scheme
+Plug 'antotocar34/nord.nvim'
 Plug 'SirVer/Ultisnips', { 'for': ['tex', 'beancount'] }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
@@ -25,7 +25,7 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'hrsh7th/nvim-compe'
 Plug 'vimwiki/vimwiki'
 " Plug 'henriquehbr/nvim-startup.lua'
-Plug 'justinmk/vim-sneak'
+Plug 'ggandor/leap.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -82,6 +82,7 @@ let g:fzf_buffers_jump = 0
 lua << EOF
 vim.g.nord_contrast = true
 vim.g.nord_borders = false
+vim.g.nord_italic = false
 require('nord').set()
 EOF
 
@@ -243,6 +244,11 @@ EOF
 "             }
 "         })
 " EOF
+
+lua <<EOF
+require('leap').add_default_mappings()
+-- vim.api.nvim_set_hl()
+EOF
 
 " Plug 'jpalardy/vim-slime'
 let g:slime_target = "neovim"
