@@ -16,6 +16,7 @@ alias lat="cd ~/Documents/Latex"
 alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
 alias conf="cd ~/.config/nixpkgs"
+alias tempd="cd $(mktemp -d)"
 
 # PROGRAM SHORTCUTS
 alias mv="mv -iv"
