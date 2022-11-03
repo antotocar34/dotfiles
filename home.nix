@@ -3,6 +3,7 @@
 # with import <nixpkgs> {};
 with builtins ;
 with lib ;
+with lib.lists;
 with myLib ;
 
 let
@@ -11,6 +12,7 @@ user = "carneca" ;
 home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 hostname = "x1carbon" ;
+isDesktop = true;
 email = "antoinecarnec@gmail.com" ;
 system = "x86_64-linux" ;
 
@@ -39,6 +41,17 @@ in
         NIXPKGS_ALLOW_UNFREE=1;
 	} ;
 
+
+    nix = {
+      package = pkgs.nix ;
+      settings = {
+        warn-dirty = false ;
+        experimental-features = [ "nix-command" "flakes" ];
+      };
+    };
+
+    nixpkgs.config.allowUnfree = true;
+
     fonts.fontconfig.enable = true ;
 
     home.packages = with pkgs; let
@@ -63,6 +76,7 @@ in
             direnv # Set environments in a specific directory
             tdrop # Toggle terminal
             jq # format json to stdout
+            just # command line runner
             pirate-get # cli interface to piratebay
 			xclip # clipboard cli
 
@@ -110,6 +124,7 @@ in
 			vlc # media player
             cmus # Music player
             vifm # terminal file manager
+            magic-wormhole # Send files to anyone
 
 
             # should be a service but is not working
@@ -130,10 +145,6 @@ in
             kcc # manga to ebook conversion
 
 
-            spotify
-            inkscape
-            gimp
-            deluge
 
             my-nerdfonts # fonts
 
@@ -153,14 +164,9 @@ in
                   titlesec
                   import
                   preprint
+                  enumitem
                   ;
              })
-
-            # filezilla # FTP client
-            krita # Drawing Application
-            transcribe # 
-
-            xournalpp # note taking
 
             # Misc
             nix-index
@@ -169,24 +175,41 @@ in
 
             nixGL
           ] ++ 
+          optionals isDesktop 
           # For those applications that need to be wrapped with nixGL
-          builtins.map (wrapWithNixGL nixGL) [ 
-            calibre 
-            kitty
-          ];
+          [
+              # filezilla # FTP client
+              # krita # Drawing Application
+              transcribe # 
+              xournalpp # note taking
+              spotify
+              inkscape
+              gimp
+              deluge
+          ] ++
+          builtins.map (wrapWithNixGL nixGL) 
+          (optionals isDesktop 
+            [ 
+              calibre 
+              kitty
+            ]
+          );
 
-	programs.git = {
-		enable = true;
+    ## MODULES
+    programs =  {
 
-		aliases = {
-			lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'' ;
-			te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'' ;
-			st = "status --short" ;
-			wdiff = "diff --word-diff=color" ;
-			unstage = "reset HEAD --";
-		} ;
-		userName = "${name}" ;
-		userEmail = "${email}" ;
+      git = {
+        enable = true;
+
+        aliases = {
+          lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'' ;
+          te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'' ;
+          st = "status --short" ;
+          wdiff = "diff --word-diff=color" ;
+          unstage = "reset HEAD --";
+        } ;
+        userName = "${name}" ;
+        userEmail = "${email}" ;
         # includes = [
         #   {   
         #     path = "~/carneca/.config/nixpkgs/extraConfigs/.config/git/website"
@@ -208,93 +231,96 @@ in
           line-numbers-zero-style = "#4C566A" ;
           # plus-emph-style = "syntax '#A3BE8C'" ;
         } ;
-	} ;
+      };
 
-    programs.gh = {
-          enable = true ;
-          settings = {
-            git_protocol = "ssh" ;
-          };
-    };
+      gh = {
+        enable = true ;
+        settings = {
+          git_protocol = "ssh" ;
+        };
+      };
 
-	programs =  {
- 		bash = {
-			enable = true ; 
-			profileExtra = builtins.readFile ./extraConfigs/.bash_profile ;
-			initExtra   = builtins.readFile ./extraConfigs/.bashrc ; 
-		};  
+      bash = {
+        enable = true ; 
+        profileExtra = builtins.readFile ./extraConfigs/.bash_profile ;
+        initExtra   = builtins.readFile ./extraConfigs/.bashrc ; 
+      };  
 
-        bat = {
-          enable = true ;
-          config = { theme = "Nord" ; } ;
-          } ;
+      bat = {
+        enable = true ;
+        config = { theme = "Nord" ; } ;
+      } ;
 
-		chromium = {
-			enable = true ;
-			extensions = 
-				[
-				"blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
-			    "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-			    "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-			    "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
-                "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
-				# "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
-				"edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
-				] ;
-		};
+      firefox = {
+        enable = true;
+      };
+
+      chromium = {
+        enable = false ;
+        extensions = 
+        [
+          "blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
+          "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+          "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
+          "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
+            # "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
+            "edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
+          ] ;
+        };
 
 
         direnv = {
-            enable = true ;
-            nix-direnv.enable = true ;
+          enable = true ;
+          nix-direnv.enable = true ;
         };
-		ssh = {
-			enable = true ;
-			matchBlocks =
-			{
-				"website" = {
-					user = "git" ;
-					port = 22 ;
-                    hostname = "github.com" ;
-					host = "github.com-antoinecarnec" ; 
-                    identityFile = "~/.ssh/website";
-				} ;
-				"github" = {
-					user = "git" ;
-					port = 22 ;
-                    hostname = "github.com" ;
-					host = "github.com" ; 
-                    identityFile = "~/.ssh/github";
-				} ;
-				"x1carbon" = {
-					user = "carneca" ;
-                    hostname = "192.168.1.19" ;
-					host = "x1carbon" ; 
-                    identityFile = "~/.ssh/${hostname}" ;
-				} ;
-			};
-		} ;
+        ssh = {
+          enable = true ;
+          matchBlocks =
+            {
+              "website" = {
+                user = "git" ;
+                port = 22 ;
+                hostname = "github.com" ;
+                host = "github.com-antoinecarnec" ; 
+                identityFile = "~/.ssh/website";
+              } ;
+              "github" = {
+                user = "git" ;
+                port = 22 ;
+                hostname = "github.com" ;
+                host = "github.com" ; 
+                identityFile = "~/.ssh/github";
+              } ;
+              "x1carbon" = {
+                user = "carneca" ;
+                hostname = "192.168.1.19" ;
+                host = "x1carbon" ; 
+                identityFile = "~/.ssh/${hostname}" ;
+              } ;
+            };
+          } ;
 
-		tmux = {
-			enable = true;
-			baseIndex = 1; 
-			escapeTime = 1;
-			keyMode = "vi";
-			newSession = true;
-			shortcut = "k" ;
-			extraConfig = builtins.readFile ./extraConfigs/.tmux.conf ;
-		} ;
-	};
+          tmux = {
+            enable = true;
+            baseIndex = 1; 
+            escapeTime = 1;
+            keyMode = "vi";
+            newSession = true;
+            shortcut = "k" ;
+            extraConfig = builtins.readFile ./extraConfigs/.tmux.conf ;
+          } ;
+        };
 
     # Apply plasma settings
     programs.plasma = import ./extraConfigs/plasma_settings.nix ;
 
-	xdg = {
-        enable = true ;
-        cacheHome = "/home/carneca/.cache" ;
-        configHome = "/home/carneca/.config" ;
-        dataHome   = "/home/carneca/.local/share" ;
-        configFile = {
+    xdg = {
+      enable = true ;
+      cacheHome = "/home/carneca/.cache" ;
+      configHome = "/home/carneca/.config" ;
+      dataHome   = "/home/carneca/.local/share" ;
+      configFile = {
                        # Startup script
                        "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh ;
                        "calibre".source = ./extraConfigs/.config/calibre ;
@@ -325,28 +351,28 @@ in
                        "R/.Rprofile".source = ./extraConfigs/.config/R/Rprofile;
                      };
 
-        mime.enable = true ;
-        mimeApps.enable = true ;
-        mimeApps.defaultApplications =
-          { 
-            "x-scheme-handler/http" = "chromium-browser.desktop" ;
-            "x-scheme-handler/https" = "chromium-browser.desktop" ;
-            "application/html" = "chromium-browser.desktop" ;
-            "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
-            "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
-            "image/svg+xml" = "org.inkscape.Inkscape.desktop" ;
-            "audio/opus" = "vlc.desktop" ;
-            "audio/aac" = "vlc.desktop" ;
-            "audio/mpegsymlinks" = "vlc.desktop" ;
-           } ;
-           mimeApps.associations.added = { 
-            "x-scheme-handler/http" = "chromium-browser.desktop" ;
-            "x-scheme-handler/https" = "chromium-browser.desktop" ;
-            "application/html" = "chromium-browser.desktop" ;
-           } ;
-      };
+                     mime.enable = true ;
+                     mimeApps.enable = true ;
+                     mimeApps.defaultApplications =
+                       { 
+                         "x-scheme-handler/http" = "firefox.desktop" ;
+                         "x-scheme-handler/https" = "firefox.desktop" ;
+                         "application/html" = "chromium-browser.desktop" ;
+                         "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
+                         "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
+                         "image/svg+xml" = "org.inkscape.Inkscape.desktop" ;
+                         "audio/opus" = "vlc.desktop" ;
+                         "audio/aac" = "vlc.desktop" ;
+                         "audio/mpegsymlinks" = "vlc.desktop" ;
+                       } ;
+                       mimeApps.associations.added = { 
+                         "x-scheme-handler/http" = "firefox.desktop" ;
+                         "x-scheme-handler/https" = "firefox.desktop" ;
+                         "application/html" = "firefox.desktop" ;
+                       } ;
+                     };
 
-    home.file = {
+                     home.file = {
       # Directories
       ".ssh".source = ./homedir/.ssh ;
       ".ssh".recursive = true ;
@@ -371,12 +397,11 @@ in
 
       file."rclone_config" = {
         source = ./extraConfigs/.config/rclone/rclone.conf.age ;
-        symlinks = [ "${home}/.config/rclone/rclone.conf" ];
+        copies = [ "${home}/.config/rclone/rclone.conf" ];
       } ;
 
       file."msmtp_config" = {
         source = ./extraConfigs/.config/msmtp/config.age ;
-        # Don't make a symlink since then the file doesn't have the right permissions
         copies = [ "${home}/.config/msmtp/config" ];
       } ;
     } ;
@@ -394,4 +419,4 @@ in
 
     # disable notifications about home-manager news
     news.display = "silent";
-}
+  }

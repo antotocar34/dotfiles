@@ -399,7 +399,7 @@
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "HIAX";
       "kwinrc"."org.kde.kdecoration2"."CloseOnDoubleClickOnMenu" = false;
       "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = true;
-      "kwinrulesrc"."1"."Description" = "Chromium";
+      "kwinrulesrc"."1"."Description" = "Firefox";
       "kwinrulesrc"."1"."clientmachinematch" = 0;
       "kwinrulesrc"."1"."maximizehoriz" = true;
       "kwinrulesrc"."1"."maximizehorizrule" = 1;
@@ -407,7 +407,9 @@
       "kwinrulesrc"."1"."maximizevertrule" = 1;
       "kwinrulesrc"."1"."titlematch" = 0;
       "kwinrulesrc"."1"."types" = 21;
-      "kwinrulesrc"."1"."wmclass" = "chromium";
+      "kwinrulesrc"."1"."wmclass" = "firefox";
+      "kwinrulesrc"."1"."acceptfocus" = true;
+      "kwinrulesrc"."1"."acceptfocusrule" = 2;
       "kwinrulesrc"."1"."wmclasscomplete" = false;
       "kwinrulesrc"."1"."wmclassmatch" = 1;
       "kwinrulesrc"."2"."Description" = "Settings for zathura";

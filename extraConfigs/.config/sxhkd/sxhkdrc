@@ -32,16 +32,13 @@ F12
     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash
 
 ctrl + b
-    chromium --new-window https://www.google.com
+    firefox
 
 shift + ctrl + g
-    tdrop -w "100%" -h "100%" --number=google -ma chromium --new-window https://www.google.com
+    tdrop -w "100%" -h "100%" --number=google -ma firefox --new-window https://www.google.com
 
 shift + ctrl + m
-    tdrop -w "100%" -h "100%" --number=messenger -ma chromium --new-window https://www.messenger.com
-
-alt + shift + b
-    tdrop -w "100%" -h "100%" --number=books -ma chromium --new-window https://z-lib.org/ 
+    tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
 
 alt + s
     zathura "$(ls -t Downloads/*.pdf | head -n1)"

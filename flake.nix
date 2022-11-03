@@ -11,7 +11,8 @@
 
     # Managing secrets
     homeage = {
-      url = "github:jordanisaacs/homeage";
+      # url = "github:jordanisaacs/homeage";
+      url = "github:spikespaz/homeage";
       # Optional
       inputs.nixpkgs.follows = "nixpkgs";
     };

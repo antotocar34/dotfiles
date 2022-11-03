@@ -104,6 +104,14 @@ function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
+function nshell {
+    nix shell "nixpkgs#$1"
+}
+
+function nrun {
+    nix run "nixpkgs#$1" -- "$@"
+}
+
 set +a
 
 ## RCLONE FUNCTIONS
