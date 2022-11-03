@@ -1,4 +1,4 @@
-{ lib, pkgs, config, myLib, ... }:
+{ config, lib, pkgs, myLib, ... }:
 
 # with import <nixpkgs> {};
 with builtins ;
@@ -34,7 +34,7 @@ in
 
 	home.sessionVariables = {
 		FZF_DEFAULT_COMMAND=''
-			ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
+			ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
 			'' ;
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
@@ -64,13 +64,14 @@ in
 			fzf # stdout processor
             du-dust # better du
             duf # better df
-            tldr
+            tldr # common wayes to use a command
             rdfind # duplicate finder and remover
             tree #
             cloc # counts lines of code
 			yt-dlp # youtube-dl but better
 			psmisc # pstree and the like
             unzip
+            borgbackup
             # unrar
             rclone # google drive cli interface
             direnv # Set environments in a specific directory
@@ -93,8 +94,6 @@ in
             neovim-remote # Needed for SyncTex
 
             # password and secret management
-			bitwarden
-			bitwarden-cli
             rbw # rust bitwarden client
             rofi-rbw
             age # encryption tool
@@ -106,8 +105,6 @@ in
             # for inkscape-figures
             colorpicker
 
-			zathura # pdf reader
-            mcomix3 # comic reader
 
 
             # plain text accounting
@@ -130,20 +127,6 @@ in
             # should be a service but is not working
             sxhkd
             rofi
-
-            flameshot
-
-
-            ## bigger installs
-            gnome3.gnome-disk-utility
-            gnome3.pomodoro
-
-            # whatsapp-for-linux
-            # signal-desktop
-
-			discord
-            kcc # manga to ebook conversion
-
 
 
             my-nerdfonts # fonts
@@ -176,10 +159,20 @@ in
             nixGL
           ] ++ 
           optionals isDesktop 
-          # For those applications that need to be wrapped with nixGL
           [
+              mcomix3 # comic reader
+              zathura # pdf reader
+              flameshot
+
+              # whatsapp-for-linux
+              # signal-desktop
+              bitwarden
+              discord
+              ## bigger installs
+              gnome3.gnome-disk-utility
+              gnome3.pomodoro
               # filezilla # FTP client
-              # krita # Drawing Application
+              krita # Drawing Application
               transcribe # 
               xournalpp # note taking
               spotify
@@ -187,6 +180,7 @@ in
               gimp
               deluge
           ] ++
+          # For those applications that need to be wrapped with nixGL
           builtins.map (wrapWithNixGL nixGL) 
           (optionals isDesktop 
             [ 

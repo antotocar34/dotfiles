@@ -14,7 +14,7 @@ alt + Return
     rofi -show drun -show-icons
 
 alt + p
-    rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock && rofi-rbw --clear-after 30; fi
+    rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock; sleep 0.5 && rofi-rbw --clear-after 30; fi
 
 alt + v 
    kitty -e nvim
