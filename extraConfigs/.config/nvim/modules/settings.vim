@@ -6,6 +6,7 @@ set nocompatible
 
 set nocursorline " Disable highlighting current line
 set autochdir " Automatically changes working directory to current file.
+set nohlsearch
 set incsearch " Incremental search
 set inccommand=nosplit " Incremental search on replace. 
 set ignorecase 
@@ -34,7 +35,6 @@ set autoread
 set ttimeout
 set ttimeoutlen=100
 set timeoutlen=3000
-set nohlsearch
 
 augroup highlight_yank
  autocmd!

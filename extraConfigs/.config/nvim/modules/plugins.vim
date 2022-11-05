@@ -37,7 +37,6 @@ Plug 'meain/vim-printer'
 Plug 'voldikss/vim-floaterm'
 Plug 'goerz/jupytext.vim'
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
-Plug 'daeyun/vim-matlab'
 call plug#end()
 
 "
@@ -83,6 +82,7 @@ lua << EOF
 vim.g.nord_contrast = true
 vim.g.nord_borders = false
 vim.g.nord_italic = false
+vim.g.nord_bold = false
 require('nord').set()
 EOF
 

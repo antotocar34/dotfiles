@@ -36,22 +36,29 @@ nnoremap <leader>l :bn<CR>
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>q :bd<CR>
 
+" Telescope
+" Find file in current directory
 nnoremap <leader>a <cmd>Telescope find_files<cr>
 nnoremap <leader>jf <cmd>Telescope find_files<cr>
-nnoremap <leader>jg <cmd>Telescope git_files<cr>
+nnoremap <leader>jk <cmd>Telescope keymaps<cr>
 nnoremap <leader>js <cmd>Telescope live_grep<cr>
 nnoremap <leader>jb <cmd>Telescope buffers<cr>
+" Find file in git repo
+nnoremap <leader>jg <cmd>Telescope git_files<cr>
+" Grep in git repo
+nnoremap <leader>js <cmd>lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1] }<cr>
+" Search for string in current git repository
+nnoremap <leader>jw <cmd>lua require('telescope.builtin').grep_string{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1] }<cr>
 
 " Make terminal behave normally
 au TermOpen * setlocal nonumber norelativenumber
 au TermOpen * startinsert
 au TermEnter * echo "jobid: ". &channel
-" Change back!
+" Change back!Telescope
 nnoremap <leader>] <cmd>FloatermNew --wintype=vsplit --width=90<CR>
 nnoremap <leader>[ <cmd>FloatermNew --wintype=split --height=15<CR>
-
 " TODO Add some logic
-nnoremap + <cmd>FloatermNew --wintype=float --width=140 --height=40<CR>
+nnoremap + <cmd>FloatermNew --wintype=float --width=220 --height=60<CR>
 tnoremap <C-q> <C-\><C-N><cmd>FloatermKill<CR>
 
 tnoremap <C-w>h <C-\><C-N><C-w>h

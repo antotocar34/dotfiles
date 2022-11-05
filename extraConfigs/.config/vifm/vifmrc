@@ -266,8 +266,8 @@ filextype  *.do
 
 "EPUB 
 filextype  *.epub
-    \ {Open with okular}
-    \ okular %f,
+    \ {Open with zathura}
+    \ zathura %f,
 
 " MD5
 filetype *.md5

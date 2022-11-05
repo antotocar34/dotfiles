@@ -238,6 +238,7 @@ in
 
       bash = {
         enable = true ; 
+        enableCompletion = true;
         profileExtra = builtins.readFile ./extraConfigs/.bash_profile ;
         initExtra   = builtins.readFile ./extraConfigs/.bashrc ; 
       };  
