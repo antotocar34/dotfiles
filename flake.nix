@@ -34,7 +34,11 @@
         inherit system;
         overlays = [ 
           nixgl.overlay 
-          (self: super: {nixGL = nixgl.defaultPackage.${system}.nixGLIntel ;})
+          (self: super: {
+            nixGL = nixgl.defaultPackage.${system}.nixGLIntel ;
+            libgen-cli = import "/home/${user}/Documents/Programming/nix-derivations/libgen-cli" {inherit pkgs;} ;
+          })
+
       ];
       };
 

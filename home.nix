@@ -79,7 +79,9 @@ in
             jq # format json to stdout
             just # command line runner
             pirate-get # cli interface to piratebay
+            libgen-cli # cli interface to libgen
 			xclip # clipboard cli
+            cachix
 
             # Some window manager utilities
 			xdotool
