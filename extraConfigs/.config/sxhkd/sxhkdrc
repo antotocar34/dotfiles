@@ -14,7 +14,7 @@ alt + Return
     rofi -show drun -show-icons
 
 alt + p
-    rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock; sleep 0.5 && rofi-rbw --clear-after 30; fi
+    rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock 2>>~/.logs/why; sleep 0.5 && rofi-rbw --clear-after 30 2>>~/.logs/why; fi
 
 alt + v 
    kitty -e nvim
@@ -28,8 +28,8 @@ alt + m
 ctrl + Return
     kitty --name term0 -d ~ env TDROP= bash
 
-F12
-    tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash
+/* F12 */
+/*     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash */
 
 ctrl + b
     firefox
@@ -41,7 +41,7 @@ shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
 
 alt + s
-    zathura "$(ls -t Downloads/*.pdf | head -n1)"
+    $PDF_VIEWER "$(ls -t Downloads/*.pdf | head -n1)"
 
 alt + e
     rofi -show window

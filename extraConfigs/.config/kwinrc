@@ -122,3 +122,6 @@ CloseOnDoubleClickOnMenu=false
 ShowToolTips=true
 library=org.kde.breeze
 theme=Breeze
+
+[ModifierOnlyShortcuts]
+Meta=

@@ -101,8 +101,7 @@ let g:black_linelength = 81
 let g:black_skip_string_normalization = 1
 
 " Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki',
-                      \ 'path_html': '~/Documents/Notes/vimwiki_html'}]
+let g:vimwiki_list = [{'path': '~/Documents/Notes/vimwiki'}]
 let g:vimwiki_global_ext = 0 " Make sure vimwiki doesn't affect markdown files.
 
 autocmd FileType wiki nnoremap <CR><leader> <Plug>VimwikiIncrementListItem 

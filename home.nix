@@ -1,6 +1,5 @@
 { config, lib, pkgs, myLib, ... }:
 
-# with import <nixpkgs> {};
 with builtins ;
 with lib ;
 with lib.lists;
@@ -39,6 +38,9 @@ in
         LOCALE_ARCHIVE="${home}/.nix-profile/lib/locale/locale-archive" ;
         R_PROFILE_USER="${home}/.config/R/.Rprofile";
         NIXPKGS_ALLOW_UNFREE=1;
+        # PDF_VIEWER = "${getExe pkgs.zathura}";
+        PDF_VIEWER = "/usr/bin/sioyek";
+        HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 	} ;
 
 
@@ -68,6 +70,7 @@ in
             rdfind # duplicate finder and remover
             tree #
             cloc # counts lines of code
+            trash-cli
 			yt-dlp # youtube-dl but better
 			psmisc # pstree and the like
             unzip
@@ -107,8 +110,6 @@ in
             # for inkscape-figures
             colorpicker
 
-
-
             # plain text accounting
             ledger
             beancount
@@ -127,7 +128,7 @@ in
 
 
             # should be a service but is not working
-            sxhkd
+            # sxhkd
             rofi
 
 
@@ -183,7 +184,7 @@ in
               deluge
           ] ++
           # For those applications that need to be wrapped with nixGL
-          builtins.map (wrapWithNixGL nixGL) 
+          map (wrapWithNixGL nixGL) 
           (optionals isDesktop 
             [ 
               calibre 
@@ -291,7 +292,7 @@ in
               } ;
               "x1carbon" = {
                 user = "carneca" ;
-                hostname = "192.168.1.19" ;
+                hostname = "" ;
                 host = "x1carbon" ; 
                 identityFile = "~/.ssh/${hostname}" ;
               } ;
@@ -354,8 +355,9 @@ in
                        { 
                          "x-scheme-handler/http" = "firefox.desktop" ;
                          "x-scheme-handler/https" = "firefox.desktop" ;
-                         "application/html" = "chromium-browser.desktop" ;
-                         "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
+                         "application/html" = "firefox.desktop" ;
+                         # "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
+                         "application/pdf" = "sioyek.desktop" ;
                          "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
                          "image/svg+xml" = "org.inkscape.Inkscape.desktop" ;
                          "audio/opus" = "vlc.desktop" ;
@@ -369,12 +371,10 @@ in
                        } ;
                      };
 
-                     home.file = {
+   home.file = {
       # Directories
       ".ssh".source = ./homedir/.ssh ;
       ".ssh".recursive = true ;
-      "Documents/Scripts".source  = ./homedir/Documents/Scripts ;
-      "Documents/Scripts".recursive  = true ;
 
       # Files
       ".xmodmap".source  = ./homedir/.xmodmap ;
@@ -406,7 +406,7 @@ in
     # SERVICES
     services = {
       sxhkd = {
-        enable = false ;
+        enable = true ;
         extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
       };
     } ;

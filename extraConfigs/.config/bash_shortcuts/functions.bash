@@ -6,11 +6,11 @@ export MATHS_DIR="${HOME}/Documents/Notes/maths"
 export COLLEGE_DIR="${HOME}/Documents/College/masters"
 
 find_pdf () {
-    FILE=$(fd -uu -epdf . ~/Documents/ ~/Downloads/ ~/Documents/Latex  | rofi -dmenu -i -p "zathura")
+    FILE=$(fd -uu -epdf . ~/Documents/ ~/Downloads/ ~/Documents/Latex  | rofi -dmenu -i -p $PDF_VIEWER)
 
     if [[ ${?} -eq 0 ]]
     then
-        zathura "${FILE}"
+        $PDF_VIEWER "${FILE}"
         exit 0
     else
         exit 1
