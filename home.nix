@@ -44,6 +44,7 @@ in
 	} ;
 
 
+    # TODO add if system is not NixOS
     nix = {
       package = pkgs.nix ;
       settings = {
@@ -121,19 +122,17 @@ in
 
             # useful programs
 			feh # image viewer
-			vlc # media player
             cmus # Music player
             vifm # terminal file manager
             magic-wormhole # Send files to anyone
 
-
             # should be a service but is not working
-            # sxhkd
             rofi
 
 
             my-nerdfonts # fonts
 
+            # TODO Move to a flake?
             (texlive.combine {
                 inherit (texlive)
                   # Main suite
@@ -167,6 +166,7 @@ in
               zathura # pdf reader
               flameshot
 
+              vlc # media player
               # whatsapp-for-linux
               # signal-desktop
               bitwarden
@@ -250,7 +250,7 @@ in
       } ;
 
       firefox = {
-        enable = true;
+        enable = isDesktop;
       };
 
       chromium = {
@@ -327,6 +327,8 @@ in
                        "kitty".recursive = true ;
                        "rofi".source = ./extraConfigs/.config/rofi ;
                        "rofi".recursive = true ;
+                       "sioyek".source = ./extraConfigs/.config/sioyek ;
+                       "sioyek".recursive = true ;
                        "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc ;
                        "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc ;
                        "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm ;
@@ -406,7 +408,7 @@ in
     # SERVICES
     services = {
       sxhkd = {
-        enable = true ;
+        enable = isDesktop ;
         extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
       };
     } ;

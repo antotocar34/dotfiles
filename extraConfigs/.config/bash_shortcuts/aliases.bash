@@ -5,7 +5,6 @@ WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 alias musicdl="yt-dlp -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"
 alias prun="poetry run python"
-alias excel="chromium --new-window --app=https://www.office.com/template/excel"
 
 # CD SHORTCUTS
 alias fk=dir_find
@@ -15,7 +14,7 @@ alias fj=local_dir_find
 alias lat="cd ~/Documents/Latex"
 alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
-alias conf="cd ~/.config/nixpkgs"
+alias conf="cd ${HOME_MANAGER_CONFIG}"
 alias tempd="cd $(mktemp -d)"
 
 # PROGRAM SHORTCUTS
@@ -34,9 +33,7 @@ alias stata="launch xstata-mp"
 alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
 alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch --impure --flake $HOME_MANAGER_CONFIG"
-alias he="nvim ~/.config/nixpkgs/home.nix"
-alias vim="nvim --startuptime /tmp/nvim-startuptime"
-alias nvim="nvim --startuptime /tmp/nvim-startuptime"
+alias he="nvim ${HOME_MANAGER_CONFIG}/home.nix"
 alias z=zathura
 
 # FILE SHORTCUTS

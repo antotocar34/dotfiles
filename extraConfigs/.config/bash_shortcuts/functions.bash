@@ -1,7 +1,7 @@
 set -a
 ## PYTHON SCRIPTS
 export PYTHON_DIR="${HOME}/Documents/Programming/Python"
-export SCRIPT_DIR="${HOME}/Documents/Scripts"
+export SCRIPT_DIR="${HOME_MANAGER_CONFIG}/homedir/Documents/Scripts"
 export MATHS_DIR="${HOME}/Documents/Notes/maths"
 export COLLEGE_DIR="${HOME}/Documents/College/masters"
 
@@ -48,23 +48,11 @@ function cwrite () {
 }
 
 function weekly_dl {
-cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
+    cd ${PYTHON_DIR}/automation/weekly_dl/weekly_dl/ && poetry run python main.py
 
-cd - 2> /dev/null
+    cd - 2> /dev/null
 }
 export -f weekly_dl
-
-function draw {
-draw_dir=${HOME}/.config/nixpkgs/homedir/Documents/Scripts/inkscape-draw
-cd $draw_dir 
-
-if [ ! -f poetry.lock ]; then
-    poetry update
-fi
-
-poetry run inkscape-figures watch
-poetry run python inkscape-shortcut-manager/main.py
-}
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
@@ -105,18 +93,18 @@ function launch {
 }
 
 function nshell {
-    nix shell "nixpkgs#$1"
+    nix shell "nixpkgs#${1}"
 }
 
 function nrun {
-    nix run "nixpkgs#$1" -- "$@"
+    nix run "nixpkgs#${1}" -- "$@"
 }
 
 set +a
 
 ## RCLONE FUNCTIONS
 
-. ${HOME}/Documents/Scripts/rfuncs.bash
+. ${SCRIPT_DIR}/rfuncs.bash
 
 datascience() {
     poetry init -n --python ">3.9, <3.11" --dependency pandas \
