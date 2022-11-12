@@ -12,8 +12,10 @@ home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 hostname = "x1carbon" ;
 isDesktop = true;
+isNixos = true;
 email = "antoinecarnec@gmail.com" ;
 system = "x86_64-linux" ;
+HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 
 nf-fonts = [
   "CascadiaCode" 
@@ -40,8 +42,13 @@ in
         NIXPKGS_ALLOW_UNFREE=1;
         # PDF_VIEWER = "${getExe pkgs.zathura}";
         PDF_VIEWER = "/usr/bin/sioyek";
-        HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
+        inherit HOME_MANAGER_CONFIG; 
 	} ;
+
+    home.shellAliases = {
+      "hs" = "fd -uu -eold_version . -X trash -p $HOME && home-manager -b old_version switch --impure --flake ${HOME_MANAGER_CONFIG}"; 
+      "conf" = "cd $HOME_MANAGER_CONFIG";
+    };
 
 
     # TODO add if system is not NixOS
@@ -128,6 +135,8 @@ in
 
             # should be a service but is not working
             rofi
+
+            element-web
 
 
             my-nerdfonts # fonts
@@ -408,7 +417,7 @@ in
     # SERVICES
     services = {
       sxhkd = {
-        enable = isDesktop ;
+        enable = isDesktop && isNixos;
         extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
       };
     } ;

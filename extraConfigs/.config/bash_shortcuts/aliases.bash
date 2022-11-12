@@ -32,7 +32,6 @@ alias tmr="transmission-remote"
 alias stata="launch xstata-mp"
 alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
-alias hs="fd -uu -eold_version . -p "${HOME}" -x rm && home-manager -b old_version switch --impure --flake $HOME_MANAGER_CONFIG"
 alias he="nvim ${HOME_MANAGER_CONFIG}/home.nix"
 alias z=zathura
 
