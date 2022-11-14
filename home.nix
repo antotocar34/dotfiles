@@ -12,7 +12,7 @@ home = "/home/${user}" ;
 name = "Antoine Carnec" ;
 hostname = "x1carbon" ;
 isDesktop = true;
-isNixos = true;
+isNixos = false;
 email = "antoinecarnec@gmail.com" ;
 system = "x86_64-linux" ;
 HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
@@ -46,7 +46,7 @@ in
 	} ;
 
     home.shellAliases = {
-      "hs" = "fd -uu -eold_version . -X trash -p $HOME && home-manager -b old_version switch --impure --flake ${HOME_MANAGER_CONFIG}"; 
+      "hs" = "fd -uu -eold_version -p . $HOME -X trash {} && home-manager -b old_version switch --impure --flake ${HOME_MANAGER_CONFIG}"; 
       "conf" = "cd $HOME_MANAGER_CONFIG";
     };
 
@@ -83,6 +83,7 @@ in
 			psmisc # pstree and the like
             unzip
             borgbackup
+            bottom
             # unrar
             rclone # google drive cli interface
             direnv # Set environments in a specific directory
@@ -106,8 +107,6 @@ in
             # neovim
             neovim-remote # Needed for SyncTex
 
-            # password and secret management
-            rbw # rust bitwarden client
             rofi-rbw
             age # encryption tool
             pwgen # password generator
@@ -301,23 +300,32 @@ in
               } ;
               "x1carbon" = {
                 user = "carneca" ;
-                hostname = "" ;
+                hostname = "x1carbon" ;
                 host = "x1carbon" ; 
                 identityFile = "~/.ssh/${hostname}" ;
               } ;
             };
           } ;
 
-          tmux = {
-            enable = true;
-            baseIndex = 1; 
-            escapeTime = 1;
-            keyMode = "vi";
-            newSession = true;
-            shortcut = "k" ;
-            extraConfig = builtins.readFile ./extraConfigs/.tmux.conf ;
-          } ;
-        };
+        tmux = {
+          enable = true;
+          baseIndex = 1; 
+          escapeTime = 1;
+          keyMode = "vi";
+          newSession = true;
+          shortcut = "k" ;
+          extraConfig = builtins.readFile ./extraConfigs/.tmux.conf ;
+        } ;
+
+        rbw = {
+          enable = true ;
+          settings = {
+            pinentry = "curses" ;
+            inherit email;
+          };
+        } ;
+
+      };
 
     # Apply plasma settings
     programs.plasma = import ./extraConfigs/plasma_settings.nix ;
@@ -417,14 +425,31 @@ in
     # SERVICES
     services = {
       sxhkd = {
-        enable = isDesktop && isNixos;
+        enable = isDesktop;
         extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
       };
-    } ;
+
+      fusuma = {
+        enable = true ;
+        settings = {
+          swipe = {
+            "3" = {
+              up.command = "tmux a";
+              };
+            };
+          };
+        };
+
+    };
+
+    xsession.enable = false;
 
     # systemd automatic starting of services *I think*
-    systemd.user.startServices = "sd-switch";
+    systemd.user.systemctlPath = if isNixos 
+                                 then "${pkgs.systemd}/bin/systemctl"
+                                 else "/usr/bin/systemctl";
+    systemd.user.startServices = "legacy";
 
     # disable notifications about home-manager news
     news.display = "silent";
-  }
+}

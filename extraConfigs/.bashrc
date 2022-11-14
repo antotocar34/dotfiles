@@ -129,6 +129,8 @@ FINANCE_DIR="${HOME}/Documents/Finances"
 # . ${FINANCE_DIR}/.bash_shortcuts
 
 # For direnv
-eval "$(direnv hook bash)"
+if ( which direnv &> /dev/null )
+    then eval "$(direnv hook bash)"
+fi
 
 R_LIBS_USER="${HOME}/.config/R/Rprofile"
