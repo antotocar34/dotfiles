@@ -104,7 +104,7 @@ in
             pdf2svg # needed for inkscape-figures
 
             # text editor
-            # neovim
+            neovim
             neovim-remote # Needed for SyncTex
 
             rofi-rbw

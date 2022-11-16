@@ -83,7 +83,7 @@ function file_find {
     if [[ $? -eq 130 ]]; then
         true
     else
-        vim "${FILE}"
+        $EDITOR "${FILE}"
     fi
 }
 
@@ -92,12 +92,27 @@ function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
+function nsearch {
+    nix search nixpkgs "$@"
+}
+
 function nshell {
-    nix shell "nixpkgs#${1}"
+    if [ "$#" -gt 1 ]
+        then 
+            args=( "$@" ) 
+            nix shell "${args[@]/#/nixpkgs#}"
+        else 
+            nix shell "nixpkgs#${1}"
+    fi
 }
 
 function nrun {
-    nix run "nixpkgs#${1}" -- "$@"
+    if [ "$#" -gt 1 ]
+        then 
+            nix run "nixpkgs#${1}" -- "${@:2}"
+        else
+            nix run "nixpkgs#${1}"
+    fi
 }
 
 set +a
@@ -107,7 +122,7 @@ set +a
 . ${SCRIPT_DIR}/rfuncs.bash
 
 datascience() {
-    poetry init -n --python ">3.9, <3.11" --dependency pandas \
+    poetry init -n --python ">3.9, <3.11"  --dependency pandas \
                                            --dependency numpy \
                                            --dependency matplotlib \
                                            --dependency sklearn \
