@@ -32,7 +32,7 @@ ctrl + Return
 /*     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash */
 
 ctrl + b
-    firefox
+    nixGLIntel firefox
 
 shift + ctrl + g
     tdrop -w "100%" -h "100%" --number=google -ma firefox --new-window https://www.google.com

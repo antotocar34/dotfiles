@@ -46,7 +46,7 @@ nnoremap <leader>jb <cmd>Telescope buffers<cr>
 " Find file in git repo
 nnoremap <leader>jg <cmd>Telescope git_files<cr>
 " Grep in git repo
-nnoremap <leader>js <cmd>lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1] }<cr>
+nnoremap <leader>jl <cmd>lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1] }<cr>
 " Search for string in current git repository
 nnoremap <leader>jw <cmd>lua require('telescope.builtin').grep_string{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1] }<cr>
 

@@ -17,6 +17,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    comma = {
+      url = "github:nix-community/comma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # neovim-flake = {
+    #   url = "path:/home/carneca/Documents/projects/neovim-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # This captures my plasma settings
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +36,7 @@
   };
 
 
-  outputs = { self, nixpkgs, home-manager, homeage, plasma-manager, nixgl }:
+  outputs = { self, nixpkgs, home-manager, homeage, plasma-manager, nixgl, comma}:
     let
       system = "x86_64-linux";
       user = "carneca";
@@ -36,8 +46,9 @@
           nixgl.overlay 
           (self: super: {
             nixGL = nixgl.defaultPackage.${system}.nixGLIntel ;
+            comma = comma.packages.${system}.comma;
           })
-
+          # neovim-flake.overlays.default
       ];
       };
 
@@ -60,7 +71,7 @@
             self.inputs.plasma-manager.homeManagerModules.plasma-manager
             homeage.homeManagerModules.homeage
           ] ;
-          extraSpecialArgs = { inherit nixgl myLib ;} ; # Pass in any flakes to home.nix
+          extraSpecialArgs = { inputs = self.inputs; inherit myLib ;} ; # Pass in any flakes to home.nix
       };
 
       devShells = forAllSystems (system: {

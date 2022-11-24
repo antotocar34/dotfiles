@@ -1,11 +1,13 @@
-{ config, lib, pkgs, myLib, ... }:
+{ config, lib, pkgs, inputs, myLib, ... }:
 
 with builtins ;
 with lib ;
 with lib.lists;
-with myLib ;
 
 let
+
+ml = myLib;
+mypkgs = import ./mypkgs { inherit pkgs; };
 # Personal Info
 user = "carneca" ;
 home = "/home/${user}" ;
@@ -43,20 +45,25 @@ in
         # PDF_VIEWER = "${getExe pkgs.zathura}";
         PDF_VIEWER = "/usr/bin/sioyek";
         inherit HOME_MANAGER_CONFIG; 
-	} ;
+	};
 
     home.shellAliases = {
       "hs" = "fd -uu -eold_version -p . $HOME -X trash {} && home-manager -b old_version switch --impure --flake ${HOME_MANAGER_CONFIG}"; 
       "conf" = "cd $HOME_MANAGER_CONFIG";
+      "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(xclip -o -sel clip)";
     };
 
 
-    # TODO add if system is not NixOS
-    nix = {
+    nix = mkIf (!isNixos) {
       package = pkgs.nix ;
       settings = {
         warn-dirty = false ;
         experimental-features = [ "nix-command" "flakes" ];
+        sandbox = "relaxed";
+      };
+
+      registry = {
+        nixpkgs.flake = inputs.nixpkgs;
       };
     };
 
@@ -64,7 +71,7 @@ in
 
     fonts.fontconfig.enable = true ;
 
-    home.packages = with pkgs; let
+    home.packages = with pkgs; with mypkgs; let
       my-nerdfonts = nerdfonts.override { fonts = nf-fonts ; } ;
       in
       [
@@ -93,7 +100,8 @@ in
             pirate-get # cli interface to piratebay
             libgen-cli # cli interface to libgen
 			xclip # clipboard cli
-            cachix
+            comma
+            cntr # Nix build debugging helper
 
             # Some window manager utilities
 			xdotool
@@ -104,6 +112,11 @@ in
             pdf2svg # needed for inkscape-figures
 
             # text editor
+            # (
+            #   writeShellScriptBin "nvim-nix" ''
+            #   exec "${neovimAC}/bin/nvim" "$@"
+            #   ''
+            # )
             neovim
             neovim-remote # Needed for SyncTex
 
@@ -135,9 +148,9 @@ in
             # should be a service but is not working
             rofi
 
-            element-web
 
 
+            cachix
             my-nerdfonts # fonts
 
             # TODO Move to a flake?
@@ -163,6 +176,8 @@ in
 
             # Misc
             nix-index
+            nix-bash-completions
+            complete-alias
             glibcLocales
             powerline-fonts
 
@@ -174,6 +189,7 @@ in
               zathura # pdf reader
               flameshot
 
+              element-web
               vlc # media player
               # whatsapp-for-linux
               # signal-desktop
@@ -192,11 +208,11 @@ in
               deluge
           ] ++
           # For those applications that need to be wrapped with nixGL
-          map (wrapWithNixGL nixGL) 
-          (optionals isDesktop 
+          (map (ml.wrapWithNixGL2 nixGL) 
             [ 
               calibre 
               kitty
+              stremio # media streaming client
             ]
           );
 
@@ -246,7 +262,7 @@ in
       };
 
       bash = {
-        enable = true ; 
+        enable = true;
         enableCompletion = true;
         profileExtra = builtins.readFile ./extraConfigs/.bash_profile ;
         initExtra   = builtins.readFile ./extraConfigs/.bashrc ; 
@@ -420,6 +436,10 @@ in
         source = ./extraConfigs/.config/msmtp/config.age ;
         copies = [ "${home}/.config/msmtp/config" ];
       } ;
+      file."weekly_dl_config" = {
+        source = ./extraConfigs/.config/weekly_dl/config.json.age ;
+        copies = [ "${home}/.config/weekly_dl/config.json" ];
+      } ;
     } ;
 
     # SERVICES
@@ -428,18 +448,6 @@ in
         enable = isDesktop;
         extraOptions = [ "-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd" ] ;
       };
-
-      fusuma = {
-        enable = true ;
-        settings = {
-          swipe = {
-            "3" = {
-              up.command = "tmux a";
-              };
-            };
-          };
-        };
-
     };
 
     xsession.enable = false;

@@ -92,6 +92,10 @@ function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
+function nrepl {
+    nix repl --expr "import <nixpkgs> {}"
+}
+
 function nsearch {
     nix search nixpkgs "$@"
 }
