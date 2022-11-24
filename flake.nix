@@ -32,51 +32,58 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
-    nixgl.url = "github:guibou/nixGL" ;
+    nixgl.url = "github:guibou/nixGL";
   };
 
-
-  outputs = { self, nixpkgs, home-manager, homeage, plasma-manager, nixgl, comma}:
-    let
-      system = "x86_64-linux";
-      user = "carneca";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ 
-          nixgl.overlay 
-          (self: super: {
-            nixGL = nixgl.defaultPackage.${system}.nixGLIntel ;
-            comma = comma.packages.${system}.comma;
-          })
-          # neovim-flake.overlays.default
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    homeage,
+    plasma-manager,
+    nixgl,
+    comma,
+  }: let
+    system = "x86_64-linux";
+    user = "carneca";
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        nixgl.overlay
+        (self: super: {
+          nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
+          comma = comma.packages.${system}.comma;
+        })
+        # neovim-flake.overlays.default
       ];
-      };
-
-      myLib = import ./lib { inherit pkgs; };
-
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-
-    in {
-      homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs ;
-
-          modules = [ 
-            ./home.nix 
-            self.inputs.plasma-manager.homeManagerModules.plasma-manager
-            homeage.homeManagerModules.homeage
-          ] ;
-          extraSpecialArgs = { inputs = self.inputs; inherit myLib ;} ; # Pass in any flakes to home.nix
-      };
-
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
-      });
-
     };
+
+    myLib = import ./lib {inherit pkgs;};
+
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+  in {
+    homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      modules = [
+        ./home.nix
+        self.inputs.plasma-manager.homeManagerModules.plasma-manager
+        homeage.homeManagerModules.homeage
+      ];
+      extraSpecialArgs = {
+        inputs = self.inputs;
+        inherit myLib;
+      }; # Pass in any flakes to home.nix
+    };
+
+    devShells = forAllSystems (system: {
+      default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix {};
+    });
+  };
 }

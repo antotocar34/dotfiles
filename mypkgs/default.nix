@@ -1,5 +1,3 @@
-{ pkgs, ...}:
-let
+{pkgs, ...}: let
   l = pkgs.lib;
-in
-{ }
+in {}

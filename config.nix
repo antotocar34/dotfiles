@@ -1,4 +1,4 @@
-{ 
-  vim.ftNix = false; 
+{
+  vim.ftNix = false;
   allowUnfree = true;
 }
