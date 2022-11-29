@@ -62,9 +62,7 @@ in {
 
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs;
-  with mypkgs; let
-  in
+  home.packages = with pkgs; with mypkgs; 
     [
       # command line utilities
       ripgrep # fast text search
@@ -84,6 +82,8 @@ in {
       bottom
       # unrar
       rclone # google drive cli interface
+      rclone-backup
+      # lkr
       direnv # Set environments in a specific directory
       tdrop # Toggle terminal
       jq # format json to stdout
@@ -184,6 +184,7 @@ in {
 
         element-web
         vlc # media player
+        mpv # lightweight media player
         # whatsapp-for-linux
         # signal-desktop
         bitwarden
@@ -205,7 +206,7 @@ in {
       (
         map (
           if isNixos
-          then (ml.wrapWithNixGL2 nixGL)
+          then (ml.wrapWithNixGL nixGL)
           else x: x
         )
         [
@@ -332,7 +333,7 @@ in {
     rbw = {
       enable = true;
       settings = {
-        pinentry = "curses";
+        pinentry = "tty";
         inherit email;
       };
     };
@@ -440,7 +441,7 @@ in {
   services = {
     sxhkd = {
       enable = isDesktop;
-      extraOptions = ["-c ${xdg.configHome}/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd"];
+      extraOptions = ["-c ${home}/.config/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd"];
     };
   };
 

@@ -7,3 +7,6 @@
 - *.aux
 - *.fdb_latexmk
 - *.log
+- *.priv/
+- .direnv/
+- env/

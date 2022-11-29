@@ -1,5 +1,3 @@
-FILTER_FILE=/home/carneca/.config/nixpkgs/extraConfigs/.config/rclone/exclude_list.txt
-
 get_drive_root() {
 local cutoff=$( readlink -f ${1:-.} | sed "s#${HOME}/\(.*\)#\1#" | sed "s#${HOME}##")
 echo tdrive:/backup/${cutoff}
@@ -9,7 +7,7 @@ rcheck () {
     rcheck_pre () {
         drive_path=$(get_drive_root ${1:-.})
         local_path=$(readlink -f ${1:-.})
-        rclone check $local_path $drive_path --filter-from $FILTER_FILE --size-only --combined - | tee -a ${HOME}/.logs/check.log
+        rclone-backup check $local_path $drive_path --size-only --combined - | tee -a ${HOME}/.logs/check.log
     }
     # Remove displaying unchanged files
     rcheck_pre $1 | sed -ur 's#^=.*##' | sed -ur '#ERROR :##d' | awk 'NF'
@@ -24,7 +22,7 @@ rupdate() {
     rclone_command_update () {
         drive_path=$(get_drive_root ${1:-.})
         local_path=$(readlink -f ${1:-.})
-        ${HOME}/.nix-profile/bin/rclone $2 -v ${local_path}/ $drive_path/ --filter-from  $FILTER_FILE
+        ${HOME}/.nix-profile/bin/rclone-backup $2 -v ${local_path}/ $drive_path/
         }
     if [[ $1 = "-s" ]]; then
         input_full=$(readlink -f $2)
@@ -39,7 +37,7 @@ rdl() {
     rclone_command_download () {
         drive_path=$(get_drive_root ${1:-.})
         local_path=$(readlink -f ${1:-.})
-        ${HOME}/.nix-profile/bin/rclone $2 -v ${drive_path}/ ${local_path}/ --filter-from  $FILTER_FILE
+        ${HOME}/.nix-profile/bin/rclone-backup $2 -v ${drive_path}/ ${local_path}/
         }
     if [[ $1 = "-s" ]]; then
         rclone_command_download $2 sync
@@ -50,14 +48,14 @@ rdl() {
 
 rdel() {
     drive_path=$(get_drive_root ${1:-.})
-    rclone delete -i $drive_path
+    rclone-backup delete -i $drive_path
 }
 
 rtotaldel() {
     drive_path=$(get_drive_root ${1:-.})
     local_path=$(readlink -f ${1:-.})
     drive_path=$(get_drive_root ${1:-.})
-    echo "This will delete from both remote and local" && rclone delete -i $drive_path && rm -ri $local_path
+    echo "This will delete from both remote and local" && rclone-backup delete -i $drive_path && rm -ri $local_path
 }
 
 pdl() {
@@ -67,5 +65,5 @@ pdl() {
 bdupdate() {
     LOCAL_BD_LIB="${HOME}/Documents/Books/Calibre/BD" 
     REMOTE_BD_LIB="tdrive:/backup/Documents/Books/Calibre/BD"
-    ${HOME}/.nix-profile/bin/rclone copy -v $LOCAL_BD_LIB $REMOTE_BD_LIB --filter-from $FILTER_FROM
+    ${HOME}/.nix-profile/bin/rclone-backup copy -v $LOCAL_BD_LIB $REMOTE_BD_LIB
 }

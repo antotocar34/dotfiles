@@ -7,8 +7,8 @@ document_backup () {
 }
 
 task_backup () {
-${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.task/ tdrive:/backup/data/taskwarrior/
-${HOME}/.nix-profile/bin/rclone -v copy ${HOME}/.timewarrior/ tdrive:/backup/data/timewarrior/
+${HOME}/.nix-profile/bin/rclone-backup -v copy ${HOME}/.task/ tdrive:/backup/data/taskwarrior/
+${HOME}/.nix-profile/bin/rclone-backup -v copy ${HOME}/.timewarrior/ tdrive:/backup/data/timewarrior/
 }
 
 task_backup

@@ -41,7 +41,7 @@ shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
 
 alt + s
-    $PDF_VIEWER "$(ls -t Downloads/*.pdf | head -n1)"
+    $PDF_VIEWER "$(ls -t ~/Downloads/*.pdf | head -n1)"
 
 alt + e
     rofi -show window

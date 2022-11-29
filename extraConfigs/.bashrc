@@ -134,3 +134,6 @@ if ( which direnv &> /dev/null )
 fi
 
 R_LIBS_USER="${HOME}/.config/R/Rprofile"
+
+red=$(tput setaf 1)
+fd -1 -epriv . ~ | grep -q . && printf "%40s\n" "${red}You have .priv files which are unlocked"
