@@ -36,6 +36,7 @@ in {
     NIXPKGS_ALLOW_UNFREE = 1;
     # PDF_VIEWER = "${getExe pkgs.zathura}";
     PDF_VIEWER = "/usr/bin/sioyek";
+    NIX_PATH="nixpkgs=${pkgs.path}"; # Is this a good idea, the overlays are applied...
     inherit HOME_MANAGER_CONFIG;
   };
 
@@ -51,10 +52,12 @@ in {
       warn-dirty = false;
       experimental-features = ["nix-command" "flakes"];
       sandbox = "relaxed";
+      build-use-sandbox = "true";
     };
 
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
+      acpkgs.flake = inputs.acpkgs;
     };
   };
 
@@ -62,7 +65,7 @@ in {
 
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs; with mypkgs; 
+  home.packages = with pkgs;
     [
       # command line utilities
       ripgrep # fast text search
@@ -70,7 +73,7 @@ in {
       fzf # stdout processor
       du-dust # better du
       duf # better df
-      tldr # common wayes to use a command
+      # tldr # common wayes to use a command
       rdfind # duplicate finder and remover
       tree #
       cloc # counts lines of code
@@ -78,12 +81,12 @@ in {
       yt-dlp # youtube-dl but better
       psmisc # pstree and the like
       unzip
-      borgbackup
-      bottom
+      borgbackup # backup tool
+      bottom # system surveillance
       # unrar
       rclone # google drive cli interface
-      rclone-backup
-      # lkr
+      mypkgs.rclone-backup
+      lkr # personal script to lock sensitive files and directories with age
       direnv # Set environments in a specific directory
       tdrop # Toggle terminal
       jq # format json to stdout
@@ -111,7 +114,6 @@ in {
       neovim
       neovim-remote # Needed for SyncTex
 
-      rofi-rbw
       age # encryption tool
       pwgen # password generator
 
@@ -131,15 +133,14 @@ in {
       timewarrior
 
       # useful programs
-      feh # image viewer
       cmus # Music player
       vifm # terminal file manager
       magic-wormhole # Send files to anyone
 
-      # should be a service but is not working
       rofi
 
       cachix
+
       (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
       # TODO Move to a flake?
@@ -175,6 +176,7 @@ in {
 
       nixGL
     ]
+    ## Gui applications
     ++ l.lists.optionals isDesktop
     (
       [
@@ -185,11 +187,12 @@ in {
         element-web
         vlc # media player
         mpv # lightweight media player
+        feh # image viewer
         # whatsapp-for-linux
         # signal-desktop
         bitwarden
+        rofi-rbw
         discord
-        ## bigger installs
         gnome3.gnome-disk-utility
         gnome3.pomodoro
         # filezilla # FTP client
@@ -205,7 +208,7 @@ in {
       # For those applications that need to be wrapped with nixGL
       (
         map (
-          if isNixos
+          if ! isNixos
           then (ml.wrapWithNixGL nixGL)
           else x: x
         )
@@ -377,6 +380,8 @@ in {
       "bash_shortcuts".recursive = true;
       "cmus".source = ./extraConfigs/.config/cmus;
       "cmus".recursive = true;
+      "lkr".source = ./extraConfigs/.config/lkr;
+      "lkr".recursive = true;
       "R/.Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     };
 

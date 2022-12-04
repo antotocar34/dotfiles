@@ -190,13 +190,13 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        "\ {Play using ffplay}
        "\ ffplay -nodisp %c &,
        \ {Play using MPlayer}
-       \ mpv  %f &,
-       \ vlc  %f &,
+       \ mpv  %f 2> /dev/null &,
+       \ vlc  %f 2> /dev/null &,
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
 " Video
-filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+filextype *.gif,*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
          \*.as[fx]
         \ {View using mpv}
@@ -212,8 +212,8 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
+        \ {Open with chromium}
+        \ nvim %f,
         \ {Open with chromium}
         \ chromium %f &,
         \ {Open with uzbl}
@@ -228,7 +228,7 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ {View in sxiv}
         \ feh %f &,
         \ {View in gpicview}

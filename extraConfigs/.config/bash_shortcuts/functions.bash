@@ -88,6 +88,10 @@ function file_find {
 }
 
 # launch and disown program
+function start {
+    nohup ${@} >/dev/null 2>/dev/null & disown
+}
+
 function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }

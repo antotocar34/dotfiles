@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    acpkgs.url = "path:/home/carneca/Documents/projects/acpkgs";
+    acpkgs.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,8 +14,7 @@
 
     # Managing secrets
     homeage = {
-      # url = "github:jordanisaacs/homeage";
-      url = "github:spikespaz/homeage";
+      url = "github:jordanisaacs/homeage";
       # Optional
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -33,17 +35,19 @@
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
     nixgl.url = "github:guibou/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
+    acpkgs,
     home-manager,
     homeage,
     plasma-manager,
     nixgl,
     comma,
-  }: let
+  }@inputs: let
     system = "x86_64-linux";
     user = "carneca";
     pkgs = import nixpkgs {
@@ -55,6 +59,7 @@
           comma = comma.packages.${system}.comma;
         })
         # neovim-flake.overlays.default
+        acpkgs.overlays.default
       ];
     };
 
@@ -73,12 +78,11 @@
 
       modules = [
         ./home.nix
-        self.inputs.plasma-manager.homeManagerModules.plasma-manager
+        plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage
       ];
       extraSpecialArgs = {
-        inputs = self.inputs;
-        inherit myLib;
+        inherit myLib inputs;
       }; # Pass in any flakes to home.nix
     };
 

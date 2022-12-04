@@ -27,3 +27,6 @@ update_input:
     inputs=$(nix flake metadata --json | jq .locks.nodes.root.inputs | jq -r 'keys[]' | fzf --multi)
     readarray -t inputArray <<<"$inputs"
     nix flake lock ${inputArray[@]/#/--update-input }
+
+logout:
+    qdbus org.kde.ksmserver /KSMServer logout 0 0 0

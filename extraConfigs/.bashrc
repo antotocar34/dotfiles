@@ -79,9 +79,9 @@ fi
 
 # Shell VI settings
 bind "set editing-mode vi"
-bind "set show-mode-in-prompt on"
-bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
-bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
+# bind "set show-mode-in-prompt on"
+# bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
+# bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
 bind -x '"\C-l": clear'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -93,18 +93,6 @@ esac
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-
-if [ -z $TDROP ] ; then
-        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
-else
-    bind -x '"\C-j":"tdrop current"'
-    if [ $TDROP = "red" ] ; then
-        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;31mλ \e[m'
-
-    else
-        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\n\e[0;36mλ \e[m'
-    fi
-fi
 
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then

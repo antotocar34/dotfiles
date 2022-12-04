@@ -17,7 +17,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'antotocar34/nord.nvim'
-Plug 'SirVer/Ultisnips', { 'for': ['tex', 'beancount'] }
+Plug 'SirVer/Ultisnips'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
 Plug 'LnL7/vim-nix', { 'for': 'nix' }
