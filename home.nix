@@ -68,6 +68,7 @@ in {
   home.packages = with pkgs;
     [
       # command line utilities
+      bashInteractive
       ripgrep # fast text search
       fd # fast file finder
       fzf # stdout processor

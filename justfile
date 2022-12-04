@@ -28,5 +28,8 @@ update_input:
     readarray -t inputArray <<<"$inputs"
     nix flake lock ${inputArray[@]/#/--update-input }
 
+build:
+    nix build --impure .#homeConfigurations.carneca.activationPackage
+
 logout:
     qdbus org.kde.ksmserver /KSMServer logout 0 0 0

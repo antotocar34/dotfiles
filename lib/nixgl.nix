@@ -11,7 +11,7 @@ in {
         exec ${nixGL}/bin/nixGLIntel ${l.getExe pkg} "$@"
       '';
     };
-  wrapWithNixGL2 = nixGL: pkg:
+  wrapWithNixGLFull = nixGL: pkg:
     pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
       mkdir $out
       ln -s ${pkg}/* $out
