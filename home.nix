@@ -51,8 +51,14 @@ in {
     settings = {
       warn-dirty = false;
       experimental-features = ["nix-command" "flakes"];
+      log-lines = 25;
       sandbox = "relaxed";
       build-use-sandbox = "true";
+      min-free = 128000000;
+      max-free = 1000000000;
+      auto-optimise-store = true;
+      fallback = true;
+      # keep-outputs = true;
     };
 
     registry = {
@@ -267,7 +273,7 @@ in {
 
     bash = {
       enable = true;
-      enableCompletion = true;
+      enableCompletion = false;
       profileExtra = l.readFile ./extraConfigs/.bash_profile;
       initExtra = l.readFile ./extraConfigs/.bashrc;
     };
