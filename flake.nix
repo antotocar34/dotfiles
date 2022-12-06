@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    acpkgs.url = "path:/home/carneca/Documents/projects/acpkgs";
+    acpkgs.url = "github:antotocar34/acpkgs";
     acpkgs.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
@@ -78,11 +78,14 @@
 
       modules = [
         ./home.nix
+        ./modules
         plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage
       ];
       extraSpecialArgs = {
         inherit myLib inputs;
+        isDesktop = true;
+        isNixos = false;
       }; # Pass in any flakes to home.nix
     };
 

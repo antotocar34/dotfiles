@@ -4,22 +4,24 @@
   pkgs,
   inputs,
   myLib,
+  isDesktop ? true,
+  isNixos ? false,
   ...
 }: let
   l = builtins // lib;
   ml = myLib;
   mypkgs = import ./mypkgs {inherit pkgs;};
   # Personal Info
+  inherit isDesktop;
   user = "carneca";
   home = "/home/${user}";
   name = "Antoine Carnec";
   hostname = "x1carbon";
-  isDesktop = true;
-  isNixos = false;
   email = "antoinecarnec@gmail.com";
   system = "x86_64-linux";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 in {
+
   programs.home-manager.enable = true;
 
   home.username = "${user}";
@@ -35,7 +37,7 @@ in {
     R_PROFILE_USER = "${home}/.config/R/.Rprofile";
     NIXPKGS_ALLOW_UNFREE = 1;
     # PDF_VIEWER = "${getExe pkgs.zathura}";
-    PDF_VIEWER = "/usr/bin/sioyek";
+    PDF_VIEWER = "${lib.getExe pkgs.sioyek}";
     NIX_PATH="nixpkgs=${pkgs.path}"; # Is this a good idea, the overlays are applied...
     inherit HOME_MANAGER_CONFIG;
   };
@@ -49,8 +51,9 @@ in {
   nix = l.mkIf (!isNixos) {
     package = pkgs.nix;
     settings = {
-      warn-dirty = false;
+      # Better defaults
       experimental-features = ["nix-command" "flakes"];
+      warn-dirty = false;
       log-lines = 25;
       sandbox = "relaxed";
       build-use-sandbox = "true";
@@ -74,6 +77,7 @@ in {
   home.packages = with pkgs;
     [
       # command line utilities
+      mimeo
       bashInteractive
       ripgrep # fast text search
       fd # fast file finder
@@ -189,6 +193,7 @@ in {
       [
         mcomix3 # comic reader
         zathura # pdf reader
+        sioyek
         flameshot
 
         element-web
@@ -206,6 +211,7 @@ in {
         krita # Drawing Application
         transcribe #
         xournalpp # note taking
+        libreoffice-fresh
         spotify
         inkscape
         gimp
@@ -368,6 +374,7 @@ in {
       "rofi".recursive = true;
       "sioyek".source = ./extraConfigs/.config/sioyek;
       "sioyek".recursive = true;
+      "mpv.conf".source = ./extraConfigs/.config/mpv.conf;
       "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc;
       "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc;
       "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm;
@@ -392,25 +399,6 @@ in {
       "R/.Rprofile".source = ./extraConfigs/.config/R/Rprofile;
     };
 
-    mime.enable = true;
-    mimeApps.enable = true;
-    mimeApps.defaultApplications = {
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "application/html" = "firefox.desktop";
-      # "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop" ;
-      "application/pdf" = "sioyek.desktop";
-      "application/epub+zip" = "org.pwmt.zathura-pdf-mupdf.desktop";
-      "image/svg+xml" = "org.inkscape.Inkscape.desktop";
-      "audio/opus" = "vlc.desktop";
-      "audio/aac" = "vlc.desktop";
-      "audio/mpegsymlinks" = "vlc.desktop";
-    };
-    mimeApps.associations.added = {
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "application/html" = "firefox.desktop";
-    };
   };
 
   home.file = {

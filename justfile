@@ -18,6 +18,7 @@ get_ssh:
 
 switch:
     NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old --impure --flake .
+    just diff
 
 install_nix:
     sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -30,6 +31,9 @@ update_input:
 
 build:
     nix build --impure .#homeConfigurations.carneca.activationPackage
+
+diff:
+    home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | xargs -n 2 nix run nixpkgs#nvd diff
 
 logout:
     qdbus org.kde.ksmserver /KSMServer logout 0 0 0

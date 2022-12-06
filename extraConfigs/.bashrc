@@ -123,7 +123,7 @@ fi
 R_LIBS_USER="${HOME}/.config/R/Rprofile"
 
 red=$(tput setaf 1)
-fd -1 -epriv . ~ | grep -q . && printf "%40s\n" "${red}You have .priv files which are unlocked"
+fd --one-file-system -1 -epriv . ~ | grep -q . && printf "%40s\n" "${red}You have .priv files which are unlocked"
 
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
 PS1='$(show_virtual_env)'$PS1

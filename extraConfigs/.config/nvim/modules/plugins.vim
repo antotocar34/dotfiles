@@ -11,6 +11,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'lewis6991/gitsigns.nvim'
 
+Plug 'quarto-dev/quarto-nvim'
+
 " Plug 'ray-x/lsp_signature.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -267,3 +269,15 @@ let g:floaterm_title = ""
 
 " Plug 'nathangrigg/vim-beancount'
 let g:beancount_separator_col=80
+
+" 'quarto-dev/quarto-nvim'
+lua << EOF
+require'quarto'.setup{
+  closePreviewOnExit = false, -- close preview terminal on closing of qmd file buffer
+  diagnostics = {
+    enabled = false, -- enable diagnostics for embedded languages
+    languages = {'r', 'python', 'julia'}
+  }
+}
+EOF
+
