@@ -17,7 +17,7 @@ get_ssh:
     rbw get --full ssh > ~/.ssh/antoine 
 
 switch:
-    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old --impure --flake .
+    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .
     just diff
 
 install_nix:

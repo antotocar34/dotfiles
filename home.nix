@@ -10,7 +10,6 @@
 }: let
   l = builtins // lib;
   ml = myLib;
-  mypkgs = import ./mypkgs {inherit pkgs;};
   # Personal Info
   inherit isDesktop;
   user = "carneca";
@@ -43,7 +42,7 @@ in {
   };
 
   home.shellAliases = {
-    "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && home-manager -b old_version switch --impure --flake ${HOME_MANAGER_CONFIG}'';
+    "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && just ${HOME_MANAGER_CONFIG}/switch'';
     "conf" = "cd ${HOME_MANAGER_CONFIG}";
     "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(xclip -o -sel clip)";
   };
@@ -76,45 +75,11 @@ in {
 
   home.packages = with pkgs;
     [
-      # command line utilities
-      mimeo
-      bashInteractive
-      ripgrep # fast text search
-      fd # fast file finder
-      fzf # stdout processor
-      du-dust # better du
-      duf # better df
-      # tldr # common wayes to use a command
-      rdfind # duplicate finder and remover
-      tree #
-      cloc # counts lines of code
-      trash-cli
-      yt-dlp # youtube-dl but better
-      psmisc # pstree and the like
-      unzip
-      borgbackup # backup tool
-      bottom # system surveillance
-      # unrar
-      rclone # google drive cli interface
-      mypkgs.rclone-backup
-      lkr # personal script to lock sensitive files and directories with age
-      direnv # Set environments in a specific directory
-      tdrop # Toggle terminal
-      jq # format json to stdout
-      just # command line runner
-      pirate-get # cli interface to piratebay
-      libgen-cli # cli interface to libgen
-      xclip # clipboard cli
-      comma
-      cntr # Nix build debugging helper
-
       # Some window manager utilities
       xdotool
       xorg.xrandr
       xorg.xwininfo
       xbanish # Hides cursor on key press
-
-      pdf2svg # needed for inkscape-figures
 
       # text editor
       # (
@@ -125,14 +90,8 @@ in {
       neovim
       neovim-remote # Needed for SyncTex
 
-      age # encryption tool
-      pwgen # password generator
-
       mutt # emailer
       msmtp #
-
-      # for inkscape-figures
-      colorpicker
 
       # plain text accounting
       ledger
@@ -146,11 +105,8 @@ in {
       # useful programs
       cmus # Music player
       vifm # terminal file manager
-      magic-wormhole # Send files to anyone
 
       rofi
-
-      cachix
 
       (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
@@ -180,7 +136,7 @@ in {
 
       # Misc
       nix-index
-      nix-bash-completions
+      # nix-bash-completions
       complete-alias
       glibcLocales
       powerline-fonts
@@ -293,19 +249,6 @@ in {
       enable = isDesktop;
     };
 
-    chromium = {
-      enable = false;
-      extensions = [
-        "blaaajhemilngeeffpbfkdjjoefldkok" # LeechBlock
-        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-        "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock
-        "adegbkmimffpmlcdkjbadjjeiaacflap" # Incognito Blocker
-        # "icpgjfneehieebagbmdbhnlpiopdcmna" # New tab
-        "edacconmaakjimmfgnblocblbcdcpbko" # Session Buddy
-      ];
-    };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -363,46 +306,13 @@ in {
     cacheHome = "/home/carneca/.cache";
     configHome = "/home/carneca/.config";
     dataHome = "/home/carneca/.local/share";
-    configFile = {
-      # Startup script
-      "plasma-workspace/env/startup.sh".source = ./homedir/Documents/Scripts/startup.sh;
-      "calibre".source = ./extraConfigs/.config/calibre;
-      "calibre".recursive = true;
-      "kitty".source = ./extraConfigs/.config/kitty;
-      "kitty".recursive = true;
-      "rofi".source = ./extraConfigs/.config/rofi;
-      "rofi".recursive = true;
-      "sioyek".source = ./extraConfigs/.config/sioyek;
-      "sioyek".recursive = true;
-      "mpv.conf".source = ./extraConfigs/.config/mpv.conf;
-      "zathura/zathurarc".source = extraConfigs/.config/zathura/zathurarc;
-      "vifm/vifmrc".source = ./extraConfigs/.config/vifm/vifmrc;
-      "vifm/colors/nord.vifm".source = ./extraConfigs/.config/vifm/colors/nord.vifm;
-      "sxhkd/sxhkdrc".source = ./extraConfigs/.config/sxhkd/sxhkdrc;
-      "flameshot/flameshot.conf".source = ./extraConfigs/.config/flameshot/flameshot.ini;
-      "nvim/minimal-vimrc.vim".source = ./extraConfigs/minimal-vimrc.vim;
-      "nvim/init.vim".source = ./extraConfigs/.config/nvim/init.vim;
-      "direnv/direnvrc".source = ./extraConfigs/.config/direnv/direnvrc;
-      "inkscape-shortcut-manager/config.py".source = ./extraConfigs/.config/inkscape-shortcut-manager/config.py;
-      "chromium-flags.conf".source = ./extraConfigs/.config/chromium-flags.conf;
-      "kwinrc".source = ./extraConfigs/.config/kwinrc;
-      "kwinrulesrc".source = ./extraConfigs/.config/kwinrulesrc;
-      "misc/.vimiumrc".source = ./extraConfigs/.config/misc/vimium_rc;
-      "xournalpp/settings.xml".source = ./homedir/.xournalpp/settings.xml;
-      "xournalpp/toolbar.ini".source = ./homedir/.xournalpp/toolbar.ini;
-      "bash_shortcuts".source = ./extraConfigs/.config/bash_shortcuts;
-      "bash_shortcuts".recursive = true;
-      "cmus".source = ./extraConfigs/.config/cmus;
-      "cmus".recursive = true;
-      "lkr".source = ./extraConfigs/.config/lkr;
-      "lkr".recursive = true;
-      "R/.Rprofile".source = ./extraConfigs/.config/R/Rprofile;
-    };
-
+    systemDirs.config = ["${HOME_MANAGER_CONFIG}/extraConfigs/.config"];
   };
 
   home.file = {
     # Directories
+    ".config".source = ./extraConfigs/.config;
+    ".config".recursive = true;
     ".ssh".source = ./homedir/.ssh;
     ".ssh".recursive = true;
 
