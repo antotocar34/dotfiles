@@ -51,10 +51,10 @@ in {
       };
     };
     timers.restic-backup = {
-        Unit.Description = "Run restic-backup daily";
-        Timer.OnCalendar = "11:30:00";
-        Timer.Persistent = true;
-        Install.WantedBy = [ "timers.target" ];
-      };
+      Unit.Description = "Run restic-backup daily";
+      Timer.OnCalendar = "11:30:00";
+      Timer.Persistent = true;
+      Install.WantedBy = ["timers.target"];
+    };
   };
 }

@@ -46,14 +46,13 @@
     plasma-manager,
     nixgl,
     comma,
-  }@inputs: let
+  } @ inputs: let
     system = "x86_64-linux";
-    user = "carneca";
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
         nixgl.overlay
-        (self: super: {
+        (_: _: {
           nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
           comma = comma.packages.${system}.comma;
         })
@@ -72,7 +71,7 @@
       "x86_64-darwin"
     ];
   in {
-    homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."carneca" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
@@ -80,9 +79,9 @@
         ./modules
         plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage
-        { 
-          config.isNixos = false;
-          config.isDesktop = true;
+        {
+          config.host.isNixos = false;
+          config.host.isDesktop = true;
         }
       ];
 

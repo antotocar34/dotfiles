@@ -17,7 +17,6 @@
   email = "antoinecarnec@gmail.com";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 in {
-
   programs.home-manager.enable = true;
 
   home.username = "${user}";
@@ -34,7 +33,7 @@ in {
     NIXPKGS_ALLOW_UNFREE = 1;
     # PDF_VIEWER = "${getExe pkgs.zathura}";
     PDF_VIEWER = "${lib.getExe pkgs.sioyek}";
-    NIX_PATH="nixpkgs=${pkgs.path}"; # Is this a good idea, the overlays are applied...
+    NIX_PATH = "nixpkgs=${pkgs.path}"; # Is this a good idea, the overlays are applied...
     inherit HOME_MANAGER_CONFIG;
   };
 
@@ -44,7 +43,9 @@ in {
     "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(xclip -o -sel clip)";
   };
 
-  nix = l.mkIf (! config.isNixos) {
+  home_config = "${home}/.config/nixpkgs";
+
+  nix = l.mkIf (! config.host.isNixos) {
     package = pkgs.nix;
     settings = {
       # Better defaults
@@ -71,122 +72,72 @@ in {
 
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs;
-    [
-      # Some window manager utilities
-      systemd
-      xdotool
-      xorg.xrandr
-      xorg.xwininfo
-      xbanish # Hides cursor on key press
+  home.packages = with pkgs; [
+    # Some window manager utilities
+    systemd
+    xdotool
+    xorg.xrandr
+    xorg.xwininfo
+    xbanish # Hides cursor on key press
 
-      # text editor
-      # (
-      #   writeShellScriptBin "nvim-nix" ''
-      #   exec "${neovimAC}/bin/nvim" "$@"
-      #   ''
-      # )
-      neovim
-      neovim-remote # Needed for SyncTex
+    # text editor
+    # (
+    #   writeShellScriptBin "nvim-nix" ''
+    #   exec "${neovimAC}/bin/nvim" "$@"
+    #   ''
+    # )
+    neovim
+    neovim-remote # Needed for SyncTex
 
-      mutt # emailer
-      msmtp #
+    mutt # emailer
+    msmtp #
 
-      # plain text accounting
-      ledger
-      beancount
-      fava
+    # plain text accounting
+    ledger
+    beancount
+    fava
 
-      # productivity
-      taskwarrior
-      timewarrior
+    # productivity
+    # taskwarrior
+    # timewarrior
 
-      # useful programs
-      cmus # Music player
-      vifm # terminal file manager
+    # useful programs
 
-      rofi
+    (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
-      (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
+    # TODO Move to a flake?
+    (texlive.combine {
+      inherit
+        (texlive)
+        # Main suite
+        
+        scheme-medium
+        # Extra packages
+        
+        wrapfig
+        was
+        svg
+        bbm
+        collection-fontsextra
+        trimspaces
+        catchfile
+        transparent
+        titlesec
+        import
+        preprint
+        enumitem
+        ;
+    })
 
-      # TODO Move to a flake?
-      (texlive.combine {
-        inherit
-          (texlive)
-          # Main suite
-          
-          scheme-medium
-          # Extra packages
-          
-          wrapfig
-          was
-          svg
-          bbm
-          collection-fontsextra
-          trimspaces
-          catchfile
-          transparent
-          titlesec
-          import
-          preprint
-          enumitem
-          ;
-      })
+    # Misc
+    nix-index
+    # nix-bash-completions
+    complete-alias
+    glibcLocales
+    powerline-fonts
 
-      # Misc
-      nix-index
-      # nix-bash-completions
-      complete-alias
-      glibcLocales
-      powerline-fonts
-
-      nixGL
-    ]
-    ## Gui applications
-    ++ l.lists.optionals config.isDesktop
-    (
-      [
-        mcomix3 # comic reader
-        zathura # pdf reader
-        sioyek
-        flameshot
-
-        element-web
-        vlc # media player
-        mpv # lightweight media player
-        feh # image viewer
-        # whatsapp-for-linux
-        # signal-desktop
-        bitwarden
-        rofi-rbw
-        discord
-        gnome3.gnome-disk-utility
-        gnome3.pomodoro
-        # filezilla # FTP client
-        krita # Drawing Application
-        transcribe #
-        xournalpp # note taking
-        libreoffice-fresh
-        spotify
-        inkscape
-        gimp
-        deluge
-      ]
-      ++
-      # For those applications that need to be wrapped with nixGL
-      (
-        map (
-          if ! config.isNixos
-          then (ml.wrapWithNixGL nixGL)
-          else x: x
-        )
-        [
-          calibre
-          kitty
-          stremio # media streaming client
-        ]
-      )
-    );
+    nixGL
+  ];
 
   ## MODULES
   programs = {
@@ -245,7 +196,7 @@ in {
     };
 
     firefox = {
-      enable = config.isDesktop;
+      enable = config.host.isDesktop;
     };
 
     direnv = {

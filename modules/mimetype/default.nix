@@ -13,7 +13,7 @@ in {
         # TODO maybe better to directly access from home.packages?
         # TODO what is a package is installed in another way, this should be fine
         getDesktopFile = pkg:
-          if (l.lists.elem pkg config.home.packages) 
+          if (l.lists.elem pkg config.home.packages)
           then l.attrsets.attrNames (l.readDir "${pkg}/share/applications")
           else "";
         audio = getDesktopFile pkgs.vlc;
@@ -21,7 +21,7 @@ in {
         browser = getDesktopFile pkgs.firefox;
         pdf_reader = getDesktopFile pkgs.sioyek;
         svg = getDesktopFile pkgs.inkscape;
-        office = getDesktopFile pkgs.libreoffice-fresh; 
+        office = getDesktopFile pkgs.libreoffice-fresh;
         ##
         zathura = getDesktopFile pkgs.sioyek;
       in {
@@ -38,22 +38,22 @@ in {
         "application/msword" = office;
         "application/vnd.comicbook-rar" = zathura;
         "application/vnd.comicbook+zip" = zathura;
-        "application/mp4"     = video;
-        "application/mkv"     = video;
-        "application/avi"     = video;
-        "video/webm"          = video; 
-        "video/x-annodex"     = video;
-        "video/x-flv"         = video;
-        "video/x-javafx"      = video;
-        "video/x-matroska"    = video;
-        "video/x-matroska-3d" = video;
-        "video/x-ms-asf"      = video;
-        "video/x-ms-wm"       = video;
-        "video/x-ms-wmv"      = video;
-        "video/x-ms-wmx"      = video;
-        "video/x-ms-wvx"      = video;
-        "video/x-msvideo"     = video;
-        "video/x-sgi-movie"   = video;
+        "application/mp4" = video;
+        "application/mkv" = video;
+        "application/avi" = video;
+        # "video/webm"          = video;
+        # "video/x-annodex"     = video;
+        # "video/x-flv"         = video;
+        # "video/x-javafx"      = video;
+        # "video/x-matroska"    = video;
+        # "video/x-matroska-3d" = video;
+        # "video/x-ms-asf"      = video;
+        # "video/x-ms-wm"       = video;
+        # "video/x-ms-wmv"      = video;
+        # "video/x-ms-wmx"      = video;
+        # "video/x-ms-wvx"      = video;
+        # "video/x-msvideo"     = video;
+        # "video/x-sgi-movie"   = video;
       };
     };
   };
