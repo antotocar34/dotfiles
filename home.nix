@@ -346,14 +346,6 @@ in {
     };
   };
 
-  # SERVICES
-  services = {
-    sxhkd = {
-      enable = config.isDesktop;
-      extraOptions = ["-c ${home}/.config/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd"];
-    };
-  };
-
   xsession.enable = false;
 
   # disable notifications about home-manager news
