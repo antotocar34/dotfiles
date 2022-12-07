@@ -14,6 +14,7 @@ get_ssh:
     mkdir -p ~/.config/rbw 2> /dev/null || true
     touch ~/.config/rbw/config.json
     rbw config set email "antoinecarnec@gmail.com"
+    rbw config set pinentry "tty"
     rbw get --full ssh > ~/.ssh/antoine 
 
 switch:
@@ -33,7 +34,7 @@ build:
     nix build --impure .#homeConfigurations.carneca.activationPackage
 
 diff:
-    home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | xargs -n 2 nix run nixpkgs#nvd diff
+    home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | tac | xargs -n 2 nix run nixpkgs#nvd diff
 
 logout:
     qdbus org.kde.ksmserver /KSMServer logout 0 0 0

@@ -15,7 +15,6 @@
     # Managing secrets
     homeage = {
       url = "github:jordanisaacs/homeage";
-      # Optional
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -81,12 +80,15 @@
         ./modules
         plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage
+        { 
+          config.isNixos = false;
+          config.isDesktop = true;
+        }
       ];
+
       extraSpecialArgs = {
         inherit myLib inputs;
-        isDesktop = true;
-        isNixos = false;
-      }; # Pass in any flakes to home.nix
+      };
     };
 
     devShells = forAllSystems (system: {

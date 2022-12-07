@@ -3,5 +3,7 @@
   imports = [
     ./mimetype
     ./clipkgs
+    ./systemd
+    ./host_specific
   ];
 }

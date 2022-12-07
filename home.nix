@@ -4,20 +4,17 @@
   pkgs,
   inputs,
   myLib,
-  isDesktop ? true,
-  isNixos ? false,
   ...
 }: let
   l = builtins // lib;
   ml = myLib;
+
   # Personal Info
-  inherit isDesktop;
   user = "carneca";
   home = "/home/${user}";
   name = "Antoine Carnec";
   hostname = "x1carbon";
   email = "antoinecarnec@gmail.com";
-  system = "x86_64-linux";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 in {
 
@@ -26,7 +23,7 @@ in {
   home.username = "${user}";
   home.homeDirectory = "${home}";
 
-  home.stateVersion = "21.03";
+  home.stateVersion = "21.03"; # Don't touch
 
   home.sessionVariables = {
     FZF_DEFAULT_COMMAND = ''
@@ -47,7 +44,7 @@ in {
     "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(xclip -o -sel clip)";
   };
 
-  nix = l.mkIf (!isNixos) {
+  nix = l.mkIf (! config.isNixos) {
     package = pkgs.nix;
     settings = {
       # Better defaults
@@ -58,6 +55,7 @@ in {
       build-use-sandbox = "true";
       min-free = 128000000;
       max-free = 1000000000;
+      max-jobs = "auto";
       auto-optimise-store = true;
       fallback = true;
       # keep-outputs = true;
@@ -76,6 +74,7 @@ in {
   home.packages = with pkgs;
     [
       # Some window manager utilities
+      systemd
       xdotool
       xorg.xrandr
       xorg.xwininfo
@@ -144,7 +143,7 @@ in {
       nixGL
     ]
     ## Gui applications
-    ++ l.lists.optionals isDesktop
+    ++ l.lists.optionals config.isDesktop
     (
       [
         mcomix3 # comic reader
@@ -177,7 +176,7 @@ in {
       # For those applications that need to be wrapped with nixGL
       (
         map (
-          if ! isNixos
+          if ! config.isNixos
           then (ml.wrapWithNixGL nixGL)
           else x: x
         )
@@ -235,7 +234,7 @@ in {
 
     bash = {
       enable = true;
-      enableCompletion = false;
+      enableCompletion = true;
       profileExtra = l.readFile ./extraConfigs/.bash_profile;
       initExtra = l.readFile ./extraConfigs/.bashrc;
     };
@@ -246,7 +245,7 @@ in {
     };
 
     firefox = {
-      enable = isDesktop;
+      enable = config.isDesktop;
     };
 
     direnv = {
@@ -350,19 +349,12 @@ in {
   # SERVICES
   services = {
     sxhkd = {
-      enable = isDesktop;
+      enable = config.isDesktop;
       extraOptions = ["-c ${home}/.config/sxhkd/sxhkdrc" "-r ${home.homeDirectory}/.logs/sxhkd"];
     };
   };
 
   xsession.enable = false;
-
-  # systemd automatic starting of services *I think*
-  systemd.user.systemctlPath =
-    if isNixos
-    then "${pkgs.systemd}/bin/systemctl"
-    else "/usr/bin/systemctl";
-  systemd.user.startServices = "legacy";
 
   # disable notifications about home-manager news
   news.display = "silent";

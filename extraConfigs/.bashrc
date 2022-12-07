@@ -10,7 +10,7 @@
 . ${HOME}/.nix-profile/share/fzf/key-bindings.bash
 . ${HOME}/.nix-profile/share/fzf/completion.bash
 
-# export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
+export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
 
 # If not running interactively, don't do anything
 case $- in
@@ -31,11 +31,6 @@ shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
 
 export FZF_CTRL_T_COMMAND="fd -I --hidden --follow -E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*' . $HOME"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""'
@@ -65,17 +60,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 # not sure if this is required
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 # Shell VI settings
 bind "set editing-mode vi"

@@ -6,7 +6,7 @@ in
 {
   home.packages = with pkgs; [
       mimeo
-      bashInteractive
+      # bashInteractive
       ripgrep # fast text search
       fd # fast file finder
       fzf # stdout processor
