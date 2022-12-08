@@ -1,0 +1,23 @@
+imp () {
+    red=$(tput setaf 1)
+    message="Welcome to ${red}impurity..."
+    distrobox enter --additional-flags "--env IMP=1" imp -- "bash -i"
+}
+
+imp-init () {
+    distrobox create --yes --image docker.io/library/archlinux:latest --name imp \
+    && imp
+}
+
+impstall () {
+    binary_path="$1"
+    [ -f $binary_path ] || exit 1
+    [ -x $binary_path ] || exit 1
+    distrobox-export -b "$1" --export-path /home/carneca/.local/bin
+}
+
+imp-die () {
+   podman stop imp > /dev/null && \
+   yes Y | distrobox rm imp > /dev/null && \
+   echo "The imp crumbles into a pile of $(tput setaf 3)ashes$(tput sgr0)"
+}
