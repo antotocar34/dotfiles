@@ -32,12 +32,12 @@ in {
         Unit.Description = "";
         Service.Type = "simple";
         Service.ExecStart = "${l.getExe pkgs.deluge}";
-        Install.WantedBy = ["graphical-session.target"];
+        # Install.WantedBy = ["graphical-session.target"];
       };
       xset = {
         Unit.Description = "";
         Service.Type = "oneshot";
-        Service.ExecStart = "${l.getExe pkgs.xorg.xset} r rate 280 50";
+        Service.ExecStart = "${l.getExe pkgs.xorg.xset} r rate 350 50";
         Install.WantedBy = ["graphical-session.target"];
       };
 

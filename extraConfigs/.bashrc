@@ -65,6 +65,8 @@ test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 bind "set editing-mode vi"
 # bind "set show-mode-in-prompt on"
 # bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
+# bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;blue\a\2\""
+# bind "set vi-ins-mode-string \"\1\e[2 q\e]12;white\a\2\""
 # bind "set vi-cmd-mode-string \"\1\e[2 q\e]12;orange\a\2\""
 bind -x '"\C-l": clear'
 
@@ -109,5 +111,18 @@ R_LIBS_USER="${HOME}/.config/R/Rprofile"
 red=$(tput setaf 1)
 # fd --one-file-system -1 -epriv . ~ | grep -q . && printf "%40s\n" "${red}You have .priv files which are unlocked"
 
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]\[\033[01;34m\] \w\[\033[00m\]\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\nλ '
+greenbold="$(tput setaf 2 bold)"
+green="$(tput setaf 2)"
+bluebold="$(tput setaf 4 bold)"
+redbold="$(tput setaf 1 bold)"
+normal="$(tput sgr0)"
+lambda () { 
+    if [ ! -z $IMP ];
+    then
+        echo "${red}λ${normal}"
+    else 
+        echo "λ"
+    fi
+    }
+    export PS1='${greenbold}\u@\h${bluebold} \w${green}$(parse_git_branch)${normal}\n$(lambda) '
 PS1='$(show_virtual_env)'$PS1
