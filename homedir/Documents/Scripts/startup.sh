@@ -1,6 +1,6 @@
 #!/bin/bash
 # This breaks home-manager...
-# . ~/.config/nixpkgs/extraConfigs/.bash_profile 
+# . ~/.config/nixpkgs/homedir/.bash_profile 
 sleep 2
 source ~/.profile
 ${HOME}/.nix-profile/bin/sxhkd -r ~/.logs/sxhkd &

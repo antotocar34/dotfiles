@@ -6,7 +6,7 @@ rclone_command () {
     echo $1 | sed 's#.*\(Documents\)#\1#g'
         }
 
-exclude_file=/home/carneca/.config/nixpkgs/extraConfigs/.config/rclone/exclude_list.txt
+exclude_file=/home/carneca/.config/nixpkgs/homedir/.config/rclone/exclude_list.txt
     ${HOME}/.nix-profile/bin/rclone $2 -vP tdrive:/backup/$(truncatePath $1)/ ${1}/ --filter-from $exclude_list
     } 
 

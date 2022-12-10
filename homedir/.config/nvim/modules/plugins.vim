@@ -73,7 +73,7 @@ let g:vimtex_compiler_latexmk = {
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/extraConfigs/.config/nvim/my-snippets']
+let g:UltiSnipsSnippetDirectories = [home . '/.config/nixpkgs/homedir/.config/nvim/my-snippets']
 " let g:python3_host_prog = home . '/.config/nixpkgs/.useful/.venv/bin/python3'
 
 " Plug 'junegunn/fzf.vim'

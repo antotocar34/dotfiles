@@ -9,7 +9,7 @@ in {
     xdg = {
       mime.enable = true;
       mimeApps.enable = true;
-      mimeApps.defaultApplications = let
+      mimeApps.associations.added = let
         # TODO maybe better to directly access from home.packages?
         # TODO what is a package is installed in another way, this should be fine
         getDesktopFile = pkg:

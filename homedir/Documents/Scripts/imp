@@ -1,11 +1,15 @@
 imp () {
     red=$(tput setaf 1)
-    message="Welcome to ${red}impurity..."
-    distrobox enter --additional-flags "--env IMP=1" imp -- "bash -i"
+    message="Welcome to ${red}impurity...${norma}"
+    distrobox enter --additional-flags "--env IMP=1" \
+        imp -- "bash -l --rcfile ${HOME}/.bashrc"
 }
 
-imp-init () {
-    distrobox create --yes --image docker.io/library/archlinux:latest --name imp \
+imp-summon () {
+    distrobox create --yes \
+    --image docker.io/library/archlinux:latest \
+    --additional-flags "" \
+    --name "imp" \
     && imp
 }
 
@@ -20,4 +24,8 @@ imp-die () {
    podman stop imp > /dev/null && \
    yes Y | distrobox rm imp > /dev/null && \
    echo "The imp crumbles into a pile of $(tput setaf 3)ashes$(tput sgr0)"
+}
+
+imp-commit () {
+    podman commit 
 }

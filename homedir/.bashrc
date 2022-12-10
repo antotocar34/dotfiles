@@ -42,7 +42,7 @@ if [ $TERM = "xterm-kitty" ] ; then
     alias ssh="kitty +kitten ssh"
 fi
 
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/aliases.bash
+. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/aliases.bash
 
 # Unbind ^Q
 stty -ixon
@@ -91,10 +91,10 @@ export -f show_virtual_env
 unset color_prompt force_color_prompt
 
 # PATH VARIABLE DECLARATIONS
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/PATH.bash
+. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/PATH.bash
 
 # Source  aliases
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/temporary_aliases.bash
+. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/temporary_aliases.bash
 
 # Directory specific sources
 ## Sourcing ledger shortcuts

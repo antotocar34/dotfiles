@@ -4,7 +4,7 @@ in {
   rclone-backup = (
     pkgs.writeShellScriptBin "rclone-backup"
     ''
-      ${l.getExe pkgs.rclone} "$@" --filter-from ${../extraConfigs/.config/rclone/exclude_list.txt}
+      ${l.getExe pkgs.rclone} "$@" --filter-from ${../homedir/.config/rclone/exclude_list.txt}
     ''
   );
 

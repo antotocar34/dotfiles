@@ -6,7 +6,7 @@ export MATHS_DIR="${HOME}/Documents/Notes/maths"
 export COLLEGE_DIR="${HOME}/Documents/College/masters"
 
 find_pdf () {
-    FILE=$(fd -uu -epdf . ~/Documents/ ~/Downloads/ ~/Documents/Latex  | rofi -dmenu -i -p $PDF_VIEWER)
+    FILE=$(fd -uu -epdf . ~/Documents/ ~/Downloads/ | rofi -dmenu -i -p $PDF_VIEWER)
 
     if [[ ${?} -eq 0 ]]
     then
@@ -29,7 +29,7 @@ else
 fi
 }
 function mnew () {
-    launch "xournalpp ${MATHS_DIR}/template.xopt" .
+    launch "xournalpp ${MATHS_DIR}/template.xopt"
 }
 
 function xournalwrite () {
@@ -96,6 +96,7 @@ function launch {
     nohup ${@} >/dev/null 2>/dev/null & disown; exit
 }
 
+## Nix aliases
 function nrepl {
     nix repl --expr "import <nixpkgs> {}"
 }
@@ -128,19 +129,3 @@ set +a
 ## RCLONE FUNCTIONS
 
 . ${SCRIPT_DIR}/rfuncs.bash
-
-datascience() {
-    poetry init -n --python ">3.9, <3.11"  --dependency pandas \
-                                           --dependency numpy \
-                                           --dependency matplotlib \
-                                           --dependency sklearn \
-                                           --dev-dependency ipython \
-                                           --dev-dependency ipykernel  \
-                                           --dev-dependency jupyter  \
-                                           --dev-dependency jupytext  \
-                                           --dev-dependency nbconvert  \
-                                           --author "Antoine Carnec"
-    poetry install
-    echo autoload >> .envrc 
-    direnv allow
-}

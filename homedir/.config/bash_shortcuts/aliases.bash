@@ -1,6 +1,6 @@
-. ${HOME}/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/functions.bash
+. ${HOME}/.config/nixpkgs/homedir/.config/bash_shortcuts/functions.bash
 
-CONF_FILES="${HOME}/.config/nixpkgs/extraConfigs"
+CONF_FILES="${HOME}/.config/nixpkgs/homedir"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 alias musicdl="yt-dlp -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
 alias kconvert="rm /tmp/mbt-* ; rm -r /tmp/mobi* ; kcc-c2e --format=MOBI -mu --profile=KPW --splitter=2"

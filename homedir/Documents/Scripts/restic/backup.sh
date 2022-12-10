@@ -15,7 +15,7 @@ start_server () {
 export -f start_server
 
 backup () {
-    EXCLUDE_FILE=/home/carneca/.config/nixpkgs/extraConfigs/.config/rclone/exclude_list.txt
+    EXCLUDE_FILE=/home/carneca/.config/nixpkgs/homedir/.config/rclone/exclude_list.txt
     export RESTIC_REPOSITORY="rest:http://localhost:8080/"
     RESTIC_PASSWORD="$(rbw get restic-x1carbon-remote-backup)"
     export RESTIC_PASSWORD

@@ -75,6 +75,7 @@ in {
   home.packages = with pkgs; [
     # Some window manager utilities
     systemd
+    sxhkd
     xdotool
     xorg.xrandr
     xorg.xwininfo
@@ -139,142 +140,33 @@ in {
     nixGL
   ];
 
-  ## MODULES
-  programs = {
-    git = {
-      enable = true;
-
-      aliases = {
-        lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
-        te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
-        st = "status --short";
-        wdiff = "diff --word-diff=color";
-        unstage = "reset HEAD --";
-      };
-      userName = "${name}";
-      userEmail = "${email}";
-      # includes = [
-      #   {
-      #     path = "~/carneca/.config/nixpkgs/extraConfigs/.config/git/website"
-      #     # contents = {
-      #     #   userName = "antoinecarnec" ;
-      #     #   userEmail = "antoinecarnec2@gmail.com" ;
-      #     #              } ;
-      #       condition = "gitdir:~/Documents/Website/antoinecarnec.github.io" ;
-      #   }
-      # ] ;
-
-      delta.enable = true;
-      delta.options = {
-        syntax-theme = "Nord";
-        side-by-side = "false";
-        paging = "auto";
-        line-numbers = "true";
-        hunk-header-style = "omit";
-        line-numbers-zero-style = "#4C566A";
-        # plus-emph-style = "syntax '#A3BE8C'" ;
-      };
-    };
-
-    gh = {
-      enable = true;
-      settings = {
-        git_protocol = "ssh";
-      };
-    };
-
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      profileExtra = l.readFile ./extraConfigs/.bash_profile;
-      initExtra = l.readFile ./extraConfigs/.bashrc;
-    };
-
-    bat = {
-      enable = true;
-      config = {theme = "Nord";};
-    };
-
-    firefox = {
-      enable = config.host.isDesktop;
-    };
-
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-    ssh = {
-      enable = true;
-      matchBlocks = {
-        "website" = {
-          user = "git";
-          port = 22;
-          hostname = "github.com";
-          host = "github.com-antoinecarnec";
-          identityFile = "~/.ssh/website";
-        };
-        "github" = {
-          user = "git";
-          port = 22;
-          hostname = "github.com";
-          host = "github.com";
-          identityFile = "~/.ssh/github";
-        };
-        "x1carbon" = {
-          user = "carneca";
-          hostname = "x1carbon";
-          host = "x1carbon";
-          identityFile = "~/.ssh/${hostname}";
-        };
-      };
-    };
-
-    tmux = {
-      enable = true;
-      baseIndex = 1;
-      escapeTime = 1;
-      keyMode = "vi";
-      newSession = true;
-      shortcut = "k";
-      extraConfig = builtins.readFile ./extraConfigs/.tmux.conf;
-    };
-
-    rbw = {
-      enable = true;
-      settings = {
-        pinentry = "tty";
-        inherit email;
-      };
-    };
-  };
-
   # Apply plasma settings
-  programs.plasma = import ./extraConfigs/plasma_settings.nix;
+  programs.plasma = import ./homedir/.config/plasma-settings/plasma_settings.nix;
 
   xdg = {
     enable = true;
     cacheHome = "/home/carneca/.cache";
     configHome = "/home/carneca/.config";
     dataHome = "/home/carneca/.local/share";
-    systemDirs.config = ["${HOME_MANAGER_CONFIG}/extraConfigs/.config"];
+    systemDirs.config = ["${HOME_MANAGER_CONFIG}/homedir/.config"];
   };
 
   home.file = {
     # Directories
-    ".config".source = ./extraConfigs/.config;
+    ".config".source = ./homedir/.config;
     ".config".recursive = true;
-    ".ssh".source = ./homedir/.ssh;
-    ".ssh".recursive = true;
 
     # Files
+    ".ssh".source = ./homedir/.ssh;
+    ".ssh".recursive = true;
     ".xmodmap".source = ./homedir/.xmodmap;
     ".taskrc".source = ./homedir/.taskrc; # taskwarrior configuration
     ".dir_colors".source = ./homedir/.dir_colors;
-    ".timewarrior/timewarrior.cfg".source = ./extraConfigs/timewarrior.cfg;
+    ".timewarrior/timewarrior.cfg".source = ./homedir/.timewarrior/timewarrior.cfg;
     "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg;
     ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf;
     ".muttrc".source = ./homedir/.muttrc;
-    ".Rprofile".source = ./extraConfigs/.config/R/Rprofile;
+    ".Rprofile".source = ./homedir/.config/R/Rprofile;
   };
 
   # Secrets
@@ -283,16 +175,16 @@ in {
     installationType = "activation";
 
     file."rclone_config" = {
-      source = ./extraConfigs/.config/rclone/rclone.conf.age;
+      source = ./homedir/.config/rclone/rclone.conf.age;
       copies = ["${home}/.config/rclone/rclone.conf"];
     };
 
     file."msmtp_config" = {
-      source = ./extraConfigs/.config/msmtp/config.age;
+      source = ./homedir/.config/msmtp/config.age;
       copies = ["${home}/.config/msmtp/config"];
     };
     file."weekly_dl_config" = {
-      source = ./extraConfigs/.config/weekly_dl/config.json.age;
+      source = ./homedir/.config/weekly_dl/config.json.age;
       copies = ["${home}/.config/weekly_dl/config.json"];
     };
   };

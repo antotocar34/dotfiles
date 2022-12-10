@@ -51,4 +51,12 @@ in {
       ]
     )
   ));
+
+  programs = {
+
+    firefox = {
+      enable = config.host.isDesktop;
+    };
+
+  };
 }

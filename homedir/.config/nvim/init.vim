@@ -1,10 +1,10 @@
 if exists("g:ink_on")
-      source ~/.config/nixpkgs/extraConfigs/minimal-vimrc.vim
+      source ~/.config/nixpkgs/homedir/minimal-vimrc.vim
 else
 
 let mapleader = " "
 let home = $HOME
-let nvim_folder = "/home/carneca/.config/nixpkgs/extraConfigs/.config/nvim/modules/"
+let nvim_folder = "/home/carneca/.config/nixpkgs/homedir/.config/nvim/modules/"
 
 execute "source " . nvim_folder . "plugins.vim"
 execute "source " . nvim_folder . "settings.vim"

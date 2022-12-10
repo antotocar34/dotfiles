@@ -21,4 +21,4 @@ export LEDGER_FILE=/home/carneca/Documents/Finances/journal.beancount
 # To make rofi recognized nix installed applications
 # cp -Lr ~/.nix-profile/share/applications/*.desktop ~/.local/share/applications 2> /dev/null
 
-. ~/.config/nixpkgs/extraConfigs/.config/bash_shortcuts/functions.bash
+. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/functions.bash

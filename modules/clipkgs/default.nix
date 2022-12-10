@@ -5,6 +5,9 @@
 }: let
   l = pkgs.lib // builtins;
   mypkgs = import ../../mypkgs {inherit pkgs;};
+  hostname = "x1carbon";
+  email = "antoinecarnec@gmail.com";
+  name = "Antoine Carnec";
 in {
   home.packages = with pkgs; [
     mimeo
@@ -44,4 +47,99 @@ in {
     cmus # Music player
     vifm # terminal file manager
   ];
+
+  programs = {
+    git = {
+      enable = true;
+
+      aliases = {
+        lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) '' + 
+        ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
+        te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) '' +
+        ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
+        st = "status --short";
+        wdiff = "diff --word-diff=color";
+        unstage = "reset HEAD --";
+      };
+      userName = "${name}";
+      userEmail = "${email}";
+
+      delta.enable = true;
+      delta.options = {
+        syntax-theme = "Nord";
+        side-by-side = "false";
+        paging = "auto";
+        line-numbers = "true";
+        hunk-header-style = "omit";
+        line-numbers-zero-style = "#4C566A";
+        # plus-emph-style = "syntax '#A3BE8C'" ;
+      };
+    };
+
+    gh = {
+      enable = true;
+      settings = {
+        git_protocol = "ssh";
+      };
+    };
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      profileExtra = l.readFile ../../homedir/.bash_profile;
+      initExtra = l.readFile ../../homedir/.bashrc;
+    };
+
+    bat = {
+      enable = true;
+      config = {theme = "Nord";};
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "website" = {
+          user = "git";
+          port = 22;
+          hostname = "github.com";
+          host = "github.com-antoinecarnec";
+          identityFile = "~/.ssh/website";
+        };
+        "github" = {
+          user = "git";
+          port = 22;
+          hostname = "github.com";
+          host = "github.com";
+          identityFile = "~/.ssh/github";
+        };
+        "x1carbon" = {
+          user = "carneca";
+          hostname = "x1carbon";
+          host = "x1carbon";
+          identityFile = "~/.ssh/${hostname}";
+        };
+      };
+    };
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      escapeTime = 1;
+      keyMode = "vi";
+      newSession = true;
+      shortcut = "k";
+      extraConfig = builtins.readFile ../../homedir/.tmux.conf;
+    };
+
+    rbw = {
+      enable = true;
+      settings = {
+        pinentry = "tty";
+        inherit email;
+      };
+    };
+  };
 }

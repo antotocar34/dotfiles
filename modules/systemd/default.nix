@@ -8,11 +8,11 @@ in {
   # systemd automatic starting of services *I think*
   systemd.user = {
     systemctlPath = "${pkgs.systemd}/bin/systemctl";
-    startServices = "legacy";
+    startServices = "suggest";
     services = {
       sxhkd = {
         Unit.Description = "Simple X Hotkey Daemon";
-        Service.Type = "simple";
+        Service.Type = "oneshot";
         Service.ExecStart = "${l.getExe pkgs.sxhkd}";
         Install.WantedBy = ["graphical-session.target"];
       };
