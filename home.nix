@@ -75,7 +75,6 @@ in {
   home.packages = with pkgs; [
     # Some window manager utilities
     systemd
-    sxhkd
     xdotool
     xorg.xrandr
     xorg.xwininfo

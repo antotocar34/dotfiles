@@ -4,6 +4,7 @@
   ...
 }: let
   l = pkgs.lib // builtins;
+  inherit (config.host) user;
 in {
   # systemd automatic starting of services *I think*
   systemd.user = {
@@ -13,7 +14,7 @@ in {
       sxhkd = {
         Unit.Description = "Simple X Hotkey Daemon";
         Service.Type = "oneshot";
-        Service.ExecStart = "${l.getExe pkgs.sxhkd}";
+        Service.ExecStart = "PATH=/home/${user}/.nix-profile/bin:$PATH ${l.getExe pkgs.sxhkd}";
         Install.WantedBy = ["graphical-session.target"];
       };
       flameshot = {
