@@ -125,7 +125,3 @@ function nrun {
 }
 
 set +a
-
-## RCLONE FUNCTIONS
-
-. ${SCRIPT_DIR}/rfuncs.bash

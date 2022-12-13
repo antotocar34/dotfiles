@@ -193,4 +193,6 @@ in {
 
   # disable notifications about home-manager news
   news.display = "silent";
+
+  imp.enable = true;
 }

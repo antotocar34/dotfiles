@@ -7,11 +7,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
-. ${HOME}/.nix-profile/share/fzf/key-bindings.bash
-. ${HOME}/.nix-profile/share/fzf/completion.bash
-
-export LOCALE_ARCHIVE="${HOME}/.nix-profile/lib/locale/locale-archive"
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -32,9 +27,6 @@ shopt -s globstar
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-export FZF_CTRL_T_COMMAND="fd -I --hidden --follow -E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*' . $HOME"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .stack --ignore .cabal --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""'
-
 # VARIABLE DECLARATIONS
 export TERMINAL="kitty"
 
@@ -42,7 +34,6 @@ if [ $TERM = "xterm-kitty" ] ; then
     alias ssh="kitty +kitten ssh"
 fi
 
-. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/aliases.bash
 
 # Unbind ^Q
 stty -ixon
@@ -90,21 +81,9 @@ export -f show_virtual_env
 
 unset color_prompt force_color_prompt
 
-# PATH VARIABLE DECLARATIONS
-. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/PATH.bash
-
-# Source  aliases
-. ~/.config/nixpkgs/homedir/.config/bash_shortcuts/temporary_aliases.bash
-
-# Directory specific sources
 ## Sourcing ledger shortcuts
 FINANCE_DIR="${HOME}/Documents/Finances"
 # . ${FINANCE_DIR}/.bash_shortcuts
-
-# For direnv
-if ( which direnv &> /dev/null )
-    then eval "$(direnv hook bash)"
-fi
 
 R_LIBS_USER="${HOME}/.config/R/Rprofile"
 

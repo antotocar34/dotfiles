@@ -1,5 +1,3 @@
-. ${HOME}/.config/nixpkgs/homedir/.config/bash_shortcuts/functions.bash
-
 CONF_FILES="${HOME}/.config/nixpkgs/homedir"
 WIKI_LOC="${HOME}/Documents/Notes/vimwiki"
 alias musicdl="yt-dlp -ic -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"

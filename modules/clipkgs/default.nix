@@ -85,8 +85,11 @@ in {
     bash = {
       enable = true;
       enableCompletion = true;
-      profileExtra = l.readFile ../../homedir/.bash_profile;
+      profileExtra = l.readFile ../../homedir/.extra_profile;
       initExtra = l.readFile ../../homedir/.bashrc;
+      bashrcExtra = ''
+        . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
+        '';
     };
 
     bat = {
@@ -140,6 +143,11 @@ in {
         pinentry = "tty";
         inherit email;
       };
+    };
+
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
     };
   };
 }

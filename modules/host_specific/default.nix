@@ -14,5 +14,13 @@ in {
       type = l.types.bool;
       description = "whether this profile is should include GUI applications";
     };
+    user = l.mkOption {
+        type = l.types.str ;
+        description = "User name";
+    };
+    hostname = l.mkOption {
+        type = l.types.str ;
+        description = "Hostname of the user";
+    };
   };
 }
