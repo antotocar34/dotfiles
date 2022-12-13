@@ -107,28 +107,29 @@ in {
     (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
     # TODO Move to a flake?
-    (texlive.combine {
-      inherit
-        (texlive)
-        # Main suite
+    texlive.combined.scheme-full
+    # (texlive.combine {
+    #   inherit
+    #     (texlive)
+    #     # Main suite
         
-        scheme-medium
-        # Extra packages
+    #     scheme-medium
+    #     # Extra packages
         
-        wrapfig
-        was
-        svg
-        bbm
-        collection-fontsextra
-        trimspaces
-        catchfile
-        transparent
-        titlesec
-        import
-        preprint
-        enumitem
-        ;
-    })
+    #     wrapfig
+    #     was
+    #     svg
+    #     bbm
+    #     collection-fontsextra
+    #     trimspaces
+    #     catchfile
+    #     transparent
+    #     titlesec
+    #     import
+    #     preprint
+    #     enumitem
+    #     ;
+    # })
 
     # Misc
     nix-index
