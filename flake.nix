@@ -82,6 +82,8 @@
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
+          config.host.user = "carneca";
+          config.host.hostname = "x1carbon";
         }
       ];
 

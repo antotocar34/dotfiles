@@ -10,10 +10,10 @@
   ml = myLib;
 
   # Personal Info
-  user = "carneca";
+  user = "${config.host.user}";
   home = "/home/${user}";
+  hostname = "${config.host.hostname}";
   name = "Antoine Carnec";
-  hostname = "x1carbon";
   email = "antoinecarnec@gmail.com";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 in {
@@ -145,9 +145,9 @@ in {
 
   xdg = {
     enable = true;
-    cacheHome = "/home/carneca/.cache";
-    configHome = "/home/carneca/.config";
-    dataHome = "/home/carneca/.local/share";
+    cacheHome = "${home}/.cache";
+    configHome = "${home}/.config";
+    dataHome = "${home}/.local/share";
     systemDirs.config = ["${HOME_MANAGER_CONFIG}/homedir/.config"];
   };
 
