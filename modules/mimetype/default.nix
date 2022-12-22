@@ -1,11 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
-  l = pkgs.lib // builtins;
+  cfg = config.mimetype;
+  l = lib // builtins;
 in {
-  config = {
+  options.mimetype = {
+    enable = l.mkEnableOption "Enable custom mimetypes";
+  };
+  config = l.mkIf cfg.enable {
     xdg = {
       mime.enable = true;
       mimeApps.enable = true;

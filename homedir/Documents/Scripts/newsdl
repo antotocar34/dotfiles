@@ -19,14 +19,13 @@ fi
 
 
 download_news () {
-cd $(mktemp -d)
-ebook-convert $recipe_file ./document.${EXTENSION}
-calibredb --with-library=${MAGAZINE_LIBRARY} add ./document.${EXTENSION}
-echo "Sending mail"
-echo | mutt -s "" -a ./document.${EXTENSION} -- ${KINDLE_EMAIL}
-if [ $? -eq 0 ] 
-then echo "Emailling Succesful!"
-fi
+  cd $(mktemp -d)
+  output_name="./economist_$(date "+%V_%Y").${EXTENSION}"
+  ebook-convert $recipe_file $output_name
+  calibredb --with-library=${MAGAZINE_LIBRARY} add $output_name
+  echo "Sending mail"
+  echo | mutt -s "" -a $output_name -- ${KINDLE_EMAIL}
+  [ $? -eq 0 ] && echo "Emailing Succesful!"
 }
 
 download_news

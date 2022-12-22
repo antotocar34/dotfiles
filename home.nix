@@ -7,14 +7,10 @@
   ...
 }: let
   l = builtins // lib;
-  ml = myLib;
 
   # Personal Info
   user = "${config.host.user}";
   home = "/home/${user}";
-  hostname = "${config.host.hostname}";
-  name = "Antoine Carnec";
-  email = "antoinecarnec@gmail.com";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
 in {
   programs.home-manager.enable = true;
@@ -81,11 +77,11 @@ in {
     xbanish # Hides cursor on key press
 
     # text editor
-    # (
-    #   writeShellScriptBin "nvim-nix" ''
-    #   exec "${neovimAC}/bin/nvim" "$@"
-    #   ''
-    # )
+    (
+      writeShellScriptBin "nvim-old" ''
+      exec "${l.getExe pkgs.neovim}" "$@"
+      ''
+    )
     neovim
     neovim-remote # Needed for SyncTex
 
@@ -167,6 +163,8 @@ in {
     ".ghc/ghci.conf".source = ./homedir/.ghc/ghci.conf;
     ".muttrc".source = ./homedir/.muttrc;
     ".Rprofile".source = ./homedir/.config/R/Rprofile;
+    ".ipython".source = ./homedir/.ipython;
+    ".ipython".recursive = true;
   };
 
   # Secrets
@@ -178,7 +176,6 @@ in {
       source = ./homedir/.config/rclone/rclone.conf.age;
       copies = ["${home}/.config/rclone/rclone.conf"];
     };
-
     file."msmtp_config" = {
       source = ./homedir/.config/msmtp/config.age;
       copies = ["${home}/.config/msmtp/config"];

@@ -14,7 +14,8 @@ in {
       sxhkd = {
         Unit.Description = "Simple X Hotkey Daemon";
         Service.Type = "oneshot";
-        Service.ExecStart = "PATH=/home/${user}/.nix-profile/bin:$PATH ${l.getExe pkgs.sxhkd}";
+        Service.Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin:/usr/bin:/bin";
+        Service.ExecStart = ''bash -c ". ${config.home.homeDirectory}/.config/nixpkgs/bash_shortcuts/*.bash; ${l.getExe pkgs.sxhkd}"'';
         Install.WantedBy = ["graphical-session.target"];
       };
       flameshot = {
