@@ -1,8 +1,5 @@
-alt + w
-    find_tex || notify-send "oops"
-
 alt + r  
-    find_pdf || notify-send "oops"
+    find_ pdf
 
 alt + f
     kitty --name vifm -e vifm .
@@ -11,7 +8,7 @@ shift + alt + t
     kitty --name tmux tmux a
 
 alt + Return 
-    rofi -show drun -show-icons
+    rofi -show drun -show-icons -theme $HOME_MANAGER_CONFIG/homedir/.config/rofi/launcher.rasi
 
 alt + p
     rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock 2>>~/.logs/why; sleep 0.5 && rofi-rbw --clear-after 30 2>>~/.logs/why; fi
@@ -28,9 +25,6 @@ alt + m
 ctrl + Return
     kitty --name term0 -d ~ env TDROP= bash
 
-/* F12 */
-/*     tdrop --number=421 -ma -w -4 -y "50%" kitty --name term1 -d ~ env TDROP="red" bash */
-
 ctrl + b
     nixGLIntel firefox
 
@@ -41,7 +35,7 @@ shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
 
 alt + s
-    $PDF_VIEWER "$(ls -t ~/Downloads/*.pdf | head -n1)"
+    zathura "$(ls -t ~/Downloads/*.pdf | head -n1)"
 
 alt + e
     rofi -show window

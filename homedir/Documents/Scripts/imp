@@ -10,9 +10,9 @@ imp-summon () {
     [ -d "$IMP_HOME" ] || mkdir .local/share/imp_home
     distrobox create --yes \
     --image docker.io/library/archlinux:latest \
-    --init-hooks """
-        pacman --noconfirm -Syu which
-        """ \
+    # --init-hooks """
+    #     pacman --noconfirm -Syu which
+    #     """ \
     --home "$IMP_HOME" \
     --name "imp" || exit 1
     # --additional-flags "" \

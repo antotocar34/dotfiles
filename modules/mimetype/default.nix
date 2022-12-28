@@ -59,6 +59,7 @@ in {
         # "video/x-ms-wvx"      = video;
         # "video/x-msvideo"     = video;
         # "video/x-sgi-movie"   = video;
+        
       };
     };
   };

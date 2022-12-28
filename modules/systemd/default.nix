@@ -4,9 +4,7 @@
   ...
 }: let
   l = pkgs.lib // builtins;
-  inherit (config.host) user;
 in {
-  # systemd automatic starting of services *I think*
   systemd.user = {
     systemctlPath = "${pkgs.systemd}/bin/systemctl";
     startServices = "suggest";
@@ -15,7 +13,7 @@ in {
         Unit.Description = "Simple X Hotkey Daemon";
         Service.Type = "oneshot";
         Service.Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin:/usr/bin:/bin";
-        Service.ExecStart = ''bash -c ". ${config.home.homeDirectory}/.config/nixpkgs/bash_shortcuts/*.bash; ${l.getExe pkgs.sxhkd}"'';
+        Service.ExecStart = "${l.getExe pkgs.sxhkd}";
         Install.WantedBy = ["graphical-session.target"];
       };
       flameshot = {
@@ -47,7 +45,7 @@ in {
         script = import ../../homedir/Documents/Scripts/restic/restic_backup.nix {inherit pkgs;};
       in {
         Unit.Description = "Backup";
-        Service.Type = "forking"; # launch tmux session then exit
+        Service.Type = "exec"; # launch tmux session then exit
         Service.ExecStart = "${script}/bin/restic-backup";
         # Install.WantedBy = [ "timers.target" ];
       };

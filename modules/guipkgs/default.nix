@@ -11,8 +11,8 @@ in {
       rofi
       mcomix3 # comic reader
       zathura # pdf reader
-      sioyek
       flameshot
+      zotero
 
       element-web
       vlc # media player
@@ -52,6 +52,7 @@ in {
         calibre
         kitty
         stremio # media streaming client
+        sioyek
       ]
     )
   ));

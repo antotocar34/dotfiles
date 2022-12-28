@@ -22,33 +22,15 @@ backup () {
     pgrep --full 'rclone serve' > /dev/null || start_server
     pgrep --full 'rclone serve' > /dev/null || fail "rclone server not available"
     restic --limit-upload $(( 8*1000 )) \
-           -vvv \
+           -v \
            --password-file <(echo "$RESTIC_PASSWORD") \
            --tag "$(date '+%d%b%Y')" \
            --exclude-file $EXCLUDE_FILE \
-           backup "/home/carneca/Documents/" "/home/carneca/Music"  2> ~/.logs/somanyerrors
+           backup "/home/carneca/Documents/" "/home/carneca/Music"
 }
 export -f backup
 
-read_notify_loop () {
-    if ! rbw unlocked;
-    then while true; do
-        clear
-        notify-send -t $(( 10*1000 )) "Please authenticate the restic backup :)"
-        read -r -t $(( 1*60 )) -p "Ready? (Press Enter to Continue)"
-        if [ $? -eq 0 ];
-        then 
-            if rbw unlock;
-            then
-                break
-            fi
-        fi
-    done
-    fi
-}
-
 main () {
-    read_notify_loop 2> ~/.logs/read_notify_loop
     backup 2> ~/.logs/backup_restic
     kill "$(pgrep --full 'rclone serve')"
 }

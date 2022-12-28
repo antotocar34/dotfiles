@@ -20,5 +20,6 @@ in {
     ./systemd
     ./host_specific
     ./imp
+    ./scripts
   ];
 }

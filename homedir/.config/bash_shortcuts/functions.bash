@@ -4,19 +4,6 @@ export PYTHON_DIR="${HOME}/Documents/Programming/Python"
 export SCRIPT_DIR="${HOME_MANAGER_CONFIG}/homedir/Documents/Scripts"
 export MATHS_DIR="${HOME}/Documents/Notes/maths"
 export COLLEGE_DIR="${HOME}/Documents/College/masters"
-export PATH="${HOME}/.nix-profile/bin":$PATH
-
-find_pdf () {
-    FILE=$(fd -uu -epdf . ~/Documents/ ~/Downloads/ | rofi -dmenu -i -p $PDF_VIEWER)
-
-    if [[ ${?} -eq 0 ]]
-    then
-        $PDF_VIEWER "${FILE}"
-        exit 0
-    else
-        exit 1
-    fi
-}
 
 find_tex () {
 FILE=$(fd -uu -etex . ~/Documents | rofi -dmenu -i -p "tex")
