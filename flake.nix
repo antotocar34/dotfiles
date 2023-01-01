@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    comma = {
-      url = "github:nix-community/comma";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # neovim-flake = {
     #   url = "path:/home/carneca/Documents/projects/neovim-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -44,8 +39,7 @@
     home-manager,
     homeage,
     plasma-manager,
-    nixgl,
-    comma,
+    nixgl
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -54,9 +48,7 @@
         nixgl.overlay
         (_: _: {
           nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
-          comma = comma.packages.${system}.comma;
         })
-        # neovim-flake.overlays.default
         acpkgs.overlays.default
       ];
     };

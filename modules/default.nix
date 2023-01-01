@@ -21,5 +21,7 @@ in {
     ./host_specific
     ./imp
     ./scripts
+    ./true_aliases
+    ./productivity
   ];
 }

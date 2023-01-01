@@ -9,6 +9,12 @@
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
 in {
+    home.trueAliases = with pkgs; {
+      "j" = just;
+      "open" = mimeo;
+    };
+
+
   home.packages = with pkgs; [
     mimeo
     # bashInteractive

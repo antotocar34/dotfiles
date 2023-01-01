@@ -14,7 +14,7 @@ in (pkgs.writeShellApplication {
     while true; do
       if ! tmux list-session | grep -q "$SESSION_NAME";
       then
-        ${backup_script} ; exit 0
+        ${backup_script} ; exit $?
       fi
     done
   '';

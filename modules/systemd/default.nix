@@ -1,9 +1,10 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
-  l = pkgs.lib // builtins;
+  l = lib // builtins;
 in {
   systemd.user = {
     systemctlPath = "${pkgs.systemd}/bin/systemctl";
@@ -49,12 +50,44 @@ in {
         Service.ExecStart = "${script}/bin/restic-backup";
         # Install.WantedBy = [ "timers.target" ];
       };
+      newsdl = let
+        script = import ../../homedir/Documents/Scripts/newsdl/newsdl.nix {inherit pkgs;};
+      in
+      {
+        Unit.Description = "";
+        Service.Type = "exec";
+        Service.ExecStart = "${script}/bin/newsdl";
+      };
+
+      rclone_nightly = let
+        script = import ../../homedir/Documents/Scripts/rclone/daily_backup.nix;
+      in
+      {
+        Unit.Description = "";
+        Service.Type = "exec";
+        Service.ExecStart = "${l.getExe script}";
+      };
     };
-    timers.restic-backup = {
-      Unit.Description = "Run restic-backup daily";
-      Timer.OnCalendar = "11:30:00";
-      Timer.Persistent = true;
-      Install.WantedBy = ["timers.target"];
+
+    timers = {
+      restic-backup = {
+        Unit.Description = "Run restic-backup daily";
+        Timer.OnCalendar = "11:00:00";
+        Install.WantedBy = ["timers.target"];
+        Timer.Persistent = true;
+      };
+      newsdl = {
+        Unit.Description = "Run newsdl on Thursday night";
+        Timer.OnCalendar = "Thu 22:40:00";
+        Install.WantedBy = ["timers.target"];
+        Timer.Persistent = true;
+      };
+      rclone_nightly = {
+        Unit.Description = "";
+        Timer.OnCalendar = "21:00:00";
+        Install.WantedBy = ["timers.target"];
+        Timer.Persistent = false;
+      };
     };
   };
 }

@@ -1,1 +1,0 @@
-20 11 * * * bash /home/carneca/.config/nixpkgs/homedir/Documents/Scripts/daily_backup.sh >> /home/carneca/.logs/backup 2>&1

@@ -29,7 +29,7 @@ in {
     NIXPKGS_ALLOW_UNFREE = 1;
     # PDF_VIEWER = "${getExe pkgs.zathura}";
     PDF_VIEWER = "${lib.getExe pkgs.sioyek}";
-    NIX_PATH = "nixpkgs=${pkgs.path}"; # Is this a good idea, the overlays are applied...
+    NIX_PATH = "nixpkgs=${pkgs.path}";
     inherit HOME_MANAGER_CONFIG;
   };
 
@@ -74,7 +74,6 @@ in {
     xdotool
     xorg.xrandr
     xorg.xwininfo
-    xbanish # Hides cursor on key press
 
     # text editor
     (
@@ -93,38 +92,10 @@ in {
     beancount
     fava
 
-    # productivity
-    # taskwarrior
-    # timewarrior
-
     # useful programs
-
     (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
-    # TODO Move to a flake?
     texlive.combined.scheme-full
-    # (texlive.combine {
-    #   inherit
-    #     (texlive)
-    #     # Main suite
-        
-    #     scheme-medium
-    #     # Extra packages
-        
-    #     wrapfig
-    #     was
-    #     svg
-    #     bbm
-    #     collection-fontsextra
-    #     trimspaces
-    #     catchfile
-    #     transparent
-    #     titlesec
-    #     import
-    #     preprint
-    #     enumitem
-    #     ;
-    # })
 
     # Misc
     nix-index
@@ -132,7 +103,6 @@ in {
     complete-alias
     glibcLocales
     powerline-fonts
-
     nixGL
   ];
 
@@ -156,7 +126,6 @@ in {
     ".ssh".source = ./homedir/.ssh;
     ".ssh".recursive = true;
     ".xmodmap".source = ./homedir/.xmodmap;
-    ".taskrc".source = ./homedir/.taskrc; # taskwarrior configuration
     ".dir_colors".source = ./homedir/.dir_colors;
     ".timewarrior/timewarrior.cfg".source = ./homedir/.timewarrior/timewarrior.cfg;
     "Pictures/wallpapers/bigsur.jpg".source = ./homedir/Pictures/wallpapers/bigsur.jpg;

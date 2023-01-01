@@ -1,6 +1,6 @@
 get_drive_root() {
-local cutoff=$( readlink -f ${1:-.} | sed "s#${HOME}/\(.*\)#\1#" | sed "s#${HOME}##")
-echo tdrive:/backup/${cutoff}
+    local cutoff=$( readlink -f ${1:-.} | sed "s|${HOME}/\(.*\)|\1|" | sed "s#${HOME}##")
+    echo tdrive:/backup/${cutoff}
 }
 
 rcheck () {
@@ -22,7 +22,7 @@ rupdate() {
     rclone_command_update () {
         drive_path=$(get_drive_root ${1:-.})
         local_path=$(readlink -f ${1:-.})
-        ${HOME}/.nix-profile/bin/rclone-backup $2 -v ${local_path}/ $drive_path/
+        rclone-backup $2 -v ${local_path}/ $drive_path/
         }
     if [[ $1 = "-s" ]]; then
         input_full=$(readlink -f $2)
@@ -37,7 +37,7 @@ rdl() {
     rclone_command_download () {
         drive_path=$(get_drive_root ${1:-.})
         local_path=$(readlink -f ${1:-.})
-        ${HOME}/.nix-profile/bin/rclone-backup $2 -v ${drive_path}/ ${local_path}/
+        rclone-backup $2 -v ${drive_path}/ ${local_path}/
         }
     if [[ $1 = "-s" ]]; then
         rclone_command_download $2 sync
@@ -65,5 +65,5 @@ pdl() {
 bdupdate() {
     LOCAL_BD_LIB="${HOME}/Documents/Books/Calibre/BD" 
     REMOTE_BD_LIB="tdrive:/backup/Documents/Books/Calibre/BD"
-    ${HOME}/.nix-profile/bin/rclone-backup copy -v $LOCAL_BD_LIB $REMOTE_BD_LIB
+    rclone-backup copy -v $LOCAL_BD_LIB $REMOTE_BD_LIB
 }

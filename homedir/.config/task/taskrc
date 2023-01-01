@@ -7,15 +7,11 @@ dateformat=D-M-Y
 dateformat.edit=D-M-Y H:N:S
 dateformat.holiday=DMY
 dateformat.info=D-M-Y H:N:S
-# Here is an example of entries that use the default, override and blank values
-#   variable=foo   -- By specifying a value, this overrides the default
-#   variable=      -- By specifying no value, this means no default
-#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
 
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=~/.task
+data.location=~/Documents/Storage/tasks
 
 rule.precedence.color=deleted,completed,active,keyword.,tag.,project.,overdue,scheduled,due.today,due,blocked,blocking,recurring,tagged,uda.
 
@@ -36,8 +32,8 @@ color.active=black on bright green
 color.recurring=magenta
 color.scheduled=white on green
 color.until=
-color.blocked=black on white
-color.blocking=black on bright white
+color.blocked=bright white on black
+color.blocking=white on black
 
 # Project
 color.project.none=
@@ -93,6 +89,6 @@ color.undo.after=green
 color.undo.before=red
 
 #Contextts
-context.work=-personal +college +work
-context.rest=-college -work
-context.study=+study 
+# context.work=-personal +college +work
+# context.rest=-college -work
+# context.study=+study 
