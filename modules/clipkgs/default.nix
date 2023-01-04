@@ -5,14 +5,25 @@
 }: let
   l = pkgs.lib // builtins;
   mypkgs = import ../../mypkgs {inherit pkgs;};
-  hostname = "x1carbon";
+  hostname = config.host.hostname;
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
 in {
-    home.trueAliases = with pkgs; {
+
+  home.trueAliases = with pkgs; {
       "j" = just;
       "open" = mimeo;
     };
+    home.aliases = { 
+      "sys" = "systemctl --user";
+      "jnl" = "journalctl --user";
+    };
+
+  home.sessionVariables = {
+        FZF_DEFAULT_COMMAND = ''
+      ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
+    '';
+  };
 
 
   home.packages = with pkgs; [

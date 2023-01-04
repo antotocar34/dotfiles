@@ -12,3 +12,4 @@
 - .direnv/
 - env/
 - /home/carneca/.tmp
+- /home/carneca/.ssh

@@ -1,9 +1,7 @@
-# {config, pkgs}: 
+{config, pkgs}: 
 let
-  pkgs = import <nixpkgs> {};
   l = pkgs.lib // builtins;
   # daily_backup_script = pkgs.writeShellScript "backup" (builtins.readFile ./daily_backup.sh);
-  config.host.user = "carneca";
   homedir = "/home/${config.host.user}";
 
 in (pkgs.writeShellApplication {

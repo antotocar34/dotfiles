@@ -14,7 +14,7 @@ in {
         Unit.Description = "Simple X Hotkey Daemon";
         Service.Type = "oneshot";
         Service.Environment = "PATH=${config.home.homeDirectory}/.nix-profile/bin:/usr/bin:/bin";
-        Service.ExecStart = "${l.getExe pkgs.sxhkd}";
+        Service.ExecStart = "${l.getExe pkgs.sxhkd} -c ${config.home.homeDirectory}/.config/nixpkgs/homedir/.config/sxhkd/sxhkdrc";
         Install.WantedBy = ["graphical-session.target"];
       };
       flameshot = {
@@ -50,6 +50,12 @@ in {
         Service.ExecStart = "${script}/bin/restic-backup";
         # Install.WantedBy = [ "timers.target" ];
       };
+      # restic-rclone-server = {
+      #   Unit.Description = "";
+      #   Service.Type = "simple";
+      #   Service.ExecStart = "${l.getExe pkgs.rclone} serve ";
+      #   # Install.WantedBy = [];
+      # };
       newsdl = let
         script = import ../../homedir/Documents/Scripts/newsdl/newsdl.nix {inherit pkgs;};
       in
@@ -60,12 +66,12 @@ in {
       };
 
       rclone_nightly = let
-        script = import ../../homedir/Documents/Scripts/rclone/daily_backup.nix;
+        script = import ../../homedir/Documents/Scripts/rclone/daily_backup.nix {inherit config pkgs;};
       in
       {
         Unit.Description = "";
         Service.Type = "exec";
-        Service.ExecStart = "${l.getExe script}";
+        Service.ExecStart = "${script}";
       };
     };
 

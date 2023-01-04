@@ -18,7 +18,7 @@ get_ssh:
     rbw get --full ssh > ~/.ssh/antoine 
 
 switch:
-    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .
+    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}-${HOSTNAME}
     just diff
 
 install_nix:
@@ -31,7 +31,7 @@ update_input:
     nix flake lock ${inputArray[@]/#/--update-input }
 
 build:
-    nix build --impure .#homeConfigurations.carneca.activationPackage
+    nix build --impure .#homeConfigurations.${USER}-${HOSTNAME}.activationPackage
 
 diff:
     home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | tac | xargs -n 2 nix run nixpkgs#nvd diff

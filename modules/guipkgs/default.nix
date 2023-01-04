@@ -8,6 +8,7 @@
 in {
   home.packages = l.mkIf config.host.isDesktop (with pkgs; (
     [
+      nixGL
       rofi
       mcomix3 # comic reader
       zathura # pdf reader
@@ -39,6 +40,7 @@ in {
       inkscape
       gimp
       deluge
+      syncthing
     ]
     ++
     # For those applications that need to be wrapped with nixGL

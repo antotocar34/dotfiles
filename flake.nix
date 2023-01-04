@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # neovim-flake = {
-    #   url = "path:/home/carneca/Documents/projects/neovim-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # This captures my plasma settings
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -63,12 +58,13 @@
       "x86_64-darwin"
     ];
   in {
-    homeConfigurations."carneca" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."carneca-x1carbon" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
         ./home.nix
         ./modules
+        ./modules/plasma
         plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage
         {

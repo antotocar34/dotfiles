@@ -9,10 +9,8 @@ alias fk=dir_find
 alias fw=file_find
 alias fj=local_dir_find
 # alias fw='vim $(tree -fi $HOME | fzf) 2> /dev/null'
-alias lat="cd ~/Documents/Latex"
 alias d="cd ~/Documents/"
 alias dl="cd ~/Downloads/"
-alias conf="cd ${HOME_MANAGER_CONFIG}"
 alias tempd="cd $(mktemp -d)"
 
 # PROGRAM SHORTCUTS
@@ -24,14 +22,13 @@ alias pydebug="python -m pdb"
 alias sdn="shutdown now"
 alias icat='kitty +icat'
 # alias texclean="rm -f *.synctex.gz *.aux *.log *.fls *.fdb_latexmk *.dvi *.bbl *.blg"
-alias texclean="fd -uu -esynctex.gz -eaux -elog -efls -efdb_latexmk -edvi -ebbl -eblg --search-path ${HOME}/Documents/Latex -x rm"
+alias texclean="fd -uu -esynctex.gz -eaux -elog -efls -efdb_latexmk -edvi -ebbl -eblg --search-path "${PWD}" -x rm"
 alias xc="xclip -selection clipboard"
 alias tmr="transmission-remote"
 alias stata="launch xstata-mp"
-alias sxhkdreset="killall sxhkd && launch sxhkd"
 alias drun="docker run -it --rm "
 alias he="nvim ${HOME_MANAGER_CONFIG}/home.nix"
-alias z=zathura
+alias z="zathura"
 
 # FILE SHORTCUTS
 alias notes="${EDITOR} ${WIKI_LOC}/index.wiki"

@@ -23,5 +23,6 @@ in {
     ./scripts
     ./true_aliases
     ./productivity
+    ./nix
   ];
 }

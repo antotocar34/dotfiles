@@ -34,6 +34,9 @@ shift + ctrl + g
 shift + ctrl + m
     tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
 
+shift + ctrl + p
+    tdrop -w "100%" -h "100%" --number=xournalpp -ma xournalpp ${MATHS_DIR}/template.xopt
+
 alt + s
     zathura "$(ls -t ~/Downloads/*.pdf | head -n1)"
 
