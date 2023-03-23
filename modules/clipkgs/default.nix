@@ -47,6 +47,8 @@ in {
     borgbackup # backup tool
     bottom # system surveillance
     # unrar
+    bashmount
+    httpie
     rclone # google drive cli interface
     mypkgs.rclone-backup
     lkr # personal script to lock sensitive files and directories with age

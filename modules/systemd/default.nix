@@ -61,6 +61,8 @@ in {
       in
       {
         Unit.Description = "";
+        Unit.Wants = ["network-online.target"];
+        Unit.After = ["network.target" "network-online.target"];
         Service.Type = "exec";
         Service.ExecStart = "${script}/bin/newsdl";
       };
@@ -71,7 +73,7 @@ in {
       {
         Unit.Description = "";
         Service.Type = "exec";
-        Service.ExecStart = "${script}";
+        Service.ExecStart = "${script}/bin/rclone-backup";
       };
     };
 

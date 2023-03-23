@@ -158,7 +158,7 @@ command! reload :write | restart
 " program.
 
 " Pdf
-filextype *.pdf sioyek %c %i &, apvlv %c, xpdf %c
+filextype *.pdf open %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript

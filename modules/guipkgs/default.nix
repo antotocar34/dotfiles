@@ -36,7 +36,7 @@ in {
       transcribe #
       xournalpp # note taking
       libreoffice-fresh
-      spotify
+      # spotify
       inkscape
       gimp
       deluge

@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-set -xuo pipefail
+set -uo pipefail
 
 PORT=42965
 

@@ -7,9 +7,11 @@
   cfg = config.mimetype;
   l = lib // builtins;
 in {
+
   options.mimetype = {
     enable = l.mkEnableOption "Enable custom mimetypes";
   };
+
   config = l.mkIf cfg.enable {
     xdg = {
       mime.enable = true;

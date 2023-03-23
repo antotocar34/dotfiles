@@ -1,3 +1,3 @@
 { 
-  programs.plasma = ../../homedir/.config/plasma-settings/plasma_settings.nix; 
+  programs.plasma = import ../../homedir/.config/plasma-settings/plasma_settings.nix; 
 }

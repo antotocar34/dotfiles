@@ -24,5 +24,6 @@ in {
     ./true_aliases
     ./productivity
     ./nix
+    ./secrets
   ];
 }

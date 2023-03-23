@@ -89,6 +89,7 @@ color.undo.after=green
 color.undo.before=red
 
 #Contextts
+context.work=-chores -hobby
 # context.work=-personal +college +work
 # context.rest=-college -work
 # context.study=+study 
