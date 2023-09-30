@@ -49,9 +49,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-# not sure if this is required
-test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
-
 # Shell VI settings
 bind "set editing-mode vi"
 # bind "set show-mode-in-prompt on"

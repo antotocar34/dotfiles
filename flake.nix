@@ -58,6 +58,21 @@
       "x86_64-darwin"
     ];
   in {
+   homeConfigurations."antoine.carnec" = home-manager.lib.homeManagerConfiguration {
+
+           pkgs = import nixpkgs { system = "aarch64-darwin"; };
+           modules = [ 
+             ./home.nix 
+	     ./modules/host_specific
+	     homeage.homeManagerModules.homeage
+               { 
+               config.host.user = "antoine.carnec"; 
+               config.host.hostname = "LONLTMC773WR0";
+	       config.host.isNixos = false;
+               config.host.isDesktop = true;
+               } 
+           ];
+       };
     homeConfigurations."carneca-x1carbon" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
@@ -85,3 +100,4 @@
     });
   };
 }
+

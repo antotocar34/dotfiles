@@ -7,12 +7,24 @@
   ...
 }: let
   l = lib // builtins;
+in {
+
+    options = {
+    home_config = l.mkOption {
+      type = l.types.str;
+      description = "Path to configuration home";
+      };
+    };
+
+
+  config = let
 
   # Personal Info
   user = "${config.host.user}";
-  home = "/home/${user}";
+  home = "/Users/${user}";
   HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
-in {
+  in
+  {
   programs.home-manager.enable = true;
 
   home.username = "${user}";
@@ -24,7 +36,7 @@ in {
     LOCALE_ARCHIVE = "${home}/.nix-profile/lib/locale/locale-archive";
     R_PROFILE_USER = "${home}/.config/R/.Rprofile";
     NIXPKGS_ALLOW_UNFREE = 1;
-    PDF_VIEWER = "${l.getExe pkgs.zathura}";
+    # PDF_VIEWER = "${l.getExe pkgs.zathura}";
     # PDF_VIEWER = "${lib.getExe pkgs.sioyek}";
     NIX_PATH = "nixpkgs=${pkgs.path}";
     inherit HOME_MANAGER_CONFIG;
@@ -36,7 +48,7 @@ in {
     "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(xclip -o -sel clip)";
   };
 
-  home_config = "${home}/.config/nixpkgs";
+  home_config = "${home}/.config/home-manager";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -44,10 +56,10 @@ in {
 
   home.packages = with pkgs; [
     # Some window manager utilities
-    systemd
-    xdotool
-    xorg.xrandr
-    xorg.xwininfo
+    # systemd
+    # xdotool
+    # xorg.xrandr
+    # xorg.xwininfo
 
     # text editor
     (
@@ -68,22 +80,22 @@ in {
     # useful programs
     (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 
     # Misc
     nix-index
     # nix-bash-completions
-    glibcLocales
-    powerline-fonts
+    # glibcLocales
+    # powerline-fonts
   ];
 
-  xdg = {
-    enable = true;
-    cacheHome = "${home}/.cache";
-    configHome = "${home}/.config";
-    dataHome = "${home}/.local/share";
-    systemDirs.config = ["${HOME_MANAGER_CONFIG}/homedir/.config"];
-  };
+  # xdg = {
+  #   enable = true;
+  #   cacheHome = "${home}/.cache";
+  #   configHome = "${home}/.config";
+  #   dataHome = "${home}/.local/share";
+  #   systemDirs.config = ["${HOME_MANAGER_CONFIG}/homedir/.config"];
+  # };
 
   home.file = {
     # Directories
@@ -103,10 +115,11 @@ in {
     ".ipython".recursive = true;
   };
 
-  xsession.enable = false;
+  # xsession.enable = false;
 
   # disable notifications about home-manager news
   news.display = "silent";
 
-  imp.enable = false;
+  # imp.enable = false;
+  };
 }
