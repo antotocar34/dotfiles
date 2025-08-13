@@ -162,7 +162,7 @@ in {
           identityFile = "~/.ssh/google_compute_engine";
         };
         "hacker" = {
-          user = "antoine.carnec";
+          user = "antoine_carnec";
           hostname = "good-vm.duckdns.org";
           host = "hacker";
           identityFile = "~/.ssh/google_compute_engine";
