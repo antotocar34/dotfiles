@@ -9,7 +9,7 @@
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
 in {
-    home.packages = [
+    home.packages = with pkgs; [
       xclip # clipboard cli
       psmisc # pstree and the like
       tdrop # Toggle terminal

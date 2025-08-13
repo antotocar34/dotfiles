@@ -112,6 +112,8 @@
     homeConfigurations."server" = 
     let
       pkgs = import nixpkgs { system = "x86_64-linux"; };
+      user = "error";
+      hostname = "error";
     in
     home-manager.lib.homeManagerConfiguration {
 
@@ -119,14 +121,11 @@
 
       modules = [
         ./home.nix
+        ./modules/host_specific
         ./modules/nix
         ./modules/clipkgs
         ./modules/clipkgs/linux.nix
         homeage.homeManagerModules.homeage
-        let 
-          user = "error";
-          hostname = "error";
-        in
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
@@ -137,7 +136,7 @@
       ];
 
       extraSpecialArgs = {
-        inherit myLib inputs;
+        inherit inputs;
       };
     };
 
