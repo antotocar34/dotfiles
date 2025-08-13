@@ -4,11 +4,9 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   l = lib // builtins;
-in
-{
+in {
   nix = l.mkIf (! config.host.isNixos) {
     package = pkgs.nix;
     settings = {
@@ -25,9 +23,9 @@ in
       fallback = true;
       # keep-outputs = true;
     };
-        registry = {
+    registry = {
       nixpkgs.flake = inputs.nixpkgs;
-      acpkgs.flake = inputs.acpkgs;
+      # acpkgs.flake = inputs.acpkgs;
     };
   };
 }

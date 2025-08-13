@@ -9,24 +9,35 @@
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
 in {
+  imports = [
+    ./true_aliases
+  ];
 
   home.trueAliases = with pkgs; {
-      "j" = just;
-      "open" = mimeo;
-    };
-    home.aliases = { 
-      "sys" = "systemctl --user";
-      "jnl" = "journalctl --user";
-    };
+    "j" = just;
+  };
+  home.aliases = {
+    "sys" = "systemctl --user";
+    "jnl" = "journalctl --user";
+  };
 
   home.sessionVariables = {
-        FZF_DEFAULT_COMMAND = ''
+    FZF_DEFAULT_COMMAND = ''
       ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
     '';
   };
 
-
   home.packages = with pkgs; [
+    
+    (llm.withPlugins {
+      # LLM access to models by Anthropic, including the Claude series <https://github.com/simonw/llm-anthropic>
+      llm-anthropic = true;
+      # # Use LLM to generate and execute commands in your shell <https://github.com/simonw/llm-cmd>
+      llm-cmd = true;
+      # LLM plugin to access Google's Gemini family of models <https://github.com/simonw/llm-gemini>
+      llm-gemini = true;
+    })
+
     mimeo
     # bashInteractive
     ripgrep # fast text search
@@ -34,13 +45,12 @@ in {
     fzf # stdout processor
     du-dust # better du
     duf # better df
-    # tldr # common wayes to use a command
+    tldr # common wayes to use a command
     rdfind # duplicate finder and remover
     tree #
     cloc # counts lines of code
     trash-cli
     yt-dlp # youtube-dl but better
-    psmisc # pstree and the like
     age # encryption tool
     pwgen # password generator
     unzip
@@ -51,16 +61,14 @@ in {
     httpie
     rclone # google drive cli interface
     mypkgs.rclone-backup
-    lkr # personal script to lock sensitive files and directories with age
-    direnv # Set environments in a specific directory
-    tdrop # Toggle terminal
+    mypkgs.ask
+    # lkr # personal script to lock sensitive files and directories with age
+    # direnv # Set environments in a specific directory
     jq # format json to stdout
     just # command line runner
     pirate-get # cli interface to piratebay
     libgen-cli # cli interface to libgen
-    xclip # clipboard cli
     comma
-    cntr # Nix build debugging helper
     cachix
     magic-wormhole # Send files to anyone
     cmus # Music player
@@ -72,10 +80,12 @@ in {
       enable = true;
 
       aliases = {
-        lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) '' + 
-        ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
-        te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) '' +
-        ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
+        lg =
+          ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) ''
+          + ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
+        te =
+          ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) ''
+          + ''%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
         st = "status --short";
         wdiff = "diff --word-diff=color";
         unstage = "reset HEAD --";
@@ -103,12 +113,12 @@ in {
     };
     bash = {
       enable = true;
-      enableCompletion = true;
+      enableCompletion = false;
       profileExtra = l.readFile ../../homedir/.extra_profile;
       initExtra = l.readFile ../../homedir/.bashrc;
       bashrcExtra = ''
         . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
-        '';
+      '';
     };
 
     bat = {
@@ -140,11 +150,30 @@ in {
         };
         "x1carbon" = {
           user = "carneca";
-          hostname = "x1carbon";
+          port = 2200;
+          hostname = "vieux-hibou.duckdns.org";
           host = "x1carbon";
-          identityFile = "~/.ssh/${hostname}";
+          identityFile = "~/.ssh/antoine";
+        };
+        "worker-bee" = {
+          user = "antoine.carnec";
+          hostname = "10.160.145.5";
+          host = "worker-bee";
+          identityFile = "~/.ssh/google_compute_engine";
+        };
+        "hacker" = {
+          user = "antoine.carnec";
+          hostname = "good-vm.duckdns.org";
+          host = "hacker";
+          identityFile = "~/.ssh/google_compute_engine";
         };
       };
+      extraConfig = "
+      Host *
+        UseKeychain yes
+        AddKeysToAgent yes
+        IdentityFile ~/.ssh/antoine
+      ";
     };
     tmux = {
       enable = true;
@@ -159,7 +188,7 @@ in {
     rbw = {
       enable = true;
       settings = {
-        pinentry = "tty";
+        pinentry = pkgs.pinentry_mac;
         inherit email;
       };
     };

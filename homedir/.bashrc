@@ -102,3 +102,8 @@ lambda () {
     }
     export PS1='${greenbold}\u@\h${bluebold} \w${green}$(parse_git_branch)${normal}\n$(lambda) '
 PS1='$(show_virtual_env)'$PS1
+
+PATH=~/.nix-profile/bin:$PATH
+PATH=/nix/var/nix/profiles/default/bin:$PATH
+PATH=/usr/local/bin:$PATH
+PATH=/Users/antoine.carnec/.local/share/miniforge3/bin:$PATH

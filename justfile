@@ -18,8 +18,8 @@ get_ssh:
     rbw get --full ssh > ~/.ssh/antoine 
 
 switch:
-    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}-${HOSTNAME}
-    just diff
+    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
+    # just diff
 
 install_nix:
     sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -38,3 +38,6 @@ diff:
 
 logout:
     qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+
+b:
+   nix build --impure .#homeConfigurations.${USER}@${HOSTNAME}.activationPackage

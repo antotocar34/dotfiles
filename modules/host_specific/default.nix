@@ -8,11 +8,11 @@ in {
   options.host = {
     isNixos = l.mkOption {
       type = l.types.bool;
-      description = "whether this profile is a nixos profile or not";
+      description = "Whether this profile is a nixos profile or not";
     };
     isDesktop = l.mkOption {
       type = l.types.bool;
-      description = "whether this profile is should include GUI applications";
+      description = "Whether this profile is should include GUI applications";
     };
     user = l.mkOption {
         type = l.types.str ;

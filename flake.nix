@@ -14,7 +14,7 @@
 
     # Managing secrets
     homeage = {
-      url = "github:jordanisaacs/homeage";
+      url = "github:antotocar34/homeage";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -34,7 +34,7 @@
     home-manager,
     homeage,
     plasma-manager,
-    nixgl
+    nixgl,
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -52,29 +52,33 @@
 
     forAllSystems = nixpkgs.lib.genAttrs [
       "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
       "aarch64-darwin"
       "x86_64-darwin"
     ];
   in {
-   homeConfigurations."antoine.carnec" = home-manager.lib.homeManagerConfiguration {
-
-           pkgs = import nixpkgs { system = "aarch64-darwin"; };
-           modules = [ 
-             ./home.nix 
-	     ./modules/host_specific
-	     homeage.homeManagerModules.homeage
-               { 
-               config.host.user = "antoine.carnec"; 
-               config.host.hostname = "LONLTMC773WR0";
-	       config.host.isNixos = false;
-               config.host.isDesktop = true;
-               } 
-           ];
-       };
-    homeConfigurations."carneca-x1carbon" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    homeConfigurations."antoine.carnec@LONLTMC773WR0" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+      modules = [
+        ./home.nix
+        ./modules/host_specific
+        ./modules/clipkgs
+        ./modules/clipkgs/mac.nix
+        ./modules/guipkgs
+        ./modules/secrets
+        # ./modules/nix
+        homeage.homeManagerModules.homeage
+        {
+          config.host.user = "antoine.carnec";
+          config.host.hostname = "LONLTMC773WR0";
+          config.homedir = "/Users/antoine.carnec";
+          config.host.isNixos = false;
+          config.host.isDesktop = true;
+        }
+      ];
+    };
+    homeConfigurations."carneca@x1carbon" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
 
       modules = [
         ./home.nix
@@ -87,6 +91,7 @@
           config.host.isDesktop = true;
           config.host.user = "carneca";
           config.host.hostname = "x1carbon";
+          config.homedir = "/home/carneca";
         }
       ];
 
@@ -100,4 +105,3 @@
     });
   };
 }
-
