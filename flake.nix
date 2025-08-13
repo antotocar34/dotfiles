@@ -109,6 +109,37 @@
         inherit myLib inputs;
       };
     };
+    homeConfigurations."server" = 
+    let
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
+    in
+    home-manager.lib.homeManagerConfiguration {
+
+      inherit pkgs;
+
+      modules = [
+        ./home.nix
+        ./modules/nix
+        ./modules/clipkgs
+        ./modules/clipkgs/linux.nix
+        homeage.homeManagerModules.homeage
+        let 
+          user = "error";
+          hostname = "error";
+        in
+        {
+          config.host.isNixos = false;
+          config.host.isDesktop = true;
+          config.host.user = user;
+          config.host.hostname = hostname;
+          config.homedir = "/home/${user}";
+        }
+      ];
+
+      extraSpecialArgs = {
+        inherit myLib inputs;
+      };
+    };
 
     devShells = forAllSystems (system: {
       default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix {};
