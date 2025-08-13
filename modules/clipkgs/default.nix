@@ -170,8 +170,6 @@ in {
       };
       extraConfig = "
       Host *
-        UseKeychain yes
-        AddKeysToAgent yes
         IdentityFile ~/.ssh/antoine
       ";
     };
@@ -188,7 +186,7 @@ in {
     rbw = {
       enable = true;
       settings = {
-        pinentry = pkgs.pinentry_mac;
+        pinentry = pkgs.pinentry-tty;
         inherit email;
       };
     };

@@ -28,8 +28,8 @@ in {
       bitwarden
       rofi-rbw
       discord
-      gnome3.gnome-disk-utility
-      gnome3.pomodoro
+      gnome-disk-utility
+      gnome-pomodoro
       # filezilla # FTP client
       krita # Drawing Application
       transcribe #

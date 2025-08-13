@@ -19,7 +19,7 @@
     };
 
     # This captures my plasma settings
-    plasma-manager.url = "github:pjones/plasma-manager";
+    plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
@@ -37,18 +37,10 @@
     nixgl,
   } @ inputs: let
     system = "x86_64-linux";
+
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [
-        nixgl.overlay
-        (_: _: {
-          nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
-        })
-        acpkgs.overlays.default
-      ];
     };
-
-    myLib = import ./lib {inherit pkgs;};
 
     forAllSystems = nixpkgs.lib.genAttrs [
       "aarch64-linux"
@@ -77,12 +69,30 @@
         }
       ];
     };
-    homeConfigurations."carneca@x1carbon" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+
+    homeConfigurations."carneca@x1carbon" = 
+    let
+      pkgs = import nixpkgs { 
+        system = "x86_64-linux"; 
+        overlays = [
+          nixgl.overlay
+          (_: _: {
+            nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
+          })
+          acpkgs.overlays.default
+        ];
+      };
+      myLib = import ./lib {inherit pkgs;};
+      
+    in
+    home-manager.lib.homeManagerConfiguration {
+
+      inherit pkgs;
 
       modules = [
         ./home.nix
         ./modules
+        ./modules/guipkgs/linux.nix
         ./modules/plasma
         plasma-manager.homeManagerModules.plasma-manager
         homeage.homeManagerModules.homeage

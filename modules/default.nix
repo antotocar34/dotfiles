@@ -14,7 +14,7 @@ in {
     ./host_specific
     ./imp
     ./scripts
-    ./true_aliases
+    ./plasma
     ./productivity
     ./nix
     ./secrets
