@@ -113,7 +113,7 @@ in {
     };
     bash = {
       enable = true;
-      enableCompletion = false;
+      enableCompletion = true;
       profileExtra = l.readFile ../../homedir/.extra_profile;
       initExtra = l.readFile ../../homedir/.bashrc;
       bashrcExtra = ''
