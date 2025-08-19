@@ -12,12 +12,8 @@ in
     mount = "${home}/.cache/secrets";
     identityPaths = ["${home}/.ssh/antoine"];
     installationType = "activation";
-    file."msmtp_config" = {
-      source = ../../homedir/.config/msmtp/config.age;
-      copies = ["${home}/.config/msmtp/config"];
-    };
     file."nix-config" = {
-      source = ../../homedir/.config/nix/nix.conf.age;
+      source = ../../homedir/.config/nix/nix-conf.age;
       copies = ["${home}/.config/nix/nix-conf"];
     };
     file."gemini-key" = {
