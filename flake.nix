@@ -23,6 +23,9 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     nixgl.url = "github:guibou/nixGL";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -30,11 +33,8 @@
   outputs = {
     self,
     nixpkgs,
-    acpkgs,
     home-manager,
-    homeage,
-    plasma-manager,
-    nixgl,
+    ...
   } @ inputs: let
     system = "x86_64-linux";
 
@@ -59,7 +59,11 @@
         ./modules/guipkgs
         ./modules/secrets
         # ./modules/nix
-        homeage.homeManagerModules.homeage
+        inputs.homeage.homeManagerModules.homeage
+        inputs.nix-index-database.homeModules.nix-index
+        { 
+          programs.nix-index-database.comma.enable = true; 
+        }
         {
           config.host.user = "antoine.carnec";
           config.host.hostname = "LONLTMC773WR0";
@@ -75,11 +79,11 @@
       pkgs = import nixpkgs { 
         system = "x86_64-linux"; 
         overlays = [
-          nixgl.overlay
+          inputs.nixgl.overlay
           (_: _: {
-            nixGL = nixgl.defaultPackage.${system}.nixGLIntel;
+            nixGL = inputs.nixgl.defaultPackage.${system}.nixGLIntel;
           })
-          acpkgs.overlays.default
+          inputs.acpkgs.overlays.default
         ];
       };
       myLib = import ./lib {inherit pkgs;};
@@ -94,8 +98,12 @@
         ./modules
         ./modules/guipkgs/linux.nix
         ./modules/plasma
-        plasma-manager.homeManagerModules.plasma-manager
-        homeage.homeManagerModules.homeage
+        inputs.plasma-manager.homeManagerModules.plasma-manager
+        inputs.homeage.homeManagerModules.homeage
+        inputs.nix-index-database.homeModules.nix-index
+        { 
+          programs.nix-index-database.comma.enable = true; 
+        }
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
@@ -125,7 +133,7 @@
         ./modules/nix
         ./modules/clipkgs
         ./modules/clipkgs/linux.nix
-        homeage.homeManagerModules.homeage
+        inputs.homeage.homeManagerModules.homeage
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;

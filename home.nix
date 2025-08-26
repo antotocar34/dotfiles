@@ -84,7 +84,6 @@ in {
       # texlive.combined.scheme-full
 
       # Misc
-      nix-index
       # nix-bash-completions
       # glibcLocales
       # powerline-fonts
