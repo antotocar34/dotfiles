@@ -149,6 +149,7 @@ in {
           identityFile = "~/.ssh/github";
         };
       };
+      includes = ["tmp_config"];
     };
     tmux = {
       enable = true;
