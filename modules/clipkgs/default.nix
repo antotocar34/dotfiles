@@ -148,30 +148,7 @@ in {
           host = "github.com";
           identityFile = "~/.ssh/github";
         };
-        "x1carbon" = {
-          user = "carneca";
-          port = 2200;
-          hostname = "vieux-hibou.duckdns.org";
-          host = "x1carbon";
-          identityFile = "~/.ssh/antoine";
-        };
-        "worker-bee" = {
-          user = "antoine.carnec";
-          hostname = "10.160.145.5";
-          host = "worker-bee";
-          identityFile = "~/.ssh/google_compute_engine";
-        };
-        "hacker" = {
-          user = "antoine_carnec";
-          hostname = "good-vm.duckdns.org";
-          host = "hacker";
-          identityFile = "~/.ssh/google_compute_engine";
-        };
       };
-      extraConfig = "
-      Host *
-        IdentityFile ~/.ssh/antoine
-      ";
     };
     tmux = {
       enable = true;

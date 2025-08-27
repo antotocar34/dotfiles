@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    private-secrets = {
+      url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
+      flake = false; 
+    };
+
     # This captures my plasma settings
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +62,8 @@
         ./modules/clipkgs
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
-        ./modules/secrets
+        # ./modules/secrets
+        "${inputs.private-secrets}/modules"
         # ./modules/nix
         inputs.homeage.homeManagerModules.homeage
         inputs.nix-index-database.homeModules.nix-index
