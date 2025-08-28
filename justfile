@@ -41,3 +41,7 @@ logout:
 
 b:
    nix build --impure .#homeConfigurations.${USER}@${HOSTNAME}.activationPackage
+
+update_secrets:
+   git submodule foreach just update
+   nix flake update private-secrets

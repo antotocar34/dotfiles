@@ -162,10 +162,10 @@
     "private-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1756305645,
-        "narHash": "sha256-cNvsoBFnQ/OL2OZX8IKBH3ZzytxVF5nIyyjvYnIdvCo=",
+        "lastModified": 1756370147,
+        "narHash": "sha256-EXhyoboc16Yv3tr8OEVackhRjM9t4uR1yd7uU3f0s/w=",
         "ref": "refs/heads/master",
-        "rev": "97aaab78b3f9efe8d0319dbd4d85ad6327627156",
+        "rev": "cfce2fc3be9fe7da7ee6e0b36e77802dc067b20a",
         "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/antotocar34/dotfiles-private"

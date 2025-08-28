@@ -62,7 +62,6 @@
         ./modules/clipkgs
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
-        # ./modules/secrets
         "${inputs.private-secrets}/modules"
         # ./modules/nix
         inputs.homeage.homeManagerModules.homeage
