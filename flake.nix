@@ -66,9 +66,7 @@
         # ./modules/nix
         inputs.homeage.homeManagerModules.homeage
         inputs.nix-index-database.homeModules.nix-index
-        { 
-          programs.nix-index-database.comma.enable = true; 
-        }
+        { programs.nix-index-database.comma.enable = true; }
         {
           config.host.user = "antoine.carnec";
           config.host.hostname = "LONLTMC773WR0";
