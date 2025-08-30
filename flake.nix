@@ -12,6 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    my-neovim = {
+      url = "github:antotocar34/nvim-nix";
+    };
+
     # Managing secrets
     homeage = {
       url = "github:antotocar34/homeage";
@@ -41,12 +45,6 @@
     home-manager,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-    };
-
     forAllSystems = nixpkgs.lib.genAttrs [
       "aarch64-linux"
       "x86_64-linux"
@@ -79,8 +77,9 @@
 
     homeConfigurations."carneca@x1carbon" = 
     let
+      system = "x86_64-linux";
       pkgs = import nixpkgs { 
-        system = "x86_64-linux"; 
+        system = system; 
         overlays = [
           inputs.nixgl.overlay
           (_: _: {
@@ -104,6 +103,7 @@
         inputs.plasma-manager.homeManagerModules.plasma-manager
         inputs.homeage.homeManagerModules.homeage
         inputs.nix-index-database.homeModules.nix-index
+        "${inputs.private-secrets}/modules"
         { 
           programs.nix-index-database.comma.enable = true; 
         }
@@ -113,6 +113,9 @@
           config.host.user = "carneca";
           config.host.hostname = "x1carbon";
           config.homedir = "/home/carneca";
+        }
+        {
+          home.packages = [ inputs.my-neovim.packages.${system}.neovim ];
         }
       ];
 
@@ -135,7 +138,7 @@
         ./modules/host_specific
         ./modules/nix
         ./modules/clipkgs
-        ./modules/clipkgs/linux.nix
+        ./modules/clipkgs/linx.nix
         inputs.homeage.homeManagerModules.homeage
         {
           config.host.isNixos = false;

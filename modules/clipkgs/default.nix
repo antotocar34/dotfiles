@@ -133,6 +133,8 @@ in {
 
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
+      
       matchBlocks = {
         "website" = {
           user = "git";
@@ -147,6 +149,9 @@ in {
           hostname = "github.com";
           host = "github.com";
           identityFile = "~/.ssh/github";
+        };
+        "*" = {
+          identityFile = "~/.ssh/antoine";
         };
       };
       includes = ["tmp_config"];

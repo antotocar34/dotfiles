@@ -12,17 +12,13 @@ in {
     homedir = l.mkOption {
       type = l.types.str;
     };
-    home_config = l.mkOption {
-      type = l.types.str;
-      description = "Path to configuration home";
-    };
   };
 
   config = let
     # Personal Info
     user = "${config.host.user}";
     home = "${config.homedir}";
-    HOME_MANAGER_CONFIG = "${home}/.config/nixpkgs";
+    HOME_MANAGER_CONFIG = "${home}/.config/dotfiles";
   in {
     programs.home-manager.enable = true;
 
@@ -46,8 +42,6 @@ in {
       "conf" = "cd ${HOME_MANAGER_CONFIG}";
       "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
     };
-
-    home_config = "${home}/.config/home-manager";
 
     nixpkgs.config.allowUnfree = true;
 

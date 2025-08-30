@@ -45,3 +45,6 @@ b:
 update_secrets:
    git submodule foreach just update
    nix flake update private-secrets
+
+initialise_submodule:
+  git submodule update --init --recursive
