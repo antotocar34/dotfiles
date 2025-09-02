@@ -169,7 +169,7 @@ in {
     rbw = {
       enable = true;
       settings = {
-        pinentry = pkgs.pinentry-tty;
+        pinentry = pkgs.pinentry-curses;
         inherit email;
       };
     };
