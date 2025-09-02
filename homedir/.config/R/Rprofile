@@ -1,0 +1,12 @@
+# myPaths <- .libPaths()
+# myPaths <- c(myPaths[2], myPaths[1])
+# myPaths <- c('/home/carneca/.local/lib/R/', myPaths)
+# .libPaths(myPaths)
+# .libPaths( c("home/carneca/.local/lib/R/", .libPaths()))
+# 
+# local({r <- getOption("repos")
+#        r["CRAN"] <- "https://cran.ma.imperial.ac.uk/" 
+#        options(repos=r)
+# })
+options(repos = c("King" = "https://cran.ds.midasplayer.com",
+                  "RStudio" = "http://cran.r-project.org"))

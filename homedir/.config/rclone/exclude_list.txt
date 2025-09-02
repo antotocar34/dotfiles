@@ -1,0 +1,14 @@
+- spotify_playlist_data/
+- __pycache__/
+- .venv/
+- .ipynb_checkpoints/
+
+- *.fls
+- *.aux
+- *.fdb_latexmk
+- *.log
+- *.priv/
+- ~/.tmp/
+- .direnv/
+- env/
+- /home/carneca/.tmp

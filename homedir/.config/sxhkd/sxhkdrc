@@ -1,0 +1,53 @@
+alt + r  
+    find_ pdf
+
+alt + f
+    kitty --name vifm -e vifm .
+
+shift + alt + t 
+    kitty --name tmux tmux a
+
+alt + Return 
+    rofi -show drun -show-icons -theme $HOME_MANAGER_CONFIG/homedir/.config/rofi/launcher.rasi
+
+alt + p
+    rbw unlocked ; if [ $? -eq 0 ]; then rofi-rbw --clear-after 30; else kitty -e rbw unlock 2>>~/.logs/why; sleep 0.5 && rofi-rbw --clear-after 30 2>>~/.logs/why; fi
+
+alt + v 
+   kitty -e nvim
+
+alt + n
+   bitwarden 
+
+alt + m
+   tdrop -n=1 -ma -w -4 -y "$PANEL_HEIGHT" kitty --name cmus-term -e cmus
+
+ctrl + Return
+    kitty --name term0 -d ~ env TDROP= bash
+
+ctrl + b
+    nixGLIntel firefox
+
+shift + ctrl + g
+    tdrop -w "100%" -h "100%" --number=google -ma firefox --new-window https://www.google.com
+
+shift + ctrl + m
+    tdrop -w "100%" -h "100%" --number=messenger -ma firefox --new-window https://www.messenger.com
+
+shift + ctrl + i;
+    tdrop -w "100%" -h "100%" --number=xournalpp -ma xournalpp ${MATHS_DIR}/template.xopt
+
+alt + s
+    zathura "$(ls -t ~/Downloads/*.pdf | head -n1)"
+
+alt + e
+    rofi -show window
+
+Print
+    flameshot gui
+
+alt + shift + r
+    pkill -usr1 -x sxhkd ; notify-send --expire-time=2000 'sxhkd' 'Reloaded config'
+
+alt + shift + p
+    rbw generate 14 | xclip -selection clipboard ; notify-send --expire-time=2000 'Generated password'

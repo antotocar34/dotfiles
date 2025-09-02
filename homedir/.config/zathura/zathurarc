@@ -1,0 +1,21 @@
+set guioptions  none 
+set recolor "true" 
+set recolor-lightcolor "#2E3440"  
+set recolor-darkcolor "#FFFFFF"
+set recolor-reverse-video "true"
+"set recolor-keephue "true"
+
+set render-loading "false"
+set scroll-step 50
+
+set inputbar-bg "#151515" #00 currently not used
+set inputbar-fg "#FFFFFF" #02
+
+set selection-clipboard clipboard
+set highlight-active-color "#D78787"
+set highlight-color "#D78787"
+set highlight-transparency 0.4
+set page-padding 0
+
+set index-active-bg "#BF616A"
+set index-bg "#2E3440" 

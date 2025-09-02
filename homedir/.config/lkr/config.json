@@ -1,0 +1,7 @@
+{
+    "PUBLIC_KEY": "/Users/antoine.carnec/.config/nixpkgs/homedir/.ssh/banana.pub",
+    "PRIVATE_KEY_ENCRYPTED" : "/Users/antoine.carnec/.config/nixpkgs/homedir/.ssh/banana.age",
+    "RBW_PRIVATE_KEY_ENTRY" : "banana",
+    "LOCKED_EXTENSION" : "lkr",
+    "UNLOCKED_EXTENSION" : "priv"
+}

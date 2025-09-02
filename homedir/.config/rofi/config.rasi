@@ -1,0 +1,11 @@
+configuration {
+width: 70;
+modi: "window,run,ssh,drun";
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        32px;
+    cursor:                      inherit;
+}
+@theme "nord"

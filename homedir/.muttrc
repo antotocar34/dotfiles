@@ -1,0 +1,8 @@
+set sendmail='~/.nix-profile/bin/msmtp'
+set use_from=yes
+set realname='Antoine Carnec'
+set from=antoinecarnec2@gmail.com
+set envelope_from=yes
+set abort_unmodified=no
+set copy=no
+set folder = ""

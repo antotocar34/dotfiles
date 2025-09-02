@@ -1,0 +1,12 @@
+export XDG_DATA_DIRS="/usr/local/share/:/usr/share/:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+
+# PATH VARIABLE DECLARATIONS
+export PATH="${HOME}/.local/bin:$PATH"
+export PATH="${HOME}/Documents/Scripts:$PATH"
+# export PATH="/opt/Stata/stata14/:$PATH"
+
+export EDITOR=$(which nvim)
+
+export LEDGER_FILE=/home/carneca/Documents/Finances/journal.beancount

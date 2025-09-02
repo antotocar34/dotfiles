@@ -1,0 +1,51 @@
+xhost +SI:localuser:"$USER" > /dev/null
+
+
+imp () {
+    distrobox enter -a "-w $PWD" imp -- "bash --rcfile /home/${USER}/.bashrc -l"
+}
+
+imp-summon () {
+    IMP_HOME="/home/${USER}/.local/share/imp_home"
+    [ -d "$IMP_HOME" ] || mkdir .local/share/imp_home
+    distrobox create --yes \
+    --image docker.io/library/archlinux:latest \
+    # --init-hooks """
+    #     pacman --noconfirm -Syu which
+    #     """ \
+    --home "$IMP_HOME" \
+    --name "imp" || exit 1
+    # --additional-flags "" \
+    imp -- "bash --rcfile /home/${USER}/.bashrc -l"
+}
+
+imp-install () {
+    binary_path="$1"
+    [ -f "$binary_path" ] || exit 1
+    [ -x "$binary_path" ] || exit 1
+    distrobox-export -b "$1" --export-path "/home/${USER}/.local/bin"
+}
+
+imp-die () {
+   podman stop imp > /dev/null && \
+   yes Y | distrobox rm imp > /dev/null && \
+   echo "The imp crumbles into a pile of $(tput setaf 3)ashes$(tput sgr0)"
+}
+
+# imp-commit () {
+#     podman commit 
+# }
+
+[ $# -eq 0 ] && imp && exit 0
+
+case "$1" in
+    summon)
+        imp-summon
+        ;;
+    install)
+        imp-install "$2"
+        ;;
+    die)
+        imp-die
+        ;;
+esac
