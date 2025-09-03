@@ -3,7 +3,7 @@ pkgs,
 ...
 }:
 {
-  home.packages = [
-  	
+  imports = [
+    ./ducknds
   ];
 }
