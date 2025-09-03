@@ -52,8 +52,12 @@
       "x86_64-darwin"
     ];
   in {
-    homeConfigurations."antoine.carnec@LONLTMC773WR0" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+    homeConfigurations."antoine.carnec@LONLTMC773WR0" = 
+    let
+      system = "aarch64-darwin";
+    in
+    home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs { inherit system; };
       modules = [
         ./home.nix
         ./modules/host_specific
@@ -71,7 +75,7 @@
       ];
 
       extraSpecialArgs = {
-        inherit inputs;
+        inherit inputs system;
       };
     };
 
@@ -107,18 +111,16 @@
           config.host.hostname = "x1carbon";
           config.homedir = "/home/carneca";
         }
-        {
-          home.packages = [ inputs.my-neovim.packages.${system}.neovim ];
-        }
       ];
 
       extraSpecialArgs = {
-        inherit myLib inputs;
+        inherit myLib inputs system;
       };
     };
     homeConfigurations."server" = 
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
       user = "error";
       hostname = "error";
     in
@@ -142,7 +144,7 @@
       ];
 
       extraSpecialArgs = {
-        inherit inputs;
+        inherit inputs system;
       };
     };
 

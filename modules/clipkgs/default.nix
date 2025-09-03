@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  system,
   ...
 }: let
   l = pkgs.lib // builtins;
@@ -9,6 +10,7 @@
   hostname = config.host.hostname;
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
+  myNvim = inputs.my-neovim.packages."${system}".neovim;
 in {
   imports = [
     ./true_aliases
@@ -28,10 +30,15 @@ in {
     FZF_DEFAULT_COMMAND = ''
       ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
     '';
+    EDITOR = ''
+      ${myNvim}/bin/nvim
+      '';
   };
 
   home.packages = with pkgs; [
-    
+
+    myNvim
+
     (llm.withPlugins {
       # LLM access to models by Anthropic, including the Claude series <https://github.com/simonw/llm-anthropic>
       llm-anthropic = true;
