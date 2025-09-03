@@ -61,9 +61,6 @@
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
         "${inputs.private-secrets}/modules"
-        # ./modules/nix
-        inputs.nix-index-database.homeModules.nix-index
-        { programs.nix-index-database.comma.enable = true; }
         {
           config.host.user = "antoine.carnec";
           config.host.hostname = "LONLTMC773WR0";
@@ -102,13 +99,7 @@
         ./home.nix
         ./modules
         ./modules/guipkgs/linux.nix
-        # ./modules/plasma
-        # inputs.plasma-manager.homeManagerModules.plasma-manager
-        inputs.nix-index-database.homeModules.nix-index
         "${inputs.private-secrets}/modules"
-        { 
-          programs.nix-index-database.comma.enable = true; 
-        }
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;

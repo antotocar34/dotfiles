@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: let
   l = pkgs.lib // builtins;
@@ -11,6 +12,8 @@
 in {
   imports = [
     ./true_aliases
+    ./nix-index
+    inputs.nix-index-database.homeModules.nix-index
   ];
 
   home.trueAliases = with pkgs; {

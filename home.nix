@@ -42,8 +42,7 @@ in {
       NIX_PATH = "nixpkgs=${pkgs.path}";
       inherit HOME_MANAGER_CONFIG;
     };
-
-    home.shellAliases = {
+home.shellAliases = {
       "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && just ${HOME_MANAGER_CONFIG}/switch'';
       "conf" = "cd ${HOME_MANAGER_CONFIG}";
       "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
