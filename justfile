@@ -8,7 +8,7 @@ bootstrap: install_nix develop get_ssh switch
 develop:
     nix --extra-experimental-features nix-command --extra-experimental-features flakes develop .
 
-# obtain ssh private key for homeage
+# obtain ssh private key for age
 get_ssh:
     rm ~/.config/rbw/config.json 2> /dev/null || true
     mkdir -p ~/.config/rbw 2> /dev/null || true
@@ -28,7 +28,7 @@ update_input:
     #!/usr/bin/env bash
     inputs=$(nix flake metadata --json | jq .locks.nodes.root.inputs | jq -r 'keys[]' | fzf --multi)
     readarray -t inputArray <<<"$inputs"
-    nix flake lock ${inputArray[@]/#/--update-input }
+    nix flake update ${inputArray[@]}
 
 build:
     nix build --impure .#homeConfigurations.${USER}-${HOSTNAME}.activationPackage
@@ -36,15 +36,20 @@ build:
 diff:
     home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | tac | xargs -n 2 nix run nixpkgs#nvd diff
 
-logout:
-    qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-
 b:
    nix build --impure .#homeConfigurations.${USER}@${HOSTNAME}.activationPackage
 
-update_secrets:
+push_secrets:
    git submodule foreach just update
    nix flake update private-secrets
 
 initialise_submodule:
   git submodule update --init --recursive
+
+test_secrets:
+   git submodule foreach just update
+   nix flake update private-secrets
+   just switch
+
+commit:
+  git commit -m "$(git diff --staged | ask 'write me a one sentence commit message for these changes')"

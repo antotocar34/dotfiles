@@ -16,10 +16,10 @@
       url = "github:antotocar34/nvim-nix";
     };
 
-    # Managing secrets
-    homeage = {
-      url = "github:antotocar34/homeage";
+    agenix= {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     private-secrets = {
@@ -62,7 +62,6 @@
         ./modules/guipkgs
         "${inputs.private-secrets}/modules"
         # ./modules/nix
-        inputs.homeage.homeManagerModules.homeage
         inputs.nix-index-database.homeModules.nix-index
         { programs.nix-index-database.comma.enable = true; }
         {
@@ -73,6 +72,10 @@
           config.host.isDesktop = true;
         }
       ];
+
+      extraSpecialArgs = {
+        inherit inputs;
+      };
     };
 
     homeConfigurations."carneca@x1carbon" = 
@@ -101,7 +104,6 @@
         ./modules/guipkgs/linux.nix
         # ./modules/plasma
         # inputs.plasma-manager.homeManagerModules.plasma-manager
-        inputs.homeage.homeManagerModules.homeage
         inputs.nix-index-database.homeModules.nix-index
         "${inputs.private-secrets}/modules"
         { 
@@ -139,7 +141,6 @@
         ./modules/nix
         ./modules/clipkgs
         ./modules/clipkgs/linx.nix
-        inputs.homeage.homeManagerModules.homeage
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
