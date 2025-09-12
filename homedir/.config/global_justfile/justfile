@@ -1,0 +1,7 @@
+import "./tmp.just"
+
+_default:
+  @just -f ~/.config/global_justfile/justfile --choose
+
+commit_ai:
+  git commit -m "$(git diff --staged | ask 'write me a one sentence commit message for these changes')"

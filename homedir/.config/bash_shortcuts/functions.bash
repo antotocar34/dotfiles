@@ -44,7 +44,7 @@ export -f weekly_dl
 
 function dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --follow $exclusions -td . $HOME"""
+    cmd="""fd -I --max-depth 5 --one-file-system --follow $exclusions -td . $HOME"""
     dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
@@ -55,7 +55,7 @@ function dir_find {
 
 function local_dir_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --follow $exclusions -td . ."""
+    cmd="""fd -I --hidden --one-file-system --max-depth 5 --follow $exclusions -td . ."""
     dir=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true
@@ -66,7 +66,7 @@ function local_dir_find {
 
 function file_find {
     exclusions="-E '*.git' -E '*.stack*' -E '*.cache*' -E '*.local' -E '*.cabal/*' -E '*.ghcup*' -E '*.vim*'"
-    cmd="""fd -I --hidden --follow $exclusions -tf . $HOME"""
+    cmd="""fd -I --one-file-system --max-depth 5 --hidden --follow $exclusions -tf . $HOME"""
     FILE=$($cmd | fzf)
     if [[ $? -eq 130 ]]; then
         true

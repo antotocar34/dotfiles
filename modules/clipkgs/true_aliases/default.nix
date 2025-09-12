@@ -26,12 +26,13 @@ in {
 
     programs.bash.shellAliases = cfg.aliases;
 
-    # Add completion-aliases to alias
-    programs.bash.initExtra = ''
-      . ${pkgs.complete-alias}/bin/complete_alias
-    '' 
-    +
-    l.concatMapStringsSep "\n" (s: "complete -F _complete_alias ${s}") (l.attrNames cfg.aliases)
-    ;
+    # Add completion-aliases to alias and to package
+    programs.bash.initExtra = lib.mkAfter (
+      ''
+        . ${pkgs.complete-alias}/bin/complete_alias
+      '' 
+      +
+      l.concatMapStringsSep "\n" (s: "complete -F _complete_alias ${s}") (l.attrNames cfg.aliases)
+    );
   };
 }

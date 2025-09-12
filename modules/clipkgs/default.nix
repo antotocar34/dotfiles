@@ -19,9 +19,11 @@ in {
   ];
 
   home.trueAliases = with pkgs; {
-    "j" = just;
+    # "j" = just;
   };
   home.aliases = {
+    "j" = "just";
+    ".j" = "just -f ~/.config/global_justfile/justfile -d .";
     "sys" = "systemctl --user";
     "jnl" = "journalctl --user";
   };
@@ -126,9 +128,8 @@ in {
       enableCompletion = true;
       profileExtra = l.readFile ../../homedir/.extra_profile;
       initExtra = l.readFile ../../homedir/.bashrc;
-      bashrcExtra = ''
+      bashrcExtra = l.mkAfter ''
         . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
-        EDITOR="${myNvim}/bin/nvim"
       '';
       sessionVariables = {
         EDITOR="${myNvim}/bin/nvim";
