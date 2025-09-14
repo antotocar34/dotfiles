@@ -47,7 +47,7 @@ initialise_submodule:
   git submodule update --init --recursive
 
 test_secrets:
-   git submodule foreach just update
+   git submodule foreach just force_update
    nix flake update private-secrets
    just switch
 

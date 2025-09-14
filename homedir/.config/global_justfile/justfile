@@ -4,7 +4,7 @@ _default:
   @just -f ~/.config/global_justfile/justfile --choose
 
 commit_ai:
-  git commit -m "$(git diff --staged | ask 'write me a one sentence commit message for these changes')"
+  git -C {{invocation_directory()}} commit -m "$(git -C {{invocation_directory()}} diff --staged | ask 'write me a one sentence commit message for these changes')"
 
 s:
   just -f ~/.config/dotfiles/justfile switch

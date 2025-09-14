@@ -80,7 +80,7 @@ in {
     just # command line runner
     pirate-get # cli interface to piratebay
     libgen-cli # cli interface to libgen
-    # comma
+
     cachix
     magic-wormhole # Send files to anyone
     cmus # Music player
