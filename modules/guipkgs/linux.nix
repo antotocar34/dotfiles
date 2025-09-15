@@ -60,6 +60,12 @@ in {
 
   programs = {
 
+    kitty = {
+      enable = true;
+      enableBashIntegration = true;
+      extraConfig = ../../homedir/.config/kitty/kitty.conf;
+
+    };
     firefox = {
       enable = config.host.isDesktop;
     };

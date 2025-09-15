@@ -129,6 +129,7 @@ in {
       initExtra = l.readFile ../../homedir/.bashrc;
       bashrcExtra = l.mkAfter ''
         . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
+        EDITOR="${myNvim}/bin/nvim"
       '';
       sessionVariables = {
         EDITOR="${myNvim}/bin/nvim";

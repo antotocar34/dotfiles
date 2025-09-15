@@ -52,4 +52,4 @@ test_secrets:
    just switch
 
 commit:
-  git commit -m "$(git diff --staged | ask 'write me a one sentence commit message for these changes')"
+  git commit -m "$(git diff --staged | ask -n 'write me a one sentence commit message for these changes')"

@@ -13,6 +13,10 @@ case $- in
       *) return;;
 esac
 
+# Save and reload the history after each command finishes
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+HISTSIZE=100000 # big big history
+HISTFILESIZE=100000 # big big history
 HISTCONTROL=ignoreboth # don't put duplicate lines or lines starting with space in the history.
 shopt -s histappend # append to the history file, don't overwrite it
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)

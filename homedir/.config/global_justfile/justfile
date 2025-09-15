@@ -1,4 +1,5 @@
 mod gcp
+mod uv
 
 import? "./tmp.just"
 
