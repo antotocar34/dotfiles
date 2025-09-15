@@ -2,20 +2,28 @@ _default:
     @just --list
 
 # start from zero
-bootstrap: install_nix develop get_ssh switch
+bootstrap: install_nix develop switch get_ssh 
 
 # get in a shell with home manager and rbw
 develop:
     nix --extra-experimental-features nix-command --extra-experimental-features flakes develop .
 
-# obtain ssh private key for age
+# obtain ssh private keys for agenix and github
 get_ssh:
+    #!/usr/bin/env bash
     rm ~/.config/rbw/config.json 2> /dev/null || true
-    mkdir -p ~/.config/rbw 2> /dev/null || true
-    touch ~/.config/rbw/config.json
-    rbw config set email "antoinecarnec@gmail.com"
-    rbw config set pinentry "tty"
-    rbw get --full ssh > ~/.ssh/antoine
+    mkdir -p ~/.config/rbw_bootstrap 2> /dev/null || true
+    touch ~/.config/rbw_bootstrap/config.json
+    export RBW_PROFILE=bootstrap
+    read -p "Enter bitwarden login email: " bitwarden_email
+    rbw config set email $bitwarden_email
+    rbw config set pinentry "$(which pinentry)"
+    rbw get --full ssh.antoine > ~/.ssh/antoine
+    rbw get --full ssh.github > ~/.ssh/github
+    chmod 400 ~/.ssh/antoine
+    chmod 400 ~/.ssh/github
+    ssh-keygen -y -f ~/.ssh/antoine > ~/.ssh/antoine.pub
+    ssh-keygen -y -f ~/.ssh/github > ~/.ssh/github.pub
 
 switch:
     NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
