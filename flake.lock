@@ -1271,11 +1271,11 @@
     "private-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1757673547,
-        "narHash": "sha256-lB9qRjhM3I508NjylzTYojg0wrpIZ0v30KHGIKN76OI=",
+        "lastModified": 1757978004,
+        "narHash": "sha256-9HDCWexl2XVzLIQVcxhRXAkCo5xBEfhnffsJh/mH+rw=",
         "ref": "refs/heads/master",
-        "rev": "8fb762fdc0dd55619a92bb5d788d661b5c165e47",
-        "revCount": 4,
+        "rev": "c78f6daa39476346038f1880ada7d7fa6bf0a8ca",
+        "revCount": 6,
         "type": "git",
         "url": "ssh://git@github.com/antotocar34/dotfiles-private"
       },
