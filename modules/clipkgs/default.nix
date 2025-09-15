@@ -23,7 +23,7 @@ in {
   };
   home.aliases = {
     "j" = "just";
-    ".j" = "just -f ~/.config/global_justfile/justfile -d .";
+    ".j" = "just -f ${config.configPath}/homedir/.config/global_justfile/justfile -d .";
     "sys" = "systemctl --user";
     "jnl" = "journalctl --user";
   };
@@ -75,7 +75,6 @@ in {
     mypkgs.rclone-backup
     mypkgs.ask
     # lkr # personal script to lock sensitive files and directories with age
-    # direnv # Set environments in a specific directory
     jq # format json to stdout
     just # command line runner
     pirate-get # cli interface to piratebay

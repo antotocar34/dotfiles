@@ -15,7 +15,7 @@ get_ssh:
     touch ~/.config/rbw/config.json
     rbw config set email "antoinecarnec@gmail.com"
     rbw config set pinentry "tty"
-    rbw get --full ssh > ~/.ssh/antoine 
+    rbw get --full ssh > ~/.ssh/antoine
 
 switch:
     NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
