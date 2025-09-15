@@ -133,7 +133,7 @@
         ./modules/host_specific
         ./modules/nix
         ./modules/clipkgs
-        ./modules/clipkgs/linx.nix
+        ./modules/clipkgs/linux.nix
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;

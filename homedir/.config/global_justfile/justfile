@@ -10,6 +10,10 @@ _default:
 commit_ai:
   git commit -m "$(git diff --staged | ask -n 'write me a one sentence commit message for these changes')"
 
+[no-cd]
+force_amend:
+  git commit --amend --no-edit & git push -uf
+
 s:
   just -f ~/.config/dotfiles/justfile switch
 
