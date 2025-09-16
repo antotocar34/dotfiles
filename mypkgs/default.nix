@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, config, ...}: let
   l = pkgs.lib;
   llm-pkg = (pkgs.llm.withPlugins {
           # LLM access to models by Anthropic, including the Claude series <https://github.com/simonw/llm-anthropic>
@@ -22,5 +22,7 @@ in {
             name = "ask";
             runtimeInputs = [ llm-pkg ];
             text = builtins.readFile ./ask.sh;
+            runtimeEnv = { LLM_GEMINI_KEY_FILE = "${config.age.secrets.gemini-api-key.path}"; };
+            excludeShellChecks = ["SC2016"];
           };
 }

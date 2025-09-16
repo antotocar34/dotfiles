@@ -6,7 +6,7 @@
   ...
 }: let
   l = pkgs.lib // builtins;
-  mypkgs = import ../../mypkgs {inherit pkgs;};
+  mypkgs = import ../../mypkgs {inherit pkgs config;};
   hostname = config.host.hostname;
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";

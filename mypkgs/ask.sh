@@ -1,4 +1,5 @@
-#!/bin/bash
+LLM_GEMINI_KEY="$(cat "${LLM_GEMINI_KEY_FILE}")"
+export LLM_GEMINI_KEY
 
 MODEL="gemini-2.5-flash"
 PROMPT=""
