@@ -74,7 +74,6 @@ in {
     rclone # google drive cli interface
     mypkgs.rclone-backup
     mypkgs.ask
-    # lkr # personal script to lock sensitive files and directories with age
     jq # format json to stdout
     just # command line runner
     pirate-get # cli interface to piratebay
@@ -144,6 +143,9 @@ in {
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      config = {
+        hide_env_diff = true;
+      };
     };
 
     ssh = {

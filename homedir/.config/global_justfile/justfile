@@ -12,7 +12,7 @@ commit_ai:
 
 [no-cd]
 force_amend:
-  git commit --amend --no-edit & git push -uf
+  git commit --amend --no-edit && git push -uf
 
 s:
   just -f ~/.config/dotfiles/justfile switch
