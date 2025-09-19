@@ -11,6 +11,8 @@ develop:
 # obtain ssh private keys for agenix and github
 get_ssh:
     #!/usr/bin/env bash
+    set -e
+    umask 0066
     rm ~/.config/rbw/config.json 2> /dev/null || true
     mkdir -p ~/.config/rbw_bootstrap 2> /dev/null || true
     touch ~/.config/rbw_bootstrap/config.json
@@ -18,10 +20,9 @@ get_ssh:
     read -p "Enter bitwarden login email: " bitwarden_email
     rbw config set email $bitwarden_email
     rbw config set pinentry "$(which pinentry)"
-    rbw get --full ssh.antoine > ~/.ssh/antoine
-    rbw get --full ssh.github > ~/.ssh/github
-    chmod 400 ~/.ssh/antoine
-    chmod 400 ~/.ssh/github
+    rbw get --full ssh.antoine.sk > ~/.ssh/antoine
+    rbw get --full ssh.github.sk > ~/.ssh/github
+    umask 0022
     ssh-keygen -y -f ~/.ssh/antoine > ~/.ssh/antoine.pub
     ssh-keygen -y -f ~/.ssh/github > ~/.ssh/github.pub
 
