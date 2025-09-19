@@ -3,11 +3,11 @@
   pkgs,
   inputs,
   system,
+  myLib,
   ...
 }: let
   l = pkgs.lib // builtins;
   mypkgs = import ../../mypkgs {inherit pkgs config;};
-  hostname = config.host.hostname;
   email = "antoinecarnec@gmail.com";
   name = "Antoine Carnec";
   myNvim = inputs.my-neovim.packages."${system}".neovim;
@@ -18,8 +18,8 @@ in {
     inputs.nix-index-database.homeModules.nix-index
   ];
 
-  home.trueAliases = with pkgs; {
-    # "j" = just;
+  home.trueAliases = {
+    # "j" = pkgs.just;
   };
   home.aliases = {
     "j" = "just";

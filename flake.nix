@@ -22,7 +22,7 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    private-secrets = {
+    dotfiles-private = {
       url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
       flake = false; 
     };
@@ -55,16 +55,17 @@
     homeConfigurations."antoine.carnec@LONLTMC773WR0" = 
     let
       system = "aarch64-darwin";
+      pkgs = import nixpkgs { inherit system; };
     in
     home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { inherit system; };
+      inherit pkgs;
       modules = [
         ./home.nix
         ./modules/host_specific
         ./modules/clipkgs
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
-        "${inputs.private-secrets}/modules"
+        "${inputs.dotfiles-private}/modules"
         {
           config.host.user = "antoine.carnec";
           config.host.hostname = "LONLTMC773WR0";
@@ -76,6 +77,7 @@
 
       extraSpecialArgs = {
         inherit inputs system;
+        myLib = import ./lib {inherit pkgs;};
       };
     };
 
@@ -92,8 +94,6 @@
           inputs.acpkgs.overlays.default
         ];
       };
-      myLib = import ./lib {inherit pkgs;};
-      
     in
     home-manager.lib.homeManagerConfiguration {
 
@@ -103,7 +103,7 @@
         ./home.nix
         ./modules
         ./modules/guipkgs/linux.nix
-        "${inputs.private-secrets}/modules"
+        "${inputs.dotfiles-private}/modules"
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
@@ -114,7 +114,8 @@
       ];
 
       extraSpecialArgs = {
-        inherit myLib inputs system;
+        inherit inputs system;
+        myLib = import ./lib {inherit pkgs;};
       };
     };
     homeConfigurations."server" = 
@@ -145,6 +146,7 @@
 
       extraSpecialArgs = {
         inherit inputs system;
+        myLib = import ./lib {inherit pkgs;};
       };
     };
 

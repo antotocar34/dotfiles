@@ -57,7 +57,7 @@ initialise_submodule:
 
 test_secrets:
    git submodule foreach just force_update
-   nix flake update private-secrets
+   nix flake update dotfiles-private
    just switch
 
 commit:

@@ -8,6 +8,9 @@
           # LLM plugin to access Google's Gemini family of models <https://github.com/simonw/llm-gemini>
           llm-gemini = true;
         });
+  secretsAvailable = (l.attrByPath ["age"] false config) != false;
+  specialOptionalString = cond: string: if cond then string else "/dev/null";
+  geminiApiKey = l.attrByPath ["age" "secrets" "gemini-api-key" "path"] "" config;
 in {
   rclone-backup = (
     pkgs.writeShellScriptBin "rclone-backup"
@@ -18,11 +21,15 @@ in {
 
   lkr = pkgs.writeShellScriptBin "lkr" (builtins.readFile /home/carneca/Documents/projects/locker/lkr);
 
-  ask = pkgs.writeShellApplication {
+  ask = let
+
+
+  in
+  pkgs.writeShellApplication {
             name = "ask";
             runtimeInputs = [ llm-pkg ];
             text = builtins.readFile ./ask.sh;
-            runtimeEnv = { LLM_GEMINI_KEY_FILE = "${config.age.secrets.gemini-api-key.path}"; };
+            runtimeEnv = { LLM_GEMINI_KEY_FILE = (specialOptionalString secretsAvailable "${geminiApiKey}"); };
             excludeShellChecks = ["SC2016"];
           };
 }

@@ -484,6 +484,22 @@
         "type": "github"
       }
     },
+    "dotfiles-private": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758294676,
+        "narHash": "sha256-T/cOUWBYnFfTAUoOM23ULZ0YpEyntotCGRMju35FMJY=",
+        "ref": "refs/heads/master",
+        "rev": "76afaa1121888d6f73dbd548cb3b7f97a54f5298",
+        "revCount": 11,
+        "type": "git",
+        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -1268,22 +1284,6 @@
         "type": "github"
       }
     },
-    "private-secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1758013510,
-        "narHash": "sha256-f2YpLUX8/cBpdxDDn0bzPFdDUCI0cJEd/vzG7LFLtmk=",
-        "ref": "refs/heads/master",
-        "rev": "e4de5a477eb0a25566e731caa46b9494bf2c2767",
-        "revCount": 8,
-        "type": "git",
-        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
-      }
-    },
     "registers": {
       "flake": false,
       "locked": {
@@ -1324,13 +1324,13 @@
       "inputs": {
         "acpkgs": "acpkgs",
         "agenix": "agenix",
+        "dotfiles-private": "dotfiles-private",
         "home-manager": "home-manager",
         "my-neovim": "my-neovim",
         "nix-index-database": "nix-index-database",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_5",
-        "plasma-manager": "plasma-manager",
-        "private-secrets": "private-secrets"
+        "plasma-manager": "plasma-manager"
       }
     },
     "rust-overlay": {
