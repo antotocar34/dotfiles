@@ -187,6 +187,7 @@ in {
       enable = true;
       settings = {
         pinentry = pkgs.pinentry-curses;
+        lock_timeout = 60*5;
         inherit email;
       };
     };
