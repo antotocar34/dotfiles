@@ -107,7 +107,15 @@ lambda () {
     export PS1='${greenbold}\u@\h${bluebold} \w${green}$(parse_git_branch)${normal}\n$(lambda) '
 PS1='$(show_virtual_env)'$PS1
 
-PATH=~/.nix-profile/bin:$PATH
-PATH=/nix/var/nix/profiles/default/bin:$PATH
-PATH=/usr/local/bin:$PATH
-PATH=/Users/antoine.carnec/.local/share/miniforge3/bin:$PATH
+path_append() {
+    case ":$PATH:" in
+        *":$1:"*) ;;
+        *) PATH="${PATH:+$PATH:}$1" ;;
+    esac
+}
+
+path_append "$HOME/.nix-profile/bin"
+path_append /nix/var/nix/profiles/default/bin
+path_append /usr/local/bin
+path_append "$HOME/.local/share/miniforge3/bin"
+export PATH

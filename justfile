@@ -28,7 +28,7 @@ get_ssh:
 
 switch:
     NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
-    # just diff
+    just diff || exit 0
 
 install_nix:
     sh <(curl -L https://nixos.org/nix/install) --daemon
