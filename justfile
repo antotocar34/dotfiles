@@ -62,3 +62,7 @@ test_secrets:
 
 commit:
   git commit -m "$(git diff --staged | ask -n 'write me a one sentence commit message for these changes')"
+
+show_nixpkgs_version:
+  @jq -r '.nodes.nixpkgs.locked.rev' flake.lock
+

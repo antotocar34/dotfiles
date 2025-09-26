@@ -1,6 +1,9 @@
 {
   description = "home configuration flake";
 
+  nixConfig.extra-substituters = [ "https://antoinecarnec.cachix.org/" ];
+  nixConfig.extra-trusted-public-keys = [ "antoinecarnec.cachix.org-1:wQ75D1HEpoDPkzyOIIXJQk3nQRVMwE0NaQi/lPVlE7E=" ];
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -65,6 +68,7 @@
         ./modules/clipkgs
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
+        ./modules/nix
         "${inputs.dotfiles-private}/modules"
         {
           config.host.user = "antoine.carnec";
