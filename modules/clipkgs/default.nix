@@ -185,6 +185,7 @@ in {
 
     rbw = {
       enable = true;
+      package = inputs.acpkgs.packages.${system}.rbw;
       settings = {
         pinentry = pkgs.pinentry-curses;
         lock_timeout = 60*30;

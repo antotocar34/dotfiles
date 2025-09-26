@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     acpkgs.url = "github:antotocar34/acpkgs";
-    acpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    # acpkgs.inputs.nixpkgs.follows = "nixpkgs"; # So we hit the binary cache
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -91,7 +91,6 @@
           (_: _: {
             nixGL = inputs.nixgl.defaultPackage.${system}.nixGLIntel;
           })
-          inputs.acpkgs.overlays.default
         ];
       };
     in
