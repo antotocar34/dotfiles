@@ -15,11 +15,13 @@ get_ssh:
     umask 0066
     rm ~/.config/rbw/config.json 2> /dev/null || true
     mkdir -p ~/.config/rbw_bootstrap 2> /dev/null || true
+    mkdir -p ~/.ssh
     touch ~/.config/rbw_bootstrap/config.json
     export RBW_PROFILE=bootstrap
     read -p "Enter bitwarden login email: " bitwarden_email
     rbw config set email $bitwarden_email
     rbw config set pinentry "$(which pinentry)"
+    rbw unlock
     rbw get --full ssh.antoine.sk > ~/.ssh/antoine
     rbw get --full ssh.github.sk > ~/.ssh/github
     umask 0022
@@ -27,10 +29,11 @@ get_ssh:
     ssh-keygen -y -f ~/.ssh/github > ~/.ssh/github.pub
 
 switch:
-    NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
+    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
     @just diff || exit 0
 
 install_nix:
+    sudo echo "trusted-users = root $(whoami)" >> /etc/nix/nix.conf
     sh <(curl -L https://nixos.org/nix/install) --daemon
 
 update_input:
@@ -53,7 +56,7 @@ push_secrets:
    nix flake update private-secrets
 
 initialise_submodule:
-  git submodule update --init --recursive
+  GIT_SSH_COMMAND="ssh -i ~/.ssh/github" git submodule update --init --recursive
 
 test_secrets:
    git submodule foreach just force_update

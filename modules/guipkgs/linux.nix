@@ -52,8 +52,8 @@ in {
       [
         calibre
         kitty
-        stremio # media streaming client
-        sioyek
+        # stremio # media streaming client
+        # sioyek
       ]
     )
   ));
@@ -62,8 +62,8 @@ in {
 
     kitty = {
       enable = true;
-      enableBashIntegration = true;
-      extraConfig = ../../homedir/.config/kitty/kitty.conf;
+      # enableBashIntegration = true;
+      extraConfig = l.readFile ../../homedir/.config/kitty/kitty.conf;
 
     };
     firefox = {
