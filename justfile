@@ -30,7 +30,7 @@ get_ssh:
 
 switch:
     GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
-    @just diff || exit 0
+    # @just diff || exit 0
 
 install_nix:
     sudo echo "trusted-users = root $(whoami)" >> /etc/nix/nix.conf

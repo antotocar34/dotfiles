@@ -22,6 +22,8 @@ in {
     # "j" = pkgs.just;
   };
   home.aliases = {
+    "la" = "ls -a";
+    "lla" = "ls -la";
     "j" = "just";
     ".j" = "just -f ${config.configPath}/homedir/.config/global_justfile/justfile -d .";
     "sys" = "systemctl --user";

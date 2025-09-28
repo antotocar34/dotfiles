@@ -105,6 +105,7 @@
       modules = [
         ./home.nix
         ./modules
+        ./modules/clipkgs/linux.nix
         ./modules/guipkgs/linux.nix
         "${inputs.dotfiles-private}/modules"
         {
