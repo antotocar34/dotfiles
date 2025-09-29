@@ -192,6 +192,11 @@ in {
         pinentry = pkgs.pinentry-curses;
         lock_timeout = 60*30;
         inherit email;
+        pin_unlock = {
+          enabled = true;
+          ttl_secs = 60*60*24*30;
+          allow_weak_keyring = false;
+        };
       };
     };
 

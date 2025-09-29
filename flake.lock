@@ -278,11 +278,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1758905070,
-        "narHash": "sha256-uGTdmq6J+xt7MJtdLnMcb8HxTWlxpEgpVSEH7wi28MI=",
+        "lastModified": 1759062364,
+        "narHash": "sha256-C/0jrQZog+jk0S2UoOD6mo8vCHF2yGPra7yRtzSr/fc=",
         "owner": "antotocar34",
         "repo": "acpkgs",
-        "rev": "7b1ae060700d43308e301d90e9b2894f3f2ed65d",
+        "rev": "6299fc2eba10657219319a0ccf4804b5537b2882",
         "type": "github"
       },
       "original": {
@@ -486,11 +486,11 @@
     "dotfiles-private": {
       "flake": false,
       "locked": {
-        "lastModified": 1758909826,
-        "narHash": "sha256-X9sUyinruaRP3JNrirqQYByHvIeU++BvfSJL5T1/O1I=",
+        "lastModified": 1758994847,
+        "narHash": "sha256-FWT7p2EK0RhN6knxrgYQq5gy7UQ0ydhhFFOP1k0vInY=",
         "ref": "refs/heads/master",
-        "rev": "51547f6261dca0ec4305b1df7fb8697409ae4f18",
-        "revCount": 15,
+        "rev": "b0389141d6b3baa45693b50b40ecfa6527f04e32",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/antotocar34/dotfiles-private"
       },
@@ -916,15 +916,16 @@
       "locked": {
         "lastModified": 1758690382,
         "narHash": "sha256-NY3kSorgqE5LMm1LqNwGne3ZLMF2/ILgLpFr1fS4X3o=",
-        "owner": "NixOS",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "e643668fd71b949c53f8626614b21ff71a07379d",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
+        "owner": "nixos",
         "ref": "nixos-unstable",
-        "type": "indirect"
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_2": {

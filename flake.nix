@@ -8,7 +8,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     acpkgs.url = "github:antotocar34/acpkgs";
-    # acpkgs.inputs.nixpkgs.follows = "nixpkgs"; # So we hit the binary cache
+    # acpkgs.nixpkgs.follows = "nixpkgs"; # setting this means that acpkgs might not hit the cachix binary cache 
 
     home-manager = {
       url = "github:nix-community/home-manager/master";

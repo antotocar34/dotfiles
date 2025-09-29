@@ -40,6 +40,7 @@ in {
       # PDF_VIEWER = "${l.getExe pkgs.zathura}";
       # PDF_VIEWER = "${lib.getExe pkgs.sioyek}";
       NIX_PATH = "nixpkgs=${pkgs.path}";
+      SHELL = "${pkgs.bash}/bin/bash";
       inherit HOME_MANAGER_CONFIG;
     };
 home.shellAliases = {
