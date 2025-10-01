@@ -58,6 +58,7 @@
       ];
 
       imports = [
+        (inputs.import-tree ./modules/dendritic)
         ./flake-modules/core/options.nix
         ./flake-modules/homeConfigurations/macbookpro.nix
         ./flake-modules/homeConfigurations/x1carbon.nix
