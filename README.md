@@ -5,3 +5,6 @@
 3. `nix --extra-experimental-features nix-command --extra-experimental-features flakes develop .`
 4. Install ssh private key in `~/.ssh' 
 5. `export NIXPKGS_ALLOW_UNFREE=1; home-manager switch -b old --impure --flake .`
+
+# TODO
+https://vic.github.io/dendrix/Dendritic.html

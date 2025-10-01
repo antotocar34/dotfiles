@@ -4,6 +4,7 @@
   inputs,
   system,
   myLib,
+  lib,
   ...
 }: let
   l = pkgs.lib // builtins;
@@ -34,9 +35,9 @@ in {
     FZF_DEFAULT_COMMAND = ''
       ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
     '';
-    EDITOR = ''
-      ${myNvim}/bin/nvim
-      '';
+    EDITOR = "${myNvim}/bin/nvim";
+      # TODO make more robust
+    SSH_AUTH_SOCK= l.optionalString config.programs.rbw.enable ''"$([[ -n $XDG_RUNTIME_DIR ]] && echo $XDG_RUNTIME_DIR/rbw || echo "''${TMPDIR}rbw-$UID")/ssh-agent-socket"'';
   };
 
   home.packages = with pkgs; [
@@ -189,7 +190,10 @@ in {
       enable = true;
       package = inputs.acpkgs.packages.${system}.rbw;
       settings = {
-        pinentry = pkgs.pinentry-curses;
+          pinentry =
+            if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
+            else if (pkgs.stdenv.isLinux && config.host.isDesktop) then pkgs.pinentry-qt
+            else pkgs.pinentry-curses;
         lock_timeout = 60*30;
         inherit email;
         pin_unlock = {
@@ -199,6 +203,7 @@ in {
         };
       };
     };
+
 
     fzf = {
       enable = true;

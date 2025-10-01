@@ -29,8 +29,11 @@ get_ssh:
     ssh-keygen -y -f ~/.ssh/github > ~/.ssh/github.pub
 
 switch:
-    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b old_version --impure --flake .#${USER}@${HOSTNAME}
+    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -v -b old_version --impure --flake .#${USER}@${HOSTNAME}
     # @just diff || exit 0
+
+build:
+    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager build -v -b old_version --impure --flake .#${USER}@${HOSTNAME}
 
 install_nix:
     sudo echo "trusted-users = root $(whoami)" >> /etc/nix/nix.conf
@@ -42,8 +45,6 @@ update_input:
     readarray -t inputArray <<<"$inputs"
     nix flake update ${inputArray[@]}
 
-build:
-    nix build --impure .#homeConfigurations.${USER}-${HOSTNAME}.activationPackage
 
 diff:
     home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | tac | xargs -n 2 nix run nixpkgs#nvd diff

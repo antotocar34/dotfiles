@@ -158,10 +158,12 @@ command! reload :write | restart
 " program.
 
 " Pdf
+filetype *.pdf open %f
 filextype *.pdf open %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
+filetype *.ps,*.eps,*.ps.gz, *.cbz, *.cbr open %f
 filextype *.ps,*.eps,*.ps.gz, *.cbz, *.cbr
         \ {View in zathura}
         \ zathura %f,
@@ -190,12 +192,14 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        "\ {Play using ffplay}
        "\ ffplay -nodisp %c &,
        \ {Play using MPlayer}
+       \ open %f
        \ mpv  %f 2> /dev/null &,
        \ vlc  %f 2> /dev/null &,
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
 " Video
+filetype *.gif,*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob open %f
 filextype *.gif,*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
          \*.as[fx]
@@ -211,6 +215,7 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \ ffprobe -pretty %c 2>&1
 
 " Web
+filetype *.html,*.htm open %f
 filextype *.html,*.htm
         \ {Open with chromium}
         \ nvim %f,
@@ -228,6 +233,7 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.xpm open %f
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ {View in sxiv}
         \ feh %f &,
@@ -298,6 +304,7 @@ filetype *.asc
        \ !!gpg --verify %c,
 
 " Torrent
+filetype *.torrent open %f
 filetype *.torrent ktorrent %f &
 fileviewer *.torrent dumptorrent -v %c
 
@@ -348,6 +355,7 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
+filetype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f, open %f
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f, onlyoffice-desktopeditor %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
@@ -449,7 +457,7 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
-nnoremap ,t :!alacritty &<cr>
+nnoremap ,t :!kitty &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
@@ -579,13 +587,13 @@ set classify+=' ::*.java,,*.jar::'
 set classify+=' ::*.xul::'
 set classify+=' ::*.clj,,*.cljc::'
 set classify+=' ::*.pl,,*.pm,,*.t::'
-set classify+=' ::*.pdf::'
+set classify+='📘::*.pdf::'
 set classify+=' ::*.xls,,*.xlsx,,*.odp::'
-set classify+=' ::*.m4a,,*.mp3,,*.opus::'
+set classify+=' ::*.m4a,,*.mp3,,*.opus::'
 set classify+=' ::*.mp4,,*.mkv,,*.webm::'
 set classify+=' ::*.iso::'
 set classify+=' ::*.nix::'
-set classify+=' ::*.xopp::'
+set classify+=' ::*.xopp::'
 
 highlight clear
 

@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   myLib,
+  system,
   ...
 }: let
   l = lib // builtins;
@@ -51,8 +52,6 @@ home.shellAliases = {
 
     nixpkgs.config.allowUnfree = true;
 
-    fonts.fontconfig.enable = true;
-
     home.packages = with pkgs; [
       # Some window manager utilities
       # systemd
@@ -78,6 +77,11 @@ home.shellAliases = {
 
       # useful programs
       cascadia-code
+      nerd-fonts.caskaydia-cove
+      # TODO patch your own monaco with nf https://gist.github.com/DeeUnderscore/e81b7c72ea0d165274f6bfe4b2a88732
+      # inputs.monaco-nf.defaultPackage.${system}
+      # nerd-fonts.cousine
+      # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       # (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
       # (nerdfonts.override {fonts = ["CascadiaCode"];}) # fonts
 
@@ -87,6 +91,8 @@ home.shellAliases = {
       # glibcLocales
       # powerline-fonts
     ];
+
+    fonts.fontconfig.enable = true;
 
     # xdg = {
     #   enable = true;

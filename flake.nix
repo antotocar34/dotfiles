@@ -40,6 +40,9 @@
 
     nixgl.url = "github:guibou/nixGL";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
+
+    monaco-nf.url = "github:thep0y/monaco-nerd-font";
+    monaco-nf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -69,6 +72,7 @@
         ./modules/clipkgs/mac.nix
         ./modules/guipkgs
         ./modules/nix
+        ./modules/mac
         "${inputs.dotfiles-private}/modules"
         {
           config.host.user = "antoine.carnec";
@@ -139,6 +143,7 @@
         ./modules/nix
         ./modules/clipkgs
         ./modules/clipkgs/linux.nix
+        "${inputs.dotfiles-private}/modules"
         {
           config.host.isNixos = false;
           config.host.isDesktop = true;
