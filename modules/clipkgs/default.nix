@@ -129,10 +129,18 @@ in {
       enableCompletion = true;
       profileExtra = l.readFile ../../homedir/.extra_profile;
       initExtra = l.readFile ../../homedir/.bashrc;
-      bashrcExtra = l.mkAfter ''
-        . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
-        EDITOR="${myNvim}/bin/nvim"
-      '';
+      bashrcExtra = l.mkAfter (
+        ''
+          . <(cat ${../../homedir/.config/bash_shortcuts}/*.bash)
+          EDITOR="${myNvim}/bin/nvim"
+        ''
+        + l.optionalString pkgs.stdenv.isDarwin ''
+          # export SHELL="/opt/homebrew/bin/bash"
+          export CLICOLOR=1
+          export LSCOLORS=GxFxCxDxBxegedabagaced
+          PATH=/opt/homebrew/bin:$PATH
+        ''
+      );
       sessionVariables = {
         EDITOR="${myNvim}/bin/nvim";
         };
