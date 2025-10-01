@@ -7,6 +7,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
     acpkgs.url = "github:antotocar34/acpkgs";
     # acpkgs.nixpkgs.follows = "nixpkgs"; # setting this means that acpkgs might not hit the cachix binary cache 
 
@@ -45,122 +48,27 @@
     monaco-nf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "aarch64-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-  in {
-    homeConfigurations."antoine.carnec@LONLTMC773WR0" = 
-    let
-      system = "aarch64-darwin";
-      pkgs = import nixpkgs { inherit system; };
-    in
-    home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./home.nix
-        ./modules/host_specific
-        ./modules/clipkgs
-        ./modules/clipkgs/mac.nix
-        ./modules/guipkgs
-        ./modules/nix
-        ./modules/mac
-        "${inputs.dotfiles-private}/modules"
-        {
-          config.host.user = "antoine.carnec";
-          config.host.hostname = "LONLTMC773WR0";
-          config.homedir = "/Users/antoine.carnec";
-          config.host.isNixos = false;
-          config.host.isDesktop = true;
-        }
+  outputs = inputs@{ self, flake-parts, nixpkgs, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
       ];
 
-      extraSpecialArgs = {
-        inherit inputs system;
-        myLib = import ./lib {inherit pkgs;};
-      };
-    };
-
-    homeConfigurations."carneca@x1carbon" = 
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { 
-        system = system; 
-        overlays = [
-          inputs.nixgl.overlay
-          (_: _: {
-            nixGL = inputs.nixgl.defaultPackage.${system}.nixGLIntel;
-          })
-        ];
-      };
-    in
-    home-manager.lib.homeManagerConfiguration {
-
-      inherit pkgs;
-
-      modules = [
-        ./home.nix
-        ./modules
-        ./modules/clipkgs/linux.nix
-        ./modules/guipkgs/linux.nix
-        "${inputs.dotfiles-private}/modules"
-        {
-          config.host.isNixos = false;
-          config.host.isDesktop = true;
-          config.host.user = "carneca";
-          config.host.hostname = "x1carbon";
-          config.homedir = "/home/carneca";
-        }
+      imports = [
+        ./flake-modules/core/options.nix
+        ./flake-modules/homeConfigurations/macbookpro.nix
+        ./flake-modules/homeConfigurations/x1carbon.nix
+        ./flake-modules/homeConfigurations/server.nix
       ];
 
-      extraSpecialArgs = {
-        inherit inputs system;
-        myLib = import ./lib {inherit pkgs;};
-      };
+      perSystem = { system, ... }:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          devShells.default = pkgs.callPackage ./shell.nix {};
+        };
     };
-    homeConfigurations."server" = 
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-      user = "error";
-      hostname = "error";
-    in
-    home-manager.lib.homeManagerConfiguration {
-
-      inherit pkgs;
-
-      modules = [
-        ./home.nix
-        ./modules/host_specific
-        ./modules/nix
-        ./modules/clipkgs
-        ./modules/clipkgs/linux.nix
-        "${inputs.dotfiles-private}/modules"
-        {
-          config.host.isNixos = false;
-          config.host.isDesktop = true;
-          config.host.user = user;
-          config.host.hostname = hostname;
-          config.homedir = "/home/${user}";
-        }
-      ];
-
-      extraSpecialArgs = {
-        inherit inputs system;
-        myLib = import ./lib {inherit pkgs;};
-      };
-    };
-
-    devShells = forAllSystems (system: {
-      default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix {};
-    });
-  };
 }
