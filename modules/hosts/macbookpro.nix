@@ -18,10 +18,13 @@
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = with homeManagerCfg; [
-        home
+        home # TODO unify home and bae
         base
         cli
+        gui # TODO unify desktop and gui?
         desktop
+        secrets
+        # work
       ];
 
       extraSpecialArgs = {

@@ -23,6 +23,7 @@ flake.homeConfigurations."x1carbon" =
       base
       cli
       desktop
+      secrets
     ];
 
     extraSpecialArgs = {

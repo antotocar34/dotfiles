@@ -486,15 +486,16 @@
     "dotfiles-private": {
       "flake": false,
       "locked": {
-        "lastModified": 1759193469,
-        "narHash": "sha256-Q+Kyscz+ax7wnCBhPq1xUOt671kROTw5t+vBRO5Owm4=",
-        "ref": "refs/heads/master",
-        "rev": "24e7cb49bb08033606767233885bd8ccc211f041",
-        "revCount": 16,
+        "lastModified": 1759416466,
+        "narHash": "sha256-asvm+HFytpV4UpwTC9Imxc61KZ2GwyBalIDrgQ41eOc=",
+        "ref": "dendritic",
+        "rev": "d74ce33d821baac4f09d2336b635c08d737db56a",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@github.com/antotocar34/dotfiles-private"
       },
       "original": {
+        "ref": "dendritic",
         "type": "git",
         "url": "ssh://git@github.com/antotocar34/dotfiles-private"
       }

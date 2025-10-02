@@ -29,7 +29,8 @@
     };
 
     dotfiles-private = {
-      url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
+      url = "git+ssh://git@github.com/antotocar34/dotfiles-private?ref=dendritic";
+      # url = "./private";
       flake = false; 
     };
 
