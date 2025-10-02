@@ -1,4 +1,4 @@
 *.priv
 result
-_modules
-_dendritic
+.legacy
+modules/hosts/.server.*

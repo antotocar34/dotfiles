@@ -2,8 +2,8 @@
 let
   system = "x86_64-linux";
   pkgs = import inputs.nixpkgs { inherit system; };
-  user = "TBD::user";
-  hostname = "TBD::hostname";
+  user = builtins.readFile ./.server.user;
+  hostname = builtins.readFile ./server.hostname;
 in {
   hosts.server = {
     inherit user;

@@ -87,3 +87,7 @@ show_nixpkgs_version:
 
 repl:
   nix repl
+
+populate_server:
+  echo $(whoami) > modules/hosts/.server.user
+  echo $(hostname) > modules/hosts/.server.hostname
