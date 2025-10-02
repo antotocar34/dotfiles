@@ -1,6 +1,6 @@
 {
-  flake.module.homeManager = {
-    ssh = {
+  flake.modules.homeManager.cli = {
+    programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
       matchBlocks = {

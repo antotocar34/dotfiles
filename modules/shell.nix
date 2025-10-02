@@ -1,13 +1,13 @@
 {
-  flake.homeManager.cli = {pkgs, lib, config}: {
-    bash = {
+  flake.modules.homeManager.cli = {pkgs, lib, ...}: {
+    programs.bash = {
       enable = true;
       enableCompletion = true;
       profileExtra = lib.readFile ../homedir/.extra_profile;
       initExtra = lib.readFile ../homedir/.bashrc;
       bashrcExtra = lib.mkAfter (
         ''
-          . <(cat ${../../../homedir/.config/bash_shortcuts}/*.bash)
+          . <(cat ${../homedir/.config/bash_shortcuts}/*.bash)
         ''
         + lib.optionalString pkgs.stdenv.isDarwin ''
           # export SHELL="/opt/homebrew/bin/bash"
@@ -17,5 +17,5 @@
         ''
         );
       };
-    };
-  }
+   };
+}

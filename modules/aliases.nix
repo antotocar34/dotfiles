@@ -29,10 +29,10 @@
       };
       home.packages = trueAliasPackages;
 
-     programs.bash.shellAliases = config.aliases;
+     programs.bash.shellAliases = config.home.aliases;
      programs.bash.initExtra = ''
           . ${pkgs.complete-alias}/bin/complete_alias
-          ${lib.concatMapStringsSep "\n" (s: "complete -F _complete_alias ${s}") (lib.attrNames config.aliases)}
+          ${lib.concatMapStringsSep "\n" (s: "complete -F _complete_alias ${s}") (lib.attrNames config.home.aliases)}
         '';
     };
   };

@@ -8,3 +8,12 @@
 
 # TODO
 https://vic.github.io/dendrix/Dendritic.html
+
+
+
+# IDEA
+Have profiles, with two ideas:
+  - Broad profiles
+    - Something needed by general user
+  - Detailed profiles
+    - Something needed by a specific server

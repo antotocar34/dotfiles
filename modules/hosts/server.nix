@@ -5,19 +5,21 @@ let
   user = "TBD::user";
   hostname = "TBD::hostname";
 in {
+  hosts.server = {
+    inherit user;
+    host = hostname;
+    homedir = "/home/${user}";
+    isNixos = false;
+    isDesktop = false;
+  };
+
   flake.homeConfigurations."server" =
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [
-      ];
+      modules = [ ];
       extraSpecialArgs = {
-        host = {
-          inherit user;
-          host = hostname;
-          homedir = "/home/${user}";
-          isNixos = false;
-          isDesktop = false;
-        };
+        host = config.host.server;      
+        inherit system inputs;
       };
     };
 }

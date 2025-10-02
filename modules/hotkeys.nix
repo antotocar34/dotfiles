@@ -5,7 +5,7 @@
     lib,
     ...
   }: {
-    config.services.skhd = lib.mkIf pkgs.stdenv.isDarwin {
+    services.skhd = lib.mkIf pkgs.stdenv.isDarwin {
       enable = true;
       config = 
       let
@@ -24,7 +24,7 @@
 
     };
 
-    config.systemd.user.services = lib.mkIf pkgs.stdenv.isLinux {
+    systemd.user.services = lib.mkIf pkgs.stdenv.isLinux {
       sxhkd = {
         Unit.Description = "Simple X Hotkey Daemon";
         Service.Type = "oneshot";

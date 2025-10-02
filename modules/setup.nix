@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, ... }:
 {
   imports = [ 
     inputs.flake-parts.flakeModules.modules 

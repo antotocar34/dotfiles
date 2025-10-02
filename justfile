@@ -28,12 +28,23 @@ get_ssh:
     ssh-keygen -y -f ~/.ssh/antoine > ~/.ssh/antoine.pub
     ssh-keygen -y -f ~/.ssh/github > ~/.ssh/github.pub
 
+@_get_hostname:
+    #!/usr/bin/env bash
+    printf '%s\n' '{"x1carbon":"x1carbon","LONLTMC773WR0":"LONLTMC773WR0"}' \
+    | jq --exit-status -r --arg h "$HOSTNAME" '.[$h]? // empty' \
+    || echo "server"
+
 switch:
-    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -v -b old_version --impure --flake .#${USER}@${HOSTNAME}
+    #!/usr/bin/env bash
+    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager switch -v -b old_version --impure --flake .#$(just -q _get_hostname)
     # @just diff || exit 0
 
 build:
-    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager build -v -b old_version --impure --flake .#${USER}@${HOSTNAME}
+    #!/usr/bin/env bash
+    ARG=$(printf '%s\n' '{"x1carbon":"x1carbon","LONLTMC773WR0":"LONLTMC773WR0"}' \
+    | jq --exit-status -r --arg h "$HOSTNAME" '.[$h]? // empty' \
+    || echo "server")
+    GIT_SSH_COMMAND="ssh -i ~/.ssh/github" NIXPKGS_ALLOW_UNFREE=1 home-manager build -v -b old_version --impure --flake .#$(just -q _get_hostname)
 
 install_nix:
     sudo echo "trusted-users = root $(whoami)" >> /etc/nix/nix.conf

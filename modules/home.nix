@@ -4,21 +4,17 @@
   let
     l = lib // builtins;
   in {
-    options = {
-      homedir = l.mkOption {
-        type = l.types.str;
-      };
 
-      configPath = l.mkOption {
+    options.configPath = l.mkOption {
         type = l.types.str;
       };
-    };
 
     config = let
       user = host.user;
       home = host.homedir;
-      HOME_MANAGER_CONFIG = "${host.homedir}/.config/dotfiles";
+      configPath = "${host.homedir}/.config/dotfiles";
     in {
+      inherit configPath;
       programs.home-manager.enable = true;
 
       home.username = user;
@@ -30,12 +26,12 @@
         NIXPKGS_ALLOW_UNFREE = 1;
         NIX_PATH = "nixpkgs=${pkgs.path}";
         SHELL = "${pkgs.bash}/bin/bash";
-        inherit HOME_MANAGER_CONFIG;
+        inherit configPath;
       };
 
       home.shellAliases = {
-        "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && just ${HOME_MANAGER_CONFIG}/switch'';
-        "conf" = "cd ${HOME_MANAGER_CONFIG}";
+        "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && just ${configPath}/switch'';
+        "conf" = "cd ${configPath}";
         "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
       };
 
