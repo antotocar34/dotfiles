@@ -1,6 +1,5 @@
 { lib, ... }:
 let
-  # l = inputs.nixpkgs.lib;
   host_options = {
     user = lib.mkOption {
       type = lib.types.str;
