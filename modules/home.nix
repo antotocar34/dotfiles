@@ -1,6 +1,6 @@
 {config, lib, ...}:
 {
-  flake.modules.homeManager.home = { config, pkgs, host, ... }:
+  flake.modules.homeManager.base = { config, pkgs, host, ... }:
   let
     l = lib // builtins;
   in {

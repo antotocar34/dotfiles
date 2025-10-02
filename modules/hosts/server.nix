@@ -16,10 +16,16 @@ in {
   flake.homeConfigurations."server" =
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ ];
+      modules = with config.flake.modules.homeManager; [ 
+        base
+        cli
+      ];
       extraSpecialArgs = {
-        host = config.host.server;      
-        inherit system inputs;
+        host = config.hosts.server;
+        info = config.info;
+        myLib = config.flake.lib;
+        inherit system inputs pkgs;
       };
+
     };
-}
+  }

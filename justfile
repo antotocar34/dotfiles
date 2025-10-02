@@ -70,10 +70,14 @@ push_secrets:
 initialise_submodule:
   GIT_SSH_COMMAND="ssh -i ~/.ssh/github" git submodule update --init --recursive
 
+update_secrets:
+   git submodule foreach just force_update
+   nix flake update dotfiles-private
+
 test_secrets:
    git submodule foreach just force_update
    nix flake update dotfiles-private
-   just switch
+   just build
 
 commit:
   git commit -m "$(git diff --staged | ask -n 'write me a one sentence commit message for these changes')"
@@ -81,3 +85,5 @@ commit:
 show_nixpkgs_version:
   @jq -r '.nodes.nixpkgs.locked.rev' flake.lock
 
+repl:
+  nix repl

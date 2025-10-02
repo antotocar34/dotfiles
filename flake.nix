@@ -29,9 +29,9 @@
     };
 
     dotfiles-private = {
-      url = "git+ssh://git@github.com/antotocar34/dotfiles-private?ref=dendritic";
-      # url = "./private";
-      flake = false; 
+      url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
+      flake = false;
+      # url = "path:private";
     };
 
     # This captures my plasma settings
@@ -51,6 +51,7 @@
 
   outputs = inputs@{ self, flake-parts, nixpkgs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      
       systems = [
         # "aarch64-linux"
         "x86_64-linux"

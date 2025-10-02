@@ -1,18 +1,17 @@
 {
-  flake.modules.homeManager.gui = {config, pkgs, lib, host, ...}:
+  flake.modules.homeManager.desktop = {config, pkgs, lib, myLib, host, ...}:
   {
-    home.packages = lib.mkIf host.isDesktop (with pkgs; [
+    home.packages = (with pkgs; [
       mpv
     ]);
 
     programs.kitty = {
-      enable = host.isDesktop;
+      enable = true;
       extraConfig = lib.readFile ../homedir/.config/kitty/kitty.conf;
-      # TODO impelment nixGL
-      # package = if pkgs.stdenv.isLinux then ml.wrapWithNixGLFull pkgs.nixGL pkgs.kitty else pkgs.kitty;
+      package = if pkgs.stdenv.isLinux then myLib.wrapWithNixGLFull pkgs.nixGL pkgs.kitty else pkgs.kitty;
     };
 
-    programs.firefox.enable = host.isDesktop;
+    programs.firefox.enable = true;
 
   };
 }

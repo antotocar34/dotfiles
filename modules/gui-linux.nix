@@ -1,7 +1,7 @@
 {
-  flake.modules.homeManager.gui = {config, pkgs, lib, host, ...}:
+  flake.modules.homeManager.desktop = {config, pkgs, lib, myLib, host, ...}:
   let
-    wrapWithNixGLFull = config.flake.lib.wrapWithNixGLFull pkgs;
+    wrapWithNixGLFull = myLib.wrapWithNixGLFull pkgs;
     isDesktopLinux = host.isDesktop && pkgs.stdenv.isLinux;
   in
   {
@@ -59,5 +59,4 @@
 
 
     };
-
   }

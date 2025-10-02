@@ -14,12 +14,10 @@ flake.homeConfigurations."x1carbon" =
     system = "x86_64-linux";
     pkgs = import inputs.nixpkgs { inherit system; };
     homeManagerCfg = config.flake.modules.homeManager;
-    # TODO think of the idea config.flake.modules.homeManager.profiles
   in
   inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     modules = with homeManagerCfg; [
-      home
       base
       cli
       desktop
@@ -29,6 +27,7 @@ flake.homeConfigurations."x1carbon" =
     extraSpecialArgs = {
       host = config.hosts.x1carbon;
       info = config.info;
+      myLib = config.flake.lib;
       inherit system inputs;
     };
   };

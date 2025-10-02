@@ -18,19 +18,18 @@
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = with homeManagerCfg; [
-        home # TODO unify home and bae
         base
         cli
-        gui # TODO unify desktop and gui?
         desktop
         secrets
-        # work
+        work
       ];
 
       extraSpecialArgs = {
         host = config.hosts.macbookpro;
         info = config.info;
-        inherit system inputs;
+        myLib = config.flake.lib;
+        inherit system inputs pkgs;
       };
     };
 }

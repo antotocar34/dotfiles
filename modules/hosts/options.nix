@@ -25,9 +25,10 @@ let
   };
   host_options_type = lib.types.submodule ({...}: { options = host_options; });
 in {
-    options.hosts = lib.mkOption {
-      type = lib.types.attrsOf host_options_type;
-      default = {};
-      description = "Host metadata keyed by identifier.";
-    };
-  }
+  options.hosts = lib.mkOption {
+    type = lib.types.attrsOf host_options_type;
+    default = {};
+    description = "Host metadata keyed by identifier.";
+  };
+}
+
