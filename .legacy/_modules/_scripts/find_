@@ -1,0 +1,15 @@
+find_ () {
+    EXTENSION="$1"
+    FILE=$(fd -uu -e${EXTENSION} . ~/Documents/ ~/Downloads/ | rofi -dmenu -i -p "> ")
+
+
+    if [[ ${?} -eq 0 ]]
+    then
+        mimeo "${FILE}"
+        exit 0
+    else
+        exit 1
+    fi
+}
+
+find_ "$@"
