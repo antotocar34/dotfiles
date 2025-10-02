@@ -1,2 +1,4 @@
 *.priv
 result
+_modules
+_dendritic
