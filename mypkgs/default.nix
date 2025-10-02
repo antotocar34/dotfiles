@@ -19,13 +19,7 @@ in {
     ''
   );
 
-  lkr = pkgs.writeShellScriptBin "lkr" (builtins.readFile /home/carneca/Documents/projects/locker/lkr);
-
-  ask = let
-
-
-  in
-  pkgs.writeShellApplication {
+  ask = pkgs.writeShellApplication {
             name = "ask";
             runtimeInputs = [ llm-pkg ];
             text = builtins.readFile ./ask.sh;

@@ -51,18 +51,14 @@
   outputs = inputs@{ self, flake-parts, nixpkgs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
-        "aarch64-linux"
+        # "aarch64-linux"
         "x86_64-linux"
         "aarch64-darwin"
-        "x86_64-darwin"
+        # "x86_64-darwin"
       ];
 
       imports = [
-        (inputs.import-tree ./modules/dendritic)
-        ./flake-modules/core/options.nix
-        ./flake-modules/homeConfigurations/macbookpro.nix
-        ./flake-modules/homeConfigurations/x1carbon.nix
-        ./flake-modules/homeConfigurations/server.nix
+        (inputs.import-tree ./modules)
       ];
 
       perSystem = { system, ... }:
