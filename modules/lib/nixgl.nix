@@ -7,7 +7,7 @@
         runtimeInputs = [];
 
         text = ''
-          exec ${nixGL}/bin/nixGLIntel ${pkgs.lib.getExe pkg} "$@"
+          exec ${nixGL}/bin/nixGL ${pkgs.lib.getExe pkg} "$@"
         '';
       };
     wrapWithNixGLFull = pkgs: nixGL: pkg:
@@ -18,7 +18,7 @@
         mkdir $out/bin
         for bin in ${pkg}/bin/*; do
          wrapped_bin=$out/bin/$(basename $bin)
-         echo "exec ${nixGL}/bin/nixGLIntel $bin \$@" > $wrapped_bin
+         echo "exec ${nixGL}/bin/nixGL $bin \$@" > $wrapped_bin
          chmod +x $wrapped_bin
         done
       '';

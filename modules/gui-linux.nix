@@ -1,6 +1,7 @@
 {
-  flake.modules.homeManager.desktop = {config, pkgs, lib, myLib, host, ...}:
+  flake.modules.homeManager.desktop = {inputs, system, config, pkgs, lib, myLib, host, ...}:
   let
+    nixGL = inputs.nixgl.packages.${system}.default;
     wrapWithNixGLFull = myLib.wrapWithNixGLFull pkgs;
     isDesktopLinux = host.isDesktop && pkgs.stdenv.isLinux;
   in
@@ -44,13 +45,13 @@
     # For those applications that need to be wrapped with nixGL
     (
       map (
-        if ! config.host.isNixos
+        if ! host.isNixos
         then (wrapWithNixGLFull nixGL)
         else x: x
         )
         [
           calibre
-          kitty
+        # kitty
         # stremio # media streaming client
         # sioyek
       ]
