@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.cli = {pkgs, lib, ...}: {
+  flake.modules.homeManager.cli = {pkgs, lib, host, ...}: {
     programs.bash = {
       enable = true;
       enableCompletion = true;
@@ -16,6 +16,11 @@
           PATH=/opt/homebrew/bin:$PATH
         ''
         );
+      };
+  
+      home.sessionVariables = { 
+        SHELL = "${pkgs.bash}/bin/bash";
+        CLI_SYMBOL = host.extras.symbol;
       };
    };
 }

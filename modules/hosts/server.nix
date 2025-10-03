@@ -11,6 +11,7 @@ in {
     homedir = "/home/${user}";
     isNixos = false;
     isDesktop = false;
+    extras.symbol = ">";
   };
 
   flake.homeConfigurations."server" =

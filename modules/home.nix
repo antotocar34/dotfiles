@@ -1,6 +1,6 @@
-{config, lib, ...}:
+{...}:
 {
-  flake.modules.homeManager.base = { config, pkgs, host, ... }:
+  flake.modules.homeManager.base = { config, pkgs, lib, host, ... }:
   let
     l = lib // builtins;
   in {
@@ -14,6 +14,7 @@
       home = host.homedir;
       configPath = "${host.homedir}/.config/dotfiles";
     in {
+
       inherit configPath;
       programs.home-manager.enable = true;
 
@@ -25,8 +26,7 @@
         LOCALE_ARCHIVE = "${home}/.nix-profile/lib/locale/locale-archive";
         NIXPKGS_ALLOW_UNFREE = 1;
         NIX_PATH = "nixpkgs=${pkgs.path}";
-        SHELL = "${pkgs.bash}/bin/bash";
-        inherit configPath;
+        HOME_MANAGER_CONFIG = configPath;
       };
 
       home.shellAliases = {

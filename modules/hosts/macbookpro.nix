@@ -7,6 +7,7 @@
     isNixos = false;
     isDesktop = true;
     homedir = "/Users/antoine.carnec";
+    extras.symbol = "θ";
   };
 
   flake.homeConfigurations."LONLTMC773WR0" =

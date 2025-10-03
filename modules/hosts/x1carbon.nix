@@ -7,6 +7,7 @@ hosts.x1carbon = {
   isNixos = false;
   isDesktop = true;
   homedir = "/home/carneca";
+  extras.symbol = "λ";
 };
 
 flake.homeConfigurations."x1carbon" =

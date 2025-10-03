@@ -21,6 +21,9 @@ let
       type = lib.types.str;
       description = "Primary home directory.";
     };
+    extras = lib.mkOption {
+      type = lib.types.attrsOf lib.types.anything;
+    };
   };
   host_options_type = lib.types.submodule ({...}: { options = host_options; });
 in {
