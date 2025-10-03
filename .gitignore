@@ -1,4 +1,5 @@
 *.priv
 result
 .legacy
-modules/hosts/.server.*
+modules/hosts/.server.user
+modules/hosts/.server.hostname

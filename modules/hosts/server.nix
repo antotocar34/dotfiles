@@ -1,13 +1,12 @@
-{ inputs, config, ... }:
+{ inputs, config, lib,... }:
 let
   system = "x86_64-linux";
   pkgs = import inputs.nixpkgs { inherit system; };
-  user = builtins.readFile ./.server.user;
-  hostname = builtins.readFile ./.server.hostname;
+  user = lib.fileContents ./.server.user;
+  hostname = lib.fileContents ./.server.hostname;
 in {
   hosts.server = {
-    inherit user;
-    host = hostname;
+    inherit user hostname;
     homedir = "/home/${user}";
     isNixos = false;
     isDesktop = false;
