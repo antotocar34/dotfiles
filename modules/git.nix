@@ -1,6 +1,6 @@
-{config, ...}:
+{...}:
 {
-  flake.modules.homeManager.cli = {pkgs, myLib, ...}: {
+  flake.modules.homeManager.cli = {config, info, pkgs, myLib, ...}: {
 
     imports = [
       (myLib.mkGhModule {
@@ -30,8 +30,8 @@
       ];
       
 
-      userName = config.info.name;
-      userEmail = config.info.email;
+      userName = info.name;
+      userEmail = info.email;
       delta.enable = true;
       delta.options = {
         syntax-theme = "Nord";

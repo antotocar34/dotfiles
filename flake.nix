@@ -5,6 +5,8 @@
   nixConfig.extra-trusted-public-keys = [ "antoinecarnec.cachix.org-1:wQ75D1HEpoDPkzyOIIXJQk3nQRVMwE0NaQi/lPVlE7E=" ];
 
   inputs = {
+    self.submodules = true;
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -28,11 +30,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    dotfiles-private = {
-      url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
-      flake = false;
-      # url = "path:private";
-    };
+    # dotfiles-private = {
+    #   url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
+    #   flake = false;
+    #   # url = "path:private";
+    # };
 
     # This captures my plasma settings
     plasma-manager.url = "github:nix-community/plasma-manager";
@@ -61,6 +63,7 @@
 
       imports = [
         (inputs.import-tree ./modules)
+        # ./modules/private/modules/secrets
       ];
 
       perSystem = { system, ... }:
