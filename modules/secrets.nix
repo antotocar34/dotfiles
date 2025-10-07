@@ -1,10 +1,7 @@
-{inputs, config, ...}:
-let
-  fpl = inputs.flake-parts.lib;
-in
+{inputs, ...}:
 {
 
-  flake.modules.homeManager.secrets = {system, ...}: {
+  flake.modules.homeManager.secrets = {config, pkgs, system, ...}: {
     imports = [
       "${inputs.dotfiles-private}/modules/gh"
       "${inputs.dotfiles-private}/modules/ssh"
@@ -15,7 +12,6 @@ in
     home.packages = [
       inputs.agenix.packages."${system}".agenix
     ];
-
   };
 
   flake.modules.homeManager.work = {system, ...}: {
