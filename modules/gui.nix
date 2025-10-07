@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.desktop = {inputs, config, system, pkgs, lib, myLib, host, ...}:
   {
+
     home.packages = (with pkgs; [
       mpv
     ]);

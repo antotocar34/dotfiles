@@ -1,5 +1,14 @@
+{config, ...}:
 {
-  flake.modules.homeManager.cli = {pkgs,...}: {
+  flake.modules.homeManager.cli = {pkgs, myLib, ...}: {
+
+    imports = [
+      (myLib.mkGhModule {
+        name="gh-personal"; 
+        secretFile = myLib.getSecret config "gh-personal-hosts-yml";
+      })
+    ];
+
     programs.git = {
       enable = true;
       aliases = {
@@ -8,9 +17,21 @@
         st = "status --short";
         wdiff = "diff --word-diff=color";
         unstage = "reset HEAD --";
+        force-push = "push --force-with-lease";
       };
-      userName = "Antoine Carnec";
-      userEmail = "antoinecarnec@gmail.com";
+      
+
+      extraConfig = {
+        "diff \"nbdiff\"".command = "${pkgs.python313Packages.nbdime}/bin/git-nbdiffdriver diff" ; 
+      };
+
+      attributes = [
+        "*.ipynb diff=nbdiff"
+      ];
+      
+
+      userName = config.info.name;
+      userEmail = config.info.email;
       delta.enable = true;
       delta.options = {
         syntax-theme = "Nord";
@@ -27,4 +48,5 @@
       settings.git_protocol = "ssh";
     };
   };
+
 }

@@ -7,7 +7,7 @@ hosts.x1carbon = {
   isNixos = false;
   isDesktop = true;
   homedir = "/home/carneca";
-  extras.symbol = "λ";
+  extras.symbol = "ξ";
 };
 
 flake.homeConfigurations."x1carbon" =
@@ -21,6 +21,7 @@ flake.homeConfigurations."x1carbon" =
     modules = with homeManagerCfg; [
       base
       cli
+      cli-linux
       desktop
       secrets
     ];
