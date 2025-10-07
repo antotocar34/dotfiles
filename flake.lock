@@ -483,22 +483,6 @@
         "type": "github"
       }
     },
-    "dotfiles-private": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759775185,
-        "narHash": "sha256-iHP9tjCPbGcOV01rIIyc/9dobMJEvgRmYc1kDUBzVmA=",
-        "ref": "refs/heads/master",
-        "rev": "e3c87315a24cc40a5d169038308e66af95e3bfab",
-        "revCount": 19,
-        "type": "git",
-        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/antotocar34/dotfiles-private"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -1461,7 +1445,6 @@
       "inputs": {
         "acpkgs": "acpkgs",
         "agenix": "agenix",
-        "dotfiles-private": "dotfiles-private",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
