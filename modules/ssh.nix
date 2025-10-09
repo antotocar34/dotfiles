@@ -9,7 +9,7 @@
           port = 22;
           hostname = "github.com";
           host = "github.com-antoinecarnec";
-          forwardAgent = true;
+          # forwardAgent = true;
           identityFile = "~/.ssh/website";
         };
         "github" = {
@@ -17,12 +17,12 @@
           port = 22;
           hostname = "github.com";
           host = "github.com";
-          forwardAgent = true;
+          # forwardAgent = true;
           identityFile = "~/.ssh/github";
         };
-        "*" = {
-          identityFile = "~/.ssh/antoine";
-        };
+        # "*" = {
+        #   identityFile = "~/.ssh/antoine";
+        # };
       };
       includes = ["tmp_config"];
     };

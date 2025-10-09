@@ -4,6 +4,8 @@
     home = lib.mkIf pkgs.stdenv.isLinux ({
       aliases = {
         "open" = "mimeo";
+        "sys" = "systemctl --user";
+        "jnl" = "journalctl --user";
       };
 
       packages = with pkgs; [
@@ -55,6 +57,9 @@
         magic-wormhole
         cmus
         vifm
+
+        # Python
+        uv
       ];
     in {
 

@@ -63,7 +63,6 @@
 
       imports = [
         (inputs.import-tree ./modules)
-        # ./modules/private/modules/secrets
       ];
 
       perSystem = { system, ... }:

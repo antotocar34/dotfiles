@@ -13,7 +13,7 @@
           if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
           else if pkgs.stdenv.isLinux && host.isDesktop then pkgs.pinentry-qt
           else pkgs.pinentry-curses;
-          lock_timeout = 60 * 30;
+          lock_timeout = 60 * 5;
           email = info.email;
           pin_unlock = {
             enabled = true;

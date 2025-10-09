@@ -61,7 +61,7 @@ diff:
     home-manager generations | grep -oE "/nix/store/.*home-manager-generation" | head -2 | tac | xargs -n 2 nix run nixpkgs#nvd diff
 
 b:
-   nix build --impure .#homeConfigurations.${USER}@${HOSTNAME}.activationPackage
+   @just build
 
 push_secrets:
    git submodule foreach just update
