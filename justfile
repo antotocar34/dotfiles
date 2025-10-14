@@ -85,8 +85,22 @@ commit:
 show_nixpkgs_version:
   @jq -r '.nodes.nixpkgs.locked.rev' flake.lock
 
+REPL_NIX_EXPRESSION := '''
+hostname:
+let 
+  flake = (builtins.getFlake \"$PWD\");
+  pkgs = import <nixpkgs> {};
+  lib = pkgs.lib;
+  config = flake.outputs.homeConfigurations.\${hostname};
+in
+(
+flake // pkgs // lib // config
+)
+'''
+
 repl:
-  nix repl
+  nix repl --expr "({{NIX_EXPRESSION}}) \"$HOSTNAME\""
+
 
 populate_server:
   echo $(whoami) > modules/hosts/.server.user
