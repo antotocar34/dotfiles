@@ -1,36 +1,20 @@
-{ inputs, config, ... }:
-{
-
-  hosts.macbookpro = {
+{config, lib, inputs, ...}:
+let
+  mkHomeConfiguration = import ./_mkHomeConfiguration.nix {inherit config inputs;};
+  hostname = "LONLTMC773WR0";
+  configuration = mkHomeConfiguration {
     user = "antoine.carnec";
-    hostname = "LONLTMC773WR0";
-    isNixos = false;
+    inherit hostname;
+    system = "aarch64-darwin";
+    symbol = "λ";
+    homeManagerModules = [ "base" "cli" "desktop" "secrets" "work" hostname];
     isDesktop = true;
-    homedir = "/Users/antoine.carnec";
-    extras.symbol = "λ";
+    isNixos = false;
+  }; 
+in
+lib.recursiveUpdate configuration
+{
+  flake.modules.homeManager.${hostname} = {config, host, lib, ...}: {
+    age.identityPaths = lib.mkBefore ["${host.homedir}/.ssh/age.mac.noauth"];
   };
-
-  flake.homeConfigurations."LONLTMC773WR0" =
-    let
-      system = "aarch64-darwin";
-      pkgs = import inputs.nixpkgs { inherit system; };
-      homeManagerCfg = config.flake.modules.homeManager;
-    in
-    inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = with homeManagerCfg; [
-        base
-        cli
-        desktop
-        secrets
-        work
-      ];
-
-      extraSpecialArgs = {
-        host = config.hosts.macbookpro;
-        info = config.info;
-        myLib = config.flake.lib;
-        inherit system inputs pkgs;
-      };
-    };
 }

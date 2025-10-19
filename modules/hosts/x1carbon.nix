@@ -1,36 +1,20 @@
-{ inputs, config, ... }:
-{
-
-hosts.x1carbon = {
-  user = "carneca";
+{config, inputs, lib,...}:
+let
+  mkHomeConfiguration = import ./_mkHomeConfiguration.nix {inherit config inputs;};
   hostname = "x1carbon";
-  isNixos = false;
-  isDesktop = true;
-  homedir = "/home/carneca";
-  extras.symbol = "ξ";
-};
-
-flake.homeConfigurations."x1carbon" =
-  let
+  configuration = mkHomeConfiguration {
+    user = "carneca";
+    inherit hostname;
     system = "x86_64-linux";
-    pkgs = import inputs.nixpkgs { inherit system; };
-    homeManagerCfg = config.flake.modules.homeManager;
-  in
-  inputs.home-manager.lib.homeManagerConfiguration {
-    inherit pkgs;
-    modules = with homeManagerCfg; [
-      base
-      cli
-      cli-linux
-      desktop
-      secrets
-    ];
-
-    extraSpecialArgs = {
-      host = config.hosts.x1carbon;
-      info = config.info;
-      myLib = config.flake.lib;
-      inherit system inputs;
-    };
+    symbol = "ξ";
+    homeManagerModules = [ "base" "cli" "cli-linux" "desktop" "secrets"];
+    isDesktop = false;
+    isNixos = false;
+  };
+in
+lib.recursiveUpdate configuration
+{
+  flake.modules.homeManager.${hostname} = {config, host, lib, ...}: {
+    # age.identityPaths = lib.mkBefore ["${host.homedir}/.ssh/age.mac.noauth"];
   };
 }

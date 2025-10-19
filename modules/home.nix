@@ -30,7 +30,6 @@
       };
 
       home.shellAliases = {
-        "hs" = ''fd -uu -eold_version -p . $HOME -X trash {} && just ${configPath}/switch'';
         "conf" = "cd ${configPath}";
         "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
       };

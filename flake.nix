@@ -30,6 +30,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    agefs = {
+      url = "github:andre4ik3/agefs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # dotfiles-private = {
     #   url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
     #   flake = false;

@@ -9,6 +9,11 @@
       EDITOR = "${myNvim}/bin/nvim";
     };
 
+    # For some reason hone.sessionVariables doesn't work well
+    programs.bash.initExtra = ''
+      export EDITOR="${myNvim}/bin/nvim"
+      '';
+
     home.packages = [myNvim];
   };
 }

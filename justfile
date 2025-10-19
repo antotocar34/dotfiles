@@ -91,15 +91,15 @@ let
   flake = (builtins.getFlake \"$PWD\");
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
-  config = flake.outputs.homeConfigurations.\${hostname};
+  config = flake.outputs.homeConfigurations.\${hostname}.config;
 in
 (
-flake // pkgs // lib // config
+flake // { inherit pkgs; } // { inherit lib; } // { inherit config; }
 )
 '''
 
 repl:
-  nix repl --expr "({{NIX_EXPRESSION}}) \"$HOSTNAME\""
+  nix repl --expr "({{REPL_NIX_EXPRESSION}}) \"$HOSTNAME\""
 
 
 populate_server:

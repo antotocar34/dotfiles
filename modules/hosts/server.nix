@@ -1,31 +1,20 @@
-{ inputs, config, lib,... }:
+{config, inputs, lib, ...}:
 let
-  system = "x86_64-linux";
-  pkgs = import inputs.nixpkgs { inherit system; };
-  user = lib.fileContents ./.server.user;
-  hostname = lib.fileContents ./.server.hostname;
-in {
-  hosts.server = {
-    inherit user hostname;
-    homedir = "/home/${user}";
-    isNixos = false;
+  mkHomeConfiguration = import ./_mkHomeConfiguration.nix {inherit config inputs;};
+  hostname = "LONLTMC773WR0";
+  configuration = mkHomeConfiguration {
+    user = lib.fileContents ./.server.user;
+    hostname = lib.fileContents ./.server.hostname;
+    system = "x86_64-linux";
+    symbol = ">";
+    homeManagerModules = [ "base" "cli" ];
     isDesktop = false;
-    extras.symbol = ">";
+    isNixos = false;
   };
-
-  flake.homeConfigurations."server" =
-    inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = with config.flake.modules.homeManager; [ 
-        base
-        cli
-      ];
-      extraSpecialArgs = {
-        host = config.hosts.server;
-        info = config.info;
-        myLib = config.flake.lib;
-        inherit system inputs pkgs;
-      };
-
-    };
-  }
+in
+lib.recursiveUpdate configuration
+{
+  flake.modules.homeManager.${hostname} = {config, host, lib, ...}: {
+    # age.identityPaths = lib.mkBefore ["${host.homedir}/.ssh/age.mac.noauth"];
+  };
+}
