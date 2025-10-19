@@ -1,9 +1,9 @@
 {inputs, ...}:
 {
-  flake.modules.homeManager.cli = {config, pkgs, lib, system, host, info, ...}: {
+  flake.modules.homeManager.cli = {config, pkgs, acpkgs, lib, system, host, info, ...}: {
 
     home.packages = [
-      inputs.acpkgs.packages.${system}.age-plugin-pwmgr
+      acpkgs.age-plugin-pwmgr
     ];
 
     home.sessionVariables = let
@@ -22,14 +22,15 @@
     in
     {
       enable = true;
-      package = inputs.acpkgs.packages.${system}.rbw;
+      package = acpkgs.rbw;
       settings = {
         pinentry = pinentryPlatformAppropriate;
-        lock_timeout = 30;
-        email = info.email;
+        lock_timeout = 60 * 60 * 1;
+        email = "nunyaa7676@gmail.com";
+        base_url = "https://vault.bitwarden.eu";
         pin_unlock = {
           enabled = true;
-          ttl_secs = 60 * 60 * 24 * 30;
+          ttl_secs = 60 * 60 * 24 * 30; # 30 days
           allow_weak_keyring = false;
         };
       };
