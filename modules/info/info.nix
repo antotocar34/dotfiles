@@ -1,4 +1,4 @@
-{config, lib, ...}:
+{ config, lib, ... }:
 {
   options.info = lib.mkOption { type = lib.types.attrsOf lib.types.str; };
 

@@ -23,7 +23,7 @@
           # identitiesOnly = true;
         };
       };
-      includes = ["tmp_config"];
+      includes = [ "tmp_config" ];
     };
 
   };

@@ -1,17 +1,19 @@
 {
   flake.lib = {
-    wrapWithNixGL = pkgs: nixGL: pkg:
+    wrapWithNixGL =
+      pkgs: nixGL: pkg:
       pkgs.writeShellApplication {
         name = pkg.pname;
 
-        runtimeInputs = [];
+        runtimeInputs = [ ];
 
         text = ''
           exec ${nixGL}/bin/nixGL ${pkgs.lib.getExe pkg} "$@"
         '';
       };
-    wrapWithNixGLFull = pkgs: nixGL: pkg:
-      pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
+    wrapWithNixGLFull =
+      pkgs: nixGL: pkg:
+      pkgs.runCommand "${pkg.name}-nixgl-wrapper" { } ''
         mkdir $out
         ln -s ${pkg}/* $out
         rm $out/bin

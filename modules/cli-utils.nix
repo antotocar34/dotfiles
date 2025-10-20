@@ -1,24 +1,32 @@
 {
-  flake.modules.homeManager.cli-linux = {pkgs, lib, ...}: {
+  flake.modules.homeManager.cli-linux =
+    { pkgs, lib, ... }:
+    {
 
-    home = lib.mkIf pkgs.stdenv.isLinux ({
-      aliases = {
-        "open" = "mimeo";
-        "sys" = "systemctl --user";
-        "jnl" = "journalctl --user";
-      };
+      home = lib.mkIf pkgs.stdenv.isLinux ({
+        aliases = {
+          "open" = "mimeo";
+          "sys" = "systemctl --user";
+          "jnl" = "journalctl --user";
+        };
 
-      packages = with pkgs; [
-        psmisc # pstree and the like
-        tdrop # Toggle terminal
-        xclip # clipboard cli
-        cntr # Nix build debugging helper
-        mimeo
-      ];
-    });
-  };
+        packages = with pkgs; [
+          psmisc # pstree and the like
+          tdrop # Toggle terminal
+          xclip # clipboard cli
+          cntr # Nix build debugging helper
+          mimeo
+        ];
+      });
+    };
 
-  flake.modules.homeManager.cli = {config, pkgs, lib, ...}:
+  flake.modules.homeManager.cli =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       # system = pkgs.stdenv.hostPlatform.system;
       mypkgs = import ../mypkgs { inherit pkgs config; };
@@ -61,41 +69,42 @@
         # Python
         uv
       ];
-    in {
+    in
+    {
 
-        home.packages = cliPackages;
-        home.sessionVariables = {
-          FZF_DEFAULT_COMMAND = ''
-            ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
-          '';
+      home.packages = cliPackages;
+      home.sessionVariables = {
+        FZF_DEFAULT_COMMAND = ''
+          ag --hidden --ignore .cache --ignore .git --ignore .vim --ignore .local -l -g ""
+        '';
+      };
+
+      programs = {
+        bat = {
+          enable = true;
+          config.theme = "Nord";
         };
 
-        programs = {
-          bat = {
-            enable = true;
-            config.theme = "Nord";
-          };
+        direnv = {
+          enable = true;
+          nix-direnv.enable = true;
+          config.hide_env_diff = true;
+        };
 
-          direnv = {
-            enable = true;
-            nix-direnv.enable = true;
-            config.hide_env_diff = true;
-          };
+        tmux = {
+          enable = true;
+          baseIndex = 1;
+          escapeTime = 1;
+          keyMode = "vi";
+          newSession = true;
+          shortcut = "k";
+          extraConfig = builtins.readFile ../homedir/.tmux.conf;
+        };
 
-          tmux = {
-            enable = true;
-            baseIndex = 1;
-            escapeTime = 1;
-            keyMode = "vi";
-            newSession = true;
-            shortcut = "k";
-            extraConfig = builtins.readFile ../homedir/.tmux.conf;
-          };
-
-          fzf = {
-            enable = true;
-            enableBashIntegration = true;
-          };
+        fzf = {
+          enable = true;
+          enableBashIntegration = true;
         };
       };
-    }
+    };
+}

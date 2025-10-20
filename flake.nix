@@ -2,7 +2,9 @@
   description = "home configuration flake";
 
   nixConfig.extra-substituters = [ "https://antoinecarnec.cachix.org/" ];
-  nixConfig.extra-trusted-public-keys = [ "antoinecarnec.cachix.org-1:wQ75D1HEpoDPkzyOIIXJQk3nQRVMwE0NaQi/lPVlE7E=" ];
+  nixConfig.extra-trusted-public-keys = [
+    "antoinecarnec.cachix.org-1:wQ75D1HEpoDPkzyOIIXJQk3nQRVMwE0NaQi/lPVlE7E="
+  ];
 
   inputs = {
     self.submodules = true;
@@ -13,7 +15,7 @@
     import-tree.url = "github:vic/import-tree";
 
     acpkgs.url = "github:antotocar34/acpkgs";
-    # acpkgs.nixpkgs.follows = "nixpkgs"; # setting this means that acpkgs might not hit the cachix binary cache 
+    # acpkgs.nixpkgs.follows = "nixpkgs"; # setting this means that acpkgs might not hit the cachix binary cache
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -24,7 +26,7 @@
       url = "github:antotocar34/nvim-nix";
     };
 
-    agenix= {
+    agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
@@ -56,9 +58,15 @@
     monaco-nf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, flake-parts, nixpkgs, ... }:
+  outputs =
+    inputs@{
+      self,
+      flake-parts,
+      nixpkgs,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      
+
       systems = [
         # "aarch64-linux"
         "x86_64-linux"
@@ -70,11 +78,13 @@
         (inputs.import-tree ./modules)
       ];
 
-      perSystem = { system, ... }:
+      perSystem =
+        { system, ... }:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-        in {
-          devShells.default = pkgs.callPackage ./shell.nix {};
+        in
+        {
+          devShells.default = pkgs.callPackage ./shell.nix { };
         };
     };
 }

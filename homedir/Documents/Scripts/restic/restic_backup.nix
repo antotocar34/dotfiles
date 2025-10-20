@@ -1,9 +1,12 @@
-{pkgs}: 
+{ pkgs }:
 let
   l = pkgs.lib // builtins;
   backup_script = pkgs.writeShellScript "backup" (builtins.readFile ./backup.sh);
-  read_notify_loop_script = pkgs.writeShellScript "read_notify_loop" (builtins.readFile ./read_notify_loop.sh);
-in (pkgs.writeShellApplication {
+  read_notify_loop_script = pkgs.writeShellScript "read_notify_loop" (
+    builtins.readFile ./read_notify_loop.sh
+  );
+in
+(pkgs.writeShellApplication {
   name = "restic-backup";
   text = ''
     SESSION_NAME="restic-daily-backup-$(${pkgs.coreutils}/bin/date '+%d%b%Y')"
@@ -18,5 +21,12 @@ in (pkgs.writeShellApplication {
       fi
     done
   '';
-  runtimeInputs = with pkgs; [rbw tmux restic procps rclone gnugrep];
+  runtimeInputs = with pkgs; [
+    rbw
+    tmux
+    restic
+    procps
+    rclone
+    gnugrep
+  ];
 })
