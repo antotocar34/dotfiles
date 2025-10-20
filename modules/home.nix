@@ -25,7 +25,6 @@
       home.sessionVariables = {
         LOCALE_ARCHIVE = "${home}/.nix-profile/lib/locale/locale-archive";
         NIXPKGS_ALLOW_UNFREE = 1;
-        NIX_PATH = "nixpkgs=${pkgs.path}";
         HOME_MANAGER_CONFIG = configPath;
       };
 

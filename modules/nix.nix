@@ -1,7 +1,11 @@
 {inputs, ...}:
 {
-  flake.modules.homeManager.cli = { host, pkgs, lib, ... }:
+  flake.modules.homeManager.cli = { host, pkgs, lib, ... }@args:
   {
+    home.sessionVariables = {
+      NIX_PATH = "nixpkgs=${pkgs.path}";
+    };
+
     nix = lib.mkIf (! host.isNixos) {
       package = pkgs.nix;
       settings = {

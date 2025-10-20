@@ -86,7 +86,7 @@ function launch {
 
 ## Nix aliases
 function nrepl {
-    nix repl --expr "import <nixpkgs> {}"
+    nix repl --expr "{ pkgs = import <nixpkgs> {}; lib = import <nixpkgs/lib>; }"
 }
 
 function nsearch {

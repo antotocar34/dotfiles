@@ -25,7 +25,7 @@
       package = acpkgs.rbw;
       settings = {
         pinentry = pinentryPlatformAppropriate;
-        lock_timeout = 60 * 60 * 1;
+        lock_timeout = 60 * 60 * 12;
         email = "nunyaa7676@gmail.com";
         base_url = "https://vault.bitwarden.eu";
         pin_unlock = {

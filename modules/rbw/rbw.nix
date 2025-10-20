@@ -1,6 +1,5 @@
 {
   flake.modules.homeManager.cli = {config, pkgs, lib, ...}@args: {
-    # programs.rbwProfile.enable = true;
     programs.rbwProfile.personal =
       let
         pinentryPlatformAppropriate = if pkgs.stdenv.isDarwin then pkgs.pinentry_mac
@@ -8,11 +7,10 @@
         else pkgs.pinentry-curses;
       in
       {
-        enable = true;
         package = args.acpkgs.rbw;
         settings = {
           pinentry = pinentryPlatformAppropriate;
-          lock_timeout = 1;
+          lock_timeout = 1; # Only is open for one second TODO allow immediate closing by contributing to upstream
           email = args.info.email;
           pin_unlock = {
             enabled = true;

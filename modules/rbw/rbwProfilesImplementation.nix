@@ -57,8 +57,6 @@
     };
     rbwDefinitionModule = {
       options = {
-        enable = lib.mkEnableOption "rbw, a CLI Bitwarden client";
-  
         package = lib.mkPackageOption pkgs "rbw" {
           extraDescription = ''
             Package providing the {command}`rbw` tool and its
@@ -101,32 +99,32 @@
   
       constructRbwWithProfile = name:
       let
-        cfg = cfg.${name};
+        cfg' = cfg.${name};
       in
       [
         {
           home.packages = 
           let
             rbwWrapper = pkgs.writeShellScriptBin "rbw-${name}" ''
-              RBW_PROFILE="${name}" ${cfg.package}/bin/rbw "$@"
+              RBW_PROFILE="${name}" ${cfg'.package}/bin/rbw "$@"
             '';
-          in [ cfg.package rbwWrapper ];
+          in [ cfg'.package rbwWrapper ];
         }
   
         # Only manage configuration if not empty
-        (lib.mkIf (cfg.settings != null && !isDarwin) {
-          xdg.configFile."rbw-${name}/config.json".source = jsonFormat.generate "rbw-config.json" cfg.settings;
+        (lib.mkIf (cfg'.settings != null && !isDarwin) {
+          xdg.configFile."rbw-${name}/config.json".source = jsonFormat.generate "rbw-config.json" cfg'.settings;
         })
   
-        (lib.mkIf (cfg.settings != null && isDarwin) {
+        (lib.mkIf (cfg'.settings != null && isDarwin) {
           home.file."Library/Application Support/rbw-${name}/config.json".source =
-            jsonFormat.generate "rbw-config.json" cfg.settings;
+            jsonFormat.generate "rbw-config.json" cfg'.settings;
           })
         ];
   
     in
     lib.mkIf (cfg != {}) ( 
-        lib.mkMerge (lib.lists.flatten (map (name: constructRbwWithProfile name) ["personal"])
-        ));
+      lib.mkMerge (lib.lists.flatten (map (name: constructRbwWithProfile name) ["personal"]))
+    );
       };
     }
