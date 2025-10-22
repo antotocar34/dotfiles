@@ -43,8 +43,6 @@
             "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
           };
 
-          nixpkgs.config.allowUnfree = true;
-
           home.file = {
             ".config".source = ../homedir/.config;
             ".config".recursive = true;

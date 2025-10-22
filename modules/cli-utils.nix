@@ -22,6 +22,7 @@
 
   flake.modules.homeManager.cli =
     {
+      inputs,
       config,
       pkgs,
       lib,
@@ -65,6 +66,7 @@
         magic-wormhole
         cmus
         vifm
+        htop
 
         # Python
         uv
@@ -80,6 +82,7 @@
       };
 
       programs = {
+
         bat = {
           enable = true;
           config.theme = "Nord";
@@ -107,4 +110,5 @@
         };
       };
     };
+
 }

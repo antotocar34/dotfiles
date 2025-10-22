@@ -26,6 +26,7 @@
           wdiff = "diff --word-diff=color";
           unstage = "reset HEAD --";
           force-push = "push --force-with-lease";
+          puush = "push --force-with-lease";
         };
 
         extraConfig = {

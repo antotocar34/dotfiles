@@ -1,7 +1,7 @@
 LLM_GEMINI_KEY="$(cat "${LLM_GEMINI_KEY_FILE}")"
 export LLM_GEMINI_KEY
 
-MODEL="gemini-2.5-flash"
+MODEL="gemini-flash-latest"
 PROMPT=""
 SYSTEM_PROMPT="You are a helpful AI assistant accessed via a command line. Your responses must be terse, to the point, and contained within a single paragraph. Use newlines for readability. Do not engage in unnecessary conversation. If the user asks you to give a longer answer, only do so for one response, then resume with your terse responses."
 QUICK=false
