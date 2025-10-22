@@ -6,7 +6,7 @@
 }:
 let
   mkHomeConfiguration = import ./_mkHomeConfiguration.nix { inherit config inputs; };
-  hostname = "LONLTMC773WR0";
+  hostname = "server";
   configuration = mkHomeConfiguration {
     user = lib.fileContents ./.server.user;
     hostname = lib.fileContents ./.server.hostname;
