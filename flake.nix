@@ -23,7 +23,7 @@
     };
 
     my-neovim = {
-      url = "github:antotocar34/nvim-nix";
+      url = "github:antotocar34/nvim-nix/nixCats";
     };
 
     agenix = {

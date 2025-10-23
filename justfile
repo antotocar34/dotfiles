@@ -88,7 +88,7 @@ let
   config = flake.outputs.homeConfigurations.\${hostname}.config;
 in
 (
-flake // { inherit pkgs; } // { inherit lib; } // { inherit config; }
+flake // { inherit pkgs; } // { inherit lib; } // { inherit config; } // { inherit flake; }
 )
 '''
 

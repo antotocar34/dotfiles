@@ -26,6 +26,7 @@
       config,
       pkgs,
       lib,
+      myLib,
       ...
     }:
     let
@@ -108,6 +109,35 @@
           enable = true;
           enableBashIntegration = true;
         };
+
+        atuin =
+          let
+            inherit (myLib) getSecret;
+            key_path = getSecret config "atuin_key";
+            session_path = getSecret config "atuin_session";
+            hasSecrets =
+              !builtins.elem "/dev/null" [
+                key_path
+                session_path
+              ];
+          in
+          {
+            enable = true;
+            # enable = hasSecrets;
+            enableBashIntegration = true;
+            flags = [ "--disable-up-arrow" ];
+            settings = {
+              auto_sync = true;
+              sync_frequency = "30m";
+              history_filter = [
+                "^(echo|cat).+base64.+"
+                "^(rm|z|cd|ls|man|cat|grep|which) .*"
+              ];
+              show_tabs = false;
+              style = "compact";
+              inherit key_path; # session_path; TODO for some reason atuin_session is a broken symlink, no idea why
+            };
+          };
       };
     };
 

@@ -11,7 +11,9 @@
         enable = true;
         config =
           let
-            focus = name: "/usr/bin/env osascript -e 'tell application \"${name}\" to reopen' -e 'tell application \"${name}\" to activate'";
+            focus =
+              name:
+              "/usr/bin/env osascript -e 'tell application \"${name}\" to reopen' -e 'tell application \"${name}\" to activate'";
             applicationShortcut = name: shortcut: "${shortcut} : ${focus name} || /usr/bin/env open -a ${name}";
           in
           ''
