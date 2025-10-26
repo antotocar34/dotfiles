@@ -25,7 +25,7 @@
           '';
         in
         [
-          myNvim
+          # myNvim
           nvimGrep
           nvimFiles
         ];

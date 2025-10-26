@@ -135,7 +135,7 @@
               ];
               show_tabs = false;
               style = "compact";
-              inherit key_path; # session_path; TODO for some reason atuin_session is a broken symlink, no idea why
+              # inherit key_path session_path; TODO for some reason the secrets are misbehaving
             };
           };
       };

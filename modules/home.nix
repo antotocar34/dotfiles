@@ -43,18 +43,31 @@
             "gsee" = "cd $(mktemp -d) && git clone --depth 1 $(pbpaste)";
           };
 
-          home.file = {
-            ".config".source = ../homedir/.config;
-            ".config".recursive = true;
-            ".ssh".source = ../homedir/.ssh;
-            ".ssh".recursive = true;
-            ".xmodmap".source = ../homedir/.xmodmap;
-            ".dir_colors".source = ../homedir/.dir_colors;
-            ".timewarrior/timewarrior.cfg".source = ../homedir/.timewarrior/timewarrior.cfg;
-            ".ghc/ghci.conf".source = ../homedir/.ghc/ghci.conf;
-            ".muttrc".source = ../homedir/.muttrc;
-            # ".Rprofile".source = ../../../homedir/.config/R/Rprofile;
-            ".ipython".source = ../homedir/.ipython;
+          home.file =
+          let
+            inherit (config.lib.file) mkOutOfStoreSymlink;
+            link = s: config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/${s}";
+            symlinkRoot = "${configPath}/homedir";          # make sure this is a *string*, not a Nix path
+
+              recursivelyMkOutOfStoreSymlink = dirPath:
+              let
+                base  = builtins.baseNameOf dirPath;
+                rel   = p: lib.removePrefix "${toString dirPath}/" (toString p);
+                rels  = map rel (lib.filesystem.listFilesRecursive dirPath);
+                keys  = map (p: "${base}/${p}") rels;
+              in
+              lib.genAttrs keys (n: {
+                  source = mkOutOfStoreSymlink "${symlinkRoot}/${n}";  # → …/homedir/.config/…
+                  });
+          in
+            recursivelyMkOutOfStoreSymlink ../homedir/.config //
+            recursivelyMkOutOfStoreSymlink ../homedir/.ssh //
+          {
+            ".xmodmap".source = link ".xmodmap";
+            ".dir_colors".source = link ".dir_colors";
+            ".timewarrior/timewarrior.cfg".source = link ".timewarrior/timewarrior.cfg";
+            # ".ghc/ghci.conf" = link ":ghc/ghci.conf";
+            ".ipython".source = link ".ipython";
             ".ipython".recursive = true;
           };
 
