@@ -86,9 +86,10 @@ let
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
   config = flake.outputs.homeConfigurations.\${hostname}.config;
+  options = flake.outputs.homeConfigurations.\${hostname}.options;
 in
 (
-flake // { inherit pkgs; } // { inherit lib; } // { inherit config; } // { inherit flake; }
+flake // { inherit pkgs lib config options flake; }
 )
 '''
 
