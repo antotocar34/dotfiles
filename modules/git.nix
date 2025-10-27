@@ -19,7 +19,7 @@
 
       programs.git = {
         enable = true;
-        aliases = {
+        settings.alias = {
           lg = ''log --graph --abbrev-commit --decorate --date=short -10 --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
           te = ''log --all --graph --decorate=short --color --date=short --format=format:"%C(bold blue)%h%C(reset) %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ad)%C(reset) %C(dim white)- %an%C(reset)"'';
           st = "status --short";
@@ -29,7 +29,7 @@
           puush = "push --force-with-lease";
         };
 
-        extraConfig = {
+        settings = {
           "diff \"nbdiff\"".command = "${pkgs.python313Packages.nbdime}/bin/git-nbdiffdriver diff";
         };
 
@@ -37,10 +37,14 @@
           "*.ipynb diff=nbdiff"
         ];
 
-        userName = info.name;
-        userEmail = info.email;
-        delta.enable = true;
-        delta.options = {
+        settings.user.name = info.name;
+        settings.user.email = info.email;
+      };
+
+      programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
           syntax-theme = "Nord";
           side-by-side = "false";
           paging = "auto";

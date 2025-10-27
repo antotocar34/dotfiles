@@ -44,32 +44,33 @@
           };
 
           home.file =
-          let
-            inherit (config.lib.file) mkOutOfStoreSymlink;
-            link = s: config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/${s}";
-            symlinkRoot = "${configPath}/homedir";          # make sure this is a *string*, not a Nix path
+            let
+              inherit (config.lib.file) mkOutOfStoreSymlink;
+              link = s: config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/${s}";
+              symlinkRoot = "${configPath}/homedir"; # make sure this is a *string*, not a Nix path
 
-              recursivelyMkOutOfStoreSymlink = dirPath:
-              let
-                base  = builtins.baseNameOf dirPath;
-                rel   = p: lib.removePrefix "${toString dirPath}/" (toString p);
-                rels  = map rel (lib.filesystem.listFilesRecursive dirPath);
-                keys  = map (p: "${base}/${p}") rels;
-              in
-              lib.genAttrs keys (n: {
-                  source = mkOutOfStoreSymlink "${symlinkRoot}/${n}";  # → …/homedir/.config/…
-                  });
-          in
-            recursivelyMkOutOfStoreSymlink ../homedir/.config //
-            recursivelyMkOutOfStoreSymlink ../homedir/.ssh //
-          {
-            ".xmodmap".source = link ".xmodmap";
-            ".dir_colors".source = link ".dir_colors";
-            ".timewarrior/timewarrior.cfg".source = link ".timewarrior/timewarrior.cfg";
-            # ".ghc/ghci.conf" = link ":ghc/ghci.conf";
-            ".ipython".source = link ".ipython";
-            ".ipython".recursive = true;
-          };
+              recursivelyMkOutOfStoreSymlink =
+                dirPath:
+                let
+                  base = builtins.baseNameOf dirPath;
+                  rel = p: lib.removePrefix "${toString dirPath}/" (toString p);
+                  rels = map rel (lib.filesystem.listFilesRecursive dirPath);
+                  keys = map (p: "${base}/${p}") rels;
+                in
+                lib.genAttrs keys (n: {
+                  source = mkOutOfStoreSymlink "${symlinkRoot}/${n}"; # → …/homedir/.config/…
+                });
+            in
+            recursivelyMkOutOfStoreSymlink ../homedir/.config
+            // recursivelyMkOutOfStoreSymlink ../homedir/.ssh
+            // {
+              ".xmodmap".source = link ".xmodmap";
+              ".dir_colors".source = link ".dir_colors";
+              ".timewarrior/timewarrior.cfg".source = link ".timewarrior/timewarrior.cfg";
+              # ".ghc/ghci.conf" = link ":ghc/ghci.conf";
+              ".ipython".source = link ".ipython";
+              ".ipython".recursive = true;
+            };
 
           news.display = "silent";
         };

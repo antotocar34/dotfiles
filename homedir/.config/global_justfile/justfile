@@ -1,6 +1,7 @@
 mod gcp
 mod uv
 mod rbw
+mod nix
 
 import? "./tmp.just"
 

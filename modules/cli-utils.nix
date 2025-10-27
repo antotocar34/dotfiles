@@ -122,8 +122,8 @@
               ];
           in
           {
-            enable = true;
-            # enable = hasSecrets;
+            # enable = true;
+            enable = hasSecrets;
             enableBashIntegration = true;
             flags = [ "--disable-up-arrow" ];
             settings = {
@@ -135,7 +135,8 @@
               ];
               show_tabs = false;
               style = "compact";
-              # inherit key_path session_path; TODO for some reason the secrets are misbehaving
+              inherit key_path session_path;
+              # Key needs to be kept in base64 encoding?
             };
           };
       };
