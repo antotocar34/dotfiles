@@ -22,8 +22,8 @@
           nixGL = inputs.nixgl.packages.${system}.default;
         in
         {
-          enable = false;
-          extraConfig = lib.readFile ../homedir/.config/kitty/kitty.conf;
+          enable = true;
+          extraConfig = "include kitty_extra.conf"; # lib.readFile ../homedir/.config/kitty/_kitty.confkitty.conf;
           package = if pkgs.stdenv.isLinux then myLib.wrapWithNixGL pkgs nixGL pkgs.kitty else pkgs.kitty;
         };
 
