@@ -67,7 +67,6 @@
               ".xmodmap".source = link ".xmodmap";
               ".dir_colors".source = link ".dir_colors";
               ".timewarrior/timewarrior.cfg".source = link ".timewarrior/timewarrior.cfg";
-              # ".ghc/ghci.conf" = link ":ghc/ghci.conf";
               ".ipython".source = link ".ipython";
               ".ipython".recursive = true;
             };

@@ -5,20 +5,37 @@
       host,
       pkgs,
       lib,
+      system,
       ...
     }@args:
     {
-      home.sessionVariables = {
-        NIX_PATH = "nixpkgs=${pkgs.path}";
+      home.sessionVariables = 
+      let
+        inherit (lib.strings) join;
+        nixpkgs="nixpkgs=${pkgs.path}";
+        home-manager="home-manager=${inputs.home-manager.outPath}";
+        # acpkgs="acpkgs=${inputs.acpkgs.outPath}"; Need to add flake-compat
+        configFlake="config-flake=${./..}"; # options don't work because of flake-parts
+        hostname="hostname=${host.hostname}";
+        # select="select=${inputs.nix-select.packages.${system}.default}";
+      in
+      {
+        NIX_PATH = join ":" [nixpkgs home-manager configFlake hostname];
       };
 
       nix = lib.mkIf (!host.isNixos) {
         package = pkgs.nix;
+        # TODO: Couldn't make this work well
+        # package = 
+        # if !pkgs.stdenv.isDarwin 
+        #   then pkgs.nix 
+        #   else inputs.determinate-nix.packages.${system}.nix; # TODO can I replace this with determinate nix when necessary?
         settings = {
           # Better defaults
           experimental-features = [
             "nix-command"
             "flakes"
+            "pipe-operators"
           ];
           warn-dirty = false;
           log-lines = 25;

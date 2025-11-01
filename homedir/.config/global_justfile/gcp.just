@@ -8,3 +8,6 @@ ls:
 ssh: 
   @echo "unimplemented"
   gcloud compute ssh --zone $ZONE $MACHINE_NAME --tunnel-through-iap --project $PROJECT
+
+investigate_write_disposition jobid:
+  bq --format=prettyjson show -j {{jobid}} | rg writeDisposition

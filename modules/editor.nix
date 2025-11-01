@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.cli =
-    { pkgs, system, ... }:
+    { pkgs, system, lib, ... }:
     let
       myNvim = inputs.my-neovim.packages.${system}.nvim;
     in
@@ -11,8 +11,9 @@
       };
 
       # For some reason hone.sessionVariables doesn't work well
-      programs.bash.initExtra = ''
-        export EDITOR="${myNvim}/bin/nvim"
+      programs.bash.initExtra = lib.mkAfter ''
+        export EDITOR="$(which nvim)"
+        # export EDITOR="${myNvim}/bin/nvim"
       '';
 
       home.packages =

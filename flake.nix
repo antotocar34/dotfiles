@@ -11,6 +11,18 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    direnv-instant = {
+      url = "github:Mic92/direnv-instant";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
+    # Couldn't quite get this to work
+    # determinate-nix.url = "github:DeterminateSystems/nix-src";
+    # determinate-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # determinate-nix.inputs.flake-parts.follows = "flake-parts";
+
+    flake-compat.url = "github:NixOS/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 

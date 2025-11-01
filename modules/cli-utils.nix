@@ -89,12 +89,6 @@
           config.theme = "Nord";
         };
 
-        direnv = {
-          enable = true;
-          nix-direnv.enable = true;
-          config.hide_env_diff = true;
-        };
-
         tmux = {
           enable = true;
           baseIndex = 1;
