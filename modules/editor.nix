@@ -18,11 +18,12 @@
 
       home.packages =
         let
+          # ${myNvim}/bin/nvim -c "lua vim.schedule(function() require('telescope.builtin').find_files() end)"
           nvimGrep = pkgs.writeShellScriptBin "nf" ''
-            ${myNvim}/bin/nvim -c "lua vim.schedule(function() require('telescope.builtin').find_files() end)"
+            nvim -c "lua vim.schedule(function() require('telescope.builtin').find_files() end)"
           '';
           nvimFiles = pkgs.writeShellScriptBin "ns" ''
-            ${myNvim}/bin/nvim -c "lua vim.schedule(function() vim.cmd('LiveGrepGitRoot') end)"
+            nvim -c "lua vim.schedule(function() vim.cmd('LiveGrepGitRoot') end)"
           '';
         in
         [

@@ -4,17 +4,15 @@
   {
 
     imports = [
-      inputs.direnv-instant.homeModules.direnv-instant
+      # inputs.direnv-instant.homeModules.direnv-instant
     ];
 
-    # home.packages = [ pkgs.direnv ];
-
     # TODO: direnv-instant is not quite working....
-    programs.direnv-instant = {
-      enable = true;
-      enableBashIntegration = true;
-      enableKittyIntegration = true;
-    };
+    # programs.direnv-instant = {
+    #   enable = false;
+    #   enableBashIntegration = true;
+    #   enableKittyIntegration = true;
+    # };
 
     programs.direnv = {
       enable = true;

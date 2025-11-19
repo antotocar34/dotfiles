@@ -16,12 +16,13 @@
         home-manager="home-manager=${inputs.home-manager.outPath}";
         # acpkgs="acpkgs=${inputs.acpkgs.outPath}"; Need to add flake-compat
         configFlake="config-flake=${./..}"; # options don't work because of flake-parts
-        hostname="hostname=${host.hostname}";
         # select="select=${inputs.nix-select.packages.${system}.default}";
       in
       {
-        NIX_PATH = join ":" [nixpkgs home-manager configFlake hostname];
+        NIX_PATH = join ":" [nixpkgs home-manager configFlake];
       };
+
+      home.packages = with pkgs; [ nix-output-monitor ];
 
       nix = lib.mkIf (!host.isNixos) {
         package = pkgs.nix;

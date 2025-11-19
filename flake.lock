@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1760440101,
-        "narHash": "sha256-o6VSOqX18GSTcU/B06fnlDws/PelOGOTC1m/QGaX9R0=",
+        "lastModified": 1763537962,
+        "narHash": "sha256-w6I404G0nLHWb1J1ulzFp9GR1kmh50elx6FqtoL88Pw=",
         "owner": "antotocar34",
         "repo": "acpkgs",
-        "rev": "345408657691663cf438b97d05612e798782a7cc",
+        "rev": "ae19706e0a7e64453680a9f295d8dd2390126a49",
         "type": "github"
       },
       "original": {

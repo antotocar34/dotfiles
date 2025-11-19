@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.modules.homeManager.cli =
     {
@@ -6,13 +5,13 @@
       pkgs,
       acpkgs,
       lib,
-      system,
       host,
-      info,
+      myLib,
       ...
     }:
     {
 
+      # TODO startup rbw-agent with a service
       home.packages = [
         acpkgs.age-plugin-pwmgr
       ];
@@ -26,6 +25,12 @@
           SSH_AUTH_SOCK = RBW_SSH_AUTH_SOCK;
         };
 
+      # TODO define startup service that launches rbw-agent
+      # compatible for both mac and linux
+      # services.rbw = {
+      #
+      # };
+
       programs.rbw =
         let
           pinentryPlatformAppropriate =
@@ -35,21 +40,35 @@
               pkgs.pinentry-qt
             else
               pkgs.pinentry-curses;
+          hardware_bound_key = myLib.getSecret config "rbw_key";
         in
         {
           enable = true;
           package = acpkgs.rbw;
           settings = {
             pinentry = pinentryPlatformAppropriate;
-            lock_timeout = 60 * 60 * 12;
+            lock_timeout = 60 * 30;
             email = "nunyaa7676@gmail.com";
             base_url = "https://vault.bitwarden.eu";
-            pin_unlock = {
-              enabled = true;
-              ttl_secs = 60 * 60 * 24 * 30; # 30 days
-              allow_weak_keyring = false;
-            };
+            enable_pin = true;
+            pin_enable = true;
+            age_identity_file_path = hardware_bound_key;
+            argon2_memory = 16*1024;
+            argon2_iterations = 1;
+            argon2_parallelism = 1;
           };
         };
     };
+
+  flake.modules.homeManager.secrets = {pkgs, host, ...}:
+  {
+     age.secrets.rbw_key = {
+        file = if pkgs.stdenv.isDarwin 
+          then ./private/_secrets/base_secrets/rbw_kingmbp_touchid_age_key.age
+          else (throw "please generate a tpm key for this device");
+        path = "${host.homedir}/.local/share/rbw_age_key";
+        mode = "400";
+        symlink = true;
+     };
+  };
 }

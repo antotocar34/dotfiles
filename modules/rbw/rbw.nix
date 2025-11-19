@@ -3,7 +3,7 @@
     {
       config,
       pkgs,
-      lib,
+      myLib,
       ...
     }@args:
     {
@@ -16,6 +16,9 @@
               pkgs.pinentry-qt
             else
               pkgs.pinentry-curses;
+
+          kdfIterations = if pkgs.stdenv.isDarwin then 8 else 64;
+          hardware_bound_key = myLib.getSecret config "rbw_key";
         in
         {
           package = args.acpkgs.rbw;
@@ -23,11 +26,11 @@
             pinentry = pinentryPlatformAppropriate;
             lock_timeout = 1; # Only is open for one second TODO allow immediate closing by contributing to upstream
             email = args.info.email;
-            pin_unlock = {
-              enabled = true;
-              ttl_secs = 60 * 60 * 24 * 30;
-              allow_weak_keyring = false;
-            };
+            enable_pin = true;
+            age_identity_file_path = hardware_bound_key;
+            argon2_memory = kdfIterations*1024;
+            argon2_iterations = 2;
+            argon2_parallelism = 1;
           };
         };
     };

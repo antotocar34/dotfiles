@@ -49,12 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # dotfiles-private = {
-    #   url = "git+ssh://git@github.com/antotocar34/dotfiles-private";
-    #   flake = false;
-    #   # url = "path:private";
-    # };
-
     # This captures my plasma settings
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
