@@ -9,27 +9,31 @@
       ...
     }@args:
     {
-      home.sessionVariables = 
-      let
-        inherit (lib.strings) join;
-        nixpkgs="nixpkgs=${pkgs.path}";
-        home-manager="home-manager=${inputs.home-manager.outPath}";
-        # acpkgs="acpkgs=${inputs.acpkgs.outPath}"; Need to add flake-compat
-        configFlake="config-flake=${./..}"; # options don't work because of flake-parts
-        # select="select=${inputs.nix-select.packages.${system}.default}";
-      in
-      {
-        NIX_PATH = join ":" [nixpkgs home-manager configFlake];
-      };
+      home.sessionVariables =
+        let
+          inherit (lib.strings) join;
+          nixpkgs = "nixpkgs=${pkgs.path}";
+          home-manager = "home-manager=${inputs.home-manager.outPath}";
+          # acpkgs="acpkgs=${inputs.acpkgs.outPath}"; Need to add flake-compat
+          configFlake = "config-flake=${./..}"; # options don't work because of flake-parts
+          # select="select=${inputs.nix-select.packages.${system}.default}";
+        in
+        {
+          NIX_PATH = join ":" [
+            nixpkgs
+            home-manager
+            configFlake
+          ];
+        };
 
       home.packages = with pkgs; [ nix-output-monitor ];
 
       nix = lib.mkIf (!host.isNixos) {
         package = pkgs.nix;
         # TODO: Couldn't make this work well
-        # package = 
-        # if !pkgs.stdenv.isDarwin 
-        #   then pkgs.nix 
+        # package =
+        # if !pkgs.stdenv.isDarwin
+        #   then pkgs.nix
         #   else inputs.determinate-nix.packages.${system}.nix; # TODO can I replace this with determinate nix when necessary?
         settings = {
           # Better defaults

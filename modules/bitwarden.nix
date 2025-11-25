@@ -53,22 +53,25 @@
             enable_pin = true;
             pin_enable = true;
             age_identity_file_path = hardware_bound_key;
-            argon2_memory = 16*1024;
+            argon2_memory = 16 * 1024;
             argon2_iterations = 1;
             argon2_parallelism = 1;
           };
         };
     };
 
-  flake.modules.homeManager.secrets = {pkgs, host, ...}:
-  {
-     age.secrets.rbw_key = {
-        file = if pkgs.stdenv.isDarwin 
-          then ./private/_secrets/base_secrets/rbw_kingmbp_touchid_age_key.age
-          else (throw "please generate a tpm key for this device");
+  flake.modules.homeManager.secrets =
+    { pkgs, host, ... }:
+    {
+      age.secrets.rbw_key = {
+        file =
+          if pkgs.stdenv.isDarwin then
+            ./private/_secrets/base_secrets/rbw_kingmbp_touchid_age_key.age
+          else
+            (throw "please generate a tpm key for this device");
         path = "${host.homedir}/.local/share/rbw_age_key";
         mode = "400";
         symlink = true;
-     };
-  };
+      };
+    };
 }

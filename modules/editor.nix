@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.cli =
-    { pkgs, system, lib, ... }:
+    {
+      pkgs,
+      system,
+      lib,
+      ...
+    }:
     let
       myNvim = inputs.my-neovim.packages.${system}.nvim;
     in

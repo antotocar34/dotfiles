@@ -9,14 +9,14 @@
           port = 22;
           hostname = "github.com";
           host = "github.com-antoinecarnec";
-          identityFile = "~/.ssh/website";
+          # identityFile = "~/.ssh/website";
         };
         "github" = {
           user = "git";
           port = 22;
           hostname = "github.com";
           host = "github.com";
-          identityFile = "~/.ssh/github";
+          # identityFile = "~/.ssh/github";
         };
         "*" = {
           identityFile = "~/.ssh/antoine";
