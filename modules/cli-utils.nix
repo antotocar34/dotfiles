@@ -41,7 +41,7 @@
         ripgrep
         fd
         fzf
-        du-dust
+        dust
         duf
         tldr
         rdfind

@@ -28,6 +28,10 @@
           inherit configPath;
           programs.home-manager.enable = true;
 
+
+          # TODO: turn this off at some point
+          home.enableNixpkgsReleaseCheck = false;
+
           home.username = user;
           home.homeDirectory = home;
           home.stateVersion = "21.03";
